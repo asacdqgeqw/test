@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>پیش‌نمایش کامل صفحه طراحی سایت | ویرا سئو</title>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Vazirmatn',Tahoma,sans-serif;background:#fff;}
+  /* ===== شبیه‌سازی جای هدر و فوتر ===== */
+  .mock-header,.mock-footer{
+    background:#1D2327; color:#94A3B8; padding:18px 24px;
+    text-align:center; font-size:13px; letter-spacing:1px;
+  }
+  .mock-header{border-bottom:2px solid #170C79;}
+  .mock-footer{margin-top:0;border-top:2px solid #170C79;}
+</style>
+</head>
+<body>
+
+<div class="mock-header">⬇️ این بالا هدر سایت شماست (تغییری نمی‌کند) ⬇️</div>
+
+<!-- ##### START: paste section 1 ##### -->
+<!-- شامل سکشن ۱: HERO -->
+
+<!-- ========================================================
+     سکشن ۱: HERO (بنر اصلی)
+     روش استفاده: یک Section خالی در المنتور بساز → داخلش
+     ویجت "HTML" قرار بده → کل این کد رو پیست کن.
+     ======================================================== -->
+<style>
+:root{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327; --vs-white:#FFFFFF;
+}
+.vs-hero{
+  position:relative; padding:90px 24px 110px; overflow:hidden;
+  background:
+    radial-gradient(60% 60% at 85% 0%, rgba(18,139,224,.18) 0%, transparent 60%),
+    radial-gradient(50% 50% at 5% 100%, rgba(138,203,208,.30) 0%, transparent 60%),
+    linear-gradient(180deg, #FFFFFF 0%, #FAF6EC 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;
+  direction:rtl; color:var(--vs-ink);
+}
+.vs-hero::before{
+  content:""; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(23,12,121,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(23,12,121,.06) 1px,transparent 1px);
+  background-size:48px 48px;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
+          mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
+  pointer-events:none;
+}
+.vs-hero__wrap{
+  position:relative; max-width:1240px; margin:0 auto;
+  display:grid; grid-template-columns:1.15fr 1fr; gap:60px; align-items:center;
+}
+.vs-eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(23,12,121,.08); color:var(--vs-primary);
+  border:1px solid rgba(23,12,121,.18);
+  padding:8px 16px; border-radius:999px;
+  font-size:14px; font-weight:600; margin-bottom:18px;
+}
+.vs-eyebrow i{
+  width:8px;height:8px;border-radius:50%; background:var(--vs-accent);
+  box-shadow:0 0 0 4px rgba(18,139,224,.18); display:inline-block;
+}
+.vs-hero h1{
+  font-size:clamp(32px,4.6vw,58px); font-weight:800;
+  line-height:1.35; letter-spacing:-.5px; margin:0 0 20px; color:var(--vs-ink);
+}
+.vs-hero h1 .grad{
+  background:linear-gradient(135deg,var(--vs-primary) 0%,var(--vs-accent) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+.vs-hero p.lead{
+  font-size:19px; color:#475569; line-height:1.9;
+  max-width:560px; margin:0 0 32px;
+}
+.vs-cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px;}
+.vs-btn{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:14px 28px; border-radius:14px;
+  font-weight:700; font-size:16px; text-decoration:none;
+  transition:all .25s ease; cursor:pointer; border:none;
+}
+.vs-btn--primary{
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  color:#fff; box-shadow:0 18px 40px rgba(23,12,121,.25);
+}
+.vs-btn--primary:hover{transform:translateY(-2px); box-shadow:0 24px 56px rgba(23,12,121,.35);}
+.vs-btn--ghost{
+  background:#fff; color:var(--vs-primary);
+  border:1.5px solid rgba(23,12,121,.20);
+}
+.vs-btn--ghost:hover{border-color:var(--vs-primary);background:#FAF6EC;}
+.vs-btn svg{width:18px;height:18px;}
+
+.vs-stats{
+  display:flex; gap:32px; flex-wrap:wrap;
+  padding-top:24px; border-top:1px dashed rgba(23,12,121,.18);
+}
+.vs-stat .num{
+  font-size:30px; font-weight:900;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+.vs-stat .lbl{color:#64748B; font-size:14px;}
+
+/* ========== ویژوال سمت چپ ========== */
+.vs-visual{position:relative; aspect-ratio:1/1; max-width:520px; margin:0 auto;}
+.vs-mockup{
+  position:absolute; inset:8%; background:#fff; border-radius:28px;
+  box-shadow:0 30px 70px rgba(23,12,121,.20);
+  border:1px solid rgba(23,12,121,.12);
+  overflow:hidden; padding:18px;
+}
+.vs-browser{
+  background:#FAF6EC; border:1px solid rgba(23,12,121,.10);
+  border-radius:12px; padding:8px 12px;
+  display:flex; align-items:center; gap:8px;
+}
+.vs-browser .dots{display:flex;gap:6px;}
+.vs-browser .dots i{width:10px;height:10px;border-radius:50%;background:#FF6B6B;display:inline-block}
+.vs-browser .dots i:nth-child(2){background:#FFD93D}
+.vs-browser .dots i:nth-child(3){background:#6BCB77}
+.vs-browser .url{
+  flex:1; background:#fff; border:1px solid rgba(23,12,121,.08);
+  border-radius:8px; padding:4px 10px; font-size:12px;
+  color:#94A3B8; text-align:center;
+}
+.vs-page{margin-top:14px; display:flex; flex-direction:column; gap:10px;}
+.vs-page__hero{
+  height:100px; border-radius:12px;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  position:relative; overflow:hidden;
+}
+.vs-page__hero::after{
+  content:""; position:absolute; left:14px; bottom:14px; width:60%; height:8px;
+  background:rgba(255,255,255,.7); border-radius:4px;
+}
+.vs-page__row{height:10px; background:#F1F5F9; border-radius:5px;}
+.vs-page__row.short{width:55%;}
+.vs-page__row.med{width:80%;}
+.vs-page__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px;}
+.vs-page__grid div{height:46px;border-radius:8px;background:#F1F5F9;}
+.vs-page__grid div:nth-child(2){background:rgba(138,203,208,.45);}
+
+/* کارت‌های شناور */
+.vs-float{
+  position:absolute; background:#fff; border-radius:18px;
+  border:1px solid rgba(23,12,121,.10);
+  box-shadow:0 12px 32px rgba(15,23,42,.12);
+  padding:12px 16px; display:flex; align-items:center; gap:12px;
+  animation:vs-float 5s ease-in-out infinite;
+}
+.vs-float .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:#fff;flex-shrink:0;}
+.vs-float .t{font-weight:700;font-size:14px;color:var(--vs-ink);}
+.vs-float .s{font-size:12px;color:#64748B;}
+.vs-float--1{top:6%;right:-6%;animation-delay:.2s}
+.vs-float--1 .ic{background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));}
+.vs-float--2{bottom:8%;left:-4%;animation-delay:1s}
+.vs-float--2 .ic{background:linear-gradient(135deg,var(--vs-cyan),var(--vs-secondary));}
+.vs-float--3{top:48%;right:-10%;animation-delay:1.8s}
+.vs-float--3 .ic{background:linear-gradient(135deg,var(--vs-accent),#22D3EE);}
+@keyframes vs-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* responsive */
+@media (max-width:980px){
+  .vs-hero__wrap{grid-template-columns:1fr;gap:48px;}
+  .vs-hero{padding:60px 20px 80px;}
+}
+@media (max-width:560px){
+  .vs-float{display:none;}
+  .vs-stats{gap:20px;}
+  .vs-stat .num{font-size:24px;}
+}
+</style>
+
+<section class="vs-hero">
+  <div class="vs-hero__wrap">
+    <div class="vs-hero__content">
+      <span class="vs-eyebrow"><i></i>طراحی سایت حرفه‌ای + سئو تخصصی</span>
+      <h1>ساخت سایتی که <span class="grad">می‌فروشد</span><br>نه فقط دیده می‌شود.</h1>
+      <p class="lead">طراحی اختصاصی، سرعت بالا، سئوی فنی استاندارد و تجربه کاربری بی‌نقص — همه در یک پروژه. ما سایت‌هایی می‌سازیم که در گوگل اول می‌شوند و کسب‌وکارت را رشد می‌دهند.</p>
+      <div class="vs-cta-row">
+        <a href="#contact" class="vs-btn vs-btn--primary">
+          شروع پروژه من
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#pricing" class="vs-btn vs-btn--ghost">مشاهده پکیج‌ها</a>
+      </div>
+      <div class="vs-stats">
+        <div class="vs-stat"><div class="num">+۴۵۰</div><div class="lbl">پروژه موفق</div></div>
+        <div class="vs-stat"><div class="num">٪۹۸</div><div class="lbl">رضایت مشتری</div></div>
+        <div class="vs-stat"><div class="num">۱۰+</div><div class="lbl">سال تجربه</div></div>
+        <div class="vs-stat"><div class="num">۲۴/۷</div><div class="lbl">پشتیبانی</div></div>
+      </div>
+    </div>
+
+    <div class="vs-visual">
+      <div class="vs-mockup">
+        <div class="vs-browser">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <div class="url">yourbrand.com</div>
+        </div>
+        <div class="vs-page">
+          <div class="vs-page__hero"></div>
+          <div class="vs-page__row med"></div>
+          <div class="vs-page__row short"></div>
+          <div class="vs-page__grid"><div></div><div></div><div></div></div>
+          <div class="vs-page__row med"></div>
+        </div>
+      </div>
+      <div class="vs-float vs-float--1">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><div class="t">سرعت ۹۸/۱۰۰</div><div class="s">PageSpeed</div></div>
+      </div>
+      <div class="vs-float vs-float--2">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><div class="t">رشد ۲۸۰٪</div><div class="s">ترافیک ارگانیک</div></div>
+      </div>
+      <div class="vs-float vs-float--3">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8M21 12v6a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2h11" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><div class="t">تأییدشده</div><div class="s">Core Web Vitals</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ##### START: paste section 2 ##### -->
+<!-- ========================================================
+     سکشن ۲: TRUST STRIP (نوار اعتماد و لوگوی مشتریان)
+     روش استفاده: HTML widget در یک Section ساده.
+     ======================================================== -->
+<style>
+:root{
+  --vs-primary:#170C79; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+}
+.vs-strip{
+  padding:56px 24px; background:linear-gradient(180deg,#FAF6EC 0%,#EFE3CA 100%);
+  border-block:1px solid rgba(23,12,121,.08);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl;
+}
+.vs-strip__inner{max-width:1240px;margin:0 auto;}
+.vs-strip__title{
+  text-align:center; color:var(--vs-primary);
+  font-size:14px; letter-spacing:2px; font-weight:600;
+  margin-bottom:24px; text-transform:uppercase;
+}
+.vs-strip__logos{
+  display:flex; justify-content:space-around; align-items:center;
+  flex-wrap:wrap; gap:36px; opacity:.85;
+}
+.vs-strip__logos span{
+  font-weight:800; color:var(--vs-ink);
+  font-size:22px; letter-spacing:-.5px;
+  transition:opacity .25s ease, transform .25s ease;
+  cursor:pointer;
+}
+.vs-strip__logos span:hover{opacity:1; transform:scale(1.05); color:var(--vs-primary);}
+@media (max-width:560px){.vs-strip__logos{gap:24px;}.vs-strip__logos span{font-size:18px;}}
+</style>
+
+<section class="vs-strip">
+  <div class="vs-strip__inner">
+    <div class="vs-strip__title">اعتماد بیش از ۴۵۰ کسب‌وکار ایرانی</div>
+    <div class="vs-strip__logos">
+      <span>BRAND/۱</span>
+      <span>NAVA</span>
+      <span>PIXEL+</span>
+      <span>FORTECH</span>
+      <span>AVA·CO</span>
+      <span>NEXTLY</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     سکشن ۳: FEATURES BENTO GRID (ویژگی‌ها)
+     ======================================================== -->
+<style>
+:root{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+}
+.vs-features{padding:100px 24px; background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);}
+.vs-features__inner{max-width:1240px;margin:0 auto;}
+.vs-section-head{text-align:center; margin-bottom:56px;}
+.vs-section-head .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(23,12,121,.08); color:var(--vs-primary);
+  border:1px solid rgba(23,12,121,.18);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-section-head .vs-eyebrow i{
+  width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
+  box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
+}
+.vs-section-head h2{
+  font-size:clamp(28px,3.4vw,44px); font-weight:800;
+  margin:0 0 16px; line-height:1.4;
+}
+.vs-section-head p{color:#64748B; font-size:18px; max-width:680px; margin:0 auto;}
+
+.vs-bento{
+  display:grid; grid-template-columns:repeat(6,1fr);
+  grid-auto-rows:minmax(220px,auto); gap:20px;
+}
+.vs-card{
+  background:#fff; border:1px solid #E2E8F0; border-radius:28px;
+  padding:32px; position:relative; overflow:hidden;
+  transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.vs-card:hover{transform:translateY(-4px); box-shadow:0 16px 40px rgba(23,12,121,.10); border-color:transparent;}
+.vs-card .ic{
+  width:54px; height:54px; border-radius:14px;
+  display:grid; place-items:center; color:#fff; margin-bottom:18px;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+}
+.vs-card h3{font-size:20px;font-weight:800;margin:0 0 10px; color:var(--vs-ink);}
+.vs-card p{color:#64748B; font-size:15px; line-height:1.9; margin:0;}
+
+.vs-bento .c1{grid-column:span 3;background:linear-gradient(160deg,#F0EDFA 0%,#fff 60%);}
+.vs-bento .c2{grid-column:span 3;}
+.vs-bento .c3{grid-column:span 2;}
+.vs-bento .c4{
+  grid-column:span 2;
+  background:linear-gradient(160deg,var(--vs-primary) 0%,#0a0648 100%);
+  border-color:transparent;
+}
+.vs-bento .c4 h3{color:#fff;}
+.vs-bento .c4 p{color:rgba(255,255,255,.78);}
+.vs-bento .c4 .ic{background:var(--vs-cyan); color:var(--vs-primary);}
+.vs-bento .c5{grid-column:span 2;}
+.vs-bento .c6{
+  grid-column:span 6;
+  background:linear-gradient(135deg,#FAF6EC 0%, #EFE3CA 100%);
+  display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:center;
+}
+.vs-bento .c6 .ic{margin-bottom:0; background:linear-gradient(135deg,var(--vs-secondary),var(--vs-cyan));}
+
+@media (max-width:880px){
+  .vs-bento{grid-template-columns:repeat(2,1fr);}
+  .vs-bento .vs-card{grid-column:span 2 !important;}
+  .vs-bento .c6{grid-template-columns:1fr;}
+}
+</style>
+
+<section class="vs-features">
+  <div class="vs-features__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>چرا ویرا سئو</span>
+      <h2>هرچه کسب‌وکار شما لازم دارد، در یک تیم</h2>
+      <p>از طراحی تا سئو، از سرعت تا امنیت — تمام لایه‌های یک سایت حرفه‌ای را با معیارهای روز جهانی می‌سازیم.</p>
+    </div>
+
+    <div class="vs-bento">
+      <div class="vs-card c1">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l9 4-9 4-9-4 9-4zM3 10l9 4 9-4M3 14l9 4 9-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>طراحی کاملاً اختصاصی</h3>
+        <p>صفر تا صد سایت بر اساس برند، هدف و مخاطب شما طراحی می‌شود — نه قالب آماده، نه کپی.</p>
+      </div>
+      <div class="vs-card c2">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>سرعت بارگذاری زیر ۲ ثانیه</h3>
+        <p>بهینه‌سازی هسته‌ای Core Web Vitals، تصاویر، کد و سرور برای امتیاز ۹۰+ در PageSpeed.</p>
+      </div>
+      <div class="vs-card c3">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></div>
+        <h3>سئوی فنی</h3>
+        <p>اسکیما، سایت‌مپ و آدرس‌دهی استاندارد در همان لحظه ساخت.</p>
+      </div>
+      <div class="vs-card c4">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>امنیت در سطح بانکی</h3>
+        <p>SSL، فایروال، بک‌آپ روزانه و محافظت در برابر حملات brute force.</p>
+      </div>
+      <div class="vs-card c5">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4" stroke-linecap="round"/></svg></div>
+        <h3>طراحی کاملاً ریسپانسیو</h3>
+        <p>تجربه بی‌نقص روی موبایل، تبلت و دسکتاپ — اولویت با موبایل.</p>
+      </div>
+      <div class="vs-card c6">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a4 4 0 01-4 4H7l-4 4V5a4 4 0 014-4h10a4 4 0 014 4v10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div>
+          <h3>پشتیبانی تخصصی، تا همیشه</h3>
+          <p>۶ ماه پشتیبانی رایگان پس از تحویل + پلن‌های نگهداری ماهانه برای رشد بلندمدت سایت شما.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     سکشن ۴: PROCESS (فرآیند کار - ۴ گام)
+     ======================================================== -->
+<style>
+:root{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+}
+.vs-process{
+  padding:100px 24px;
+  background:linear-gradient(180deg,#FAF6EC 0%,#EFE3CA 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+  position:relative; overflow:hidden;
+}
+.vs-process::before{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(40% 50% at 90% 20%, rgba(18,139,224,.10), transparent 60%),
+    radial-gradient(35% 45% at 10% 80%, rgba(138,203,208,.20), transparent 60%);
+  pointer-events:none;
+}
+.vs-process__inner{max-width:1240px;margin:0 auto; position:relative;}
+.vs-section-head{text-align:center; margin-bottom:64px;}
+.vs-section-head .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(23,12,121,.10); color:var(--vs-primary);
+  border:1px solid rgba(23,12,121,.20);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-section-head .vs-eyebrow i{
+  width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
+  box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
+}
+.vs-section-head h2{font-size:clamp(28px,3.4vw,44px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-section-head p{color:#475569; font-size:18px; max-width:680px; margin:0 auto;}
+
+.vs-steps{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+}
+.vs-step{
+  background:#fff; border:1px solid rgba(23,12,121,.10); border-radius:24px;
+  padding:32px 28px 28px; position:relative; margin-top:24px;
+  transition:all .3s ease;
+}
+.vs-step:hover{
+  border-color:var(--vs-primary);
+  transform:translateY(-6px);
+  box-shadow:0 20px 50px rgba(23,12,121,.15);
+}
+.vs-step .num{
+  position:absolute; top:-22px; right:24px;
+  width:48px; height:48px; border-radius:14px;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  color:#fff; display:grid; place-items:center;
+  font-weight:900; font-size:18px;
+  box-shadow:0 12px 24px rgba(23,12,121,.30);
+}
+.vs-step .icon{
+  width:44px; height:44px; border-radius:12px; margin-bottom:16px;
+  background:linear-gradient(135deg,#F0EDFA,#E0EAFB);
+  display:grid; place-items:center; color:var(--vs-primary);
+}
+.vs-step h3{font-size:19px; font-weight:800; margin:0 0 10px; color:var(--vs-ink);}
+.vs-step p{color:#64748B; font-size:15px; line-height:1.9; margin:0;}
+
+@media (max-width:880px){
+  .vs-steps{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:560px){
+  .vs-steps{grid-template-columns:1fr;}
+  .vs-step .num{right:50%; transform:translateX(50%);}
+}
+</style>
+
+<section class="vs-process">
+  <div class="vs-process__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>فرآیند کار</span>
+      <h2>از ایده تا انتشار، در ۴ گام شفاف</h2>
+      <p>هیچ ابهامی، هیچ هزینه پنهانی. شما در هر مرحله دقیقاً می‌دانید کجا هستیم.</p>
+    </div>
+
+    <div class="vs-steps">
+      <div class="vs-step">
+        <div class="num">۱</div>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></div>
+        <h3>کشف و استراتژی</h3>
+        <p>جلسه تحلیل کسب‌وکار، رقبا و مخاطب هدف برای تعیین نقشه راه پروژه.</p>
+      </div>
+      <div class="vs-step">
+        <div class="num">۲</div>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+        <h3>طراحی UI/UX</h3>
+        <p>نمونه اولیه (وایرفریم) و طراحی نهایی در فیگما با تأیید مرحله‌ای شما.</p>
+      </div>
+      <div class="vs-step">
+        <div class="num">۳</div>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6" stroke-linecap="round" stroke-linejoin="round"/><polyline points="8 6 2 12 8 18" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>توسعه و پیاده‌سازی</h3>
+        <p>کدنویسی اختصاصی یا پیاده‌سازی روی وردپرس/المنتور با استانداردهای روز.</p>
+      </div>
+      <div class="vs-step">
+        <div class="num">۴</div>
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09zM12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
+        <h3>تست، انتشار و رشد</h3>
+        <p>تست کامل، انتشار، آموزش پنل و آغاز برنامه سئو برای رشد ترافیک.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     سکشن ۵: PRICING (پکیج‌ها)
+     ======================================================== -->
+<style>
+:root{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+}
+.vs-pricing{padding:100px 24px; background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);}
+.vs-pricing__inner{max-width:1240px;margin:0 auto;}
+.vs-section-head{text-align:center; margin-bottom:64px;}
+.vs-section-head .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(23,12,121,.08); color:var(--vs-primary);
+  border:1px solid rgba(23,12,121,.18);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-section-head .vs-eyebrow i{
+  width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
+  box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
+}
+.vs-section-head h2{font-size:clamp(28px,3.4vw,44px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-section-head p{color:#64748B; font-size:18px; max-width:680px; margin:0 auto;}
+
+.vs-plans{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:stretch;}
+.vs-plan{
+  background:#fff; border:1.5px solid #E2E8F0; border-radius:28px;
+  padding:36px 32px; display:flex; flex-direction:column; gap:18px;
+  transition:all .3s ease; position:relative;
+}
+.vs-plan:hover{transform:translateY(-6px); box-shadow:0 20px 50px rgba(23,12,121,.10); border-color:var(--vs-cyan);}
+.vs-plan__name{font-size:14px; color:#64748B; font-weight:700; letter-spacing:1.5px;}
+.vs-plan__price{font-size:38px; font-weight:900; color:var(--vs-ink); line-height:1;}
+.vs-plan__price small{font-size:14px; font-weight:600; color:#64748B; margin-right:4px;}
+.vs-plan__desc{color:#64748B; font-size:14px; margin:0;}
+.vs-plan ul{list-style:none; padding:0; margin:8px 0 16px; display:flex; flex-direction:column; gap:12px;}
+.vs-plan li{display:flex; gap:10px; align-items:flex-start; color:#334155; font-size:15px; line-height:1.7;}
+.vs-plan li svg{flex-shrink:0; color:var(--vs-secondary); margin-top:5px;}
+
+.vs-plan__cta{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:14px 24px; border-radius:14px;
+  font-weight:700; font-size:15px; text-decoration:none;
+  transition:all .25s ease; cursor:pointer; margin-top:auto;
+}
+.vs-plan__cta--ghost{
+  background:#fff; color:var(--vs-primary);
+  border:1.5px solid rgba(23,12,121,.20);
+}
+.vs-plan__cta--ghost:hover{border-color:var(--vs-primary); background:#FAF6EC;}
+.vs-plan__cta--primary{
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  color:#fff; box-shadow:0 14px 30px rgba(23,12,121,.25);
+}
+.vs-plan__cta--primary:hover{transform:translateY(-2px); box-shadow:0 20px 44px rgba(23,12,121,.35);}
+
+/* پلن ویژه */
+.vs-plan--featured{
+  border:none;
+  background:linear-gradient(160deg,var(--vs-primary) 0%,#0a0648 100%);
+  color:#fff;
+  box-shadow:0 28px 60px rgba(23,12,121,.30);
+  transform:scale(1.03);
+}
+.vs-plan--featured:hover{transform:scale(1.03) translateY(-6px); border-color:transparent;}
+.vs-plan--featured .vs-plan__name{color:rgba(255,255,255,.7);}
+.vs-plan--featured .vs-plan__price,
+.vs-plan--featured .vs-plan__price small,
+.vs-plan--featured .vs-plan__desc,
+.vs-plan--featured li{color:rgba(255,255,255,.92);}
+.vs-plan--featured li svg{color:var(--vs-cyan);}
+.vs-plan--featured::before{
+  content:"پرطرفدار"; position:absolute; top:24px; left:24px;
+  background:var(--vs-cyan); color:var(--vs-primary);
+  padding:6px 14px; border-radius:999px;
+  font-size:12px; font-weight:800; letter-spacing:.5px;
+}
+.vs-plan--featured .vs-plan__cta--primary{
+  background:#fff; color:var(--vs-primary);
+  box-shadow:0 14px 30px rgba(0,0,0,.20);
+}
+.vs-plan--featured .vs-plan__cta--primary:hover{background:var(--vs-cream);}
+
+@media (max-width:980px){
+  .vs-plans{grid-template-columns:1fr;}
+  .vs-plan--featured{transform:none;}
+  .vs-plan--featured:hover{transform:translateY(-6px);}
+}
+</style>
+
+<section class="vs-pricing" id="pricing">
+  <div class="vs-pricing__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>پکیج‌های طراحی</span>
+      <h2>پکیجی متناسب با هر کسب‌وکار</h2>
+      <p>قیمت‌ها شفاف، بدون هزینه پنهان. در صورت نیاز به طرح اختصاصی، با ما تماس بگیرید.</p>
+    </div>
+
+    <div class="vs-plans">
+      <!-- شروع -->
+      <div class="vs-plan">
+        <div class="vs-plan__name">شروع</div>
+        <div class="vs-plan__price">۱۸<small>میلیون تومان</small></div>
+        <p class="vs-plan__desc">برای کسب‌وکارهای کوچک و استارتاپ‌ها</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تا ۸ صفحه اختصاصی</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>طراحی کاملاً ریسپانسیو</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>سئوی پایه + اسکیما</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>۳ ماه پشتیبانی رایگان</li>
+        </ul>
+        <a href="#contact" class="vs-plan__cta vs-plan__cta--ghost">انتخاب پکیج</a>
+      </div>
+
+      <!-- حرفه‌ای -->
+      <div class="vs-plan vs-plan--featured">
+        <div class="vs-plan__name">حرفه‌ای</div>
+        <div class="vs-plan__price">۳۸<small>میلیون تومان</small></div>
+        <p class="vs-plan__desc">برای کسب‌وکارهای در حال رشد</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تا ۲۰ صفحه اختصاصی + بلاگ</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>طراحی UI/UX اختصاصی</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>سئو فنی + تحقیق کلمات کلیدی</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>درگاه پرداخت + چندزبانه</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>۶ ماه پشتیبانی + آموزش کامل</li>
+        </ul>
+        <a href="#contact" class="vs-plan__cta vs-plan__cta--primary">شروع پکیج حرفه‌ای</a>
+      </div>
+
+      <!-- سازمانی -->
+      <div class="vs-plan">
+        <div class="vs-plan__name">سازمانی</div>
+        <div class="vs-plan__price">سفارشی</div>
+        <p class="vs-plan__desc">برای فروشگاه‌ها و سازمان‌های بزرگ</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>صفحات و قابلیت‌های نامحدود</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>توسعه اختصاصی Headless/Custom</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اتوماسیون و اتصال CRM/ERP</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>SLA پشتیبانی اختصاصی</li>
+        </ul>
+        <a href="#contact" class="vs-plan__cta vs-plan__cta--ghost">دریافت پیشنهاد</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     سکشن ۶: TESTIMONIALS (نظرات مشتریان)
+     ======================================================== -->
+<style>
+:root{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+}
+.vs-testimonials{
+  padding:100px 24px;
+  background:linear-gradient(180deg,#FAF6EC 0%,#EFE3CA 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+}
+.vs-testimonials__inner{max-width:1240px;margin:0 auto;}
+.vs-section-head{text-align:center; margin-bottom:56px;}
+.vs-section-head .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(23,12,121,.10); color:var(--vs-primary);
+  border:1px solid rgba(23,12,121,.20);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-section-head .vs-eyebrow i{
+  width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
+  box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
+}
+.vs-section-head h2{font-size:clamp(28px,3.4vw,44px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-section-head p{color:#475569; font-size:18px; max-width:680px; margin:0 auto;}
+
+.vs-quotes{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+.vs-quote{
+  background:#fff; border:1px solid rgba(23,12,121,.10); border-radius:24px;
+  padding:32px; position:relative;
+  transition:all .3s ease;
+}
+.vs-quote:hover{transform:translateY(-4px); box-shadow:0 20px 50px rgba(23,12,121,.12);}
+.vs-quote::before{
+  content:"❝"; position:absolute; top:18px; left:24px;
+  font-size:54px; color:var(--vs-cyan); font-family:Georgia, serif;
+  line-height:1;
+}
+.vs-quote .stars{color:#FFB800; margin-bottom:14px; font-size:18px; letter-spacing:2px;}
+.vs-quote p{color:#334155; font-size:15.5px; line-height:1.9; margin:0 0 22px;}
+.vs-quote__who{display:flex; align-items:center; gap:12px;}
+.vs-quote__av{
+  width:46px; height:46px; border-radius:50%;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  display:grid; place-items:center; color:#fff; font-weight:800; font-size:18px;
+  flex-shrink:0;
+}
+.vs-quote__nm{font-weight:700; color:var(--vs-ink); font-size:15px;}
+.vs-quote__rl{font-size:13px; color:#64748B;}
+
+@media (max-width:880px){.vs-quotes{grid-template-columns:1fr;}}
+</style>
+
+<section class="vs-testimonials">
+  <div class="vs-testimonials__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>نظر مشتریان</span>
+      <h2>داستان موفقیت‌هایی که با ما ساختیم</h2>
+      <p>رشد، رضایت و تأثیر واقعی — به زبان خود مشتریان ما.</p>
+    </div>
+
+    <div class="vs-quotes">
+      <div class="vs-quote">
+        <div class="stars">★★★★★</div>
+        <p>تیم ویرا سئو دقیقاً همان چیزی را ساخت که در ذهن داشتم. سرعت سایت و رتبه گوگل ما در ۳ ماه ۳ برابر شد و حالا فروش آنلاین ما ۲ برابر شده است.</p>
+        <div class="vs-quote__who">
+          <div class="vs-quote__av">ا</div>
+          <div><div class="vs-quote__nm">امیر حسینی</div><div class="vs-quote__rl">مدیرعامل، نواکالا</div></div>
+        </div>
+      </div>
+      <div class="vs-quote">
+        <div class="stars">★★★★★</div>
+        <p>برخورد حرفه‌ای، تحویل به‌موقع و پشتیبانی فوق‌العاده. سایت جدید ما واقعاً تفاوت ایجاد کرد در فروش و تجربه کاربری به مراتب بهتر شد.</p>
+        <div class="vs-quote__who">
+          <div class="vs-quote__av">س</div>
+          <div><div class="vs-quote__nm">سارا کریمی</div><div class="vs-quote__rl">بنیان‌گذار، پیکسل‌پلاس</div></div>
+        </div>
+      </div>
+      <div class="vs-quote">
+        <div class="stars">★★★★★</div>
+        <p>طراحی فوق‌العاده مدرن و سریع. مشاوره‌های سئو هم باعث شد رقبا را در نتایج گوگل پشت سر بگذاریم. توصیه می‌کنم بدون شک.</p>
+        <div class="vs-quote__who">
+          <div class="vs-quote__av">م</div>
+          <div><div class="vs-quote__nm">محمد رضایی</div><div class="vs-quote__rl">مدیر بازاریابی، فورتک</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     سکشن ۷: FAQ (سوالات متداول)
+     ======================================================== -->
+<style>
+:root{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+}
+.vs-faq{padding:100px 24px; background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);}
+.vs-faq__inner{max-width:840px;margin:0 auto;}
+.vs-section-head{text-align:center; margin-bottom:56px;}
+.vs-section-head .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(23,12,121,.08); color:var(--vs-primary);
+  border:1px solid rgba(23,12,121,.18);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-section-head .vs-eyebrow i{
+  width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
+  box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
+}
+.vs-section-head h2{font-size:clamp(28px,3.4vw,44px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-section-head p{color:#64748B; font-size:18px; max-width:680px; margin:0 auto;}
+
+.vs-faq__list details{
+  background:#fff; border:1px solid #E2E8F0; border-radius:18px;
+  margin-bottom:14px; overflow:hidden; transition:all .3s ease;
+}
+.vs-faq__list details[open]{
+  border-color:var(--vs-primary);
+  box-shadow:0 8px 24px rgba(23,12,121,.10);
+}
+.vs-faq__list summary{
+  list-style:none; cursor:pointer;
+  padding:22px 26px; display:flex; align-items:center; justify-content:space-between; gap:16px;
+  font-weight:700; font-size:17px; color:var(--vs-ink);
+}
+.vs-faq__list summary::-webkit-details-marker{display:none;}
+.vs-faq__list .plus{
+  width:32px;height:32px;border-radius:50%; background:#FAF6EC;
+  display:grid; place-items:center; font-size:22px; color:var(--vs-primary);
+  transition:all .3s ease; flex-shrink:0; line-height:1;
+  font-weight:300;
+}
+.vs-faq__list details[open] .plus{
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  color:#fff; transform:rotate(45deg);
+}
+.vs-faq__list .vs-faq__content{
+  padding:0 26px 22px; color:#64748B; line-height:1.95; font-size:15px;
+}
+</style>
+
+<section class="vs-faq" id="faq">
+  <div class="vs-faq__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>سوالات متداول</span>
+      <h2>پاسخ به پرسش‌های رایج شما</h2>
+      <p>اگر سوال شما اینجا نیست، با کارشناسان ما در تماس باشید.</p>
+    </div>
+
+    <div class="vs-faq__list">
+      <details open>
+        <summary>زمان طراحی یک سایت چقدر است؟<span class="plus">+</span></summary>
+        <div class="vs-faq__content">بسته به نوع پروژه، طراحی سایت معمولی بین ۲ تا ۴ هفته و فروشگاهی یا اختصاصی بین ۶ تا ۱۰ هفته زمان می‌برد. در جلسه مشاوره، زمان دقیق پروژه شما اعلام می‌شود.</div>
+      </details>
+      <details>
+        <summary>آیا می‌توانم خودم سایت را مدیریت کنم؟<span class="plus">+</span></summary>
+        <div class="vs-faq__content">بله. تمام سایت‌ها روی وردپرس + المنتور یا پنل اختصاصی تحویل داده می‌شوند و آموزش کامل ویدیویی + جلسه آنلاین برای مدیریت ارائه می‌گردد.</div>
+      </details>
+      <details>
+        <summary>آیا خدمات سئو هم ارائه می‌دهید؟<span class="plus">+</span></summary>
+        <div class="vs-faq__content">بله. سئوی فنی پایه در تمام پکیج‌ها رایگان است. برای سئوی مستمر و رشد رتبه گوگل، پلن‌های ماهانه اختصاصی داریم.</div>
+      </details>
+      <details>
+        <summary>هزینه پشتیبانی پس از پایان دوره رایگان چقدر است؟<span class="plus">+</span></summary>
+        <div class="vs-faq__content">پلن‌های نگهداری از ماهانه ۹۹۰ هزار تومان شروع می‌شوند که شامل بک‌آپ، به‌روزرسانی، رفع خطا و ۲ ساعت تغییرات اختصاصی است.</div>
+      </details>
+      <details>
+        <summary>اگر از طراحی راضی نباشم چه می‌شود؟<span class="plus">+</span></summary>
+        <div class="vs-faq__content">طراحی در مراحل با تأیید شما پیش می‌رود و تا ۳ نوبت بازنگری در هر مرحله رایگان است. تمرکز ما روی رضایت کامل شما در پایان پروژه است.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     سکشن ۸: CTA (دعوت به اقدام)
+     ======================================================== -->
+<style>
+:root{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+}
+.vs-cta{padding:60px 24px 100px; background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl;}
+.vs-cta__inner{max-width:1240px;margin:0 auto;}
+.vs-cta__wrap{
+  background:linear-gradient(135deg,var(--vs-primary) 0%,#0a0648 50%,var(--vs-secondary) 100%);
+  border-radius:32px;
+  padding:72px 48px; color:#fff;
+  position:relative; overflow:hidden; text-align:center;
+}
+.vs-cta__wrap::before{
+  content:""; position:absolute; inset:-50%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(138,203,208,.40), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(18,139,224,.50), transparent 50%);
+  animation:vs-cta-spin 18s linear infinite;
+  pointer-events:none;
+}
+@keyframes vs-cta-spin{to{transform:rotate(360deg);}}
+.vs-cta__wrap > *{position:relative; z-index:1;}
+.vs-cta__wrap h2{
+  color:#fff; font-size:clamp(28px,3.4vw,44px); font-weight:800;
+  margin:0 0 16px; line-height:1.4;
+}
+.vs-cta__wrap h2 em{font-style:normal; color:var(--vs-cyan);}
+.vs-cta__wrap p{
+  color:rgba(255,255,255,.9); font-size:18px; line-height:1.9;
+  max-width:620px; margin:0 auto 32px;
+}
+.vs-cta__row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+.vs-cta__btn{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:16px 32px; border-radius:14px;
+  font-weight:700; font-size:16px; text-decoration:none;
+  transition:all .25s ease; cursor:pointer; border:none;
+}
+.vs-cta__btn--primary{
+  background:#fff; color:var(--vs-primary);
+  box-shadow:0 16px 36px rgba(0,0,0,.20);
+}
+.vs-cta__btn--primary:hover{transform:translateY(-2px); background:var(--vs-cream);}
+.vs-cta__btn--ghost{
+  background:rgba(255,255,255,.12); color:#fff;
+  border:1.5px solid rgba(255,255,255,.30);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+}
+.vs-cta__btn--ghost:hover{background:rgba(255,255,255,.22); border-color:#fff;}
+.vs-cta__btn svg{width:18px;height:18px;}
+
+@media (max-width:560px){
+  .vs-cta__wrap{padding:48px 24px;}
+}
+</style>
+
+<section class="vs-cta" id="contact">
+  <div class="vs-cta__inner">
+    <div class="vs-cta__wrap">
+      <h2>آماده‌ای سایتی بسازی که واقعاً <em>می‌فروشد</em>؟</h2>
+      <p>فقط چند دقیقه وقت بگذار برای یک مشاوره رایگان. ما به ایده‌ت گوش می‌دیم و راهکار دقیق پیشنهاد می‌دیم.</p>
+      <div class="vs-cta__row">
+        <a href="tel:+982100000000" class="vs-cta__btn vs-cta__btn--primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.72 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0122 16.92z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          تماس فوری با کارشناس
+        </a>
+        <a href="https://wa.me/989000000000" class="vs-cta__btn vs-cta__btn--ghost">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.555-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.607z"/></svg>
+          گفت‌و‌گو در واتساپ
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="mock-footer">⬆️ این پایین فوتر سایت شماست (تغییری نمی‌کند) ⬆️</div>
+
+</body>
+</html>

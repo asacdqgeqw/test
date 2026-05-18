@@ -1,0 +1,145 @@
+<!-- ========================================================
+     سکشن ۵: PRICING (پکیج‌ها)
+     ======================================================== -->
+<style>
+:root{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+}
+.vs-pricing{padding:100px 24px; background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);}
+.vs-pricing__inner{max-width:1240px;margin:0 auto;}
+.vs-section-head{text-align:center; margin-bottom:64px;}
+.vs-section-head .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(23,12,121,.08); color:var(--vs-primary);
+  border:1px solid rgba(23,12,121,.18);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-section-head .vs-eyebrow i{
+  width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
+  box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
+}
+.vs-section-head h2{font-size:clamp(28px,3.4vw,44px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-section-head p{color:#64748B; font-size:18px; max-width:680px; margin:0 auto;}
+
+.vs-plans{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:stretch;}
+.vs-plan{
+  background:#fff; border:1.5px solid #E2E8F0; border-radius:28px;
+  padding:36px 32px; display:flex; flex-direction:column; gap:18px;
+  transition:all .3s ease; position:relative;
+}
+.vs-plan:hover{transform:translateY(-6px); box-shadow:0 20px 50px rgba(23,12,121,.10); border-color:var(--vs-cyan);}
+.vs-plan__name{font-size:14px; color:#64748B; font-weight:700; letter-spacing:1.5px;}
+.vs-plan__price{font-size:38px; font-weight:900; color:var(--vs-ink); line-height:1;}
+.vs-plan__price small{font-size:14px; font-weight:600; color:#64748B; margin-right:4px;}
+.vs-plan__desc{color:#64748B; font-size:14px; margin:0;}
+.vs-plan ul{list-style:none; padding:0; margin:8px 0 16px; display:flex; flex-direction:column; gap:12px;}
+.vs-plan li{display:flex; gap:10px; align-items:flex-start; color:#334155; font-size:15px; line-height:1.7;}
+.vs-plan li svg{flex-shrink:0; color:var(--vs-secondary); margin-top:5px;}
+
+.vs-plan__cta{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:14px 24px; border-radius:14px;
+  font-weight:700; font-size:15px; text-decoration:none;
+  transition:all .25s ease; cursor:pointer; margin-top:auto;
+}
+.vs-plan__cta--ghost{
+  background:#fff; color:var(--vs-primary);
+  border:1.5px solid rgba(23,12,121,.20);
+}
+.vs-plan__cta--ghost:hover{border-color:var(--vs-primary); background:#FAF6EC;}
+.vs-plan__cta--primary{
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  color:#fff; box-shadow:0 14px 30px rgba(23,12,121,.25);
+}
+.vs-plan__cta--primary:hover{transform:translateY(-2px); box-shadow:0 20px 44px rgba(23,12,121,.35);}
+
+/* پلن ویژه */
+.vs-plan--featured{
+  border:none;
+  background:linear-gradient(160deg,var(--vs-primary) 0%,#0a0648 100%);
+  color:#fff;
+  box-shadow:0 28px 60px rgba(23,12,121,.30);
+  transform:scale(1.03);
+}
+.vs-plan--featured:hover{transform:scale(1.03) translateY(-6px); border-color:transparent;}
+.vs-plan--featured .vs-plan__name{color:rgba(255,255,255,.7);}
+.vs-plan--featured .vs-plan__price,
+.vs-plan--featured .vs-plan__price small,
+.vs-plan--featured .vs-plan__desc,
+.vs-plan--featured li{color:rgba(255,255,255,.92);}
+.vs-plan--featured li svg{color:var(--vs-cyan);}
+.vs-plan--featured::before{
+  content:"پرطرفدار"; position:absolute; top:24px; left:24px;
+  background:var(--vs-cyan); color:var(--vs-primary);
+  padding:6px 14px; border-radius:999px;
+  font-size:12px; font-weight:800; letter-spacing:.5px;
+}
+.vs-plan--featured .vs-plan__cta--primary{
+  background:#fff; color:var(--vs-primary);
+  box-shadow:0 14px 30px rgba(0,0,0,.20);
+}
+.vs-plan--featured .vs-plan__cta--primary:hover{background:var(--vs-cream);}
+
+@media (max-width:980px){
+  .vs-plans{grid-template-columns:1fr;}
+  .vs-plan--featured{transform:none;}
+  .vs-plan--featured:hover{transform:translateY(-6px);}
+}
+</style>
+
+<section class="vs-pricing" id="pricing">
+  <div class="vs-pricing__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>پکیج‌های طراحی</span>
+      <h2>پکیجی متناسب با هر کسب‌وکار</h2>
+      <p>قیمت‌ها شفاف، بدون هزینه پنهان. در صورت نیاز به طرح اختصاصی، با ما تماس بگیرید.</p>
+    </div>
+
+    <div class="vs-plans">
+      <!-- شروع -->
+      <div class="vs-plan">
+        <div class="vs-plan__name">شروع</div>
+        <div class="vs-plan__price">۱۸<small>میلیون تومان</small></div>
+        <p class="vs-plan__desc">برای کسب‌وکارهای کوچک و استارتاپ‌ها</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تا ۸ صفحه اختصاصی</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>طراحی کاملاً ریسپانسیو</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>سئوی پایه + اسکیما</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>۳ ماه پشتیبانی رایگان</li>
+        </ul>
+        <a href="#contact" class="vs-plan__cta vs-plan__cta--ghost">انتخاب پکیج</a>
+      </div>
+
+      <!-- حرفه‌ای -->
+      <div class="vs-plan vs-plan--featured">
+        <div class="vs-plan__name">حرفه‌ای</div>
+        <div class="vs-plan__price">۳۸<small>میلیون تومان</small></div>
+        <p class="vs-plan__desc">برای کسب‌وکارهای در حال رشد</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تا ۲۰ صفحه اختصاصی + بلاگ</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>طراحی UI/UX اختصاصی</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>سئو فنی + تحقیق کلمات کلیدی</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>درگاه پرداخت + چندزبانه</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>۶ ماه پشتیبانی + آموزش کامل</li>
+        </ul>
+        <a href="#contact" class="vs-plan__cta vs-plan__cta--primary">شروع پکیج حرفه‌ای</a>
+      </div>
+
+      <!-- سازمانی -->
+      <div class="vs-plan">
+        <div class="vs-plan__name">سازمانی</div>
+        <div class="vs-plan__price">سفارشی</div>
+        <p class="vs-plan__desc">برای فروشگاه‌ها و سازمان‌های بزرگ</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>صفحات و قابلیت‌های نامحدود</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>توسعه اختصاصی Headless/Custom</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اتوماسیون و اتصال CRM/ERP</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>SLA پشتیبانی اختصاصی</li>
+        </ul>
+        <a href="#contact" class="vs-plan__cta vs-plan__cta--ghost">دریافت پیشنهاد</a>
+      </div>
+    </div>
+  </div>
+</section>
