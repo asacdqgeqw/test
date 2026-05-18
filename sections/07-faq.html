@@ -1,0 +1,289 @@
+<!-- ========================================================
+     سکشن ۷: FAQ مدرن با Search تعاملی (نسخه v4)
+     ======================================================== -->
+<style>
+.vs-faq{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+
+  padding:110px 24px; background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+  position:relative; overflow:hidden;
+}
+.vs-faq::before{
+  content:""; position:absolute; top:10%; left:-100px;
+  width:300px; height:300px; border-radius:50%;
+  background:radial-gradient(circle, rgba(138,203,208,.30), transparent 70%);
+  filter:blur(40px); pointer-events:none;
+}
+.vs-faq__inner{max-width:920px; margin:0 auto; position:relative;}
+.vs-section-head{text-align:center; margin-bottom:40px;}
+.vs-section-head .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(23,12,121,.08); color:var(--vs-primary);
+  border:1px solid rgba(23,12,121,.18);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-section-head .vs-eyebrow i{
+  width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
+  box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
+}
+.vs-section-head h2{font-size:clamp(28px,3.4vw,46px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-section-head p{color:#64748B; font-size:18px; max-width:680px; margin:0 auto;}
+
+/* ===== Search ===== */
+.vs-faq__search{
+  position:relative; max-width:520px; margin:0 auto 36px;
+}
+.vs-faq__search input{
+  width:100%; padding:18px 56px 18px 24px;
+  border:1.5px solid rgba(23,12,121,.15);
+  border-radius:16px;
+  font-family:inherit; font-size:15px;
+  background:#fff;
+  transition:all .25s ease;
+  color:var(--vs-ink);
+}
+.vs-faq__search input::placeholder{color:#94A3B8;}
+.vs-faq__search input:focus{
+  outline:none; border-color:var(--vs-primary);
+  box-shadow:0 0 0 4px rgba(23,12,121,.10);
+}
+.vs-faq__search svg{
+  position:absolute; right:20px; top:50%; transform:translateY(-50%);
+  color:#94A3B8; pointer-events:none;
+}
+
+/* ===== Categories ===== */
+.vs-faq__cats{
+  display:flex; justify-content:center; gap:8px; flex-wrap:wrap;
+  margin-bottom:28px;
+}
+.vs-faq__cat{
+  padding:8px 16px; border-radius:999px;
+  background:rgba(23,12,121,.05); border:1px solid rgba(23,12,121,.10);
+  font-family:inherit; font-size:13px; font-weight:600;
+  color:#64748B; cursor:pointer; transition:all .25s ease;
+}
+.vs-faq__cat:hover{color:var(--vs-primary); border-color:var(--vs-primary);}
+.vs-faq__cat.is-active{
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  color:#fff; border-color:transparent;
+}
+
+/* ===== List ===== */
+.vs-faq__list{display:flex; flex-direction:column; gap:12px;}
+.vs-faq__item{
+  background:#fff; border:1px solid rgba(23,12,121,.10); border-radius:18px;
+  overflow:hidden; transition:all .35s ease;
+}
+.vs-faq__item.is-open{
+  border-color:var(--vs-primary);
+  box-shadow:0 16px 40px rgba(23,12,121,.10);
+}
+.vs-faq__item.is-hidden{display:none;}
+.vs-faq__q{
+  width:100%; cursor:pointer;
+  padding:22px 26px; display:flex; align-items:center; justify-content:space-between; gap:16px;
+  font-weight:700; font-size:16.5px; color:var(--vs-ink);
+  background:transparent; border:none; text-align:right;
+  font-family:inherit;
+}
+.vs-faq__q .qmark{
+  width:28px; height:28px; border-radius:50%;
+  background:rgba(23,12,121,.08); color:var(--vs-primary);
+  display:grid; place-items:center; font-weight:900; font-size:13px;
+  flex-shrink:0;
+}
+.vs-faq__q .text{flex:1;}
+.vs-faq__plus{
+  width:34px; height:34px; border-radius:50%; background:#FAF6EC;
+  display:grid; place-items:center; font-size:22px; line-height:1;
+  color:var(--vs-primary); transition:all .35s ease;
+  flex-shrink:0; font-weight:300;
+}
+.vs-faq__item.is-open .vs-faq__plus{
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  color:#fff; transform:rotate(45deg);
+}
+.vs-faq__a{
+  max-height:0; overflow:hidden;
+  transition:max-height .4s ease, padding .4s ease;
+  padding:0 26px;
+  color:#475569; line-height:1.95; font-size:15px;
+}
+.vs-faq__item.is-open .vs-faq__a{
+  max-height:400px; padding:0 26px 22px;
+}
+
+/* ===== Empty State ===== */
+.vs-faq__empty{
+  text-align:center; padding:48px 24px; color:#94A3B8;
+  background:#FAF6EC; border-radius:16px;
+  display:none;
+}
+.vs-faq__empty.is-on{display:block;}
+
+/* ===== CTA پایین ===== */
+.vs-faq__cta{
+  margin-top:36px; text-align:center;
+  background:linear-gradient(135deg, rgba(23,12,121,.04), rgba(18,139,224,.06));
+  border:1px solid rgba(23,12,121,.10);
+  padding:32px; border-radius:20px;
+}
+.vs-faq__cta h4{font-size:18px; font-weight:800; margin:0 0 8px; color:var(--vs-ink);}
+.vs-faq__cta p{color:#64748B; font-size:15px; margin:0 0 16px;}
+.vs-faq__cta a{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:12px 24px; border-radius:12px;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  color:#fff; text-decoration:none; font-weight:700; font-size:14px;
+  transition:transform .25s ease;
+}
+.vs-faq__cta a:hover{transform:translateY(-2px);}
+</style>
+
+<section class="vs-faq" id="faq">
+  <div class="vs-faq__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>سوالات متداول</span>
+      <h2>پاسخ به پرسش‌های رایج</h2>
+      <p>سوال خود را تایپ کنید یا یکی از دسته‌ها را انتخاب کنید.</p>
+    </div>
+
+    <div class="vs-faq__search">
+      <input type="text" placeholder="در سوالات جستجو کنید..." data-vs-faq-search>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+    </div>
+
+    <div class="vs-faq__cats" data-vs-faq-cats>
+      <button class="vs-faq__cat is-active" data-cat="all">همه</button>
+      <button class="vs-faq__cat" data-cat="time">زمان و فرآیند</button>
+      <button class="vs-faq__cat" data-cat="seo">سئو و رشد</button>
+      <button class="vs-faq__cat" data-cat="price">قیمت و پشتیبانی</button>
+      <button class="vs-faq__cat" data-cat="tech">فنی</button>
+    </div>
+
+    <div class="vs-faq__list" data-vs-faq-list>
+      <div class="vs-faq__item is-open" data-cat="time">
+        <button class="vs-faq__q">
+          <span class="qmark">؟</span>
+          <span class="text">زمان طراحی یک سایت چقدر است؟</span>
+          <span class="vs-faq__plus">+</span>
+        </button>
+        <div class="vs-faq__a">بسته به نوع پروژه، طراحی سایت معمولی بین ۲ تا ۴ هفته و فروشگاهی یا اختصاصی بین ۶ تا ۱۰ هفته زمان می‌برد. در جلسه مشاوره، زمان دقیق پروژه شما اعلام می‌شود و در یک تقویم مشترک قابل پیگیری است.</div>
+      </div>
+      <div class="vs-faq__item" data-cat="tech">
+        <button class="vs-faq__q">
+          <span class="qmark">؟</span>
+          <span class="text">آیا می‌توانم خودم سایت را مدیریت کنم؟</span>
+          <span class="vs-faq__plus">+</span>
+        </button>
+        <div class="vs-faq__a">بله. تمام سایت‌ها روی وردپرس + المنتور یا پنل اختصاصی تحویل داده می‌شوند. یک دوره آموزش ویدیویی + ۲ ساعت جلسه آنلاین برای آشنایی کامل با پنل ارائه می‌شود.</div>
+      </div>
+      <div class="vs-faq__item" data-cat="seo">
+        <button class="vs-faq__q">
+          <span class="qmark">؟</span>
+          <span class="text">آیا خدمات سئو هم ارائه می‌دهید؟</span>
+          <span class="vs-faq__plus">+</span>
+        </button>
+        <div class="vs-faq__a">بله. سئوی فنی پایه (اسکیما، سایت‌مپ، Core Web Vitals) در تمام پکیج‌ها رایگان است. برای سئوی مستمر و رشد رتبه گوگل، پلن‌های ماهانه اختصاصی از ۲.۹ میلیون تومان شروع می‌شوند.</div>
+      </div>
+      <div class="vs-faq__item" data-cat="price">
+        <button class="vs-faq__q">
+          <span class="qmark">؟</span>
+          <span class="text">هزینه پشتیبانی پس از پایان دوره رایگان چقدر است؟</span>
+          <span class="vs-faq__plus">+</span>
+        </button>
+        <div class="vs-faq__a">پلن‌های نگهداری از ماهانه ۹۹۰ هزار تومان شروع می‌شوند که شامل بک‌آپ، به‌روزرسانی، رفع خطا و ۲ ساعت تغییرات اختصاصی است. در پلن طلایی، تعداد ساعات تغییرات نامحدود می‌شود.</div>
+      </div>
+      <div class="vs-faq__item" data-cat="time">
+        <button class="vs-faq__q">
+          <span class="qmark">؟</span>
+          <span class="text">اگر از طراحی راضی نباشم چه می‌شود؟</span>
+          <span class="vs-faq__plus">+</span>
+        </button>
+        <div class="vs-faq__a">طراحی در مراحل با تأیید شما پیش می‌رود و تا ۳ نوبت بازنگری در هر مرحله رایگان است. تمرکز ما روی رضایت کامل شما در پایان پروژه است. در صورت عدم توافق، ضمانت بازگشت وجه برای مرحله طراحی وجود دارد.</div>
+      </div>
+      <div class="vs-faq__item" data-cat="tech">
+        <button class="vs-faq__q">
+          <span class="qmark">؟</span>
+          <span class="text">آیا سایت روی هاست خودم منتقل می‌شود؟</span>
+          <span class="vs-faq__plus">+</span>
+        </button>
+        <div class="vs-faq__a">بله. ما پکیج‌های هاست بهینه‌شده اختصاصی هم ارائه می‌دهیم، اما اگر هاست خودتان را دارید، سایت کاملاً روی آن نصب و راه‌اندازی می‌شود. در صورت نیاز، مشاوره خرید هاست مناسب هم رایگان است.</div>
+      </div>
+      <div class="vs-faq__item" data-cat="seo">
+        <button class="vs-faq__q">
+          <span class="qmark">؟</span>
+          <span class="text">سئو سایت من چقدر زمان می‌برد تا نتیجه دهد؟</span>
+          <span class="vs-faq__plus">+</span>
+        </button>
+        <div class="vs-faq__a">معمولاً ۳ تا ۶ ماه برای دیدن نتایج پایدار. کلمات کلیدی کم‌رقابت در ماه ۲ و کلمات اصلی در ماه ۴ تا ۶ به صفحه اول می‌رسند. گزارش هفتگی از روند رشد ارائه می‌شود.</div>
+      </div>
+    </div>
+
+    <div class="vs-faq__empty" data-vs-faq-empty>
+      نتیجه‌ای پیدا نشد. می‌توانید مستقیماً با ما تماس بگیرید.
+    </div>
+
+    <div class="vs-faq__cta">
+      <h4>سوال شما اینجا نبود؟</h4>
+      <p>کارشناسان ما در کمتر از ۲ ساعت پاسخ شما را می‌دهند.</p>
+      <a href="#contact">
+        تماس مستقیم با کارشناس
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const list = document.querySelector('[data-vs-faq-list]');
+  if(!list) return;
+  const items = Array.from(list.querySelectorAll('.vs-faq__item'));
+  const empty = document.querySelector('[data-vs-faq-empty]');
+
+  // باز/بسته
+  items.forEach(it => {
+    it.querySelector('.vs-faq__q').addEventListener('click', () => {
+      const open = it.classList.contains('is-open');
+      items.forEach(x => x.classList.remove('is-open'));
+      if(!open) it.classList.add('is-open');
+    });
+  });
+
+  // فیلتر دسته‌بندی
+  const cats = document.querySelectorAll('[data-vs-faq-cats] .vs-faq__cat');
+  let activeCat = 'all';
+  let activeQuery = '';
+  const refresh = () => {
+    let visible = 0;
+    items.forEach(it => {
+      const matchCat = activeCat === 'all' || it.dataset.cat === activeCat;
+      const text = it.querySelector('.text').textContent + ' ' + it.querySelector('.vs-faq__a').textContent;
+      const matchSearch = !activeQuery || text.toLowerCase().includes(activeQuery);
+      const show = matchCat && matchSearch;
+      it.classList.toggle('is-hidden', !show);
+      if(show) visible++;
+    });
+    empty.classList.toggle('is-on', visible === 0);
+  };
+  cats.forEach(c => {
+    c.addEventListener('click', () => {
+      cats.forEach(x => x.classList.remove('is-active'));
+      c.classList.add('is-active');
+      activeCat = c.dataset.cat;
+      refresh();
+    });
+  });
+
+  // جستجو
+  const search = document.querySelector('[data-vs-faq-search]');
+  search.addEventListener('input', e => {
+    activeQuery = e.target.value.trim().toLowerCase();
+    refresh();
+  });
+})();
+</script>
