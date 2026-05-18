@@ -1,0 +1,330 @@
+/* ============================================================
+   ویرا سئو — طراحی سایت | Custom CSS برای Astra + Elementor
+   مسیر کپی: Appearance → Customize → Additional CSS
+   ============================================================ */
+
+/* ===== Design Tokens ===== */
+:root {
+  --vs-primary: #6C5CE7;
+  --vs-primary-700: #4F3FD3;
+  --vs-accent: #00D9C0;
+  --vs-accent-2: #FF6B9D;
+  --vs-ink: #0F172A;
+  --vs-ink-2: #334155;
+  --vs-muted: #64748B;
+  --vs-bg-soft: #F8FAFC;
+  --vs-border: #E2E8F0;
+  --vs-grad: linear-gradient(135deg, #6C5CE7 0%, #00D9C0 100%);
+  --vs-grad-dark: linear-gradient(135deg, #1A1340 0%, #3B2A8C 50%, #0E7C7B 100%);
+  --vs-shadow-md: 0 12px 32px rgba(15, 23, 42, .10);
+  --vs-shadow-lg: 0 24px 60px rgba(108, 92, 231, .18);
+}
+
+/* ===== Font Loading (در صورت نبود وزیرمتن در قالب) ===== */
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+
+body, body.elementor-page {
+  font-family: 'Vazirmatn', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif !important;
+}
+
+/* ===== متن گرادیانی (برای کلمات تأکیدی در تیتر) ===== */
+.vs-grad-text,
+.elementor-heading-title .vs-grad-text {
+  background: var(--vs-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== Eyebrow (برچسب کوچک بالای تیترها) ===== */
+.vs-eyebrow {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  background: rgba(108, 92, 231, .08);
+  color: var(--vs-primary) !important;
+  border: 1px solid rgba(108, 92, 231, .18);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  margin-bottom: 16px;
+}
+.vs-eyebrow::before {
+  content: "";
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--vs-accent);
+  box-shadow: 0 0 0 4px rgba(0, 217, 192, .18);
+}
+
+/* ===== دکمه اصلی گرادیانی ===== */
+.elementor-button.vs-btn-primary,
+a.vs-btn-primary {
+  background: var(--vs-grad) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 14px !important;
+  padding: 14px 28px !important;
+  font-weight: 700 !important;
+  box-shadow: var(--vs-shadow-lg);
+  transition: all .25s ease;
+}
+.elementor-button.vs-btn-primary:hover,
+a.vs-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 28px 70px rgba(108, 92, 231, .32);
+}
+
+/* ===== Hero Background Grid Pattern ===== */
+.vs-hero-section {
+  position: relative;
+  overflow: hidden;
+}
+.vs-hero-section::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(108, 92, 231, .06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108, 92, 231, .06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+.vs-hero-section > .elementor-container { position: relative; z-index: 1; }
+
+/* ===== کارت‌های شناور Hero ===== */
+.vs-float-card {
+  background: #fff;
+  border: 1px solid var(--vs-border);
+  border-radius: 18px;
+  padding: 14px 16px;
+  box-shadow: var(--vs-shadow-md);
+  animation: vs-float 5s ease-in-out infinite;
+}
+@keyframes vs-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+/* ===== Bento Card Hover Effect ===== */
+.vs-bento-card {
+  background: #fff;
+  border: 1px solid var(--vs-border);
+  border-radius: 28px !important;
+  padding: 28px !important;
+  transition: all .3s ease;
+  height: 100%;
+}
+.vs-bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--vs-shadow-md);
+  border-color: transparent;
+}
+
+/* کارت تیره ویژه در Bento */
+.vs-bento-card.vs-dark {
+  background: var(--vs-ink) !important;
+  color: #fff !important;
+}
+.vs-bento-card.vs-dark *,
+.vs-bento-card.vs-dark .elementor-heading-title {
+  color: #fff !important;
+}
+
+/* ===== Process Step Cards ===== */
+.vs-step-card {
+  background: #fff;
+  border: 1px solid var(--vs-border);
+  border-radius: 28px;
+  padding: 28px;
+  position: relative;
+  margin-top: 24px;
+  transition: all .3s ease;
+}
+.vs-step-card:hover {
+  border-color: var(--vs-primary);
+  transform: translateY(-4px);
+  box-shadow: var(--vs-shadow-md);
+}
+.vs-step-number {
+  position: absolute;
+  top: -22px;
+  inset-inline-end: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--vs-grad);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 18px;
+  box-shadow: var(--vs-shadow-md);
+}
+
+/* ===== Pricing Plan ===== */
+.vs-plan {
+  background: #fff;
+  border: 1.5px solid var(--vs-border);
+  border-radius: 28px;
+  padding: 36px 32px;
+  transition: all .3s ease;
+  height: 100%;
+}
+.vs-plan:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--vs-shadow-md);
+}
+
+.vs-plan-featured {
+  border: none !important;
+  background: linear-gradient(160deg, #1A1340 0%, #2A1F6B 100%) !important;
+  color: #fff !important;
+  position: relative;
+  box-shadow: var(--vs-shadow-lg) !important;
+}
+.vs-plan-featured *,
+.vs-plan-featured .elementor-heading-title {
+  color: #fff !important;
+}
+.vs-plan-featured::before {
+  content: "پرطرفدار";
+  position: absolute;
+  top: 20px;
+  inset-inline-start: 24px;
+  background: var(--vs-accent);
+  color: var(--vs-ink);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  z-index: 2;
+}
+
+/* ===== FAQ Accordion (المنتور پیش‌فرض) ===== */
+.elementor-accordion .elementor-accordion-item {
+  background: #fff;
+  border: 1px solid var(--vs-border) !important;
+  border-radius: 18px !important;
+  margin-bottom: 14px;
+  overflow: hidden;
+  transition: all .3s ease;
+}
+.elementor-accordion .elementor-accordion-item:has(.elementor-active),
+.elementor-accordion .elementor-tab-title.elementor-active {
+  border-color: var(--vs-primary) !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, .06);
+}
+.elementor-accordion .elementor-tab-title {
+  padding: 22px 26px !important;
+  font-weight: 700 !important;
+  font-size: 17px !important;
+  color: var(--vs-ink) !important;
+}
+.elementor-accordion .elementor-tab-content {
+  padding: 0 26px 22px !important;
+  color: var(--vs-muted) !important;
+  line-height: 1.9 !important;
+  border-top: none !important;
+}
+/* آیکون + قابل چرخش */
+.elementor-accordion .elementor-tab-title .elementor-accordion-icon {
+  width: 32px;
+  height: 32px;
+  background: var(--vs-bg-soft);
+  border-radius: 50%;
+  display: grid !important;
+  place-items: center;
+  color: var(--vs-primary) !important;
+  transition: all .3s ease;
+}
+.elementor-accordion .elementor-tab-title.elementor-active .elementor-accordion-icon {
+  background: var(--vs-grad);
+  color: #fff !important;
+  transform: rotate(45deg);
+}
+
+/* ===== CTA Section با گرادیان دایره‌ای متحرک ===== */
+.vs-cta-wrap {
+  background: var(--vs-grad-dark);
+  border-radius: 28px;
+  padding: 64px 48px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.vs-cta-wrap::before {
+  content: "";
+  position: absolute; inset: -50%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(0, 217, 192, .35), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(255, 107, 157, .30), transparent 50%);
+  animation: vs-spin 18s linear infinite;
+  pointer-events: none;
+}
+@keyframes vs-spin { to { transform: rotate(360deg); } }
+.vs-cta-wrap > * { position: relative; z-index: 1; }
+.vs-cta-wrap *,
+.vs-cta-wrap .elementor-heading-title { color: #fff !important; }
+
+/* ===== Testimonial Card ===== */
+.vs-quote {
+  background: #fff;
+  border: 1px solid var(--vs-border);
+  border-radius: 28px;
+  padding: 32px;
+  height: 100%;
+}
+.vs-quote-stars {
+  color: #FFB800;
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+/* ===== Mobile Optimizations ===== */
+@media (max-width: 880px) {
+  .vs-cta-wrap { padding: 40px 24px; }
+  .vs-step-number { inset-inline-end: 50%; transform: translateX(50%); }
+  .vs-float-card { display: none; } /* مخفی کردن کارت‌های شناور در موبایل */
+}
+
+/* ===== Stat Counter (آمار Hero) ===== */
+.vs-stat-num,
+.elementor-counter-number-wrapper {
+  font-size: 28px !important;
+  font-weight: 900 !important;
+  background: var(--vs-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===== Logo Strip ===== */
+.vs-logo-strip {
+  background: var(--vs-bg-soft);
+  border-block: 1px solid var(--vs-border);
+  padding: 48px 0;
+}
+
+/* ===== رفع باگ RTL در المنتور برای الیگنمنت آیکون‌ها ===== */
+body[dir="rtl"] .elementor-icon-list-icon {
+  margin-left: 8px;
+  margin-right: 0;
+}
+
+/* ===== انیمیشن ورودی نرم برای سکشن‌ها ===== */
+.elementor-section[data-vs-animate="fade-up"] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.elementor-section[data-vs-animate="fade-up"].vs-in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
