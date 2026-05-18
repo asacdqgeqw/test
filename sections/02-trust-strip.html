@@ -1,0 +1,46 @@
+<!-- ========================================================
+     سکشن ۲: TRUST STRIP (نوار اعتماد و لوگوی مشتریان)
+     روش استفاده: HTML widget در یک Section ساده.
+     ======================================================== -->
+<style>
+:root{
+  --vs-primary:#170C79; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+}
+.vs-strip{
+  padding:56px 24px; background:linear-gradient(180deg,#FAF6EC 0%,#EFE3CA 100%);
+  border-block:1px solid rgba(23,12,121,.08);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl;
+}
+.vs-strip__inner{max-width:1240px;margin:0 auto;}
+.vs-strip__title{
+  text-align:center; color:var(--vs-primary);
+  font-size:14px; letter-spacing:2px; font-weight:600;
+  margin-bottom:24px; text-transform:uppercase;
+}
+.vs-strip__logos{
+  display:flex; justify-content:space-around; align-items:center;
+  flex-wrap:wrap; gap:36px; opacity:.85;
+}
+.vs-strip__logos span{
+  font-weight:800; color:var(--vs-ink);
+  font-size:22px; letter-spacing:-.5px;
+  transition:opacity .25s ease, transform .25s ease;
+  cursor:pointer;
+}
+.vs-strip__logos span:hover{opacity:1; transform:scale(1.05); color:var(--vs-primary);}
+@media (max-width:560px){.vs-strip__logos{gap:24px;}.vs-strip__logos span{font-size:18px;}}
+</style>
+
+<section class="vs-strip">
+  <div class="vs-strip__inner">
+    <div class="vs-strip__title">اعتماد بیش از ۴۵۰ کسب‌وکار ایرانی</div>
+    <div class="vs-strip__logos">
+      <span>BRAND/۱</span>
+      <span>NAVA</span>
+      <span>PIXEL+</span>
+      <span>FORTECH</span>
+      <span>AVA·CO</span>
+      <span>NEXTLY</span>
+    </div>
+  </div>
+</section>

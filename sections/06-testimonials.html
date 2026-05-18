@@ -1,0 +1,91 @@
+<!-- ========================================================
+     سکشن ۶: TESTIMONIALS (نظرات مشتریان)
+     ======================================================== -->
+<style>
+:root{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+}
+.vs-testimonials{
+  padding:100px 24px;
+  background:linear-gradient(180deg,#FAF6EC 0%,#EFE3CA 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+}
+.vs-testimonials__inner{max-width:1240px;margin:0 auto;}
+.vs-section-head{text-align:center; margin-bottom:56px;}
+.vs-section-head .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(23,12,121,.10); color:var(--vs-primary);
+  border:1px solid rgba(23,12,121,.20);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-section-head .vs-eyebrow i{
+  width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
+  box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
+}
+.vs-section-head h2{font-size:clamp(28px,3.4vw,44px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-section-head p{color:#475569; font-size:18px; max-width:680px; margin:0 auto;}
+
+.vs-quotes{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+.vs-quote{
+  background:#fff; border:1px solid rgba(23,12,121,.10); border-radius:24px;
+  padding:32px; position:relative;
+  transition:all .3s ease;
+}
+.vs-quote:hover{transform:translateY(-4px); box-shadow:0 20px 50px rgba(23,12,121,.12);}
+.vs-quote::before{
+  content:"❝"; position:absolute; top:18px; left:24px;
+  font-size:54px; color:var(--vs-cyan); font-family:Georgia, serif;
+  line-height:1;
+}
+.vs-quote .stars{color:#FFB800; margin-bottom:14px; font-size:18px; letter-spacing:2px;}
+.vs-quote p{color:#334155; font-size:15.5px; line-height:1.9; margin:0 0 22px;}
+.vs-quote__who{display:flex; align-items:center; gap:12px;}
+.vs-quote__av{
+  width:46px; height:46px; border-radius:50%;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  display:grid; place-items:center; color:#fff; font-weight:800; font-size:18px;
+  flex-shrink:0;
+}
+.vs-quote__nm{font-weight:700; color:var(--vs-ink); font-size:15px;}
+.vs-quote__rl{font-size:13px; color:#64748B;}
+
+@media (max-width:880px){.vs-quotes{grid-template-columns:1fr;}}
+</style>
+
+<section class="vs-testimonials">
+  <div class="vs-testimonials__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>نظر مشتریان</span>
+      <h2>داستان موفقیت‌هایی که با ما ساختیم</h2>
+      <p>رشد، رضایت و تأثیر واقعی — به زبان خود مشتریان ما.</p>
+    </div>
+
+    <div class="vs-quotes">
+      <div class="vs-quote">
+        <div class="stars">★★★★★</div>
+        <p>تیم ویرا سئو دقیقاً همان چیزی را ساخت که در ذهن داشتم. سرعت سایت و رتبه گوگل ما در ۳ ماه ۳ برابر شد و حالا فروش آنلاین ما ۲ برابر شده است.</p>
+        <div class="vs-quote__who">
+          <div class="vs-quote__av">ا</div>
+          <div><div class="vs-quote__nm">امیر حسینی</div><div class="vs-quote__rl">مدیرعامل، نواکالا</div></div>
+        </div>
+      </div>
+      <div class="vs-quote">
+        <div class="stars">★★★★★</div>
+        <p>برخورد حرفه‌ای، تحویل به‌موقع و پشتیبانی فوق‌العاده. سایت جدید ما واقعاً تفاوت ایجاد کرد در فروش و تجربه کاربری به مراتب بهتر شد.</p>
+        <div class="vs-quote__who">
+          <div class="vs-quote__av">س</div>
+          <div><div class="vs-quote__nm">سارا کریمی</div><div class="vs-quote__rl">بنیان‌گذار، پیکسل‌پلاس</div></div>
+        </div>
+      </div>
+      <div class="vs-quote">
+        <div class="stars">★★★★★</div>
+        <p>طراحی فوق‌العاده مدرن و سریع. مشاوره‌های سئو هم باعث شد رقبا را در نتایج گوگل پشت سر بگذاریم. توصیه می‌کنم بدون شک.</p>
+        <div class="vs-quote__who">
+          <div class="vs-quote__av">م</div>
+          <div><div class="vs-quote__nm">محمد رضایی</div><div class="vs-quote__rl">مدیر بازاریابی، فورتک</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

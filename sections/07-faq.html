@@ -1,0 +1,86 @@
+<!-- ========================================================
+     سکشن ۷: FAQ (سوالات متداول)
+     ======================================================== -->
+<style>
+:root{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+}
+.vs-faq{padding:100px 24px; background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);}
+.vs-faq__inner{max-width:840px;margin:0 auto;}
+.vs-section-head{text-align:center; margin-bottom:56px;}
+.vs-section-head .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(23,12,121,.08); color:var(--vs-primary);
+  border:1px solid rgba(23,12,121,.18);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-section-head .vs-eyebrow i{
+  width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
+  box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
+}
+.vs-section-head h2{font-size:clamp(28px,3.4vw,44px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-section-head p{color:#64748B; font-size:18px; max-width:680px; margin:0 auto;}
+
+.vs-faq__list details{
+  background:#fff; border:1px solid #E2E8F0; border-radius:18px;
+  margin-bottom:14px; overflow:hidden; transition:all .3s ease;
+}
+.vs-faq__list details[open]{
+  border-color:var(--vs-primary);
+  box-shadow:0 8px 24px rgba(23,12,121,.10);
+}
+.vs-faq__list summary{
+  list-style:none; cursor:pointer;
+  padding:22px 26px; display:flex; align-items:center; justify-content:space-between; gap:16px;
+  font-weight:700; font-size:17px; color:var(--vs-ink);
+}
+.vs-faq__list summary::-webkit-details-marker{display:none;}
+.vs-faq__list .plus{
+  width:32px;height:32px;border-radius:50%; background:#FAF6EC;
+  display:grid; place-items:center; font-size:22px; color:var(--vs-primary);
+  transition:all .3s ease; flex-shrink:0; line-height:1;
+  font-weight:300;
+}
+.vs-faq__list details[open] .plus{
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  color:#fff; transform:rotate(45deg);
+}
+.vs-faq__list .vs-faq__content{
+  padding:0 26px 22px; color:#64748B; line-height:1.95; font-size:15px;
+}
+</style>
+
+<section class="vs-faq" id="faq">
+  <div class="vs-faq__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>سوالات متداول</span>
+      <h2>پاسخ به پرسش‌های رایج شما</h2>
+      <p>اگر سوال شما اینجا نیست، با کارشناسان ما در تماس باشید.</p>
+    </div>
+
+    <div class="vs-faq__list">
+      <details open>
+        <summary>زمان طراحی یک سایت چقدر است؟<span class="plus">+</span></summary>
+        <div class="vs-faq__content">بسته به نوع پروژه، طراحی سایت معمولی بین ۲ تا ۴ هفته و فروشگاهی یا اختصاصی بین ۶ تا ۱۰ هفته زمان می‌برد. در جلسه مشاوره، زمان دقیق پروژه شما اعلام می‌شود.</div>
+      </details>
+      <details>
+        <summary>آیا می‌توانم خودم سایت را مدیریت کنم؟<span class="plus">+</span></summary>
+        <div class="vs-faq__content">بله. تمام سایت‌ها روی وردپرس + المنتور یا پنل اختصاصی تحویل داده می‌شوند و آموزش کامل ویدیویی + جلسه آنلاین برای مدیریت ارائه می‌گردد.</div>
+      </details>
+      <details>
+        <summary>آیا خدمات سئو هم ارائه می‌دهید؟<span class="plus">+</span></summary>
+        <div class="vs-faq__content">بله. سئوی فنی پایه در تمام پکیج‌ها رایگان است. برای سئوی مستمر و رشد رتبه گوگل، پلن‌های ماهانه اختصاصی داریم.</div>
+      </details>
+      <details>
+        <summary>هزینه پشتیبانی پس از پایان دوره رایگان چقدر است؟<span class="plus">+</span></summary>
+        <div class="vs-faq__content">پلن‌های نگهداری از ماهانه ۹۹۰ هزار تومان شروع می‌شوند که شامل بک‌آپ، به‌روزرسانی، رفع خطا و ۲ ساعت تغییرات اختصاصی است.</div>
+      </details>
+      <details>
+        <summary>اگر از طراحی راضی نباشم چه می‌شود؟<span class="plus">+</span></summary>
+        <div class="vs-faq__content">طراحی در مراحل با تأیید شما پیش می‌رود و تا ۳ نوبت بازنگری در هر مرحله رایگان است. تمرکز ما روی رضایت کامل شما در پایان پروژه است.</div>
+      </details>
+    </div>
+  </div>
+</section>
