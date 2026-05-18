@@ -1,15 +1,22 @@
 <!-- ========================================================
-     سکشن ۵: PRICING (پکیج‌ها)
+     سکشن ۵: PRICING تعاملی با Toggle ماهانه/سالانه (نسخه v4)
      ======================================================== -->
 <style>
-:root{
+.vs-pricing{
   --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
   --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+
+  padding:110px 24px; background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+  position:relative; overflow:hidden;
 }
-.vs-pricing{padding:100px 24px; background:#fff;
-  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);}
-.vs-pricing__inner{max-width:1240px;margin:0 auto;}
-.vs-section-head{text-align:center; margin-bottom:64px;}
+.vs-pricing::before{
+  content:""; position:absolute; bottom:0; left:0; width:60%; height:60%;
+  background:radial-gradient(50% 50% at 0% 100%, rgba(138,203,208,.18), transparent 60%);
+  pointer-events:none;
+}
+.vs-pricing__inner{max-width:1240px; margin:0 auto; position:relative;}
+.vs-section-head{text-align:center; margin-bottom:48px;}
 .vs-section-head .vs-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(23,12,121,.08); color:var(--vs-primary);
@@ -20,22 +27,81 @@
   width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
   box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
 }
-.vs-section-head h2{font-size:clamp(28px,3.4vw,44px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-section-head h2{font-size:clamp(28px,3.4vw,46px); font-weight:800; margin:0 0 16px; line-height:1.4;}
 .vs-section-head p{color:#64748B; font-size:18px; max-width:680px; margin:0 auto;}
 
+/* ===== Toggle ===== */
+.vs-toggle{
+  display:flex; justify-content:center; align-items:center; gap:14px;
+  margin-bottom:48px;
+}
+.vs-toggle__opt{font-weight:700; color:#64748B; font-size:15px; transition:color .25s;}
+.vs-toggle__opt.is-on{color:var(--vs-primary);}
+.vs-toggle__sw{
+  position:relative; width:64px; height:32px;
+  background:rgba(23,12,121,.10); border-radius:999px; cursor:pointer;
+  border:1px solid rgba(23,12,121,.15);
+  transition:background .3s ease;
+}
+.vs-toggle__sw::after{
+  content:""; position:absolute; top:3px; right:3px;
+  width:24px; height:24px; border-radius:50%;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  transition:transform .3s ease;
+  box-shadow:0 4px 10px rgba(23,12,121,.25);
+}
+.vs-toggle.is-yearly .vs-toggle__sw::after{transform:translateX(-32px);}
+.vs-toggle__save{
+  background:linear-gradient(135deg,#8ACBD0,#128BE0); color:#0a0640;
+  padding:5px 12px; border-radius:999px;
+  font-size:11px; font-weight:800; letter-spacing:.5px;
+  display:inline-flex; align-items:center; gap:4px;
+}
+
+/* ===== Plans ===== */
 .vs-plans{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:stretch;}
 .vs-plan{
   background:#fff; border:1.5px solid #E2E8F0; border-radius:28px;
   padding:36px 32px; display:flex; flex-direction:column; gap:18px;
-  transition:all .3s ease; position:relative;
+  transition:all .3s ease; position:relative; overflow:hidden;
 }
-.vs-plan:hover{transform:translateY(-6px); box-shadow:0 20px 50px rgba(23,12,121,.10); border-color:var(--vs-cyan);}
-.vs-plan__name{font-size:14px; color:#64748B; font-weight:700; letter-spacing:1.5px;}
-.vs-plan__price{font-size:38px; font-weight:900; color:var(--vs-ink); line-height:1;}
-.vs-plan__price small{font-size:14px; font-weight:600; color:#64748B; margin-right:4px;}
+.vs-plan::before{
+  content:""; position:absolute; inset:-1px;
+  background:linear-gradient(135deg,var(--vs-cyan),var(--vs-accent));
+  border-radius:inherit; opacity:0; z-index:-1;
+  transition:opacity .3s ease;
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  padding:1.5px;
+}
+.vs-plan:hover{transform:translateY(-6px); box-shadow:0 20px 50px rgba(23,12,121,.10); border-color:transparent;}
+.vs-plan:hover::before{opacity:1;}
+
+.vs-plan__name{
+  display:flex; align-items:center; gap:10px;
+  font-size:14px; color:#64748B; font-weight:700; letter-spacing:1.5px;
+}
+.vs-plan__name .ic{
+  width:32px; height:32px; border-radius:9px;
+  background:rgba(23,12,121,.08); color:var(--vs-primary);
+  display:grid; place-items:center;
+}
+.vs-plan__price{
+  font-size:42px; font-weight:900; color:var(--vs-ink); line-height:1;
+  display:flex; align-items:baseline; gap:6px;
+}
+.vs-plan__price .num{
+  display:inline-block; transition:transform .3s ease, opacity .3s ease;
+}
+.vs-plan__price small{font-size:14px; font-weight:600; color:#64748B;}
+.vs-plan__price .old{
+  font-size:20px; font-weight:700; color:#94A3B8;
+  text-decoration:line-through; margin-right:8px;
+}
 .vs-plan__desc{color:#64748B; font-size:14px; margin:0;}
 .vs-plan ul{list-style:none; padding:0; margin:8px 0 16px; display:flex; flex-direction:column; gap:12px;}
-.vs-plan li{display:flex; gap:10px; align-items:flex-start; color:#334155; font-size:15px; line-height:1.7;}
+.vs-plan li{display:flex; gap:10px; align-items:flex-start; color:#334155; font-size:14.5px; line-height:1.7;}
 .vs-plan li svg{flex-shrink:0; color:var(--vs-secondary); margin-top:5px;}
 
 .vs-plan__cta{
@@ -61,18 +127,28 @@
   background:linear-gradient(160deg,var(--vs-primary) 0%,#0a0648 100%);
   color:#fff;
   box-shadow:0 28px 60px rgba(23,12,121,.30);
-  transform:scale(1.03);
+  transform:scale(1.04);
+  position:relative;
 }
-.vs-plan--featured:hover{transform:scale(1.03) translateY(-6px); border-color:transparent;}
+.vs-plan--featured::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(40% 40% at 80% 0%, rgba(138,203,208,.30), transparent 60%);
+  border-radius:inherit;
+}
+.vs-plan--featured > *{position:relative; z-index:1;}
+.vs-plan--featured:hover{transform:scale(1.04) translateY(-6px); border-color:transparent;}
 .vs-plan--featured .vs-plan__name{color:rgba(255,255,255,.7);}
+.vs-plan--featured .vs-plan__name .ic{background:rgba(138,203,208,.20); color:var(--vs-cyan);}
 .vs-plan--featured .vs-plan__price,
 .vs-plan--featured .vs-plan__price small,
 .vs-plan--featured .vs-plan__desc,
 .vs-plan--featured li{color:rgba(255,255,255,.92);}
 .vs-plan--featured li svg{color:var(--vs-cyan);}
-.vs-plan--featured::before{
-  content:"پرطرفدار"; position:absolute; top:24px; left:24px;
-  background:var(--vs-cyan); color:var(--vs-primary);
+.vs-plan--featured::before{display:none;}
+.vs-plan--featured .vs-badge{
+  position:absolute; top:24px; left:24px; z-index:2;
+  background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));
+  color:var(--vs-primary);
   padding:6px 14px; border-radius:999px;
   font-size:12px; font-weight:800; letter-spacing:.5px;
 }
@@ -94,14 +170,30 @@
     <div class="vs-section-head">
       <span class="vs-eyebrow"><i></i>پکیج‌های طراحی</span>
       <h2>پکیجی متناسب با هر کسب‌وکار</h2>
-      <p>قیمت‌ها شفاف، بدون هزینه پنهان. در صورت نیاز به طرح اختصاصی، با ما تماس بگیرید.</p>
+      <p>قیمت‌ها شفاف و بدون هزینه پنهان. با پرداخت سالانه ۲ ماه رایگان دریافت کنید.</p>
+    </div>
+
+    <!-- Toggle -->
+    <div class="vs-toggle" data-vs-toggle>
+      <span class="vs-toggle__opt is-on" data-side="monthly">پرداخت ماهانه</span>
+      <button class="vs-toggle__sw" aria-label="تغییر دوره پرداخت"></button>
+      <span class="vs-toggle__opt" data-side="yearly">
+        پرداخت سالانه
+        <span class="vs-toggle__save">✦ ۲ ماه رایگان</span>
+      </span>
     </div>
 
     <div class="vs-plans">
       <!-- شروع -->
-      <div class="vs-plan">
-        <div class="vs-plan__name">شروع</div>
-        <div class="vs-plan__price">۱۸<small>میلیون تومان</small></div>
+      <div class="vs-plan" data-vs-plan>
+        <div class="vs-plan__name">
+          <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          شروع
+        </div>
+        <div class="vs-plan__price">
+          <span class="num" data-monthly="۱۸" data-yearly="۱۸۰">۱۸</span>
+          <small data-monthly-suffix="میلیون" data-yearly-suffix="میلیون / سال">میلیون</small>
+        </div>
         <p class="vs-plan__desc">برای کسب‌وکارهای کوچک و استارتاپ‌ها</p>
         <ul>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تا ۸ صفحه اختصاصی</li>
@@ -113,9 +205,16 @@
       </div>
 
       <!-- حرفه‌ای -->
-      <div class="vs-plan vs-plan--featured">
-        <div class="vs-plan__name">حرفه‌ای</div>
-        <div class="vs-plan__price">۳۸<small>میلیون تومان</small></div>
+      <div class="vs-plan vs-plan--featured" data-vs-plan>
+        <span class="vs-badge">★ پرطرفدار</span>
+        <div class="vs-plan__name">
+          <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          حرفه‌ای
+        </div>
+        <div class="vs-plan__price">
+          <span class="num" data-monthly="۳۸" data-yearly="۳۸۰">۳۸</span>
+          <small data-monthly-suffix="میلیون" data-yearly-suffix="میلیون / سال">میلیون</small>
+        </div>
         <p class="vs-plan__desc">برای کسب‌وکارهای در حال رشد</p>
         <ul>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تا ۲۰ صفحه اختصاصی + بلاگ</li>
@@ -124,13 +223,18 @@
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>درگاه پرداخت + چندزبانه</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>۶ ماه پشتیبانی + آموزش کامل</li>
         </ul>
-        <a href="#contact" class="vs-plan__cta vs-plan__cta--primary">شروع پکیج حرفه‌ای</a>
+        <a href="#contact" class="vs-plan__cta vs-plan__cta--primary">شروع پکیج حرفه‌ای ←</a>
       </div>
 
       <!-- سازمانی -->
-      <div class="vs-plan">
-        <div class="vs-plan__name">سازمانی</div>
-        <div class="vs-plan__price">سفارشی</div>
+      <div class="vs-plan" data-vs-plan>
+        <div class="vs-plan__name">
+          <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          سازمانی
+        </div>
+        <div class="vs-plan__price">
+          <span class="num" data-monthly="سفارشی" data-yearly="سفارشی">سفارشی</span>
+        </div>
         <p class="vs-plan__desc">برای فروشگاه‌ها و سازمان‌های بزرگ</p>
         <ul>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>صفحات و قابلیت‌های نامحدود</li>
@@ -143,3 +247,33 @@
     </div>
   </div>
 </section>
+
+<script>
+(function(){
+  const root = document.querySelector('[data-vs-toggle]');
+  if(!root) return;
+  const opts = root.querySelectorAll('.vs-toggle__opt');
+  const sw   = root.querySelector('.vs-toggle__sw');
+  const trigger = (yearly) => {
+    root.classList.toggle('is-yearly', yearly);
+    opts.forEach(o => o.classList.toggle('is-on', (o.dataset.side === 'yearly') === yearly));
+    document.querySelectorAll('[data-vs-plan]').forEach(plan => {
+      const num = plan.querySelector('.num');
+      const sm  = plan.querySelector('small');
+      if(!num) return;
+      num.style.opacity = '0';
+      num.style.transform = 'translateY(8px)';
+      setTimeout(() => {
+        num.textContent = yearly ? num.dataset.yearly : num.dataset.monthly;
+        if(sm){
+          sm.textContent = yearly ? sm.dataset.yearlySuffix : sm.dataset.monthlySuffix;
+        }
+        num.style.opacity = '1';
+        num.style.transform = 'none';
+      }, 180);
+    });
+  };
+  sw.addEventListener('click', () => trigger(!root.classList.contains('is-yearly')));
+  opts.forEach(o => o.addEventListener('click', () => trigger(o.dataset.side === 'yearly')));
+})();
+</script>

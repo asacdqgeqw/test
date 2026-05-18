@@ -3,273 +3,772 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>پیش‌نمایش کامل صفحه طراحی سایت | ویرا سئو</title>
+<title>پیش‌نمایش کامل صفحه طراحی سایت v4 | ویرا سئو</title>
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Vazirmatn',Tahoma,sans-serif;background:#fff;}
-  /* ===== شبیه‌سازی جای هدر و فوتر ===== */
   .mock-header,.mock-footer{
-    background:#1D2327; color:#94A3B8; padding:18px 24px;
-    text-align:center; font-size:13px; letter-spacing:1px;
+    background:#0a0640; color:#8ACBD0; padding:18px 24px;
+    text-align:center; font-size:13px; letter-spacing:1px; font-weight:600;
   }
-  .mock-header{border-bottom:2px solid #170C79;}
-  .mock-footer{margin-top:0;border-top:2px solid #170C79;}
 </style>
 </head>
 <body>
 
-<div class="mock-header">⬇️ این بالا هدر سایت شماست (تغییری نمی‌کند) ⬇️</div>
-
-<!-- ##### START: paste section 1 ##### -->
-<!-- شامل سکشن ۱: HERO -->
+<div class="mock-header">⬇️ این بالا هدر سایت شماست (دست نخورده) ⬇️</div>
 
 <!-- ========================================================
-     سکشن ۱: HERO (بنر اصلی)
-     روش استفاده: یک Section خالی در المنتور بساز → داخلش
-     ویجت "HTML" قرار بده → کل این کد رو پیست کن.
+     سکشن ۱: HERO خلاقانه و تعاملی (نسخه v4)
+     ویژگی‌ها:
+     - پس‌زمینه Aurora متحرک
+     - اسپات‌لایت موس (cursor-follow glow)
+     - کلمات چرخان (rotating words)
+     - موکاپ ۳بعدی با Tilt
+     - Marquee متحرک
+     - badge ضربان‌دار
      ======================================================== -->
 <style>
-:root{
-  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
-  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327; --vs-white:#FFFFFF;
-}
 .vs-hero{
-  position:relative; padding:90px 24px 110px; overflow:hidden;
-  background:
-    radial-gradient(60% 60% at 85% 0%, rgba(18,139,224,.18) 0%, transparent 60%),
-    radial-gradient(50% 50% at 5% 100%, rgba(138,203,208,.30) 0%, transparent 60%),
-    linear-gradient(180deg, #FFFFFF 0%, #FAF6EC 100%);
-  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;
-  direction:rtl; color:var(--vs-ink);
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+
+  position:relative; min-height:90vh; padding:90px 24px 0; overflow:hidden;
+  background:#0a0640;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl;
+  color:#fff; isolation:isolate;
+}
+
+/* ===== Aurora Background ===== */
+.vs-hero::before, .vs-hero::after{
+  content:""; position:absolute; border-radius:50%; filter:blur(90px);
+  pointer-events:none; z-index:0; mix-blend-mode:screen; opacity:.55;
 }
 .vs-hero::before{
-  content:""; position:absolute; inset:0;
+  width:60vw; height:60vw; top:-10vw; right:-10vw;
+  background:radial-gradient(circle,#128BE0 0%,#170C79 60%,transparent 70%);
+  animation:vs-aurora1 14s ease-in-out infinite;
+}
+.vs-hero::after{
+  width:55vw; height:55vw; bottom:-15vw; left:-10vw;
+  background:radial-gradient(circle,#8ACBD0 0%,#0170B9 50%,transparent 70%);
+  animation:vs-aurora2 16s ease-in-out infinite;
+}
+@keyframes vs-aurora1{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(-10vw,10vh) scale(1.15)}
+}
+@keyframes vs-aurora2{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(10vw,-8vh) scale(1.1)}
+}
+
+/* ===== Spotlight (موس‌فالو) ===== */
+.vs-hero__spot{
+  position:absolute; inset:0; pointer-events:none; z-index:1;
+  background:radial-gradient(
+    600px circle at var(--mx,50%) var(--my,30%),
+    rgba(138,203,208,.18), transparent 40%);
+  transition:background .15s ease;
+}
+
+/* ===== Grid Pattern ===== */
+.vs-hero__grid-bg{
+  position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.35;
   background-image:
-    linear-gradient(rgba(23,12,121,.06) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(23,12,121,.06) 1px,transparent 1px);
-  background-size:48px 48px;
-  -webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
-          mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
-  pointer-events:none;
+    linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);
+  background-size:60px 60px;
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,#000,transparent 70%);
+          mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,#000,transparent 70%);
 }
+
+/* ===== Wrapper ===== */
 .vs-hero__wrap{
-  position:relative; max-width:1240px; margin:0 auto;
-  display:grid; grid-template-columns:1.15fr 1fr; gap:60px; align-items:center;
+  position:relative; z-index:2; max-width:1240px; margin:0 auto;
+  display:grid; grid-template-columns:1.1fr 1fr; gap:60px; align-items:center;
+  min-height:calc(90vh - 90px); padding-bottom:90px;
 }
-.vs-eyebrow{
-  display:inline-flex; align-items:center; gap:8px;
-  background:rgba(23,12,121,.08); color:var(--vs-primary);
-  border:1px solid rgba(23,12,121,.18);
-  padding:8px 16px; border-radius:999px;
-  font-size:14px; font-weight:600; margin-bottom:18px;
+
+/* ===== Top Badge ===== */
+.vs-hero__badge{
+  display:inline-flex; align-items:center; gap:10px;
+  background:rgba(255,255,255,.08); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.15);
+  padding:8px 8px 8px 18px; border-radius:999px;
+  font-size:13px; font-weight:600; margin-bottom:22px; color:#fff;
 }
-.vs-eyebrow i{
-  width:8px;height:8px;border-radius:50%; background:var(--vs-accent);
-  box-shadow:0 0 0 4px rgba(18,139,224,.18); display:inline-block;
+.vs-hero__badge .pulse{
+  width:24px; height:24px; border-radius:50%;
+  background:linear-gradient(135deg,#8ACBD0,#128BE0);
+  display:grid; place-items:center;
+  position:relative;
+  font-size:11px; font-weight:900; color:#0a0640;
 }
+.vs-hero__badge .pulse::before{
+  content:""; position:absolute; inset:-6px; border-radius:50%;
+  border:2px solid rgba(138,203,208,.5);
+  animation:vs-pulse 2s ease-out infinite;
+}
+@keyframes vs-pulse{
+  0%{transform:scale(1);opacity:1}
+  100%{transform:scale(1.6);opacity:0}
+}
+.vs-hero__badge .arrow{
+  display:inline-flex; transition:transform .25s ease;
+}
+.vs-hero__badge:hover .arrow{transform:translateX(-4px);}
+
+/* ===== Title with Rotating Words ===== */
 .vs-hero h1{
-  font-size:clamp(32px,4.6vw,58px); font-weight:800;
-  line-height:1.35; letter-spacing:-.5px; margin:0 0 20px; color:var(--vs-ink);
+  font-size:clamp(34px,5vw,68px); font-weight:900;
+  line-height:1.25; letter-spacing:-1px; margin:0 0 22px; color:#fff;
 }
-.vs-hero h1 .grad{
-  background:linear-gradient(135deg,var(--vs-primary) 0%,var(--vs-accent) 100%);
+.vs-hero h1 .rot{
+  display:inline-block; min-width:0;
+  background:linear-gradient(135deg,#8ACBD0 0%,#128BE0 50%,#EFE3CA 100%);
   -webkit-background-clip:text; background-clip:text; color:transparent;
   -webkit-text-fill-color:transparent;
+  position:relative;
 }
+.vs-hero h1 .rot__list{
+  display:inline-flex; flex-direction:column; vertical-align:top;
+  height:1.25em; overflow:hidden;
+}
+.vs-hero h1 .rot__list span{
+  display:block; height:1.25em;
+  animation:vs-rotate 9s steps(1) infinite;
+}
+@keyframes vs-rotate{
+  0%,28%   {transform:translateY(0);}
+  33%,61%  {transform:translateY(-1.25em);}
+  66%,94%  {transform:translateY(-2.5em);}
+  100%     {transform:translateY(0);}
+}
+.vs-hero h1 .rot::after{
+  content:""; display:inline-block; width:3px; height:.9em;
+  background:#8ACBD0; vertical-align:middle; margin-right:4px;
+  animation:vs-blink 1s steps(2) infinite;
+}
+@keyframes vs-blink{50%{opacity:0}}
+
 .vs-hero p.lead{
-  font-size:19px; color:#475569; line-height:1.9;
-  max-width:560px; margin:0 0 32px;
+  font-size:19px; color:rgba(255,255,255,.78); line-height:1.95;
+  max-width:560px; margin:0 0 36px;
 }
-.vs-cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px;}
+
+/* ===== CTA Group ===== */
+.vs-hero__cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:42px;}
 .vs-btn{
   display:inline-flex; align-items:center; gap:10px;
-  padding:14px 28px; border-radius:14px;
+  padding:16px 30px; border-radius:14px;
   font-weight:700; font-size:16px; text-decoration:none;
-  transition:all .25s ease; cursor:pointer; border:none;
+  transition:all .25s ease; cursor:pointer; border:none; position:relative; overflow:hidden;
 }
 .vs-btn--primary{
-  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
-  color:#fff; box-shadow:0 18px 40px rgba(23,12,121,.25);
+  background:linear-gradient(135deg,#128BE0 0%,#8ACBD0 100%);
+  color:#0a0640; box-shadow:0 18px 40px rgba(18,139,224,.40);
 }
-.vs-btn--primary:hover{transform:translateY(-2px); box-shadow:0 24px 56px rgba(23,12,121,.35);}
-.vs-btn--ghost{
-  background:#fff; color:var(--vs-primary);
-  border:1.5px solid rgba(23,12,121,.20);
+.vs-btn--primary::before{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(135deg,#EFE3CA 0%,#8ACBD0 100%);
+  opacity:0; transition:opacity .3s ease;
 }
-.vs-btn--ghost:hover{border-color:var(--vs-primary);background:#FAF6EC;}
-.vs-btn svg{width:18px;height:18px;}
+.vs-btn--primary:hover::before{opacity:1;}
+.vs-btn--primary:hover{transform:translateY(-2px); box-shadow:0 24px 56px rgba(138,203,208,.50);}
+.vs-btn--primary > *{position:relative; z-index:1;}
 
-.vs-stats{
-  display:flex; gap:32px; flex-wrap:wrap;
-  padding-top:24px; border-top:1px dashed rgba(23,12,121,.18);
+.vs-btn--ghost{
+  background:rgba(255,255,255,.06); color:#fff;
+  border:1.5px solid rgba(255,255,255,.18);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+}
+.vs-btn--ghost:hover{background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.40);}
+.vs-btn svg{width:18px;height:18px;}
+.vs-btn--ghost .play{
+  width:28px; height:28px; border-radius:50%;
+  background:rgba(138,203,208,.20); display:grid; place-items:center;
+}
+
+/* ===== Stats ===== */
+.vs-hero__stats{
+  display:flex; gap:36px; flex-wrap:wrap; padding-top:28px;
+  border-top:1px solid rgba(255,255,255,.10);
 }
 .vs-stat .num{
-  font-size:30px; font-weight:900;
-  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  font-size:32px; font-weight:900; line-height:1; color:#fff;
+  display:flex; align-items:baseline;
+}
+.vs-stat .num em{
+  font-style:normal;
+  background:linear-gradient(135deg,#8ACBD0,#EFE3CA);
   -webkit-background-clip:text; background-clip:text; color:transparent;
   -webkit-text-fill-color:transparent;
 }
-.vs-stat .lbl{color:#64748B; font-size:14px;}
+.vs-stat .lbl{color:rgba(255,255,255,.55); font-size:13px; margin-top:6px;}
 
-/* ========== ویژوال سمت چپ ========== */
-.vs-visual{position:relative; aspect-ratio:1/1; max-width:520px; margin:0 auto;}
-.vs-mockup{
-  position:absolute; inset:8%; background:#fff; border-radius:28px;
-  box-shadow:0 30px 70px rgba(23,12,121,.20);
-  border:1px solid rgba(23,12,121,.12);
-  overflow:hidden; padding:18px;
+/* ============ Visual: 3D Tilt Mockup ============ */
+.vs-visual{
+  position:relative; perspective:1500px;
+  display:flex; align-items:center; justify-content:center;
 }
-.vs-browser{
-  background:#FAF6EC; border:1px solid rgba(23,12,121,.10);
-  border-radius:12px; padding:8px 12px;
-  display:flex; align-items:center; gap:8px;
+.vs-visual__stage{
+  position:relative; width:100%; max-width:560px; aspect-ratio:1/1;
+  transform-style:preserve-3d;
+  transition:transform .15s ease-out;
 }
-.vs-browser .dots{display:flex;gap:6px;}
-.vs-browser .dots i{width:10px;height:10px;border-radius:50%;background:#FF6B6B;display:inline-block}
-.vs-browser .dots i:nth-child(2){background:#FFD93D}
-.vs-browser .dots i:nth-child(3){background:#6BCB77}
-.vs-browser .url{
-  flex:1; background:#fff; border:1px solid rgba(23,12,121,.08);
-  border-radius:8px; padding:4px 10px; font-size:12px;
-  color:#94A3B8; text-align:center;
+
+/* لپ‌تاپ */
+.vs-laptop{
+  position:absolute; inset:8% 6%; transform-style:preserve-3d;
+  border-radius:18px; overflow:hidden;
+  background:#0a0640;
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.55),
+    0 0 0 8px #1a1450,
+    0 0 0 9px rgba(255,255,255,.06);
+  transform:translateZ(0);
 }
-.vs-page{margin-top:14px; display:flex; flex-direction:column; gap:10px;}
-.vs-page__hero{
-  height:100px; border-radius:12px;
-  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+.vs-laptop__bar{
+  height:32px; background:#0e0a3e;
+  display:flex; align-items:center; gap:6px; padding:0 12px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.vs-laptop__bar i{width:10px;height:10px;border-radius:50%;background:#FF6B6B;display:inline-block;}
+.vs-laptop__bar i:nth-child(2){background:#FFD93D}
+.vs-laptop__bar i:nth-child(3){background:#6BCB77}
+.vs-laptop__bar .url{
+  flex:1; margin-right:14px; height:18px; border-radius:5px;
+  background:rgba(255,255,255,.05);
+  display:flex; align-items:center; padding:0 10px;
+  font-size:11px; color:rgba(255,255,255,.4);
+}
+.vs-laptop__screen{
+  padding:18px; display:flex; flex-direction:column; gap:12px;
+  background:linear-gradient(160deg,#0a0640 0%,#1a1268 100%);
+  height:calc(100% - 32px);
+}
+.vs-laptop__hero{
+  height:88px; border-radius:10px;
+  background:
+    radial-gradient(circle at 80% 20%,rgba(138,203,208,.4),transparent 50%),
+    linear-gradient(135deg,#170C79,#128BE0);
   position:relative; overflow:hidden;
 }
-.vs-page__hero::after{
-  content:""; position:absolute; left:14px; bottom:14px; width:60%; height:8px;
+.vs-laptop__hero::before{
+  content:""; position:absolute; left:14px; top:18px; width:40%; height:8px;
   background:rgba(255,255,255,.7); border-radius:4px;
 }
-.vs-page__row{height:10px; background:#F1F5F9; border-radius:5px;}
-.vs-page__row.short{width:55%;}
-.vs-page__row.med{width:80%;}
-.vs-page__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px;}
-.vs-page__grid div{height:46px;border-radius:8px;background:#F1F5F9;}
-.vs-page__grid div:nth-child(2){background:rgba(138,203,208,.45);}
-
-/* کارت‌های شناور */
-.vs-float{
-  position:absolute; background:#fff; border-radius:18px;
-  border:1px solid rgba(23,12,121,.10);
-  box-shadow:0 12px 32px rgba(15,23,42,.12);
-  padding:12px 16px; display:flex; align-items:center; gap:12px;
-  animation:vs-float 5s ease-in-out infinite;
+.vs-laptop__hero::after{
+  content:""; position:absolute; left:14px; top:34px; width:60%; height:6px;
+  background:rgba(255,255,255,.4); border-radius:3px;
 }
-.vs-float .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:#fff;flex-shrink:0;}
-.vs-float .t{font-weight:700;font-size:14px;color:var(--vs-ink);}
-.vs-float .s{font-size:12px;color:#64748B;}
-.vs-float--1{top:6%;right:-6%;animation-delay:.2s}
-.vs-float--1 .ic{background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));}
-.vs-float--2{bottom:8%;left:-4%;animation-delay:1s}
-.vs-float--2 .ic{background:linear-gradient(135deg,var(--vs-cyan),var(--vs-secondary));}
-.vs-float--3{top:48%;right:-10%;animation-delay:1.8s}
-.vs-float--3 .ic{background:linear-gradient(135deg,var(--vs-accent),#22D3EE);}
-@keyframes vs-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.vs-laptop__row{height:8px; background:rgba(255,255,255,.08); border-radius:4px;}
+.vs-laptop__row--short{width:55%;}
+.vs-laptop__grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:auto;}
+.vs-laptop__grid > div{
+  height:48px; border-radius:8px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+}
+.vs-laptop__grid > div:nth-child(2){
+  background:linear-gradient(135deg,rgba(138,203,208,.25),rgba(18,139,224,.25));
+  border-color:rgba(138,203,208,.3);
+}
+
+/* موبایل کوچک کنار لپ‌تاپ */
+.vs-phone{
+  position:absolute; left:-2%; bottom:8%;
+  width:120px; aspect-ratio:9/19;
+  border-radius:24px;
+  background:#0e0a3e;
+  border:1px solid rgba(255,255,255,.10);
+  padding:6px;
+  box-shadow:0 30px 60px rgba(0,0,0,.5);
+  transform:translateZ(80px) rotate(-8deg);
+  overflow:hidden;
+}
+.vs-phone__notch{
+  width:40px; height:14px; background:#0a0640;
+  margin:0 auto; border-radius:0 0 10px 10px;
+  position:relative; z-index:2;
+}
+.vs-phone__screen{
+  position:absolute; inset:6px; border-radius:18px;
+  background:linear-gradient(160deg,#0a0640,#170C79);
+  padding:18px 8px 8px;
+  display:flex; flex-direction:column; gap:6px;
+}
+.vs-phone__hero{
+  height:36px; border-radius:8px;
+  background:linear-gradient(135deg,#128BE0,#8ACBD0);
+}
+.vs-phone__line{height:5px; background:rgba(255,255,255,.10); border-radius:3px;}
+.vs-phone__line--s{width:60%;}
+.vs-phone__btn{
+  margin-top:6px; height:18px; border-radius:6px;
+  background:linear-gradient(90deg,#8ACBD0,#EFE3CA);
+}
+
+/* کارت‌های شناور با glassmorphism */
+.vs-fcard{
+  position:absolute; z-index:3;
+  background:rgba(255,255,255,.10); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:18px; padding:12px 16px;
+  display:flex; align-items:center; gap:12px;
+  box-shadow:0 24px 50px rgba(0,0,0,.30);
+  color:#fff;
+  animation:vs-floatcard 6s ease-in-out infinite;
+}
+.vs-fcard .ic{
+  width:42px; height:42px; border-radius:12px;
+  display:grid; place-items:center; flex-shrink:0;
+}
+.vs-fcard .t{font-weight:700; font-size:14px;}
+.vs-fcard .s{font-size:11px; color:rgba(255,255,255,.65);}
+
+.vs-fcard--1{top:4%; right:-4%; transform:translateZ(60px); animation-delay:.2s;}
+.vs-fcard--1 .ic{background:linear-gradient(135deg,#128BE0,#8ACBD0);}
+.vs-fcard--2{bottom:4%; left:0%; transform:translateZ(50px); animation-delay:1.4s;}
+.vs-fcard--2 .ic{background:linear-gradient(135deg,#EFE3CA,#8ACBD0); color:#170C79;}
+.vs-fcard--3{top:42%; right:-8%; transform:translateZ(70px); animation-delay:2.6s;}
+.vs-fcard--3 .ic{background:linear-gradient(135deg,#0170B9,#170C79); border:1px solid rgba(255,255,255,.20);}
+
+@keyframes vs-floatcard{
+  0%,100%{translate:0 0;}
+  50%{translate:0 -10px;}
+}
+
+/* ===== Marquee نوار اعتماد پایین ===== */
+.vs-marquee{
+  position:relative; z-index:2;
+  margin:0 -24px;
+  background:rgba(0,0,0,.35); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  border-block:1px solid rgba(255,255,255,.08);
+  overflow:hidden;
+}
+.vs-marquee__track{
+  display:flex; gap:60px; padding:18px 0; width:max-content;
+  animation:vs-marquee 28s linear infinite;
+}
+.vs-marquee__track span{
+  color:rgba(255,255,255,.55); font-weight:700; font-size:18px;
+  letter-spacing:-.5px; white-space:nowrap;
+  display:inline-flex; align-items:center; gap:60px;
+}
+.vs-marquee__track span::after{
+  content:"✦"; color:#128BE0; opacity:.7;
+}
+@keyframes vs-marquee{to{transform:translateX(50%);}}
 
 /* responsive */
 @media (max-width:980px){
-  .vs-hero__wrap{grid-template-columns:1fr;gap:48px;}
-  .vs-hero{padding:60px 20px 80px;}
+  .vs-hero__wrap{grid-template-columns:1fr; gap:40px; padding-bottom:60px;}
+  .vs-hero{min-height:auto; padding:60px 20px 0;}
+  .vs-visual{order:-1; max-width:420px; margin:0 auto;}
+  .vs-fcard--3{display:none;}
 }
 @media (max-width:560px){
-  .vs-float{display:none;}
-  .vs-stats{gap:20px;}
+  .vs-hero__stats{gap:20px;}
   .vs-stat .num{font-size:24px;}
+  .vs-fcard{transform:none !important;}
+  .vs-marquee__track span{font-size:15px; gap:40px;}
 }
 </style>
 
-<section class="vs-hero">
+<section class="vs-hero" data-vs-hero>
+  <div class="vs-hero__grid-bg"></div>
+  <div class="vs-hero__spot"></div>
+
   <div class="vs-hero__wrap">
     <div class="vs-hero__content">
-      <span class="vs-eyebrow"><i></i>طراحی سایت حرفه‌ای + سئو تخصصی</span>
-      <h1>ساخت سایتی که <span class="grad">می‌فروشد</span><br>نه فقط دیده می‌شود.</h1>
-      <p class="lead">طراحی اختصاصی، سرعت بالا، سئوی فنی استاندارد و تجربه کاربری بی‌نقص — همه در یک پروژه. ما سایت‌هایی می‌سازیم که در گوگل اول می‌شوند و کسب‌وکارت را رشد می‌دهند.</p>
-      <div class="vs-cta-row">
+      <a href="#cases" class="vs-hero__badge">
+        <span class="pulse">+</span>
+        <span>۴۸ پروژه فعال در حال انجام</span>
+        <span class="arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+      <h1>
+        ما سایت‌هایی می‌سازیم که<br>
+        <span class="rot">
+          <span class="rot__list">
+            <span>می‌فروشند</span>
+            <span>رشد می‌کنند</span>
+            <span>ماندگار می‌شوند</span>
+          </span>
+        </span>
+      </h1>
+
+      <p class="lead">
+        طراحی اختصاصی، سرعت برق‌آسا و سئوی فنی استاندارد —
+        همه در یک پروژه. ما کسب‌وکار شما را به <strong style="color:#8ACBD0">برند</strong> تبدیل می‌کنیم،
+        نه فقط یک سایت در گوشه‌ای از اینترنت.
+      </p>
+
+      <div class="vs-hero__cta">
         <a href="#contact" class="vs-btn vs-btn--primary">
-          شروع پروژه من
+          <span>شروع پروژه من</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="#pricing" class="vs-btn vs-btn--ghost">مشاهده پکیج‌ها</a>
+        <a href="#showcase" class="vs-btn vs-btn--ghost">
+          <span class="play">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <span>مشاهده نمونه‌کارها</span>
+        </a>
       </div>
-      <div class="vs-stats">
-        <div class="vs-stat"><div class="num">+۴۵۰</div><div class="lbl">پروژه موفق</div></div>
-        <div class="vs-stat"><div class="num">٪۹۸</div><div class="lbl">رضایت مشتری</div></div>
-        <div class="vs-stat"><div class="num">۱۰+</div><div class="lbl">سال تجربه</div></div>
-        <div class="vs-stat"><div class="num">۲۴/۷</div><div class="lbl">پشتیبانی</div></div>
+
+      <div class="vs-hero__stats">
+        <div class="vs-stat">
+          <div class="num" data-counter="450" data-suffix="+"><em>۰</em></div>
+          <div class="lbl">پروژه موفق</div>
+        </div>
+        <div class="vs-stat">
+          <div class="num" data-counter="98" data-suffix="٪"><em>۰</em></div>
+          <div class="lbl">رضایت مشتری</div>
+        </div>
+        <div class="vs-stat">
+          <div class="num" data-counter="10" data-suffix="+"><em>۰</em></div>
+          <div class="lbl">سال تجربه</div>
+        </div>
       </div>
     </div>
 
+    <!-- ===== ویژوال تعاملی ===== -->
     <div class="vs-visual">
-      <div class="vs-mockup">
-        <div class="vs-browser">
-          <div class="dots"><i></i><i></i><i></i></div>
-          <div class="url">yourbrand.com</div>
+      <div class="vs-visual__stage" data-vs-tilt>
+        <div class="vs-laptop">
+          <div class="vs-laptop__bar">
+            <i></i><i></i><i></i>
+            <div class="url">https://yourbrand.com</div>
+          </div>
+          <div class="vs-laptop__screen">
+            <div class="vs-laptop__hero"></div>
+            <div class="vs-laptop__row"></div>
+            <div class="vs-laptop__row vs-laptop__row--short"></div>
+            <div class="vs-laptop__grid"><div></div><div></div><div></div></div>
+          </div>
         </div>
-        <div class="vs-page">
-          <div class="vs-page__hero"></div>
-          <div class="vs-page__row med"></div>
-          <div class="vs-page__row short"></div>
-          <div class="vs-page__grid"><div></div><div></div><div></div></div>
-          <div class="vs-page__row med"></div>
+
+        <div class="vs-phone">
+          <div class="vs-phone__notch"></div>
+          <div class="vs-phone__screen">
+            <div class="vs-phone__hero"></div>
+            <div class="vs-phone__line"></div>
+            <div class="vs-phone__line vs-phone__line--s"></div>
+            <div class="vs-phone__line"></div>
+            <div class="vs-phone__btn"></div>
+          </div>
+        </div>
+
+        <div class="vs-fcard vs-fcard--1">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div><div class="t">PageSpeed ۹۸</div><div class="s">سرعت بارگذاری ۱.۲s</div></div>
+        </div>
+
+        <div class="vs-fcard vs-fcard--2">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div><div class="t">رشد ٪۲۸۰</div><div class="s">ترافیک ارگانیک</div></div>
+        </div>
+
+        <div class="vs-fcard vs-fcard--3">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M9 11l3 3 8-8M21 12v6a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2h11" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div><div class="t">Core Web Vitals</div><div class="s">تأییدشده گوگل</div></div>
         </div>
       </div>
-      <div class="vs-float vs-float--1">
-        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="t">سرعت ۹۸/۱۰۰</div><div class="s">PageSpeed</div></div>
-      </div>
-      <div class="vs-float vs-float--2">
-        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="t">رشد ۲۸۰٪</div><div class="s">ترافیک ارگانیک</div></div>
-      </div>
-      <div class="vs-float vs-float--3">
-        <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3 8-8M21 12v6a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2h11" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="t">تأییدشده</div><div class="s">Core Web Vitals</div></div>
-      </div>
+    </div>
+  </div>
+
+  <!-- نوار متحرک پایین Hero -->
+  <div class="vs-marquee">
+    <div class="vs-marquee__track">
+      <span>وردپرس + المنتور</span>
+      <span>طراحی ریسپانسیو</span>
+      <span>سئو فنی</span>
+      <span>سرعت بالا</span>
+      <span>UI/UX اختصاصی</span>
+      <span>پشتیبانی ۲۴/۷</span>
+      <span>وردپرس + المنتور</span>
+      <span>طراحی ریسپانسیو</span>
+      <span>سئو فنی</span>
+      <span>سرعت بالا</span>
+      <span>UI/UX اختصاصی</span>
+      <span>پشتیبانی ۲۴/۷</span>
     </div>
   </div>
 </section>
 
+<script>
+(function(){
+  const hero = document.querySelector('[data-vs-hero]');
+  if(!hero) return;
 
-<!-- ##### START: paste section 2 ##### -->
+  // ===== موس اسپات‌لایت =====
+  hero.addEventListener('pointermove', e => {
+    const r = hero.getBoundingClientRect();
+    hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+
+  // ===== Tilt 3D ویژوال =====
+  const stage = hero.querySelector('[data-vs-tilt]');
+  if(stage){
+    const reset = () => stage.style.transform = 'rotateX(0) rotateY(0)';
+    stage.addEventListener('pointermove', e => {
+      const r = stage.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width  - .5;
+      const py = (e.clientY - r.top)  / r.height - .5;
+      stage.style.transform = `rotateY(${px * -10}deg) rotateX(${py * 8}deg)`;
+    });
+    stage.addEventListener('pointerleave', reset);
+  }
+
+  // ===== شمارنده انیمیشنی =====
+  const toFa = n => String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+  const counters = hero.querySelectorAll('[data-counter]');
+  const animate = (el) => {
+    const target = parseInt(el.dataset.counter, 10);
+    const suffix = el.dataset.suffix || '';
+    const dur = 1600;
+    const start = performance.now();
+    const step = (now) => {
+      const t = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const val = Math.floor(eased * target);
+      el.innerHTML = `<em>${toFa(val)}</em>${suffix}`;
+      if(t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ animate(e.target); io.unobserve(e.target); }
+    });
+  }, {threshold:.5});
+  counters.forEach(c => io.observe(c));
+})();
+</script>
+
+
 <!-- ========================================================
-     سکشن ۲: TRUST STRIP (نوار اعتماد و لوگوی مشتریان)
-     روش استفاده: HTML widget در یک Section ساده.
+     سکشن ۲: TRUST STRIP + Showcase تعاملی Device Frame
+     ویژگی‌ها: تب موبایل/تبلت/دسکتاپ + موکاپ متغیر
      ======================================================== -->
 <style>
-:root{
-  --vs-primary:#170C79; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+.vs-showcase{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+
+  padding:90px 24px;
+  background:linear-gradient(180deg,#fff 0%,#FAF6EC 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+  position:relative; overflow:hidden;
 }
-.vs-strip{
-  padding:56px 24px; background:linear-gradient(180deg,#FAF6EC 0%,#EFE3CA 100%);
-  border-block:1px solid rgba(23,12,121,.08);
-  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl;
+.vs-showcase__inner{max-width:1240px; margin:0 auto;}
+
+.vs-showcase__head{text-align:center; margin-bottom:36px;}
+.vs-showcase__head .vs-eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(23,12,121,.08); color:var(--vs-primary);
+  border:1px solid rgba(23,12,121,.18);
+  padding:8px 16px; border-radius:999px; font-size:14px; font-weight:600; margin-bottom:16px;
 }
-.vs-strip__inner{max-width:1240px;margin:0 auto;}
+.vs-showcase__head .vs-eyebrow i{
+  width:8px; height:8px; border-radius:50%; background:var(--vs-accent);
+  box-shadow:0 0 0 4px rgba(18,139,224,.18); display:inline-block;
+}
+.vs-showcase__head h2{font-size:clamp(24px,2.6vw,36px); font-weight:800; margin:0 0 12px; line-height:1.4;}
+.vs-showcase__head p{color:#64748B; font-size:16px; max-width:560px; margin:0 auto;}
+
+/* ===== Device Tabs ===== */
+.vs-dev-tabs{
+  display:flex; justify-content:center; gap:10px;
+  background:rgba(23,12,121,.05); padding:6px;
+  border-radius:14px; max-width:fit-content; margin:0 auto 32px;
+  border:1px solid rgba(23,12,121,.08);
+}
+.vs-dev-tab{
+  padding:10px 20px; border-radius:10px;
+  background:transparent; border:none; cursor:pointer;
+  font-family:inherit; font-size:14px; font-weight:600;
+  color:#64748B; display:inline-flex; align-items:center; gap:8px;
+  transition:all .25s ease;
+}
+.vs-dev-tab:hover{color:var(--vs-primary);}
+.vs-dev-tab.is-active{
+  background:#fff; color:var(--vs-primary);
+  box-shadow:0 4px 12px rgba(23,12,121,.10);
+}
+
+/* ===== Device Frame ===== */
+.vs-dev-stage{
+  display:grid; place-items:center;
+  min-height:420px;
+  margin-bottom:60px;
+  position:relative;
+}
+.vs-dev{
+  background:#1a1268; border-radius:18px;
+  position:absolute; transition:all .55s cubic-bezier(.4,.0,.2,1);
+  border:8px solid #0e0a3e;
+  box-shadow:0 30px 80px rgba(23,12,121,.30);
+  opacity:0; pointer-events:none;
+  overflow:hidden;
+}
+.vs-dev.is-active{opacity:1; pointer-events:auto;}
+.vs-dev__screen{
+  background:linear-gradient(160deg,#fff,#FAF6EC);
+  width:100%; height:100%; padding:14px;
+  display:flex; flex-direction:column; gap:8px;
+}
+.vs-dev__bar{
+  height:24px; border-radius:6px;
+  background:linear-gradient(90deg,var(--vs-primary),var(--vs-accent));
+  position:relative;
+}
+.vs-dev__bar::after{
+  content:""; position:absolute; left:8px; top:50%; transform:translateY(-50%);
+  width:40%; height:6px; background:rgba(255,255,255,.7); border-radius:3px;
+}
+.vs-dev__hero{
+  flex:1; min-height:60px; border-radius:8px;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(138,203,208,.5), transparent 50%),
+    linear-gradient(135deg,#FAF6EC,#EFE3CA);
+  position:relative; padding:16px;
+  display:flex; flex-direction:column; gap:6px;
+}
+.vs-dev__hero::before{
+  content:""; width:60%; height:8px; background:#170C79; border-radius:4px;
+}
+.vs-dev__hero::after{
+  content:""; width:40%; height:6px; background:#0170B9; border-radius:3px; opacity:.5;
+}
+.vs-dev__btn{
+  position:absolute; bottom:14px; right:14px;
+  width:40%; height:14px; border-radius:6px;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+}
+.vs-dev__row{height:6px; background:rgba(23,12,121,.10); border-radius:3px;}
+.vs-dev__row--s{width:60%;}
+.vs-dev__grid{display:grid; grid-template-columns:repeat(3,1fr); gap:6px;}
+.vs-dev__grid > div{
+  height:36px; border-radius:6px; background:rgba(23,12,121,.06);
+  border:1px solid rgba(23,12,121,.08);
+}
+.vs-dev__grid > div:nth-child(2){
+  background:linear-gradient(135deg,rgba(138,203,208,.40),rgba(18,139,224,.20));
+  border-color:rgba(138,203,208,.50);
+}
+
+/* اندازه‌های دستگاه */
+.vs-dev--desktop{width:600px; aspect-ratio:16/10; border-radius:16px;}
+.vs-dev--desktop.is-active{transform:scale(1);}
+.vs-dev--tablet{width:380px; aspect-ratio:4/5; border-radius:24px;}
+.vs-dev--tablet.is-active{transform:scale(1);}
+.vs-dev--mobile{width:200px; aspect-ratio:9/19; border-radius:30px; border-width:6px;}
+.vs-dev--mobile.is-active{transform:scale(1);}
+
+/* پایه دسکتاپ */
+.vs-dev--desktop::before{
+  content:""; position:absolute; bottom:-20px; left:50%; transform:translateX(-50%);
+  width:120%; height:14px; background:#0e0a3e; border-radius:3px;
+  z-index:-1;
+}
+
+/* ===== Logos Strip ===== */
 .vs-strip__title{
   text-align:center; color:var(--vs-primary);
-  font-size:14px; letter-spacing:2px; font-weight:600;
+  font-size:13px; letter-spacing:2px; font-weight:700;
   margin-bottom:24px; text-transform:uppercase;
 }
 .vs-strip__logos{
   display:flex; justify-content:space-around; align-items:center;
-  flex-wrap:wrap; gap:36px; opacity:.85;
+  flex-wrap:wrap; gap:36px; padding:24px 0;
+  border-block:1px solid rgba(23,12,121,.10);
+  position:relative;
 }
 .vs-strip__logos span{
-  font-weight:800; color:var(--vs-ink);
+  font-weight:800; color:#1D2327;
   font-size:22px; letter-spacing:-.5px;
-  transition:opacity .25s ease, transform .25s ease;
+  opacity:.55; transition:all .25s ease;
   cursor:pointer;
 }
 .vs-strip__logos span:hover{opacity:1; transform:scale(1.05); color:var(--vs-primary);}
-@media (max-width:560px){.vs-strip__logos{gap:24px;}.vs-strip__logos span{font-size:18px;}}
+
+@media (max-width:880px){
+  .vs-dev--desktop{width:90%; max-width:500px;}
+  .vs-dev--tablet{width:280px;}
+  .vs-strip__logos{gap:24px;}
+  .vs-strip__logos span{font-size:18px;}
+}
 </style>
 
-<section class="vs-strip">
-  <div class="vs-strip__inner">
+<section class="vs-showcase">
+  <div class="vs-showcase__inner">
+    <div class="vs-showcase__head">
+      <span class="vs-eyebrow"><i></i>کاملاً ریسپانسیو</span>
+      <h2>روی هر دستگاهی، بی‌نقص</h2>
+      <p>روی دستگاه مورد نظر کلیک کنید و ببینید سایت چطور نمایش داده می‌شود.</p>
+    </div>
+
+    <div class="vs-dev-tabs" data-vs-devtabs>
+      <button class="vs-dev-tab is-active" data-dev="desktop">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg>
+        دسکتاپ
+      </button>
+      <button class="vs-dev-tab" data-dev="tablet">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M11 18h2"/></svg>
+        تبلت
+      </button>
+      <button class="vs-dev-tab" data-dev="mobile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+        موبایل
+      </button>
+    </div>
+
+    <div class="vs-dev-stage" data-vs-devstage>
+      <div class="vs-dev vs-dev--desktop is-active" data-frame="desktop">
+        <div class="vs-dev__screen">
+          <div class="vs-dev__bar"></div>
+          <div class="vs-dev__hero"><div class="vs-dev__btn"></div></div>
+          <div class="vs-dev__grid"><div></div><div></div><div></div></div>
+          <div class="vs-dev__row"></div>
+          <div class="vs-dev__row vs-dev__row--s"></div>
+        </div>
+      </div>
+      <div class="vs-dev vs-dev--tablet" data-frame="tablet">
+        <div class="vs-dev__screen">
+          <div class="vs-dev__bar"></div>
+          <div class="vs-dev__hero"><div class="vs-dev__btn"></div></div>
+          <div class="vs-dev__grid"><div></div><div></div><div></div></div>
+          <div class="vs-dev__row"></div>
+          <div class="vs-dev__row vs-dev__row--s"></div>
+        </div>
+      </div>
+      <div class="vs-dev vs-dev--mobile" data-frame="mobile">
+        <div class="vs-dev__screen">
+          <div class="vs-dev__bar"></div>
+          <div class="vs-dev__hero"><div class="vs-dev__btn"></div></div>
+          <div class="vs-dev__row"></div>
+          <div class="vs-dev__row vs-dev__row--s"></div>
+          <div class="vs-dev__row"></div>
+        </div>
+      </div>
+    </div>
+
     <div class="vs-strip__title">اعتماد بیش از ۴۵۰ کسب‌وکار ایرانی</div>
     <div class="vs-strip__logos">
       <span>BRAND/۱</span>
@@ -282,76 +781,219 @@
   </div>
 </section>
 
+<script>
+(function(){
+  const tabs = document.querySelectorAll('[data-vs-devtabs] .vs-dev-tab');
+  const frames = document.querySelectorAll('[data-vs-devstage] .vs-dev');
+  if(!tabs.length) return;
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      tabs.forEach(x => x.classList.remove('is-active'));
+      t.classList.add('is-active');
+      frames.forEach(f => f.classList.toggle('is-active', f.dataset.frame === t.dataset.dev));
+    });
+  });
+})();
+</script>
+
 
 <!-- ========================================================
-     سکشن ۳: FEATURES BENTO GRID (ویژگی‌ها)
+     سکشن ۳: FEATURES تعاملی با تب‌ها (نسخه v4)
+     ویژگی‌ها:
+     - تب‌های تعاملی با محتوای متغیر
+     - پنل پیش‌نمایش زنده برای هر تب
+     - Bento Grid مدرن زیرش
      ======================================================== -->
 <style>
-:root{
+.vs-features{
   --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
   --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+
+  padding:110px 24px; background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+  position:relative; overflow:hidden;
 }
-.vs-features{padding:100px 24px; background:#fff;
-  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);}
-.vs-features__inner{max-width:1240px;margin:0 auto;}
-.vs-section-head{text-align:center; margin-bottom:56px;}
+.vs-features::before{
+  content:""; position:absolute; top:0; right:0; width:50%; height:100%;
+  background:radial-gradient(50% 50% at 100% 30%, rgba(138,203,208,.15), transparent 60%);
+  pointer-events:none;
+}
+.vs-features__inner{max-width:1240px; margin:0 auto; position:relative;}
+.vs-section-head{text-align:center; margin-bottom:60px;}
 .vs-section-head .vs-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
+  display:inline-flex; align-items:center; gap:8px;
   background:rgba(23,12,121,.08); color:var(--vs-primary);
   border:1px solid rgba(23,12,121,.18);
-  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+  padding:8px 16px; border-radius:999px; font-size:14px; font-weight:600; margin-bottom:16px;
 }
 .vs-section-head .vs-eyebrow i{
-  width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
-  box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
+  width:8px; height:8px; border-radius:50%; background:var(--vs-accent);
+  box-shadow:0 0 0 4px rgba(18,139,224,.18); display:inline-block;
 }
-.vs-section-head h2{
-  font-size:clamp(28px,3.4vw,44px); font-weight:800;
-  margin:0 0 16px; line-height:1.4;
+.vs-section-head h2{font-size:clamp(28px,3.4vw,46px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-section-head h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
 }
 .vs-section-head p{color:#64748B; font-size:18px; max-width:680px; margin:0 auto;}
 
+/* ===== Tabs تعاملی ===== */
+.vs-tabs{
+  display:grid; grid-template-columns:1fr 1.4fr; gap:32px; align-items:stretch;
+  background:linear-gradient(160deg,#FAF6EC 0%,#fff 100%);
+  border:1px solid rgba(23,12,121,.08);
+  border-radius:32px; padding:32px;
+  margin-bottom:60px;
+  box-shadow:0 24px 60px rgba(23,12,121,.06);
+}
+.vs-tabs__nav{display:flex; flex-direction:column; gap:10px;}
+.vs-tab-btn{
+  display:flex; align-items:center; gap:14px;
+  padding:18px 20px; border-radius:18px; cursor:pointer;
+  background:transparent; border:1.5px solid transparent;
+  text-align:right; transition:all .3s ease;
+  font-family:inherit; font-size:16px; color:var(--vs-ink);
+  width:100%;
+}
+.vs-tab-btn:hover{background:rgba(255,255,255,.7); border-color:rgba(23,12,121,.10);}
+.vs-tab-btn.is-active{
+  background:#fff;
+  border-color:rgba(23,12,121,.10);
+  box-shadow:0 12px 30px rgba(23,12,121,.08);
+}
+.vs-tab-btn .ic{
+  width:46px; height:46px; border-radius:12px;
+  display:grid; place-items:center;
+  background:rgba(23,12,121,.08); color:var(--vs-primary);
+  flex-shrink:0; transition:all .3s ease;
+}
+.vs-tab-btn.is-active .ic{
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  color:#fff; transform:scale(1.05);
+}
+.vs-tab-btn .lbl{display:flex; flex-direction:column; gap:2px; flex:1;}
+.vs-tab-btn .lbl strong{font-weight:800; font-size:17px;}
+.vs-tab-btn .lbl small{color:#64748B; font-size:13px; font-weight:400;}
+.vs-tab-btn .arrow{
+  opacity:0; transform:translateX(8px); transition:all .3s ease;
+  color:var(--vs-primary);
+}
+.vs-tab-btn.is-active .arrow{opacity:1; transform:translateX(0);}
+
+/* پنل تب‌ها */
+.vs-tabs__panels{
+  position:relative;
+  background:linear-gradient(160deg,var(--vs-primary) 0%,#0a0640 60%,var(--vs-secondary) 100%);
+  border-radius:24px; padding:36px; color:#fff;
+  overflow:hidden; min-height:380px;
+}
+.vs-tabs__panels::before{
+  content:""; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:30px 30px;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+          mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+}
+.vs-panel{
+  position:absolute; inset:36px;
+  opacity:0; transform:translateY(20px);
+  transition:opacity .4s ease, transform .4s ease;
+  pointer-events:none;
+}
+.vs-panel.is-active{opacity:1; transform:none; pointer-events:auto;}
+.vs-panel h3{
+  font-size:24px; font-weight:800; margin:0 0 12px; color:#fff;
+  display:flex; align-items:center; gap:10px;
+}
+.vs-panel h3 .badge{
+  background:rgba(138,203,208,.20); color:#8ACBD0;
+  font-size:11px; padding:4px 10px; border-radius:999px;
+  font-weight:700; letter-spacing:.5px;
+}
+.vs-panel p{color:rgba(255,255,255,.78); line-height:1.95; margin:0 0 22px; font-size:15.5px;}
+.vs-panel ul{list-style:none; padding:0; margin:0; display:grid; gap:10px;}
+.vs-panel li{
+  display:flex; align-items:flex-start; gap:10px;
+  color:rgba(255,255,255,.92); font-size:14.5px;
+}
+.vs-panel li svg{
+  flex-shrink:0; margin-top:4px; color:#8ACBD0;
+}
+.vs-panel__demo{
+  margin-top:24px; padding:18px;
+  background:rgba(0,0,0,.30); border:1px solid rgba(255,255,255,.10);
+  border-radius:14px; font-family:'Courier New',monospace; font-size:13px;
+  color:rgba(255,255,255,.85); line-height:1.7;
+}
+.vs-panel__demo .num{color:#8ACBD0; font-weight:900; font-size:32px; line-height:1;}
+.vs-panel__demo .lbl{color:rgba(255,255,255,.55); font-size:11px; margin-top:4px;}
+.vs-panel__metrics{display:flex; gap:24px; flex-wrap:wrap;}
+.vs-panel__metrics > div{flex:1; min-width:120px;}
+
+/* ===== Bento Grid ===== */
 .vs-bento{
   display:grid; grid-template-columns:repeat(6,1fr);
   grid-auto-rows:minmax(220px,auto); gap:20px;
 }
 .vs-card{
-  background:#fff; border:1px solid #E2E8F0; border-radius:28px;
-  padding:32px; position:relative; overflow:hidden;
+  background:#fff; border:1px solid #E2E8F0; border-radius:24px;
+  padding:30px; position:relative; overflow:hidden;
   transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
 .vs-card:hover{transform:translateY(-4px); box-shadow:0 16px 40px rgba(23,12,121,.10); border-color:transparent;}
 .vs-card .ic{
-  width:54px; height:54px; border-radius:14px;
+  width:52px; height:52px; border-radius:14px;
   display:grid; place-items:center; color:#fff; margin-bottom:18px;
   background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
 }
-.vs-card h3{font-size:20px;font-weight:800;margin:0 0 10px; color:var(--vs-ink);}
-.vs-card p{color:#64748B; font-size:15px; line-height:1.9; margin:0;}
+.vs-card h3{font-size:19px;font-weight:800;margin:0 0 8px; color:var(--vs-ink);}
+.vs-card p{color:#64748B; font-size:14.5px; line-height:1.85; margin:0;}
 
-.vs-bento .c1{grid-column:span 3;background:linear-gradient(160deg,#F0EDFA 0%,#fff 60%);}
+.vs-bento .c1{grid-column:span 3; background:linear-gradient(160deg,#F0EDFA 0%,#fff 60%);}
 .vs-bento .c2{grid-column:span 3;}
 .vs-bento .c3{grid-column:span 2;}
 .vs-bento .c4{
   grid-column:span 2;
-  background:linear-gradient(160deg,var(--vs-primary) 0%,#0a0648 100%);
+  background:linear-gradient(160deg,var(--vs-primary) 0%,#0a0640 100%);
   border-color:transparent;
 }
 .vs-bento .c4 h3{color:#fff;}
 .vs-bento .c4 p{color:rgba(255,255,255,.78);}
 .vs-bento .c4 .ic{background:var(--vs-cyan); color:var(--vs-primary);}
 .vs-bento .c5{grid-column:span 2;}
-.vs-bento .c6{
-  grid-column:span 6;
-  background:linear-gradient(135deg,#FAF6EC 0%, #EFE3CA 100%);
-  display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:center;
-}
-.vs-bento .c6 .ic{margin-bottom:0; background:linear-gradient(135deg,var(--vs-secondary),var(--vs-cyan));}
 
-@media (max-width:880px){
+/* ===== کارت با اسپارک‌لاین ===== */
+.vs-spark{
+  margin-top:14px; height:42px; display:flex; align-items:flex-end; gap:4px;
+}
+.vs-spark i{
+  flex:1; background:linear-gradient(180deg,var(--vs-cyan),var(--vs-secondary));
+  border-radius:3px 3px 0 0; opacity:.85;
+  animation:vs-bar 2.4s ease-in-out infinite;
+}
+.vs-spark i:nth-child(1){animation-delay:0s; height:30%;}
+.vs-spark i:nth-child(2){animation-delay:.1s; height:55%;}
+.vs-spark i:nth-child(3){animation-delay:.2s; height:42%;}
+.vs-spark i:nth-child(4){animation-delay:.3s; height:70%;}
+.vs-spark i:nth-child(5){animation-delay:.4s; height:50%;}
+.vs-spark i:nth-child(6){animation-delay:.5s; height:85%;}
+.vs-spark i:nth-child(7){animation-delay:.6s; height:65%;}
+.vs-spark i:nth-child(8){animation-delay:.7s; height:95%;}
+@keyframes vs-bar{
+  0%,100%{transform:scaleY(.85);}
+  50%{transform:scaleY(1);}
+}
+
+@media (max-width:980px){
+  .vs-tabs{grid-template-columns:1fr; padding:20px;}
+  .vs-tabs__panels{padding:28px; min-height:420px;}
+  .vs-panel{inset:28px;}
   .vs-bento{grid-template-columns:repeat(2,1fr);}
   .vs-bento .vs-card{grid-column:span 2 !important;}
-  .vs-bento .c6{grid-template-columns:1fr;}
 }
 </style>
 
@@ -359,119 +1001,354 @@
   <div class="vs-features__inner">
     <div class="vs-section-head">
       <span class="vs-eyebrow"><i></i>چرا ویرا سئو</span>
-      <h2>هرچه کسب‌وکار شما لازم دارد، در یک تیم</h2>
-      <p>از طراحی تا سئو، از سرعت تا امنیت — تمام لایه‌های یک سایت حرفه‌ای را با معیارهای روز جهانی می‌سازیم.</p>
+      <h2>هرچه برای رشد <em>آنلاین</em> لازم دارید، یکجا</h2>
+      <p>نه فقط یک طراحی زیبا — یک سیستم کامل برای جذب، تبدیل و نگهداشت مشتری.</p>
     </div>
 
+    <!-- ===== Tabs تعاملی ===== -->
+    <div class="vs-tabs" data-vs-tabs>
+      <div class="vs-tabs__nav" role="tablist">
+        <button class="vs-tab-btn is-active" data-tab="t1" role="tab" aria-selected="true">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l9 4-9 4-9-4 9-4zM3 10l9 4 9-4M3 14l9 4 9-4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="lbl"><strong>طراحی اختصاصی</strong><small>UI/UX منحصر به برند شما</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button class="vs-tab-btn" data-tab="t2" role="tab" aria-selected="false">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="lbl"><strong>سرعت بارگذاری زیر ۲ ثانیه</strong><small>امتیاز ۹۰+ در PageSpeed</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button class="vs-tab-btn" data-tab="t3" role="tab" aria-selected="false">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></span>
+          <span class="lbl"><strong>سئوی فنی استاندارد</strong><small>اسکیما، سایت‌مپ، کور وایتالز</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button class="vs-tab-btn" data-tab="t4" role="tab" aria-selected="false">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="lbl"><strong>امنیت سطح بانکی</strong><small>SSL، فایروال، بک‌آپ روزانه</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+      </div>
+
+      <div class="vs-tabs__panels">
+        <div class="vs-panel is-active" data-panel="t1">
+          <h3>طراحی اختصاصی <span class="badge">کاملاً سفارشی</span></h3>
+          <p>هیچ قالب آماده‌ای، هیچ کپی از سایت‌های دیگر. تیم طراحی ما با تحلیل برند، مخاطب و هدف کسب‌وکار شما، یک تجربه بصری کاملاً اختصاصی می‌سازد.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>وایرفریم و طراحی نهایی در فیگما</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>۳ نوبت بازنگری رایگان در هر مرحله</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>سیستم طراحی (Design System) منسجم</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تست تعاملی روی کاربران واقعی</li>
+          </ul>
+          <div class="vs-panel__demo vs-panel__metrics">
+            <div><div class="num">۴۸٪</div><div class="lbl">افزایش نرخ تبدیل بعد از redesign</div></div>
+            <div><div class="num">۳.۲×</div><div class="lbl">زمان حضور کاربر در سایت</div></div>
+          </div>
+        </div>
+
+        <div class="vs-panel" data-panel="t2">
+          <h3>سرعت برق‌آسا <span class="badge">PageSpeed 95+</span></h3>
+          <p>هر ثانیه تأخیر = ۷٪ کاهش فروش. ما تک‌تک منابع سایت را برای سرعت بهینه می‌کنیم — از تصاویر گرفته تا کوئری‌های دیتابیس.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تبدیل خودکار تصاویر به WebP/AVIF</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Lazy load و Critical CSS</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>CDN با ۲۰۰+ نقطه حضور جهانی</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>کش چندلایه (Object + Page + Browser)</li>
+          </ul>
+          <div class="vs-panel__demo vs-panel__metrics">
+            <div><div class="num">۱.۲s</div><div class="lbl">میانگین زمان بارگذاری</div></div>
+            <div><div class="num">۹۸/۱۰۰</div><div class="lbl">امتیاز PageSpeed موبایل</div></div>
+          </div>
+        </div>
+
+        <div class="vs-panel" data-panel="t3">
+          <h3>سئوی فنی <span class="badge">Google Approved</span></h3>
+          <p>سایت زیبا اگر در گوگل دیده نشود، فقط یک بروشور دیجیتال است. ما زیرساخت سئو را از روز اول درست می‌سازیم.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Schema Markup در همه صفحات</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>سایت‌مپ XML و robots.txt بهینه</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>ساختار URL سئو-فرندلی</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Hreflang برای سایت‌های چندزبانه</li>
+          </ul>
+          <div class="vs-panel__demo vs-panel__metrics">
+            <div><div class="num">+۲۸۰٪</div><div class="lbl">رشد ترافیک ارگانیک سالانه</div></div>
+            <div><div class="num">۹۰٪</div><div class="lbl">صفحات Index شده در ۱ هفته</div></div>
+          </div>
+        </div>
+
+        <div class="vs-panel" data-panel="t4">
+          <h3>امنیت پیشرفته <span class="badge">Enterprise Grade</span></h3>
+          <p>یک هک می‌تواند سال‌ها اعتماد را نابود کند. سایت شما با لایه‌های متعدد امنیتی محافظت می‌شود.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>SSL گواهی Let's Encrypt یا EV</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>WAF (فایروال اپلیکیشن وب)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>محافظت در برابر brute force و DDoS</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بک‌آپ خودکار روزانه به مدت ۹۰ روز</li>
+          </ul>
+          <div class="vs-panel__demo vs-panel__metrics">
+            <div><div class="num">۹۹.۹٪</div><div class="lbl">آپ‌تایم تضمین‌شده</div></div>
+            <div><div class="num">صفر</div><div class="lbl">حادثه امنیتی در ۵ سال اخیر</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Bento Cards ===== -->
     <div class="vs-bento">
       <div class="vs-card c1">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l9 4-9 4-9-4 9-4zM3 10l9 4 9-4M3 14l9 4 9-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>طراحی کاملاً اختصاصی</h3>
-        <p>صفر تا صد سایت بر اساس برند، هدف و مخاطب شما طراحی می‌شود — نه قالب آماده، نه کپی.</p>
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4" stroke-linecap="round"/></svg></div>
+        <h3>طراحی Mobile-First</h3>
+        <p>بیش از ۷۰٪ کاربران ایرانی از موبایل وارد می‌شوند. ما اول برای موبایل طراحی می‌کنیم، بعد برای دسکتاپ.</p>
       </div>
       <div class="vs-card c2">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>سرعت بارگذاری زیر ۲ ثانیه</h3>
-        <p>بهینه‌سازی هسته‌ای Core Web Vitals، تصاویر، کد و سرور برای امتیاز ۹۰+ در PageSpeed.</p>
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>تحلیل و گزارش رشد</h3>
+        <p>اتصال خودکار به Google Analytics، Search Console و گزارش ماهانه از روند رشد سایت شما.</p>
+        <div class="vs-spark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
       </div>
       <div class="vs-card c3">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></div>
-        <h3>سئوی فنی</h3>
-        <p>اسکیما، سایت‌مپ و آدرس‌دهی استاندارد در همان لحظه ساخت.</p>
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a4 4 0 01-4 4H7l-4 4V5a4 4 0 014-4h10a4 4 0 014 4v10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>پشتیبانی ۲۴/۷</h3>
+        <p>تیم ما همیشه در دسترس شماست — حتی شب‌ها و تعطیلات.</p>
       </div>
       <div class="vs-card c4">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>امنیت در سطح بانکی</h3>
-        <p>SSL، فایروال، بک‌آپ روزانه و محافظت در برابر حملات brute force.</p>
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></div>
+        <h3>چندزبانه + RTL</h3>
+        <p>سایت‌های دو/سه‌زبانه با پشتیبانی کامل از فارسی، عربی و انگلیسی.</p>
       </div>
       <div class="vs-card c5">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4" stroke-linecap="round"/></svg></div>
-        <h3>طراحی کاملاً ریسپانسیو</h3>
-        <p>تجربه بی‌نقص روی موبایل، تبلت و دسکتاپ — اولویت با موبایل.</p>
-      </div>
-      <div class="vs-card c6">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a4 4 0 01-4 4H7l-4 4V5a4 4 0 014-4h10a4 4 0 014 4v10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div>
-          <h3>پشتیبانی تخصصی، تا همیشه</h3>
-          <p>۶ ماه پشتیبانی رایگان پس از تحویل + پلن‌های نگهداری ماهانه برای رشد بلندمدت سایت شما.</p>
-        </div>
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14M22 4L12 14.01l-3-3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>تست A/B داخلی</h3>
+        <p>دو نسخه از یک صفحه را تست کنید و نسخه پرفروش‌تر را زنده نگه دارید.</p>
       </div>
     </div>
   </div>
 </section>
 
+<script>
+(function(){
+  const root = document.querySelector('[data-vs-tabs]');
+  if(!root) return;
+  const btns = root.querySelectorAll('.vs-tab-btn');
+  const panels = root.querySelectorAll('.vs-panel');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.tab;
+      btns.forEach(b => {
+        const active = b === btn;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      panels.forEach(p => p.classList.toggle('is-active', p.dataset.panel === id));
+    });
+  });
+
+  // اتو ر translation هر ۵ ثانیه (در صورت بدون تعامل کاربر)
+  let auto = setInterval(() => {
+    const active = root.querySelector('.vs-tab-btn.is-active');
+    const all = Array.from(btns);
+    const idx = all.indexOf(active);
+    const next = all[(idx + 1) % all.length];
+    next.click();
+  }, 6000);
+  root.addEventListener('click', () => { clearInterval(auto); });
+})();
+</script>
+
 
 <!-- ========================================================
-     سکشن ۴: PROCESS (فرآیند کار - ۴ گام)
+     سکشن ۴: PROCESS تعاملی - تایم‌لاین کلیک‌شونده (نسخه v4)
      ======================================================== -->
 <style>
-:root{
+.vs-process{
   --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
   --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
-}
-.vs-process{
-  padding:100px 24px;
-  background:linear-gradient(180deg,#FAF6EC 0%,#EFE3CA 100%);
-  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+
+  padding:110px 24px;
+  background:#0a0640;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:#fff;
   position:relative; overflow:hidden;
 }
 .vs-process::before{
   content:""; position:absolute; inset:0;
   background:
-    radial-gradient(40% 50% at 90% 20%, rgba(18,139,224,.10), transparent 60%),
-    radial-gradient(35% 45% at 10% 80%, rgba(138,203,208,.20), transparent 60%);
+    radial-gradient(50% 50% at 100% 0%, rgba(18,139,224,.30), transparent 60%),
+    radial-gradient(40% 50% at 0% 100%, rgba(138,203,208,.20), transparent 60%);
   pointer-events:none;
 }
-.vs-process__inner{max-width:1240px;margin:0 auto; position:relative;}
+.vs-process::after{
+  content:""; position:absolute; inset:0; opacity:.30;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+          mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+  pointer-events:none;
+}
+.vs-process__inner{max-width:1240px; margin:0 auto; position:relative;}
 .vs-section-head{text-align:center; margin-bottom:64px;}
 .vs-section-head .vs-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(23,12,121,.10); color:var(--vs-primary);
-  border:1px solid rgba(23,12,121,.20);
-  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,.08); color:#fff;
+  border:1px solid rgba(255,255,255,.18);
+  padding:8px 16px; border-radius:999px; font-size:14px; font-weight:600; margin-bottom:16px;
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
 }
 .vs-section-head .vs-eyebrow i{
-  width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
-  box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
+  width:8px; height:8px; border-radius:50%; background:var(--vs-cyan);
+  box-shadow:0 0 0 4px rgba(138,203,208,.25); display:inline-block;
 }
-.vs-section-head h2{font-size:clamp(28px,3.4vw,44px); font-weight:800; margin:0 0 16px; line-height:1.4;}
-.vs-section-head p{color:#475569; font-size:18px; max-width:680px; margin:0 auto;}
+.vs-section-head h2{font-size:clamp(28px,3.4vw,46px); font-weight:800; margin:0 0 16px; line-height:1.4; color:#fff;}
+.vs-section-head h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+.vs-section-head p{color:rgba(255,255,255,.65); font-size:18px; max-width:680px; margin:0 auto;}
 
-.vs-steps{
-  display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+/* ===== Timeline ===== */
+.vs-timeline{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:18px;
+  position:relative; margin-bottom:32px;
+}
+.vs-timeline::before{
+  content:""; position:absolute; top:32px; right:5%; left:5%; height:2px;
+  background:linear-gradient(90deg,
+    rgba(138,203,208,.20) 0%,
+    rgba(138,203,208,.50) var(--progress, 25%),
+    rgba(255,255,255,.10) var(--progress, 25%),
+    rgba(255,255,255,.10) 100%);
+  transition:--progress 1s ease;
 }
 .vs-step{
-  background:#fff; border:1px solid rgba(23,12,121,.10); border-radius:24px;
-  padding:32px 28px 28px; position:relative; margin-top:24px;
-  transition:all .3s ease;
+  position:relative; cursor:pointer;
+  padding-top:60px; text-align:center;
+  transition:transform .25s ease;
 }
-.vs-step:hover{
-  border-color:var(--vs-primary);
-  transform:translateY(-6px);
-  box-shadow:0 20px 50px rgba(23,12,121,.15);
+.vs-step:hover{transform:translateY(-2px);}
+.vs-step__dot{
+  position:absolute; top:14px; right:50%; transform:translateX(50%);
+  width:42px; height:42px; border-radius:50%;
+  background:#0a0640; border:2px solid rgba(255,255,255,.20);
+  display:grid; place-items:center;
+  font-weight:900; font-size:16px; color:#fff;
+  transition:all .35s ease;
+  z-index:2;
 }
-.vs-step .num{
-  position:absolute; top:-22px; right:24px;
-  width:48px; height:48px; border-radius:14px;
+.vs-step.is-active .vs-step__dot,
+.vs-step.is-done .vs-step__dot{
+  background:linear-gradient(135deg,var(--vs-cyan),var(--vs-secondary));
+  border-color:transparent;
+  box-shadow:0 0 0 8px rgba(138,203,208,.20), 0 12px 30px rgba(138,203,208,.40);
+  transform:translateX(50%) scale(1.1);
+}
+.vs-step.is-active .vs-step__dot::after{
+  content:""; position:absolute; inset:-12px; border-radius:50%;
+  border:2px solid var(--vs-cyan);
+  animation:vs-pulse-step 2s ease-out infinite;
+}
+@keyframes vs-pulse-step{
+  0%{transform:scale(1); opacity:1;}
+  100%{transform:scale(1.6); opacity:0;}
+}
+.vs-step__title{
+  font-size:15px; font-weight:700; color:#fff;
+  transition:color .25s ease;
+}
+.vs-step:not(.is-active) .vs-step__title{color:rgba(255,255,255,.55);}
+.vs-step__sub{font-size:12px; color:rgba(255,255,255,.45); margin-top:4px;}
+
+/* ===== Content Display ===== */
+.vs-stage{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:28px;
+  padding:48px;
+  -webkit-backdrop-filter:blur(20px); backdrop-filter:blur(20px);
+  display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;
+  min-height:340px;
+  position:relative; overflow:hidden;
+}
+.vs-stage__content{position:relative;}
+.vs-stage__step-num{
+  font-size:120px; line-height:1; font-weight:900;
+  background:linear-gradient(180deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,0) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:-30px; user-select:none;
+}
+.vs-stage__title{
+  font-size:32px; font-weight:800; color:#fff;
+  margin-bottom:12px;
+}
+.vs-stage__desc{
+  color:rgba(255,255,255,.78); font-size:16px;
+  line-height:1.95; margin-bottom:24px;
+}
+.vs-stage__list{
+  list-style:none; padding:0; margin:0; display:grid; gap:10px;
+}
+.vs-stage__list li{
+  display:flex; align-items:flex-start; gap:10px;
+  font-size:14.5px; color:rgba(255,255,255,.85);
+}
+.vs-stage__list li svg{flex-shrink:0; color:var(--vs-cyan); margin-top:4px;}
+
+/* ویژوال */
+.vs-stage__visual{
+  position:relative; aspect-ratio:1/1; max-width:340px; margin:0 auto;
+  display:grid; place-items:center;
+}
+.vs-stage__visual .ring{
+  position:absolute; border-radius:50%;
+  border:1.5px solid rgba(138,203,208,.15);
+  animation:vs-ring-rot 30s linear infinite;
+}
+.vs-stage__visual .ring--1{inset:0;}
+.vs-stage__visual .ring--2{inset:14%; border-style:dashed; animation-direction:reverse; animation-duration:24s;}
+.vs-stage__visual .ring--3{inset:30%; border-color:rgba(138,203,208,.30);}
+@keyframes vs-ring-rot{to{transform:rotate(360deg);}}
+.vs-stage__visual .core{
+  width:60%; aspect-ratio:1/1; border-radius:50%;
   background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
-  color:#fff; display:grid; place-items:center;
-  font-weight:900; font-size:18px;
-  box-shadow:0 12px 24px rgba(23,12,121,.30);
+  display:grid; place-items:center; color:#fff;
+  box-shadow:0 0 60px rgba(18,139,224,.40);
+  position:relative;
 }
-.vs-step .icon{
-  width:44px; height:44px; border-radius:12px; margin-bottom:16px;
-  background:linear-gradient(135deg,#F0EDFA,#E0EAFB);
-  display:grid; place-items:center; color:var(--vs-primary);
+.vs-stage__visual .core svg{width:50%; height:50%;}
+.vs-stage__visual .orb{
+  position:absolute; width:36px; height:36px; border-radius:50%;
+  background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));
+  box-shadow:0 0 20px rgba(138,203,208,.50);
+  animation:vs-orb 8s ease-in-out infinite;
 }
-.vs-step h3{font-size:19px; font-weight:800; margin:0 0 10px; color:var(--vs-ink);}
-.vs-step p{color:#64748B; font-size:15px; line-height:1.9; margin:0;}
+.vs-stage__visual .orb--1{top:8%; right:30%; animation-delay:0s;}
+.vs-stage__visual .orb--2{bottom:10%; left:20%; animation-delay:2s;}
+.vs-stage__visual .orb--3{top:50%; right:0%; animation-delay:4s;}
+@keyframes vs-orb{
+  0%,100%{transform:translateY(0) scale(1);}
+  50%{transform:translateY(-12px) scale(1.15);}
+}
+
+/* محتوای متغیر */
+.vs-stage__content,
+.vs-stage__visual{
+  transition:opacity .35s ease, transform .35s ease;
+}
+.vs-stage.is-changing .vs-stage__content,
+.vs-stage.is-changing .vs-stage__visual{
+  opacity:0; transform:translateY(12px);
+}
 
 @media (max-width:880px){
-  .vs-steps{grid-template-columns:repeat(2,1fr);}
-}
-@media (max-width:560px){
-  .vs-steps{grid-template-columns:1fr;}
-  .vs-step .num{right:50%; transform:translateX(50%);}
+  .vs-timeline{grid-template-columns:repeat(2,1fr); gap:32px;}
+  .vs-timeline::before{display:none;}
+  .vs-stage{grid-template-columns:1fr; padding:32px 24px;}
+  .vs-stage__visual{order:-1; max-width:240px;}
+  .vs-stage__step-num{font-size:80px;}
+  .vs-stage__title{font-size:24px;}
 }
 </style>
 
@@ -479,52 +1356,175 @@
   <div class="vs-process__inner">
     <div class="vs-section-head">
       <span class="vs-eyebrow"><i></i>فرآیند کار</span>
-      <h2>از ایده تا انتشار، در ۴ گام شفاف</h2>
-      <p>هیچ ابهامی، هیچ هزینه پنهانی. شما در هر مرحله دقیقاً می‌دانید کجا هستیم.</p>
+      <h2>از ایده تا انتشار، در ۴ گام <em>شفاف</em></h2>
+      <p>هیچ ابهامی، هیچ هزینه پنهانی. روی هر مرحله کلیک کنید.</p>
     </div>
 
-    <div class="vs-steps">
-      <div class="vs-step">
-        <div class="num">۱</div>
-        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></div>
-        <h3>کشف و استراتژی</h3>
-        <p>جلسه تحلیل کسب‌وکار، رقبا و مخاطب هدف برای تعیین نقشه راه پروژه.</p>
+    <div class="vs-timeline" data-vs-timeline>
+      <div class="vs-step is-active" data-step="1">
+        <div class="vs-step__dot">۱</div>
+        <div class="vs-step__title">کشف</div>
+        <div class="vs-step__sub">۲ روز</div>
       </div>
-      <div class="vs-step">
-        <div class="num">۲</div>
-        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
-        <h3>طراحی UI/UX</h3>
-        <p>نمونه اولیه (وایرفریم) و طراحی نهایی در فیگما با تأیید مرحله‌ای شما.</p>
+      <div class="vs-step" data-step="2">
+        <div class="vs-step__dot">۲</div>
+        <div class="vs-step__title">طراحی</div>
+        <div class="vs-step__sub">۷ روز</div>
       </div>
-      <div class="vs-step">
-        <div class="num">۳</div>
-        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 18 22 12 16 6" stroke-linecap="round" stroke-linejoin="round"/><polyline points="8 6 2 12 8 18" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>توسعه و پیاده‌سازی</h3>
-        <p>کدنویسی اختصاصی یا پیاده‌سازی روی وردپرس/المنتور با استانداردهای روز.</p>
+      <div class="vs-step" data-step="3">
+        <div class="vs-step__dot">۳</div>
+        <div class="vs-step__title">توسعه</div>
+        <div class="vs-step__sub">۱۴ روز</div>
       </div>
-      <div class="vs-step">
-        <div class="num">۴</div>
-        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09zM12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
-        <h3>تست، انتشار و رشد</h3>
-        <p>تست کامل، انتشار، آموزش پنل و آغاز برنامه سئو برای رشد ترافیک.</p>
+      <div class="vs-step" data-step="4">
+        <div class="vs-step__dot">۴</div>
+        <div class="vs-step__title">انتشار</div>
+        <div class="vs-step__sub">۲ روز</div>
+      </div>
+    </div>
+
+    <div class="vs-stage" data-vs-stage>
+      <div class="vs-stage__content">
+        <div class="vs-stage__step-num" data-stage-num>۰۱</div>
+        <h3 class="vs-stage__title" data-stage-title>کشف و استراتژی</h3>
+        <p class="vs-stage__desc" data-stage-desc>جلسه تحلیل کسب‌وکار، رقبا و مخاطب هدف. در این مرحله نقشه راه پروژه تدوین و KPI‌های موفقیت تعیین می‌شوند.</p>
+        <ul class="vs-stage__list" data-stage-list>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>جلسه ۹۰ دقیقه‌ای کشف نیازمندی‌ها</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تحلیل ۵ رقیب اصلی شما</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تعریف Persona و User Journey</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تدوین سند RFP و نقشه راه</li>
+        </ul>
+      </div>
+      <div class="vs-stage__visual">
+        <div class="ring ring--1"></div>
+        <div class="ring ring--2"></div>
+        <div class="ring ring--3"></div>
+        <div class="core" data-stage-icon>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+        </div>
+        <div class="orb orb--1"></div>
+        <div class="orb orb--2"></div>
+        <div class="orb orb--3"></div>
       </div>
     </div>
   </div>
 </section>
 
+<script>
+(function(){
+  const timeline = document.querySelector('[data-vs-timeline]');
+  const stage    = document.querySelector('[data-vs-stage]');
+  if(!timeline || !stage) return;
+
+  const data = {
+    1: {
+      num:'۰۱', title:'کشف و استراتژی',
+      desc:'جلسه تحلیل کسب‌وکار، رقبا و مخاطب هدف. در این مرحله نقشه راه پروژه تدوین و KPI‌های موفقیت تعیین می‌شوند.',
+      list:[
+        'جلسه ۹۰ دقیقه‌ای کشف نیازمندی‌ها',
+        'تحلیل ۵ رقیب اصلی شما',
+        'تعریف Persona و User Journey',
+        'تدوین سند RFP و نقشه راه'
+      ],
+      icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>'
+    },
+    2: {
+      num:'۰۲', title:'طراحی UI/UX اختصاصی',
+      desc:'ابتدا وایرفریم برای تأیید ساختار، سپس طراحی نهایی در فیگما با امکان مشاهده زنده و کامنت‌گذاری شما در تمام مراحل.',
+      list:[
+        'وایرفریم تعاملی در Figma',
+        'طراحی نهایی موبایل + دسکتاپ',
+        'سیستم طراحی (Design System)',
+        '۳ نوبت بازنگری رایگان'
+      ],
+      icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>'
+    },
+    3: {
+      num:'۰۳', title:'توسعه و پیاده‌سازی',
+      desc:'کدنویسی استاندارد روی وردپرس + المنتور یا Headless. Code review مرحله‌ای + تست کیفی توسط تیم QA قبل از تحویل.',
+      list:[
+        'پیاده‌سازی پیکسل-پرفکت طبق طرح',
+        'بهینه‌سازی برای Core Web Vitals',
+        'پیاده‌سازی سئو فنی + Schema',
+        'تست در ۵ مرورگر و ۸ دستگاه'
+      ],
+      icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6" stroke-linecap="round" stroke-linejoin="round"/><polyline points="8 6 2 12 8 18" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    },
+    4: {
+      num:'۰۴', title:'تست، انتشار و رشد',
+      desc:'بعد از تست نهایی، سایت لانچ می‌شود. آموزش کامل پنل + شروع برنامه سئو برای رشد ترافیک ارگانیک.',
+      list:[
+        'تست بار + امنیت + سرعت',
+        'آموزش ویدیویی پنل ادمین',
+        'ثبت در Search Console + GA',
+        'گزارش ماهانه رشد سایت'
+      ],
+      icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09zM12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>'
+    }
+  };
+
+  const update = (n) => {
+    const d = data[n];
+    stage.classList.add('is-changing');
+    setTimeout(() => {
+      stage.querySelector('[data-stage-num]').textContent = d.num;
+      stage.querySelector('[data-stage-title]').textContent = d.title;
+      stage.querySelector('[data-stage-desc]').textContent = d.desc;
+      const ul = stage.querySelector('[data-stage-list]');
+      ul.innerHTML = d.list.map(x => `<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>${x}</li>`).join('');
+      stage.querySelector('[data-stage-icon]').innerHTML = d.icon;
+      stage.classList.remove('is-changing');
+    }, 300);
+
+    // وضعیت stepها
+    const steps = timeline.querySelectorAll('.vs-step');
+    steps.forEach((s,i) => {
+      s.classList.remove('is-active','is-done');
+      if(i+1 < n) s.classList.add('is-done');
+      if(i+1 === n) s.classList.add('is-active');
+    });
+    // پروگرس بار
+    const pct = ((n - 1) / (steps.length - 1)) * 100;
+    timeline.style.setProperty('--progress', pct + '%');
+  };
+
+  let current = 1;
+  timeline.querySelectorAll('.vs-step').forEach(s => {
+    s.addEventListener('click', () => {
+      current = parseInt(s.dataset.step,10);
+      update(current);
+      clearInterval(auto);
+    });
+  });
+
+  // اتو پلی
+  let auto = setInterval(() => {
+    current = (current % 4) + 1;
+    update(current);
+  }, 5000);
+})();
+</script>
+
 
 <!-- ========================================================
-     سکشن ۵: PRICING (پکیج‌ها)
+     سکشن ۵: PRICING تعاملی با Toggle ماهانه/سالانه (نسخه v4)
      ======================================================== -->
 <style>
-:root{
+.vs-pricing{
   --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
   --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+
+  padding:110px 24px; background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+  position:relative; overflow:hidden;
 }
-.vs-pricing{padding:100px 24px; background:#fff;
-  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);}
-.vs-pricing__inner{max-width:1240px;margin:0 auto;}
-.vs-section-head{text-align:center; margin-bottom:64px;}
+.vs-pricing::before{
+  content:""; position:absolute; bottom:0; left:0; width:60%; height:60%;
+  background:radial-gradient(50% 50% at 0% 100%, rgba(138,203,208,.18), transparent 60%);
+  pointer-events:none;
+}
+.vs-pricing__inner{max-width:1240px; margin:0 auto; position:relative;}
+.vs-section-head{text-align:center; margin-bottom:48px;}
 .vs-section-head .vs-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(23,12,121,.08); color:var(--vs-primary);
@@ -535,22 +1535,81 @@
   width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
   box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
 }
-.vs-section-head h2{font-size:clamp(28px,3.4vw,44px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-section-head h2{font-size:clamp(28px,3.4vw,46px); font-weight:800; margin:0 0 16px; line-height:1.4;}
 .vs-section-head p{color:#64748B; font-size:18px; max-width:680px; margin:0 auto;}
 
+/* ===== Toggle ===== */
+.vs-toggle{
+  display:flex; justify-content:center; align-items:center; gap:14px;
+  margin-bottom:48px;
+}
+.vs-toggle__opt{font-weight:700; color:#64748B; font-size:15px; transition:color .25s;}
+.vs-toggle__opt.is-on{color:var(--vs-primary);}
+.vs-toggle__sw{
+  position:relative; width:64px; height:32px;
+  background:rgba(23,12,121,.10); border-radius:999px; cursor:pointer;
+  border:1px solid rgba(23,12,121,.15);
+  transition:background .3s ease;
+}
+.vs-toggle__sw::after{
+  content:""; position:absolute; top:3px; right:3px;
+  width:24px; height:24px; border-radius:50%;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  transition:transform .3s ease;
+  box-shadow:0 4px 10px rgba(23,12,121,.25);
+}
+.vs-toggle.is-yearly .vs-toggle__sw::after{transform:translateX(-32px);}
+.vs-toggle__save{
+  background:linear-gradient(135deg,#8ACBD0,#128BE0); color:#0a0640;
+  padding:5px 12px; border-radius:999px;
+  font-size:11px; font-weight:800; letter-spacing:.5px;
+  display:inline-flex; align-items:center; gap:4px;
+}
+
+/* ===== Plans ===== */
 .vs-plans{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:stretch;}
 .vs-plan{
   background:#fff; border:1.5px solid #E2E8F0; border-radius:28px;
   padding:36px 32px; display:flex; flex-direction:column; gap:18px;
-  transition:all .3s ease; position:relative;
+  transition:all .3s ease; position:relative; overflow:hidden;
 }
-.vs-plan:hover{transform:translateY(-6px); box-shadow:0 20px 50px rgba(23,12,121,.10); border-color:var(--vs-cyan);}
-.vs-plan__name{font-size:14px; color:#64748B; font-weight:700; letter-spacing:1.5px;}
-.vs-plan__price{font-size:38px; font-weight:900; color:var(--vs-ink); line-height:1;}
-.vs-plan__price small{font-size:14px; font-weight:600; color:#64748B; margin-right:4px;}
+.vs-plan::before{
+  content:""; position:absolute; inset:-1px;
+  background:linear-gradient(135deg,var(--vs-cyan),var(--vs-accent));
+  border-radius:inherit; opacity:0; z-index:-1;
+  transition:opacity .3s ease;
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  padding:1.5px;
+}
+.vs-plan:hover{transform:translateY(-6px); box-shadow:0 20px 50px rgba(23,12,121,.10); border-color:transparent;}
+.vs-plan:hover::before{opacity:1;}
+
+.vs-plan__name{
+  display:flex; align-items:center; gap:10px;
+  font-size:14px; color:#64748B; font-weight:700; letter-spacing:1.5px;
+}
+.vs-plan__name .ic{
+  width:32px; height:32px; border-radius:9px;
+  background:rgba(23,12,121,.08); color:var(--vs-primary);
+  display:grid; place-items:center;
+}
+.vs-plan__price{
+  font-size:42px; font-weight:900; color:var(--vs-ink); line-height:1;
+  display:flex; align-items:baseline; gap:6px;
+}
+.vs-plan__price .num{
+  display:inline-block; transition:transform .3s ease, opacity .3s ease;
+}
+.vs-plan__price small{font-size:14px; font-weight:600; color:#64748B;}
+.vs-plan__price .old{
+  font-size:20px; font-weight:700; color:#94A3B8;
+  text-decoration:line-through; margin-right:8px;
+}
 .vs-plan__desc{color:#64748B; font-size:14px; margin:0;}
 .vs-plan ul{list-style:none; padding:0; margin:8px 0 16px; display:flex; flex-direction:column; gap:12px;}
-.vs-plan li{display:flex; gap:10px; align-items:flex-start; color:#334155; font-size:15px; line-height:1.7;}
+.vs-plan li{display:flex; gap:10px; align-items:flex-start; color:#334155; font-size:14.5px; line-height:1.7;}
 .vs-plan li svg{flex-shrink:0; color:var(--vs-secondary); margin-top:5px;}
 
 .vs-plan__cta{
@@ -576,18 +1635,28 @@
   background:linear-gradient(160deg,var(--vs-primary) 0%,#0a0648 100%);
   color:#fff;
   box-shadow:0 28px 60px rgba(23,12,121,.30);
-  transform:scale(1.03);
+  transform:scale(1.04);
+  position:relative;
 }
-.vs-plan--featured:hover{transform:scale(1.03) translateY(-6px); border-color:transparent;}
+.vs-plan--featured::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(40% 40% at 80% 0%, rgba(138,203,208,.30), transparent 60%);
+  border-radius:inherit;
+}
+.vs-plan--featured > *{position:relative; z-index:1;}
+.vs-plan--featured:hover{transform:scale(1.04) translateY(-6px); border-color:transparent;}
 .vs-plan--featured .vs-plan__name{color:rgba(255,255,255,.7);}
+.vs-plan--featured .vs-plan__name .ic{background:rgba(138,203,208,.20); color:var(--vs-cyan);}
 .vs-plan--featured .vs-plan__price,
 .vs-plan--featured .vs-plan__price small,
 .vs-plan--featured .vs-plan__desc,
 .vs-plan--featured li{color:rgba(255,255,255,.92);}
 .vs-plan--featured li svg{color:var(--vs-cyan);}
-.vs-plan--featured::before{
-  content:"پرطرفدار"; position:absolute; top:24px; left:24px;
-  background:var(--vs-cyan); color:var(--vs-primary);
+.vs-plan--featured::before{display:none;}
+.vs-plan--featured .vs-badge{
+  position:absolute; top:24px; left:24px; z-index:2;
+  background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));
+  color:var(--vs-primary);
   padding:6px 14px; border-radius:999px;
   font-size:12px; font-weight:800; letter-spacing:.5px;
 }
@@ -609,14 +1678,30 @@
     <div class="vs-section-head">
       <span class="vs-eyebrow"><i></i>پکیج‌های طراحی</span>
       <h2>پکیجی متناسب با هر کسب‌وکار</h2>
-      <p>قیمت‌ها شفاف، بدون هزینه پنهان. در صورت نیاز به طرح اختصاصی، با ما تماس بگیرید.</p>
+      <p>قیمت‌ها شفاف و بدون هزینه پنهان. با پرداخت سالانه ۲ ماه رایگان دریافت کنید.</p>
+    </div>
+
+    <!-- Toggle -->
+    <div class="vs-toggle" data-vs-toggle>
+      <span class="vs-toggle__opt is-on" data-side="monthly">پرداخت ماهانه</span>
+      <button class="vs-toggle__sw" aria-label="تغییر دوره پرداخت"></button>
+      <span class="vs-toggle__opt" data-side="yearly">
+        پرداخت سالانه
+        <span class="vs-toggle__save">✦ ۲ ماه رایگان</span>
+      </span>
     </div>
 
     <div class="vs-plans">
       <!-- شروع -->
-      <div class="vs-plan">
-        <div class="vs-plan__name">شروع</div>
-        <div class="vs-plan__price">۱۸<small>میلیون تومان</small></div>
+      <div class="vs-plan" data-vs-plan>
+        <div class="vs-plan__name">
+          <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          شروع
+        </div>
+        <div class="vs-plan__price">
+          <span class="num" data-monthly="۱۸" data-yearly="۱۸۰">۱۸</span>
+          <small data-monthly-suffix="میلیون" data-yearly-suffix="میلیون / سال">میلیون</small>
+        </div>
         <p class="vs-plan__desc">برای کسب‌وکارهای کوچک و استارتاپ‌ها</p>
         <ul>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تا ۸ صفحه اختصاصی</li>
@@ -628,9 +1713,16 @@
       </div>
 
       <!-- حرفه‌ای -->
-      <div class="vs-plan vs-plan--featured">
-        <div class="vs-plan__name">حرفه‌ای</div>
-        <div class="vs-plan__price">۳۸<small>میلیون تومان</small></div>
+      <div class="vs-plan vs-plan--featured" data-vs-plan>
+        <span class="vs-badge">★ پرطرفدار</span>
+        <div class="vs-plan__name">
+          <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          حرفه‌ای
+        </div>
+        <div class="vs-plan__price">
+          <span class="num" data-monthly="۳۸" data-yearly="۳۸۰">۳۸</span>
+          <small data-monthly-suffix="میلیون" data-yearly-suffix="میلیون / سال">میلیون</small>
+        </div>
         <p class="vs-plan__desc">برای کسب‌وکارهای در حال رشد</p>
         <ul>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تا ۲۰ صفحه اختصاصی + بلاگ</li>
@@ -639,13 +1731,18 @@
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>درگاه پرداخت + چندزبانه</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>۶ ماه پشتیبانی + آموزش کامل</li>
         </ul>
-        <a href="#contact" class="vs-plan__cta vs-plan__cta--primary">شروع پکیج حرفه‌ای</a>
+        <a href="#contact" class="vs-plan__cta vs-plan__cta--primary">شروع پکیج حرفه‌ای ←</a>
       </div>
 
       <!-- سازمانی -->
-      <div class="vs-plan">
-        <div class="vs-plan__name">سازمانی</div>
-        <div class="vs-plan__price">سفارشی</div>
+      <div class="vs-plan" data-vs-plan>
+        <div class="vs-plan__name">
+          <span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          سازمانی
+        </div>
+        <div class="vs-plan__price">
+          <span class="num" data-monthly="سفارشی" data-yearly="سفارشی">سفارشی</span>
+        </div>
         <p class="vs-plan__desc">برای فروشگاه‌ها و سازمان‌های بزرگ</p>
         <ul>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>صفحات و قابلیت‌های نامحدود</li>
@@ -659,22 +1756,61 @@
   </div>
 </section>
 
+<script>
+(function(){
+  const root = document.querySelector('[data-vs-toggle]');
+  if(!root) return;
+  const opts = root.querySelectorAll('.vs-toggle__opt');
+  const sw   = root.querySelector('.vs-toggle__sw');
+  const trigger = (yearly) => {
+    root.classList.toggle('is-yearly', yearly);
+    opts.forEach(o => o.classList.toggle('is-on', (o.dataset.side === 'yearly') === yearly));
+    document.querySelectorAll('[data-vs-plan]').forEach(plan => {
+      const num = plan.querySelector('.num');
+      const sm  = plan.querySelector('small');
+      if(!num) return;
+      num.style.opacity = '0';
+      num.style.transform = 'translateY(8px)';
+      setTimeout(() => {
+        num.textContent = yearly ? num.dataset.yearly : num.dataset.monthly;
+        if(sm){
+          sm.textContent = yearly ? sm.dataset.yearlySuffix : sm.dataset.monthlySuffix;
+        }
+        num.style.opacity = '1';
+        num.style.transform = 'none';
+      }, 180);
+    });
+  };
+  sw.addEventListener('click', () => trigger(!root.classList.contains('is-yearly')));
+  opts.forEach(o => o.addEventListener('click', () => trigger(o.dataset.side === 'yearly')));
+})();
+</script>
+
 
 <!-- ========================================================
-     سکشن ۶: TESTIMONIALS (نظرات مشتریان)
+     سکشن ۶: TESTIMONIALS اسلایدر تعاملی (نسخه v4)
+     - اسلایدر دکمه‌ای + اتو پلی
+     - شاخص نقطه‌ای
+     - کارت‌های پس‌زمینه استک‌شده (3D depth)
      ======================================================== -->
 <style>
-:root{
+.vs-testimonials{
   --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
   --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
-}
-.vs-testimonials{
-  padding:100px 24px;
+
+  padding:110px 24px;
   background:linear-gradient(180deg,#FAF6EC 0%,#EFE3CA 100%);
   font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+  position:relative; overflow:hidden;
 }
-.vs-testimonials__inner{max-width:1240px;margin:0 auto;}
-.vs-section-head{text-align:center; margin-bottom:56px;}
+.vs-testimonials::before{
+  content:""; position:absolute; top:-200px; left:-200px;
+  width:500px; height:500px; border-radius:50%;
+  background:radial-gradient(circle, rgba(18,139,224,.15), transparent 70%);
+  filter:blur(40px);
+}
+.vs-testimonials__inner{max-width:1100px; margin:0 auto; position:relative;}
+.vs-section-head{text-align:center; margin-bottom:48px;}
 .vs-section-head .vs-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(23,12,121,.10); color:var(--vs-primary);
@@ -685,34 +1821,114 @@
   width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
   box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
 }
-.vs-section-head h2{font-size:clamp(28px,3.4vw,44px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-section-head h2{font-size:clamp(28px,3.4vw,46px); font-weight:800; margin:0 0 16px; line-height:1.4;}
 .vs-section-head p{color:#475569; font-size:18px; max-width:680px; margin:0 auto;}
 
-.vs-quotes{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-.vs-quote{
-  background:#fff; border:1px solid rgba(23,12,121,.10); border-radius:24px;
-  padding:32px; position:relative;
-  transition:all .3s ease;
+/* ===== Slider Stage ===== */
+.vs-slider{
+  position:relative;
+  perspective:1500px;
+  height:340px;
+  margin:0 auto 32px;
+  max-width:780px;
 }
-.vs-quote:hover{transform:translateY(-4px); box-shadow:0 20px 50px rgba(23,12,121,.12);}
-.vs-quote::before{
-  content:"❝"; position:absolute; top:18px; left:24px;
-  font-size:54px; color:var(--vs-cyan); font-family:Georgia, serif;
+.vs-slide{
+  position:absolute; top:0; left:50%;
+  width:100%; max-width:680px;
+  background:#fff; border-radius:28px;
+  padding:40px 44px;
+  box-shadow:0 24px 60px rgba(23,12,121,.12);
+  transform-origin:center;
+  transition:transform .55s cubic-bezier(.4,.0,.2,1), opacity .4s ease;
+  opacity:0;
+  pointer-events:none;
+}
+/* وضعیت‌های اسلاید */
+.vs-slide[data-pos="0"]{ /* فعال */
+  transform:translateX(50%) translateZ(0) scale(1);
+  opacity:1; pointer-events:auto; z-index:3;
+}
+.vs-slide[data-pos="1"]{ /* بعدی (سمت چپ در RTL) */
+  transform:translateX(20%) translateZ(-100px) scale(.92);
+  opacity:.5; z-index:2;
+}
+.vs-slide[data-pos="-1"]{ /* قبلی (سمت راست در RTL) */
+  transform:translateX(80%) translateZ(-100px) scale(.92);
+  opacity:.5; z-index:2;
+}
+.vs-slide[data-pos="2"], .vs-slide[data-pos="-2"]{
+  transform:translateX(50%) translateZ(-200px) scale(.85);
+  opacity:0; z-index:1;
+}
+
+.vs-slide__quote{
+  font-size:54px; line-height:0; color:var(--vs-cyan);
+  font-family:Georgia, serif;
+}
+.vs-slide__text{
+  font-size:18px; line-height:1.95; color:#1e293b;
+  margin:14px 0 24px; font-weight:500;
+}
+.vs-slide__bottom{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  border-top:1px solid rgba(23,12,121,.10); padding-top:20px;
+}
+.vs-slide__who{display:flex; align-items:center; gap:14px;}
+.vs-slide__av{
+  width:54px; height:54px; border-radius:50%;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  display:grid; place-items:center; color:#fff; font-weight:800; font-size:20px;
+  box-shadow:0 8px 20px rgba(23,12,121,.25);
+}
+.vs-slide__nm{font-weight:700; font-size:16px; color:var(--vs-ink);}
+.vs-slide__rl{font-size:13px; color:#64748B; margin-top:2px;}
+.vs-slide__metric{
+  text-align:left;
+  background:linear-gradient(135deg,rgba(138,203,208,.15),rgba(18,139,224,.08));
+  border:1px solid rgba(18,139,224,.20);
+  padding:8px 14px; border-radius:12px;
+}
+.vs-slide__metric .v{
+  font-weight:900; font-size:20px;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
   line-height:1;
 }
-.vs-quote .stars{color:#FFB800; margin-bottom:14px; font-size:18px; letter-spacing:2px;}
-.vs-quote p{color:#334155; font-size:15.5px; line-height:1.9; margin:0 0 22px;}
-.vs-quote__who{display:flex; align-items:center; gap:12px;}
-.vs-quote__av{
-  width:46px; height:46px; border-radius:50%;
-  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
-  display:grid; place-items:center; color:#fff; font-weight:800; font-size:18px;
-  flex-shrink:0;
-}
-.vs-quote__nm{font-weight:700; color:var(--vs-ink); font-size:15px;}
-.vs-quote__rl{font-size:13px; color:#64748B;}
+.vs-slide__metric .l{font-size:11px; color:#64748B;}
 
-@media (max-width:880px){.vs-quotes{grid-template-columns:1fr;}}
+/* کنترل‌ها */
+.vs-slider__ctrls{
+  display:flex; justify-content:center; align-items:center; gap:18px;
+}
+.vs-slider__btn{
+  width:48px; height:48px; border-radius:14px;
+  background:#fff; border:1px solid rgba(23,12,121,.15);
+  display:grid; place-items:center; cursor:pointer;
+  color:var(--vs-primary); transition:all .25s ease;
+}
+.vs-slider__btn:hover{
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  color:#fff; border-color:transparent; transform:scale(1.05);
+  box-shadow:0 12px 24px rgba(23,12,121,.25);
+}
+.vs-slider__dots{display:flex; gap:8px;}
+.vs-slider__dot{
+  width:8px; height:8px; border-radius:50%;
+  background:rgba(23,12,121,.20); cursor:pointer;
+  transition:all .3s ease; border:none; padding:0;
+}
+.vs-slider__dot.is-on{
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  width:30px; border-radius:5px;
+}
+
+@media (max-width:680px){
+  .vs-slider{height:auto; min-height:380px;}
+  .vs-slide{padding:30px 24px; max-width:100%;}
+  .vs-slide__bottom{flex-direction:column; align-items:flex-start;}
+  .vs-slide__metric{width:100%;}
+}
 </style>
 
 <section class="vs-testimonials">
@@ -723,48 +1939,159 @@
       <p>رشد، رضایت و تأثیر واقعی — به زبان خود مشتریان ما.</p>
     </div>
 
-    <div class="vs-quotes">
-      <div class="vs-quote">
-        <div class="stars">★★★★★</div>
-        <p>تیم ویرا سئو دقیقاً همان چیزی را ساخت که در ذهن داشتم. سرعت سایت و رتبه گوگل ما در ۳ ماه ۳ برابر شد و حالا فروش آنلاین ما ۲ برابر شده است.</p>
-        <div class="vs-quote__who">
-          <div class="vs-quote__av">ا</div>
-          <div><div class="vs-quote__nm">امیر حسینی</div><div class="vs-quote__rl">مدیرعامل، نواکالا</div></div>
+    <div class="vs-slider" data-vs-slider>
+      <article class="vs-slide" data-pos="0">
+        <div class="vs-slide__quote">❝</div>
+        <p class="vs-slide__text">تیم ویرا سئو دقیقاً همان چیزی را ساخت که در ذهن داشتم. در سه ماه اول رتبه ما در گوگل سه برابر شد و فروش ماهانه ۲ برابر. تجربه‌ی همکاری با این تیم را از دست نمی‌دهم.</p>
+        <div class="vs-slide__bottom">
+          <div class="vs-slide__who">
+            <div class="vs-slide__av">ا</div>
+            <div>
+              <div class="vs-slide__nm">امیر حسینی</div>
+              <div class="vs-slide__rl">مدیرعامل، نواکالا</div>
+            </div>
+          </div>
+          <div class="vs-slide__metric">
+            <div class="v">+۲۰۰٪</div>
+            <div class="l">رشد فروش ۳ ماهه</div>
+          </div>
         </div>
-      </div>
-      <div class="vs-quote">
-        <div class="stars">★★★★★</div>
-        <p>برخورد حرفه‌ای، تحویل به‌موقع و پشتیبانی فوق‌العاده. سایت جدید ما واقعاً تفاوت ایجاد کرد در فروش و تجربه کاربری به مراتب بهتر شد.</p>
-        <div class="vs-quote__who">
-          <div class="vs-quote__av">س</div>
-          <div><div class="vs-quote__nm">سارا کریمی</div><div class="vs-quote__rl">بنیان‌گذار، پیکسل‌پلاس</div></div>
+      </article>
+
+      <article class="vs-slide" data-pos="1">
+        <div class="vs-slide__quote">❝</div>
+        <p class="vs-slide__text">برخورد حرفه‌ای، تحویل به‌موقع و پشتیبانی بی‌نظیر. سایت جدید ما در همان ماه اول لانچ، کلی لید با کیفیت آورد. حالا فکر می‌کنم چرا این کار را زودتر انجام نداده‌ایم.</p>
+        <div class="vs-slide__bottom">
+          <div class="vs-slide__who">
+            <div class="vs-slide__av">س</div>
+            <div>
+              <div class="vs-slide__nm">سارا کریمی</div>
+              <div class="vs-slide__rl">بنیان‌گذار، پیکسل‌پلاس</div>
+            </div>
+          </div>
+          <div class="vs-slide__metric">
+            <div class="v">۳.۲×</div>
+            <div class="l">افزایش لید ماهانه</div>
+          </div>
         </div>
-      </div>
-      <div class="vs-quote">
-        <div class="stars">★★★★★</div>
-        <p>طراحی فوق‌العاده مدرن و سریع. مشاوره‌های سئو هم باعث شد رقبا را در نتایج گوگل پشت سر بگذاریم. توصیه می‌کنم بدون شک.</p>
-        <div class="vs-quote__who">
-          <div class="vs-quote__av">م</div>
-          <div><div class="vs-quote__nm">محمد رضایی</div><div class="vs-quote__rl">مدیر بازاریابی، فورتک</div></div>
+      </article>
+
+      <article class="vs-slide" data-pos="2">
+        <div class="vs-slide__quote">❝</div>
+        <p class="vs-slide__text">طراحی فوق‌العاده مدرن و سریع است. مشاوره‌های سئو هم به ما کمک کرد رقبا را در نتایج گوگل پشت سر بگذاریم. صادقانه، بهترین تصمیم سال ما همکاری با ویرا سئو بود.</p>
+        <div class="vs-slide__bottom">
+          <div class="vs-slide__who">
+            <div class="vs-slide__av">م</div>
+            <div>
+              <div class="vs-slide__nm">محمد رضایی</div>
+              <div class="vs-slide__rl">مدیر بازاریابی، فورتک</div>
+            </div>
+          </div>
+          <div class="vs-slide__metric">
+            <div class="v">رتبه ۱</div>
+            <div class="l">در ۸ کلمه کلیدی</div>
+          </div>
         </div>
-      </div>
+      </article>
+
+      <article class="vs-slide" data-pos="-1">
+        <div class="vs-slide__quote">❝</div>
+        <p class="vs-slide__text">بعد از سال‌ها سایت‌های بی‌ کیفیت، بالاخره یه تیم پیدا کردیم که واقعاً به جزئیات اهمیت می‌ده. سرعت سایت، تجربه کاربری و پشتیبانیشون عالیه. صد در صد توصیه می‌کنم.</p>
+        <div class="vs-slide__bottom">
+          <div class="vs-slide__who">
+            <div class="vs-slide__av">ز</div>
+            <div>
+              <div class="vs-slide__nm">زهرا ملکی</div>
+              <div class="vs-slide__rl">مدیر برند، آوا کالکشن</div>
+            </div>
+          </div>
+          <div class="vs-slide__metric">
+            <div class="v">۹۸/۱۰۰</div>
+            <div class="l">امتیاز PageSpeed</div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="vs-slider__ctrls">
+      <button class="vs-slider__btn" data-vs-prev aria-label="قبلی">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="vs-slider__dots" data-vs-dots></div>
+      <button class="vs-slider__btn" data-vs-next aria-label="بعدی">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
     </div>
   </div>
 </section>
 
+<script>
+(function(){
+  const root = document.querySelector('[data-vs-slider]');
+  if(!root) return;
+  const slides = Array.from(root.querySelectorAll('.vs-slide'));
+  const total = slides.length;
+  let idx = 0;
+
+  const dotsHost = document.querySelector('[data-vs-dots]');
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'vs-slider__dot' + (i===0?' is-on':'');
+    d.setAttribute('aria-label', 'اسلاید ' + (i+1));
+    d.addEventListener('click', () => goTo(i));
+    dotsHost.appendChild(d);
+  });
+  const dots = Array.from(dotsHost.children);
+
+  function goTo(n){
+    idx = (n + total) % total;
+    slides.forEach((s, i) => {
+      let diff = i - idx;
+      if(diff > total/2)  diff -= total;
+      if(diff < -total/2) diff += total;
+      s.dataset.pos = diff;
+    });
+    dots.forEach((d,i) => d.classList.toggle('is-on', i === idx));
+  }
+  document.querySelector('[data-vs-prev]').addEventListener('click', () => goTo(idx - 1));
+  document.querySelector('[data-vs-next]').addEventListener('click', () => goTo(idx + 1));
+
+  // اتوپلی
+  let timer = setInterval(() => goTo(idx + 1), 6000);
+  root.addEventListener('mouseenter', () => clearInterval(timer));
+  root.addEventListener('mouseleave', () => timer = setInterval(() => goTo(idx + 1), 6000));
+
+  // سواییپ موبایل
+  let startX = 0;
+  root.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+  root.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if(Math.abs(dx) > 40) goTo(idx + (dx > 0 ? -1 : 1));
+  });
+})();
+</script>
+
 
 <!-- ========================================================
-     سکشن ۷: FAQ (سوالات متداول)
+     سکشن ۷: FAQ مدرن با Search تعاملی (نسخه v4)
      ======================================================== -->
 <style>
-:root{
+.vs-faq{
   --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
   --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+
+  padding:110px 24px; background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+  position:relative; overflow:hidden;
 }
-.vs-faq{padding:100px 24px; background:#fff;
-  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);}
-.vs-faq__inner{max-width:840px;margin:0 auto;}
-.vs-section-head{text-align:center; margin-bottom:56px;}
+.vs-faq::before{
+  content:""; position:absolute; top:10%; left:-100px;
+  width:300px; height:300px; border-radius:50%;
+  background:radial-gradient(circle, rgba(138,203,208,.30), transparent 70%);
+  filter:blur(40px); pointer-events:none;
+}
+.vs-faq__inner{max-width:920px; margin:0 auto; position:relative;}
+.vs-section-head{text-align:center; margin-bottom:40px;}
 .vs-section-head .vs-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(23,12,121,.08); color:var(--vs-primary);
@@ -775,154 +2102,509 @@
   width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
   box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
 }
-.vs-section-head h2{font-size:clamp(28px,3.4vw,44px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-section-head h2{font-size:clamp(28px,3.4vw,46px); font-weight:800; margin:0 0 16px; line-height:1.4;}
 .vs-section-head p{color:#64748B; font-size:18px; max-width:680px; margin:0 auto;}
 
-.vs-faq__list details{
-  background:#fff; border:1px solid #E2E8F0; border-radius:18px;
-  margin-bottom:14px; overflow:hidden; transition:all .3s ease;
+/* ===== Search ===== */
+.vs-faq__search{
+  position:relative; max-width:520px; margin:0 auto 36px;
 }
-.vs-faq__list details[open]{
+.vs-faq__search input{
+  width:100%; padding:18px 56px 18px 24px;
+  border:1.5px solid rgba(23,12,121,.15);
+  border-radius:16px;
+  font-family:inherit; font-size:15px;
+  background:#fff;
+  transition:all .25s ease;
+  color:var(--vs-ink);
+}
+.vs-faq__search input::placeholder{color:#94A3B8;}
+.vs-faq__search input:focus{
+  outline:none; border-color:var(--vs-primary);
+  box-shadow:0 0 0 4px rgba(23,12,121,.10);
+}
+.vs-faq__search svg{
+  position:absolute; right:20px; top:50%; transform:translateY(-50%);
+  color:#94A3B8; pointer-events:none;
+}
+
+/* ===== Categories ===== */
+.vs-faq__cats{
+  display:flex; justify-content:center; gap:8px; flex-wrap:wrap;
+  margin-bottom:28px;
+}
+.vs-faq__cat{
+  padding:8px 16px; border-radius:999px;
+  background:rgba(23,12,121,.05); border:1px solid rgba(23,12,121,.10);
+  font-family:inherit; font-size:13px; font-weight:600;
+  color:#64748B; cursor:pointer; transition:all .25s ease;
+}
+.vs-faq__cat:hover{color:var(--vs-primary); border-color:var(--vs-primary);}
+.vs-faq__cat.is-active{
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  color:#fff; border-color:transparent;
+}
+
+/* ===== List ===== */
+.vs-faq__list{display:flex; flex-direction:column; gap:12px;}
+.vs-faq__item{
+  background:#fff; border:1px solid rgba(23,12,121,.10); border-radius:18px;
+  overflow:hidden; transition:all .35s ease;
+}
+.vs-faq__item.is-open{
   border-color:var(--vs-primary);
-  box-shadow:0 8px 24px rgba(23,12,121,.10);
+  box-shadow:0 16px 40px rgba(23,12,121,.10);
 }
-.vs-faq__list summary{
-  list-style:none; cursor:pointer;
+.vs-faq__item.is-hidden{display:none;}
+.vs-faq__q{
+  width:100%; cursor:pointer;
   padding:22px 26px; display:flex; align-items:center; justify-content:space-between; gap:16px;
-  font-weight:700; font-size:17px; color:var(--vs-ink);
+  font-weight:700; font-size:16.5px; color:var(--vs-ink);
+  background:transparent; border:none; text-align:right;
+  font-family:inherit;
 }
-.vs-faq__list summary::-webkit-details-marker{display:none;}
-.vs-faq__list .plus{
-  width:32px;height:32px;border-radius:50%; background:#FAF6EC;
-  display:grid; place-items:center; font-size:22px; color:var(--vs-primary);
-  transition:all .3s ease; flex-shrink:0; line-height:1;
-  font-weight:300;
+.vs-faq__q .qmark{
+  width:28px; height:28px; border-radius:50%;
+  background:rgba(23,12,121,.08); color:var(--vs-primary);
+  display:grid; place-items:center; font-weight:900; font-size:13px;
+  flex-shrink:0;
 }
-.vs-faq__list details[open] .plus{
+.vs-faq__q .text{flex:1;}
+.vs-faq__plus{
+  width:34px; height:34px; border-radius:50%; background:#FAF6EC;
+  display:grid; place-items:center; font-size:22px; line-height:1;
+  color:var(--vs-primary); transition:all .35s ease;
+  flex-shrink:0; font-weight:300;
+}
+.vs-faq__item.is-open .vs-faq__plus{
   background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
   color:#fff; transform:rotate(45deg);
 }
-.vs-faq__list .vs-faq__content{
-  padding:0 26px 22px; color:#64748B; line-height:1.95; font-size:15px;
+.vs-faq__a{
+  max-height:0; overflow:hidden;
+  transition:max-height .4s ease, padding .4s ease;
+  padding:0 26px;
+  color:#475569; line-height:1.95; font-size:15px;
 }
+.vs-faq__item.is-open .vs-faq__a{
+  max-height:400px; padding:0 26px 22px;
+}
+
+/* ===== Empty State ===== */
+.vs-faq__empty{
+  text-align:center; padding:48px 24px; color:#94A3B8;
+  background:#FAF6EC; border-radius:16px;
+  display:none;
+}
+.vs-faq__empty.is-on{display:block;}
+
+/* ===== CTA پایین ===== */
+.vs-faq__cta{
+  margin-top:36px; text-align:center;
+  background:linear-gradient(135deg, rgba(23,12,121,.04), rgba(18,139,224,.06));
+  border:1px solid rgba(23,12,121,.10);
+  padding:32px; border-radius:20px;
+}
+.vs-faq__cta h4{font-size:18px; font-weight:800; margin:0 0 8px; color:var(--vs-ink);}
+.vs-faq__cta p{color:#64748B; font-size:15px; margin:0 0 16px;}
+.vs-faq__cta a{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:12px 24px; border-radius:12px;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  color:#fff; text-decoration:none; font-weight:700; font-size:14px;
+  transition:transform .25s ease;
+}
+.vs-faq__cta a:hover{transform:translateY(-2px);}
 </style>
 
 <section class="vs-faq" id="faq">
   <div class="vs-faq__inner">
     <div class="vs-section-head">
       <span class="vs-eyebrow"><i></i>سوالات متداول</span>
-      <h2>پاسخ به پرسش‌های رایج شما</h2>
-      <p>اگر سوال شما اینجا نیست، با کارشناسان ما در تماس باشید.</p>
+      <h2>پاسخ به پرسش‌های رایج</h2>
+      <p>سوال خود را تایپ کنید یا یکی از دسته‌ها را انتخاب کنید.</p>
     </div>
 
-    <div class="vs-faq__list">
-      <details open>
-        <summary>زمان طراحی یک سایت چقدر است؟<span class="plus">+</span></summary>
-        <div class="vs-faq__content">بسته به نوع پروژه، طراحی سایت معمولی بین ۲ تا ۴ هفته و فروشگاهی یا اختصاصی بین ۶ تا ۱۰ هفته زمان می‌برد. در جلسه مشاوره، زمان دقیق پروژه شما اعلام می‌شود.</div>
-      </details>
-      <details>
-        <summary>آیا می‌توانم خودم سایت را مدیریت کنم؟<span class="plus">+</span></summary>
-        <div class="vs-faq__content">بله. تمام سایت‌ها روی وردپرس + المنتور یا پنل اختصاصی تحویل داده می‌شوند و آموزش کامل ویدیویی + جلسه آنلاین برای مدیریت ارائه می‌گردد.</div>
-      </details>
-      <details>
-        <summary>آیا خدمات سئو هم ارائه می‌دهید؟<span class="plus">+</span></summary>
-        <div class="vs-faq__content">بله. سئوی فنی پایه در تمام پکیج‌ها رایگان است. برای سئوی مستمر و رشد رتبه گوگل، پلن‌های ماهانه اختصاصی داریم.</div>
-      </details>
-      <details>
-        <summary>هزینه پشتیبانی پس از پایان دوره رایگان چقدر است؟<span class="plus">+</span></summary>
-        <div class="vs-faq__content">پلن‌های نگهداری از ماهانه ۹۹۰ هزار تومان شروع می‌شوند که شامل بک‌آپ، به‌روزرسانی، رفع خطا و ۲ ساعت تغییرات اختصاصی است.</div>
-      </details>
-      <details>
-        <summary>اگر از طراحی راضی نباشم چه می‌شود؟<span class="plus">+</span></summary>
-        <div class="vs-faq__content">طراحی در مراحل با تأیید شما پیش می‌رود و تا ۳ نوبت بازنگری در هر مرحله رایگان است. تمرکز ما روی رضایت کامل شما در پایان پروژه است.</div>
-      </details>
+    <div class="vs-faq__search">
+      <input type="text" placeholder="در سوالات جستجو کنید..." data-vs-faq-search>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+    </div>
+
+    <div class="vs-faq__cats" data-vs-faq-cats>
+      <button class="vs-faq__cat is-active" data-cat="all">همه</button>
+      <button class="vs-faq__cat" data-cat="time">زمان و فرآیند</button>
+      <button class="vs-faq__cat" data-cat="seo">سئو و رشد</button>
+      <button class="vs-faq__cat" data-cat="price">قیمت و پشتیبانی</button>
+      <button class="vs-faq__cat" data-cat="tech">فنی</button>
+    </div>
+
+    <div class="vs-faq__list" data-vs-faq-list>
+      <div class="vs-faq__item is-open" data-cat="time">
+        <button class="vs-faq__q">
+          <span class="qmark">؟</span>
+          <span class="text">زمان طراحی یک سایت چقدر است؟</span>
+          <span class="vs-faq__plus">+</span>
+        </button>
+        <div class="vs-faq__a">بسته به نوع پروژه، طراحی سایت معمولی بین ۲ تا ۴ هفته و فروشگاهی یا اختصاصی بین ۶ تا ۱۰ هفته زمان می‌برد. در جلسه مشاوره، زمان دقیق پروژه شما اعلام می‌شود و در یک تقویم مشترک قابل پیگیری است.</div>
+      </div>
+      <div class="vs-faq__item" data-cat="tech">
+        <button class="vs-faq__q">
+          <span class="qmark">؟</span>
+          <span class="text">آیا می‌توانم خودم سایت را مدیریت کنم؟</span>
+          <span class="vs-faq__plus">+</span>
+        </button>
+        <div class="vs-faq__a">بله. تمام سایت‌ها روی وردپرس + المنتور یا پنل اختصاصی تحویل داده می‌شوند. یک دوره آموزش ویدیویی + ۲ ساعت جلسه آنلاین برای آشنایی کامل با پنل ارائه می‌شود.</div>
+      </div>
+      <div class="vs-faq__item" data-cat="seo">
+        <button class="vs-faq__q">
+          <span class="qmark">؟</span>
+          <span class="text">آیا خدمات سئو هم ارائه می‌دهید؟</span>
+          <span class="vs-faq__plus">+</span>
+        </button>
+        <div class="vs-faq__a">بله. سئوی فنی پایه (اسکیما، سایت‌مپ، Core Web Vitals) در تمام پکیج‌ها رایگان است. برای سئوی مستمر و رشد رتبه گوگل، پلن‌های ماهانه اختصاصی از ۲.۹ میلیون تومان شروع می‌شوند.</div>
+      </div>
+      <div class="vs-faq__item" data-cat="price">
+        <button class="vs-faq__q">
+          <span class="qmark">؟</span>
+          <span class="text">هزینه پشتیبانی پس از پایان دوره رایگان چقدر است؟</span>
+          <span class="vs-faq__plus">+</span>
+        </button>
+        <div class="vs-faq__a">پلن‌های نگهداری از ماهانه ۹۹۰ هزار تومان شروع می‌شوند که شامل بک‌آپ، به‌روزرسانی، رفع خطا و ۲ ساعت تغییرات اختصاصی است. در پلن طلایی، تعداد ساعات تغییرات نامحدود می‌شود.</div>
+      </div>
+      <div class="vs-faq__item" data-cat="time">
+        <button class="vs-faq__q">
+          <span class="qmark">؟</span>
+          <span class="text">اگر از طراحی راضی نباشم چه می‌شود؟</span>
+          <span class="vs-faq__plus">+</span>
+        </button>
+        <div class="vs-faq__a">طراحی در مراحل با تأیید شما پیش می‌رود و تا ۳ نوبت بازنگری در هر مرحله رایگان است. تمرکز ما روی رضایت کامل شما در پایان پروژه است. در صورت عدم توافق، ضمانت بازگشت وجه برای مرحله طراحی وجود دارد.</div>
+      </div>
+      <div class="vs-faq__item" data-cat="tech">
+        <button class="vs-faq__q">
+          <span class="qmark">؟</span>
+          <span class="text">آیا سایت روی هاست خودم منتقل می‌شود؟</span>
+          <span class="vs-faq__plus">+</span>
+        </button>
+        <div class="vs-faq__a">بله. ما پکیج‌های هاست بهینه‌شده اختصاصی هم ارائه می‌دهیم، اما اگر هاست خودتان را دارید، سایت کاملاً روی آن نصب و راه‌اندازی می‌شود. در صورت نیاز، مشاوره خرید هاست مناسب هم رایگان است.</div>
+      </div>
+      <div class="vs-faq__item" data-cat="seo">
+        <button class="vs-faq__q">
+          <span class="qmark">؟</span>
+          <span class="text">سئو سایت من چقدر زمان می‌برد تا نتیجه دهد؟</span>
+          <span class="vs-faq__plus">+</span>
+        </button>
+        <div class="vs-faq__a">معمولاً ۳ تا ۶ ماه برای دیدن نتایج پایدار. کلمات کلیدی کم‌رقابت در ماه ۲ و کلمات اصلی در ماه ۴ تا ۶ به صفحه اول می‌رسند. گزارش هفتگی از روند رشد ارائه می‌شود.</div>
+      </div>
+    </div>
+
+    <div class="vs-faq__empty" data-vs-faq-empty>
+      نتیجه‌ای پیدا نشد. می‌توانید مستقیماً با ما تماس بگیرید.
+    </div>
+
+    <div class="vs-faq__cta">
+      <h4>سوال شما اینجا نبود؟</h4>
+      <p>کارشناسان ما در کمتر از ۲ ساعت پاسخ شما را می‌دهند.</p>
+      <a href="#contact">
+        تماس مستقیم با کارشناس
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
   </div>
 </section>
 
+<script>
+(function(){
+  const list = document.querySelector('[data-vs-faq-list]');
+  if(!list) return;
+  const items = Array.from(list.querySelectorAll('.vs-faq__item'));
+  const empty = document.querySelector('[data-vs-faq-empty]');
+
+  // باز/بسته
+  items.forEach(it => {
+    it.querySelector('.vs-faq__q').addEventListener('click', () => {
+      const open = it.classList.contains('is-open');
+      items.forEach(x => x.classList.remove('is-open'));
+      if(!open) it.classList.add('is-open');
+    });
+  });
+
+  // فیلتر دسته‌بندی
+  const cats = document.querySelectorAll('[data-vs-faq-cats] .vs-faq__cat');
+  let activeCat = 'all';
+  let activeQuery = '';
+  const refresh = () => {
+    let visible = 0;
+    items.forEach(it => {
+      const matchCat = activeCat === 'all' || it.dataset.cat === activeCat;
+      const text = it.querySelector('.text').textContent + ' ' + it.querySelector('.vs-faq__a').textContent;
+      const matchSearch = !activeQuery || text.toLowerCase().includes(activeQuery);
+      const show = matchCat && matchSearch;
+      it.classList.toggle('is-hidden', !show);
+      if(show) visible++;
+    });
+    empty.classList.toggle('is-on', visible === 0);
+  };
+  cats.forEach(c => {
+    c.addEventListener('click', () => {
+      cats.forEach(x => x.classList.remove('is-active'));
+      c.classList.add('is-active');
+      activeCat = c.dataset.cat;
+      refresh();
+    });
+  });
+
+  // جستجو
+  const search = document.querySelector('[data-vs-faq-search]');
+  search.addEventListener('input', e => {
+    activeQuery = e.target.value.trim().toLowerCase();
+    refresh();
+  });
+})();
+</script>
+
 
 <!-- ========================================================
-     سکشن ۸: CTA (دعوت به اقدام)
+     سکشن ۸: CTA خلاقانه با فرم سریع (نسخه v4)
      ======================================================== -->
 <style>
-:root{
+.vs-cta{
   --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
   --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+
+  padding:60px 24px 110px; background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl;
 }
-.vs-cta{padding:60px 24px 100px; background:#fff;
-  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl;}
-.vs-cta__inner{max-width:1240px;margin:0 auto;}
+.vs-cta__inner{max-width:1240px; margin:0 auto;}
 .vs-cta__wrap{
-  background:linear-gradient(135deg,var(--vs-primary) 0%,#0a0648 50%,var(--vs-secondary) 100%);
-  border-radius:32px;
-  padding:72px 48px; color:#fff;
-  position:relative; overflow:hidden; text-align:center;
+  background:
+    radial-gradient(60% 80% at 100% 0%, rgba(138,203,208,.40), transparent 60%),
+    radial-gradient(50% 80% at 0% 100%, rgba(18,139,224,.45), transparent 60%),
+    linear-gradient(135deg,var(--vs-primary) 0%,#0a0648 50%,var(--vs-secondary) 100%);
+  border-radius:36px;
+  padding:64px 56px; color:#fff;
+  position:relative; overflow:hidden;
+  display:grid; grid-template-columns:1.2fr 1fr; gap:48px; align-items:center;
 }
 .vs-cta__wrap::before{
-  content:""; position:absolute; inset:-50%;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(138,203,208,.40), transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(18,139,224,.50), transparent 50%);
-  animation:vs-cta-spin 18s linear infinite;
-  pointer-events:none;
+  content:""; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+          mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+  pointer-events:none; opacity:.5;
 }
-@keyframes vs-cta-spin{to{transform:rotate(360deg);}}
-.vs-cta__wrap > *{position:relative; z-index:1;}
+
+.vs-cta__left{position:relative;}
+.vs-cta__badge{
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,.10); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.20);
+  padding:8px 14px; border-radius:999px;
+  font-size:13px; font-weight:600; margin-bottom:20px; color:#fff;
+}
+.vs-cta__badge .green{
+  width:8px; height:8px; border-radius:50%; background:#22c55e;
+  box-shadow:0 0 0 4px rgba(34,197,94,.25);
+  animation:vs-blink-g 2s ease-in-out infinite;
+}
+@keyframes vs-blink-g{50%{opacity:.4;}}
+
 .vs-cta__wrap h2{
   color:#fff; font-size:clamp(28px,3.4vw,44px); font-weight:800;
-  margin:0 0 16px; line-height:1.4;
+  margin:0 0 14px; line-height:1.4; letter-spacing:-.5px;
 }
-.vs-cta__wrap h2 em{font-style:normal; color:var(--vs-cyan);}
+.vs-cta__wrap h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+}
 .vs-cta__wrap p{
-  color:rgba(255,255,255,.9); font-size:18px; line-height:1.9;
-  max-width:620px; margin:0 auto 32px;
+  color:rgba(255,255,255,.78); font-size:17px; line-height:1.95;
+  margin:0 0 28px; max-width:520px;
 }
-.vs-cta__row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
-.vs-cta__btn{
-  display:inline-flex; align-items:center; gap:10px;
-  padding:16px 32px; border-radius:14px;
-  font-weight:700; font-size:16px; text-decoration:none;
-  transition:all .25s ease; cursor:pointer; border:none;
+.vs-cta__features{
+  display:flex; gap:20px; flex-wrap:wrap;
 }
-.vs-cta__btn--primary{
-  background:#fff; color:var(--vs-primary);
-  box-shadow:0 16px 36px rgba(0,0,0,.20);
+.vs-cta__features .item{
+  display:flex; align-items:center; gap:8px;
+  color:rgba(255,255,255,.92); font-size:14px;
 }
-.vs-cta__btn--primary:hover{transform:translateY(-2px); background:var(--vs-cream);}
-.vs-cta__btn--ghost{
-  background:rgba(255,255,255,.12); color:#fff;
-  border:1.5px solid rgba(255,255,255,.30);
-  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
-}
-.vs-cta__btn--ghost:hover{background:rgba(255,255,255,.22); border-color:#fff;}
-.vs-cta__btn svg{width:18px;height:18px;}
+.vs-cta__features .item svg{color:var(--vs-cyan);}
 
-@media (max-width:560px){
-  .vs-cta__wrap{padding:48px 24px;}
+/* فرم */
+.vs-cta__form{
+  background:rgba(255,255,255,.10); -webkit-backdrop-filter:blur(20px); backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:24px; padding:32px;
+  position:relative; z-index:1;
+}
+.vs-cta__form h3{
+  font-size:20px; font-weight:800; margin:0 0 6px; color:#fff;
+}
+.vs-cta__form .sub{
+  color:rgba(255,255,255,.65); font-size:13px; margin:0 0 20px;
+}
+.vs-cta__field{margin-bottom:14px;}
+.vs-cta__field label{
+  display:block; font-size:12px; color:rgba(255,255,255,.7);
+  margin-bottom:6px; font-weight:600;
+}
+.vs-cta__field input,
+.vs-cta__field select{
+  width:100%; padding:14px 18px;
+  background:rgba(0,0,0,.20);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:12px;
+  color:#fff; font-family:inherit; font-size:14.5px;
+  transition:all .25s ease;
+}
+.vs-cta__field input::placeholder{color:rgba(255,255,255,.4);}
+.vs-cta__field input:focus,
+.vs-cta__field select:focus{
+  outline:none; border-color:var(--vs-cyan);
+  background:rgba(0,0,0,.30);
+  box-shadow:0 0 0 4px rgba(138,203,208,.15);
+}
+.vs-cta__field select option{background:#0a0648; color:#fff;}
+
+.vs-cta__submit{
+  width:100%; padding:16px 24px;
+  background:linear-gradient(135deg,var(--vs-cyan) 0%,var(--vs-cream) 100%);
+  color:var(--vs-primary);
+  border:none; border-radius:12px;
+  font-family:inherit; font-weight:800; font-size:15px;
+  cursor:pointer; transition:all .25s ease;
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  margin-top:8px;
+  box-shadow:0 16px 36px rgba(138,203,208,.25);
+}
+.vs-cta__submit:hover{
+  transform:translateY(-2px);
+  box-shadow:0 22px 48px rgba(138,203,208,.40);
+}
+.vs-cta__alt{
+  text-align:center; margin-top:14px;
+  color:rgba(255,255,255,.55); font-size:12px;
+}
+.vs-cta__alt a{
+  color:var(--vs-cyan); text-decoration:none; font-weight:700;
+}
+
+/* ===== Success State ===== */
+.vs-cta__success{
+  display:none; text-align:center; padding:32px 12px;
+}
+.vs-cta__success.is-on{display:block;}
+.vs-cta__form.is-sent{display:none;}
+.vs-cta__success .icon{
+  width:60px; height:60px; border-radius:50%;
+  background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));
+  display:grid; place-items:center; margin:0 auto 16px;
+  color:var(--vs-primary);
+}
+.vs-cta__success h3{font-size:22px; color:#fff; margin:0 0 8px;}
+.vs-cta__success p{color:rgba(255,255,255,.75); font-size:14px;}
+
+@media (max-width:880px){
+  .vs-cta__wrap{grid-template-columns:1fr; padding:40px 28px;}
+  .vs-cta__form{padding:24px;}
 }
 </style>
 
 <section class="vs-cta" id="contact">
   <div class="vs-cta__inner">
     <div class="vs-cta__wrap">
-      <h2>آماده‌ای سایتی بسازی که واقعاً <em>می‌فروشد</em>؟</h2>
-      <p>فقط چند دقیقه وقت بگذار برای یک مشاوره رایگان. ما به ایده‌ت گوش می‌دیم و راهکار دقیق پیشنهاد می‌دیم.</p>
-      <div class="vs-cta__row">
-        <a href="tel:+982100000000" class="vs-cta__btn vs-cta__btn--primary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.72 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0122 16.92z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          تماس فوری با کارشناس
-        </a>
-        <a href="https://wa.me/989000000000" class="vs-cta__btn vs-cta__btn--ghost">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.555-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.607z"/></svg>
-          گفت‌و‌گو در واتساپ
-        </a>
+      <div class="vs-cta__left">
+        <div class="vs-cta__badge">
+          <span class="green"></span>
+          <span>کارشناسان آنلاین — همین الان</span>
+        </div>
+        <h2>پروژه شما، یک <em>تماس</em> دور است.</h2>
+        <p>فرم را پر کنید یا مستقیم تماس بگیرید. در کمتر از ۲ ساعت کارشناس ما با شما تماس می‌گیرد و یک پیشنهاد اولیه ارائه می‌دهد.</p>
+
+        <div class="vs-cta__features">
+          <div class="item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            مشاوره رایگان
+          </div>
+          <div class="item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            بدون تعهد خرید
+          </div>
+          <div class="item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            پاسخ زیر ۲ ساعت
+          </div>
+        </div>
+      </div>
+
+      <form class="vs-cta__form" data-vs-form>
+        <h3>درخواست مشاوره رایگان</h3>
+        <p class="sub">فرم زیر را پر کنید — به سرعت پاسخ می‌دهیم.</p>
+
+        <div class="vs-cta__field">
+          <label>نام و نام خانوادگی</label>
+          <input type="text" placeholder="مثلاً: علی محمدی" required>
+        </div>
+        <div class="vs-cta__field">
+          <label>شماره تماس</label>
+          <input type="tel" placeholder="۰۹۱۲۳۴۵۶۷۸۹" required>
+        </div>
+        <div class="vs-cta__field">
+          <label>نوع پروژه</label>
+          <select required>
+            <option value="">انتخاب کنید…</option>
+            <option>سایت شرکتی / معرفی خدمات</option>
+            <option>فروشگاه اینترنتی</option>
+            <option>سایت خبری / محتوایی</option>
+            <option>پلتفرم اختصاصی</option>
+            <option>سایر</option>
+          </select>
+        </div>
+
+        <button type="submit" class="vs-cta__submit">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          ارسال درخواست
+        </button>
+
+        <div class="vs-cta__alt">
+          یا تماس مستقیم: <a href="tel:+982100000000">۰۲۱-۰۰۰۰۰۰۰۰</a>
+          ·
+          <a href="https://wa.me/989000000000">واتساپ</a>
+        </div>
+      </form>
+
+      <div class="vs-cta__success" data-vs-success>
+        <div class="icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>درخواست شما ثبت شد ✓</h3>
+        <p>کارشناس ما در کمتر از ۲ ساعت با شما تماس می‌گیرد.</p>
       </div>
     </div>
   </div>
 </section>
 
+<script>
+(function(){
+  const form = document.querySelector('[data-vs-form]');
+  const success = document.querySelector('[data-vs-success]');
+  if(!form) return;
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    // اینجا می‌توانید درخواست واقعی به سرور بفرستید
+    // fetch('/api/lead', { method:'POST', body: new FormData(form) });
+    form.classList.add('is-sent');
+    success.classList.add('is-on');
+  });
+})();
+</script>
 
-<div class="mock-footer">⬆️ این پایین فوتر سایت شماست (تغییری نمی‌کند) ⬆️</div>
+
+<div class="mock-footer">⬆️ این پایین فوتر سایت شماست (دست نخورده) ⬆️</div>
 
 </body>
 </html>

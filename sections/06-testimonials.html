@@ -1,18 +1,27 @@
 <!-- ========================================================
-     سکشن ۶: TESTIMONIALS (نظرات مشتریان)
+     سکشن ۶: TESTIMONIALS اسلایدر تعاملی (نسخه v4)
+     - اسلایدر دکمه‌ای + اتو پلی
+     - شاخص نقطه‌ای
+     - کارت‌های پس‌زمینه استک‌شده (3D depth)
      ======================================================== -->
 <style>
-:root{
+.vs-testimonials{
   --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
   --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
-}
-.vs-testimonials{
-  padding:100px 24px;
+
+  padding:110px 24px;
   background:linear-gradient(180deg,#FAF6EC 0%,#EFE3CA 100%);
   font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+  position:relative; overflow:hidden;
 }
-.vs-testimonials__inner{max-width:1240px;margin:0 auto;}
-.vs-section-head{text-align:center; margin-bottom:56px;}
+.vs-testimonials::before{
+  content:""; position:absolute; top:-200px; left:-200px;
+  width:500px; height:500px; border-radius:50%;
+  background:radial-gradient(circle, rgba(18,139,224,.15), transparent 70%);
+  filter:blur(40px);
+}
+.vs-testimonials__inner{max-width:1100px; margin:0 auto; position:relative;}
+.vs-section-head{text-align:center; margin-bottom:48px;}
 .vs-section-head .vs-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(23,12,121,.10); color:var(--vs-primary);
@@ -23,34 +32,114 @@
   width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
   box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
 }
-.vs-section-head h2{font-size:clamp(28px,3.4vw,44px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-section-head h2{font-size:clamp(28px,3.4vw,46px); font-weight:800; margin:0 0 16px; line-height:1.4;}
 .vs-section-head p{color:#475569; font-size:18px; max-width:680px; margin:0 auto;}
 
-.vs-quotes{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-.vs-quote{
-  background:#fff; border:1px solid rgba(23,12,121,.10); border-radius:24px;
-  padding:32px; position:relative;
-  transition:all .3s ease;
+/* ===== Slider Stage ===== */
+.vs-slider{
+  position:relative;
+  perspective:1500px;
+  height:340px;
+  margin:0 auto 32px;
+  max-width:780px;
 }
-.vs-quote:hover{transform:translateY(-4px); box-shadow:0 20px 50px rgba(23,12,121,.12);}
-.vs-quote::before{
-  content:"❝"; position:absolute; top:18px; left:24px;
-  font-size:54px; color:var(--vs-cyan); font-family:Georgia, serif;
+.vs-slide{
+  position:absolute; top:0; left:50%;
+  width:100%; max-width:680px;
+  background:#fff; border-radius:28px;
+  padding:40px 44px;
+  box-shadow:0 24px 60px rgba(23,12,121,.12);
+  transform-origin:center;
+  transition:transform .55s cubic-bezier(.4,.0,.2,1), opacity .4s ease;
+  opacity:0;
+  pointer-events:none;
+}
+/* وضعیت‌های اسلاید */
+.vs-slide[data-pos="0"]{ /* فعال */
+  transform:translateX(50%) translateZ(0) scale(1);
+  opacity:1; pointer-events:auto; z-index:3;
+}
+.vs-slide[data-pos="1"]{ /* بعدی (سمت چپ در RTL) */
+  transform:translateX(20%) translateZ(-100px) scale(.92);
+  opacity:.5; z-index:2;
+}
+.vs-slide[data-pos="-1"]{ /* قبلی (سمت راست در RTL) */
+  transform:translateX(80%) translateZ(-100px) scale(.92);
+  opacity:.5; z-index:2;
+}
+.vs-slide[data-pos="2"], .vs-slide[data-pos="-2"]{
+  transform:translateX(50%) translateZ(-200px) scale(.85);
+  opacity:0; z-index:1;
+}
+
+.vs-slide__quote{
+  font-size:54px; line-height:0; color:var(--vs-cyan);
+  font-family:Georgia, serif;
+}
+.vs-slide__text{
+  font-size:18px; line-height:1.95; color:#1e293b;
+  margin:14px 0 24px; font-weight:500;
+}
+.vs-slide__bottom{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  border-top:1px solid rgba(23,12,121,.10); padding-top:20px;
+}
+.vs-slide__who{display:flex; align-items:center; gap:14px;}
+.vs-slide__av{
+  width:54px; height:54px; border-radius:50%;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  display:grid; place-items:center; color:#fff; font-weight:800; font-size:20px;
+  box-shadow:0 8px 20px rgba(23,12,121,.25);
+}
+.vs-slide__nm{font-weight:700; font-size:16px; color:var(--vs-ink);}
+.vs-slide__rl{font-size:13px; color:#64748B; margin-top:2px;}
+.vs-slide__metric{
+  text-align:left;
+  background:linear-gradient(135deg,rgba(138,203,208,.15),rgba(18,139,224,.08));
+  border:1px solid rgba(18,139,224,.20);
+  padding:8px 14px; border-radius:12px;
+}
+.vs-slide__metric .v{
+  font-weight:900; font-size:20px;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
   line-height:1;
 }
-.vs-quote .stars{color:#FFB800; margin-bottom:14px; font-size:18px; letter-spacing:2px;}
-.vs-quote p{color:#334155; font-size:15.5px; line-height:1.9; margin:0 0 22px;}
-.vs-quote__who{display:flex; align-items:center; gap:12px;}
-.vs-quote__av{
-  width:46px; height:46px; border-radius:50%;
-  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
-  display:grid; place-items:center; color:#fff; font-weight:800; font-size:18px;
-  flex-shrink:0;
-}
-.vs-quote__nm{font-weight:700; color:var(--vs-ink); font-size:15px;}
-.vs-quote__rl{font-size:13px; color:#64748B;}
+.vs-slide__metric .l{font-size:11px; color:#64748B;}
 
-@media (max-width:880px){.vs-quotes{grid-template-columns:1fr;}}
+/* کنترل‌ها */
+.vs-slider__ctrls{
+  display:flex; justify-content:center; align-items:center; gap:18px;
+}
+.vs-slider__btn{
+  width:48px; height:48px; border-radius:14px;
+  background:#fff; border:1px solid rgba(23,12,121,.15);
+  display:grid; place-items:center; cursor:pointer;
+  color:var(--vs-primary); transition:all .25s ease;
+}
+.vs-slider__btn:hover{
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  color:#fff; border-color:transparent; transform:scale(1.05);
+  box-shadow:0 12px 24px rgba(23,12,121,.25);
+}
+.vs-slider__dots{display:flex; gap:8px;}
+.vs-slider__dot{
+  width:8px; height:8px; border-radius:50%;
+  background:rgba(23,12,121,.20); cursor:pointer;
+  transition:all .3s ease; border:none; padding:0;
+}
+.vs-slider__dot.is-on{
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  width:30px; border-radius:5px;
+}
+
+@media (max-width:680px){
+  .vs-slider{height:auto; min-height:380px;}
+  .vs-slide{padding:30px 24px; max-width:100%;}
+  .vs-slide__bottom{flex-direction:column; align-items:flex-start;}
+  .vs-slide__metric{width:100%;}
+}
 </style>
 
 <section class="vs-testimonials">
@@ -61,31 +150,134 @@
       <p>رشد، رضایت و تأثیر واقعی — به زبان خود مشتریان ما.</p>
     </div>
 
-    <div class="vs-quotes">
-      <div class="vs-quote">
-        <div class="stars">★★★★★</div>
-        <p>تیم ویرا سئو دقیقاً همان چیزی را ساخت که در ذهن داشتم. سرعت سایت و رتبه گوگل ما در ۳ ماه ۳ برابر شد و حالا فروش آنلاین ما ۲ برابر شده است.</p>
-        <div class="vs-quote__who">
-          <div class="vs-quote__av">ا</div>
-          <div><div class="vs-quote__nm">امیر حسینی</div><div class="vs-quote__rl">مدیرعامل، نواکالا</div></div>
+    <div class="vs-slider" data-vs-slider>
+      <article class="vs-slide" data-pos="0">
+        <div class="vs-slide__quote">❝</div>
+        <p class="vs-slide__text">تیم ویرا سئو دقیقاً همان چیزی را ساخت که در ذهن داشتم. در سه ماه اول رتبه ما در گوگل سه برابر شد و فروش ماهانه ۲ برابر. تجربه‌ی همکاری با این تیم را از دست نمی‌دهم.</p>
+        <div class="vs-slide__bottom">
+          <div class="vs-slide__who">
+            <div class="vs-slide__av">ا</div>
+            <div>
+              <div class="vs-slide__nm">امیر حسینی</div>
+              <div class="vs-slide__rl">مدیرعامل، نواکالا</div>
+            </div>
+          </div>
+          <div class="vs-slide__metric">
+            <div class="v">+۲۰۰٪</div>
+            <div class="l">رشد فروش ۳ ماهه</div>
+          </div>
         </div>
-      </div>
-      <div class="vs-quote">
-        <div class="stars">★★★★★</div>
-        <p>برخورد حرفه‌ای، تحویل به‌موقع و پشتیبانی فوق‌العاده. سایت جدید ما واقعاً تفاوت ایجاد کرد در فروش و تجربه کاربری به مراتب بهتر شد.</p>
-        <div class="vs-quote__who">
-          <div class="vs-quote__av">س</div>
-          <div><div class="vs-quote__nm">سارا کریمی</div><div class="vs-quote__rl">بنیان‌گذار، پیکسل‌پلاس</div></div>
+      </article>
+
+      <article class="vs-slide" data-pos="1">
+        <div class="vs-slide__quote">❝</div>
+        <p class="vs-slide__text">برخورد حرفه‌ای، تحویل به‌موقع و پشتیبانی بی‌نظیر. سایت جدید ما در همان ماه اول لانچ، کلی لید با کیفیت آورد. حالا فکر می‌کنم چرا این کار را زودتر انجام نداده‌ایم.</p>
+        <div class="vs-slide__bottom">
+          <div class="vs-slide__who">
+            <div class="vs-slide__av">س</div>
+            <div>
+              <div class="vs-slide__nm">سارا کریمی</div>
+              <div class="vs-slide__rl">بنیان‌گذار، پیکسل‌پلاس</div>
+            </div>
+          </div>
+          <div class="vs-slide__metric">
+            <div class="v">۳.۲×</div>
+            <div class="l">افزایش لید ماهانه</div>
+          </div>
         </div>
-      </div>
-      <div class="vs-quote">
-        <div class="stars">★★★★★</div>
-        <p>طراحی فوق‌العاده مدرن و سریع. مشاوره‌های سئو هم باعث شد رقبا را در نتایج گوگل پشت سر بگذاریم. توصیه می‌کنم بدون شک.</p>
-        <div class="vs-quote__who">
-          <div class="vs-quote__av">م</div>
-          <div><div class="vs-quote__nm">محمد رضایی</div><div class="vs-quote__rl">مدیر بازاریابی، فورتک</div></div>
+      </article>
+
+      <article class="vs-slide" data-pos="2">
+        <div class="vs-slide__quote">❝</div>
+        <p class="vs-slide__text">طراحی فوق‌العاده مدرن و سریع است. مشاوره‌های سئو هم به ما کمک کرد رقبا را در نتایج گوگل پشت سر بگذاریم. صادقانه، بهترین تصمیم سال ما همکاری با ویرا سئو بود.</p>
+        <div class="vs-slide__bottom">
+          <div class="vs-slide__who">
+            <div class="vs-slide__av">م</div>
+            <div>
+              <div class="vs-slide__nm">محمد رضایی</div>
+              <div class="vs-slide__rl">مدیر بازاریابی، فورتک</div>
+            </div>
+          </div>
+          <div class="vs-slide__metric">
+            <div class="v">رتبه ۱</div>
+            <div class="l">در ۸ کلمه کلیدی</div>
+          </div>
         </div>
-      </div>
+      </article>
+
+      <article class="vs-slide" data-pos="-1">
+        <div class="vs-slide__quote">❝</div>
+        <p class="vs-slide__text">بعد از سال‌ها سایت‌های بی‌ کیفیت، بالاخره یه تیم پیدا کردیم که واقعاً به جزئیات اهمیت می‌ده. سرعت سایت، تجربه کاربری و پشتیبانیشون عالیه. صد در صد توصیه می‌کنم.</p>
+        <div class="vs-slide__bottom">
+          <div class="vs-slide__who">
+            <div class="vs-slide__av">ز</div>
+            <div>
+              <div class="vs-slide__nm">زهرا ملکی</div>
+              <div class="vs-slide__rl">مدیر برند، آوا کالکشن</div>
+            </div>
+          </div>
+          <div class="vs-slide__metric">
+            <div class="v">۹۸/۱۰۰</div>
+            <div class="l">امتیاز PageSpeed</div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="vs-slider__ctrls">
+      <button class="vs-slider__btn" data-vs-prev aria-label="قبلی">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="vs-slider__dots" data-vs-dots></div>
+      <button class="vs-slider__btn" data-vs-next aria-label="بعدی">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
     </div>
   </div>
 </section>
+
+<script>
+(function(){
+  const root = document.querySelector('[data-vs-slider]');
+  if(!root) return;
+  const slides = Array.from(root.querySelectorAll('.vs-slide'));
+  const total = slides.length;
+  let idx = 0;
+
+  const dotsHost = document.querySelector('[data-vs-dots]');
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'vs-slider__dot' + (i===0?' is-on':'');
+    d.setAttribute('aria-label', 'اسلاید ' + (i+1));
+    d.addEventListener('click', () => goTo(i));
+    dotsHost.appendChild(d);
+  });
+  const dots = Array.from(dotsHost.children);
+
+  function goTo(n){
+    idx = (n + total) % total;
+    slides.forEach((s, i) => {
+      let diff = i - idx;
+      if(diff > total/2)  diff -= total;
+      if(diff < -total/2) diff += total;
+      s.dataset.pos = diff;
+    });
+    dots.forEach((d,i) => d.classList.toggle('is-on', i === idx));
+  }
+  document.querySelector('[data-vs-prev]').addEventListener('click', () => goTo(idx - 1));
+  document.querySelector('[data-vs-next]').addEventListener('click', () => goTo(idx + 1));
+
+  // اتوپلی
+  let timer = setInterval(() => goTo(idx + 1), 6000);
+  root.addEventListener('mouseenter', () => clearInterval(timer));
+  root.addEventListener('mouseleave', () => timer = setInterval(() => goTo(idx + 1), 6000));
+
+  // سواییپ موبایل
+  let startX = 0;
+  root.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+  root.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if(Math.abs(dx) > 40) goTo(idx + (dx > 0 ? -1 : 1));
+  });
+})();
+</script>

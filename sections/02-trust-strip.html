@@ -1,38 +1,210 @@
 <!-- ========================================================
-     سکشن ۲: TRUST STRIP (نوار اعتماد و لوگوی مشتریان)
-     روش استفاده: HTML widget در یک Section ساده.
+     سکشن ۲: TRUST STRIP + Showcase تعاملی Device Frame
+     ویژگی‌ها: تب موبایل/تبلت/دسکتاپ + موکاپ متغیر
      ======================================================== -->
 <style>
-:root{
-  --vs-primary:#170C79; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+.vs-showcase{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+
+  padding:90px 24px;
+  background:linear-gradient(180deg,#fff 0%,#FAF6EC 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+  position:relative; overflow:hidden;
 }
-.vs-strip{
-  padding:56px 24px; background:linear-gradient(180deg,#FAF6EC 0%,#EFE3CA 100%);
-  border-block:1px solid rgba(23,12,121,.08);
-  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl;
+.vs-showcase__inner{max-width:1240px; margin:0 auto;}
+
+.vs-showcase__head{text-align:center; margin-bottom:36px;}
+.vs-showcase__head .vs-eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(23,12,121,.08); color:var(--vs-primary);
+  border:1px solid rgba(23,12,121,.18);
+  padding:8px 16px; border-radius:999px; font-size:14px; font-weight:600; margin-bottom:16px;
 }
-.vs-strip__inner{max-width:1240px;margin:0 auto;}
+.vs-showcase__head .vs-eyebrow i{
+  width:8px; height:8px; border-radius:50%; background:var(--vs-accent);
+  box-shadow:0 0 0 4px rgba(18,139,224,.18); display:inline-block;
+}
+.vs-showcase__head h2{font-size:clamp(24px,2.6vw,36px); font-weight:800; margin:0 0 12px; line-height:1.4;}
+.vs-showcase__head p{color:#64748B; font-size:16px; max-width:560px; margin:0 auto;}
+
+/* ===== Device Tabs ===== */
+.vs-dev-tabs{
+  display:flex; justify-content:center; gap:10px;
+  background:rgba(23,12,121,.05); padding:6px;
+  border-radius:14px; max-width:fit-content; margin:0 auto 32px;
+  border:1px solid rgba(23,12,121,.08);
+}
+.vs-dev-tab{
+  padding:10px 20px; border-radius:10px;
+  background:transparent; border:none; cursor:pointer;
+  font-family:inherit; font-size:14px; font-weight:600;
+  color:#64748B; display:inline-flex; align-items:center; gap:8px;
+  transition:all .25s ease;
+}
+.vs-dev-tab:hover{color:var(--vs-primary);}
+.vs-dev-tab.is-active{
+  background:#fff; color:var(--vs-primary);
+  box-shadow:0 4px 12px rgba(23,12,121,.10);
+}
+
+/* ===== Device Frame ===== */
+.vs-dev-stage{
+  display:grid; place-items:center;
+  min-height:420px;
+  margin-bottom:60px;
+  position:relative;
+}
+.vs-dev{
+  background:#1a1268; border-radius:18px;
+  position:absolute; transition:all .55s cubic-bezier(.4,.0,.2,1);
+  border:8px solid #0e0a3e;
+  box-shadow:0 30px 80px rgba(23,12,121,.30);
+  opacity:0; pointer-events:none;
+  overflow:hidden;
+}
+.vs-dev.is-active{opacity:1; pointer-events:auto;}
+.vs-dev__screen{
+  background:linear-gradient(160deg,#fff,#FAF6EC);
+  width:100%; height:100%; padding:14px;
+  display:flex; flex-direction:column; gap:8px;
+}
+.vs-dev__bar{
+  height:24px; border-radius:6px;
+  background:linear-gradient(90deg,var(--vs-primary),var(--vs-accent));
+  position:relative;
+}
+.vs-dev__bar::after{
+  content:""; position:absolute; left:8px; top:50%; transform:translateY(-50%);
+  width:40%; height:6px; background:rgba(255,255,255,.7); border-radius:3px;
+}
+.vs-dev__hero{
+  flex:1; min-height:60px; border-radius:8px;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(138,203,208,.5), transparent 50%),
+    linear-gradient(135deg,#FAF6EC,#EFE3CA);
+  position:relative; padding:16px;
+  display:flex; flex-direction:column; gap:6px;
+}
+.vs-dev__hero::before{
+  content:""; width:60%; height:8px; background:#170C79; border-radius:4px;
+}
+.vs-dev__hero::after{
+  content:""; width:40%; height:6px; background:#0170B9; border-radius:3px; opacity:.5;
+}
+.vs-dev__btn{
+  position:absolute; bottom:14px; right:14px;
+  width:40%; height:14px; border-radius:6px;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+}
+.vs-dev__row{height:6px; background:rgba(23,12,121,.10); border-radius:3px;}
+.vs-dev__row--s{width:60%;}
+.vs-dev__grid{display:grid; grid-template-columns:repeat(3,1fr); gap:6px;}
+.vs-dev__grid > div{
+  height:36px; border-radius:6px; background:rgba(23,12,121,.06);
+  border:1px solid rgba(23,12,121,.08);
+}
+.vs-dev__grid > div:nth-child(2){
+  background:linear-gradient(135deg,rgba(138,203,208,.40),rgba(18,139,224,.20));
+  border-color:rgba(138,203,208,.50);
+}
+
+/* اندازه‌های دستگاه */
+.vs-dev--desktop{width:600px; aspect-ratio:16/10; border-radius:16px;}
+.vs-dev--desktop.is-active{transform:scale(1);}
+.vs-dev--tablet{width:380px; aspect-ratio:4/5; border-radius:24px;}
+.vs-dev--tablet.is-active{transform:scale(1);}
+.vs-dev--mobile{width:200px; aspect-ratio:9/19; border-radius:30px; border-width:6px;}
+.vs-dev--mobile.is-active{transform:scale(1);}
+
+/* پایه دسکتاپ */
+.vs-dev--desktop::before{
+  content:""; position:absolute; bottom:-20px; left:50%; transform:translateX(-50%);
+  width:120%; height:14px; background:#0e0a3e; border-radius:3px;
+  z-index:-1;
+}
+
+/* ===== Logos Strip ===== */
 .vs-strip__title{
   text-align:center; color:var(--vs-primary);
-  font-size:14px; letter-spacing:2px; font-weight:600;
+  font-size:13px; letter-spacing:2px; font-weight:700;
   margin-bottom:24px; text-transform:uppercase;
 }
 .vs-strip__logos{
   display:flex; justify-content:space-around; align-items:center;
-  flex-wrap:wrap; gap:36px; opacity:.85;
+  flex-wrap:wrap; gap:36px; padding:24px 0;
+  border-block:1px solid rgba(23,12,121,.10);
+  position:relative;
 }
 .vs-strip__logos span{
-  font-weight:800; color:var(--vs-ink);
+  font-weight:800; color:#1D2327;
   font-size:22px; letter-spacing:-.5px;
-  transition:opacity .25s ease, transform .25s ease;
+  opacity:.55; transition:all .25s ease;
   cursor:pointer;
 }
 .vs-strip__logos span:hover{opacity:1; transform:scale(1.05); color:var(--vs-primary);}
-@media (max-width:560px){.vs-strip__logos{gap:24px;}.vs-strip__logos span{font-size:18px;}}
+
+@media (max-width:880px){
+  .vs-dev--desktop{width:90%; max-width:500px;}
+  .vs-dev--tablet{width:280px;}
+  .vs-strip__logos{gap:24px;}
+  .vs-strip__logos span{font-size:18px;}
+}
 </style>
 
-<section class="vs-strip">
-  <div class="vs-strip__inner">
+<section class="vs-showcase">
+  <div class="vs-showcase__inner">
+    <div class="vs-showcase__head">
+      <span class="vs-eyebrow"><i></i>کاملاً ریسپانسیو</span>
+      <h2>روی هر دستگاهی، بی‌نقص</h2>
+      <p>روی دستگاه مورد نظر کلیک کنید و ببینید سایت چطور نمایش داده می‌شود.</p>
+    </div>
+
+    <div class="vs-dev-tabs" data-vs-devtabs>
+      <button class="vs-dev-tab is-active" data-dev="desktop">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg>
+        دسکتاپ
+      </button>
+      <button class="vs-dev-tab" data-dev="tablet">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M11 18h2"/></svg>
+        تبلت
+      </button>
+      <button class="vs-dev-tab" data-dev="mobile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+        موبایل
+      </button>
+    </div>
+
+    <div class="vs-dev-stage" data-vs-devstage>
+      <div class="vs-dev vs-dev--desktop is-active" data-frame="desktop">
+        <div class="vs-dev__screen">
+          <div class="vs-dev__bar"></div>
+          <div class="vs-dev__hero"><div class="vs-dev__btn"></div></div>
+          <div class="vs-dev__grid"><div></div><div></div><div></div></div>
+          <div class="vs-dev__row"></div>
+          <div class="vs-dev__row vs-dev__row--s"></div>
+        </div>
+      </div>
+      <div class="vs-dev vs-dev--tablet" data-frame="tablet">
+        <div class="vs-dev__screen">
+          <div class="vs-dev__bar"></div>
+          <div class="vs-dev__hero"><div class="vs-dev__btn"></div></div>
+          <div class="vs-dev__grid"><div></div><div></div><div></div></div>
+          <div class="vs-dev__row"></div>
+          <div class="vs-dev__row vs-dev__row--s"></div>
+        </div>
+      </div>
+      <div class="vs-dev vs-dev--mobile" data-frame="mobile">
+        <div class="vs-dev__screen">
+          <div class="vs-dev__bar"></div>
+          <div class="vs-dev__hero"><div class="vs-dev__btn"></div></div>
+          <div class="vs-dev__row"></div>
+          <div class="vs-dev__row vs-dev__row--s"></div>
+          <div class="vs-dev__row"></div>
+        </div>
+      </div>
+    </div>
+
     <div class="vs-strip__title">اعتماد بیش از ۴۵۰ کسب‌وکار ایرانی</div>
     <div class="vs-strip__logos">
       <span>BRAND/۱</span>
@@ -44,3 +216,18 @@
     </div>
   </div>
 </section>
+
+<script>
+(function(){
+  const tabs = document.querySelectorAll('[data-vs-devtabs] .vs-dev-tab');
+  const frames = document.querySelectorAll('[data-vs-devstage] .vs-dev');
+  if(!tabs.length) return;
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      tabs.forEach(x => x.classList.remove('is-active'));
+      t.classList.add('is-active');
+      frames.forEach(f => f.classList.toggle('is-active', f.dataset.frame === t.dataset.dev));
+    });
+  });
+})();
+</script>

@@ -1,72 +1,200 @@
 <!-- ========================================================
-     سکشن ۳: FEATURES BENTO GRID (ویژگی‌ها)
+     سکشن ۳: FEATURES تعاملی با تب‌ها (نسخه v4)
+     ویژگی‌ها:
+     - تب‌های تعاملی با محتوای متغیر
+     - پنل پیش‌نمایش زنده برای هر تب
+     - Bento Grid مدرن زیرش
      ======================================================== -->
 <style>
-:root{
+.vs-features{
   --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
   --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+
+  padding:110px 24px; background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+  position:relative; overflow:hidden;
 }
-.vs-features{padding:100px 24px; background:#fff;
-  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);}
-.vs-features__inner{max-width:1240px;margin:0 auto;}
-.vs-section-head{text-align:center; margin-bottom:56px;}
+.vs-features::before{
+  content:""; position:absolute; top:0; right:0; width:50%; height:100%;
+  background:radial-gradient(50% 50% at 100% 30%, rgba(138,203,208,.15), transparent 60%);
+  pointer-events:none;
+}
+.vs-features__inner{max-width:1240px; margin:0 auto; position:relative;}
+.vs-section-head{text-align:center; margin-bottom:60px;}
 .vs-section-head .vs-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
+  display:inline-flex; align-items:center; gap:8px;
   background:rgba(23,12,121,.08); color:var(--vs-primary);
   border:1px solid rgba(23,12,121,.18);
-  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+  padding:8px 16px; border-radius:999px; font-size:14px; font-weight:600; margin-bottom:16px;
 }
 .vs-section-head .vs-eyebrow i{
-  width:8px;height:8px;border-radius:50%;background:var(--vs-accent);
-  box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;
+  width:8px; height:8px; border-radius:50%; background:var(--vs-accent);
+  box-shadow:0 0 0 4px rgba(18,139,224,.18); display:inline-block;
 }
-.vs-section-head h2{
-  font-size:clamp(28px,3.4vw,44px); font-weight:800;
-  margin:0 0 16px; line-height:1.4;
+.vs-section-head h2{font-size:clamp(28px,3.4vw,46px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-section-head h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
 }
 .vs-section-head p{color:#64748B; font-size:18px; max-width:680px; margin:0 auto;}
 
+/* ===== Tabs تعاملی ===== */
+.vs-tabs{
+  display:grid; grid-template-columns:1fr 1.4fr; gap:32px; align-items:stretch;
+  background:linear-gradient(160deg,#FAF6EC 0%,#fff 100%);
+  border:1px solid rgba(23,12,121,.08);
+  border-radius:32px; padding:32px;
+  margin-bottom:60px;
+  box-shadow:0 24px 60px rgba(23,12,121,.06);
+}
+.vs-tabs__nav{display:flex; flex-direction:column; gap:10px;}
+.vs-tab-btn{
+  display:flex; align-items:center; gap:14px;
+  padding:18px 20px; border-radius:18px; cursor:pointer;
+  background:transparent; border:1.5px solid transparent;
+  text-align:right; transition:all .3s ease;
+  font-family:inherit; font-size:16px; color:var(--vs-ink);
+  width:100%;
+}
+.vs-tab-btn:hover{background:rgba(255,255,255,.7); border-color:rgba(23,12,121,.10);}
+.vs-tab-btn.is-active{
+  background:#fff;
+  border-color:rgba(23,12,121,.10);
+  box-shadow:0 12px 30px rgba(23,12,121,.08);
+}
+.vs-tab-btn .ic{
+  width:46px; height:46px; border-radius:12px;
+  display:grid; place-items:center;
+  background:rgba(23,12,121,.08); color:var(--vs-primary);
+  flex-shrink:0; transition:all .3s ease;
+}
+.vs-tab-btn.is-active .ic{
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  color:#fff; transform:scale(1.05);
+}
+.vs-tab-btn .lbl{display:flex; flex-direction:column; gap:2px; flex:1;}
+.vs-tab-btn .lbl strong{font-weight:800; font-size:17px;}
+.vs-tab-btn .lbl small{color:#64748B; font-size:13px; font-weight:400;}
+.vs-tab-btn .arrow{
+  opacity:0; transform:translateX(8px); transition:all .3s ease;
+  color:var(--vs-primary);
+}
+.vs-tab-btn.is-active .arrow{opacity:1; transform:translateX(0);}
+
+/* پنل تب‌ها */
+.vs-tabs__panels{
+  position:relative;
+  background:linear-gradient(160deg,var(--vs-primary) 0%,#0a0640 60%,var(--vs-secondary) 100%);
+  border-radius:24px; padding:36px; color:#fff;
+  overflow:hidden; min-height:380px;
+}
+.vs-tabs__panels::before{
+  content:""; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:30px 30px;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+          mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+}
+.vs-panel{
+  position:absolute; inset:36px;
+  opacity:0; transform:translateY(20px);
+  transition:opacity .4s ease, transform .4s ease;
+  pointer-events:none;
+}
+.vs-panel.is-active{opacity:1; transform:none; pointer-events:auto;}
+.vs-panel h3{
+  font-size:24px; font-weight:800; margin:0 0 12px; color:#fff;
+  display:flex; align-items:center; gap:10px;
+}
+.vs-panel h3 .badge{
+  background:rgba(138,203,208,.20); color:#8ACBD0;
+  font-size:11px; padding:4px 10px; border-radius:999px;
+  font-weight:700; letter-spacing:.5px;
+}
+.vs-panel p{color:rgba(255,255,255,.78); line-height:1.95; margin:0 0 22px; font-size:15.5px;}
+.vs-panel ul{list-style:none; padding:0; margin:0; display:grid; gap:10px;}
+.vs-panel li{
+  display:flex; align-items:flex-start; gap:10px;
+  color:rgba(255,255,255,.92); font-size:14.5px;
+}
+.vs-panel li svg{
+  flex-shrink:0; margin-top:4px; color:#8ACBD0;
+}
+.vs-panel__demo{
+  margin-top:24px; padding:18px;
+  background:rgba(0,0,0,.30); border:1px solid rgba(255,255,255,.10);
+  border-radius:14px; font-family:'Courier New',monospace; font-size:13px;
+  color:rgba(255,255,255,.85); line-height:1.7;
+}
+.vs-panel__demo .num{color:#8ACBD0; font-weight:900; font-size:32px; line-height:1;}
+.vs-panel__demo .lbl{color:rgba(255,255,255,.55); font-size:11px; margin-top:4px;}
+.vs-panel__metrics{display:flex; gap:24px; flex-wrap:wrap;}
+.vs-panel__metrics > div{flex:1; min-width:120px;}
+
+/* ===== Bento Grid ===== */
 .vs-bento{
   display:grid; grid-template-columns:repeat(6,1fr);
   grid-auto-rows:minmax(220px,auto); gap:20px;
 }
 .vs-card{
-  background:#fff; border:1px solid #E2E8F0; border-radius:28px;
-  padding:32px; position:relative; overflow:hidden;
+  background:#fff; border:1px solid #E2E8F0; border-radius:24px;
+  padding:30px; position:relative; overflow:hidden;
   transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
 }
 .vs-card:hover{transform:translateY(-4px); box-shadow:0 16px 40px rgba(23,12,121,.10); border-color:transparent;}
 .vs-card .ic{
-  width:54px; height:54px; border-radius:14px;
+  width:52px; height:52px; border-radius:14px;
   display:grid; place-items:center; color:#fff; margin-bottom:18px;
   background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
 }
-.vs-card h3{font-size:20px;font-weight:800;margin:0 0 10px; color:var(--vs-ink);}
-.vs-card p{color:#64748B; font-size:15px; line-height:1.9; margin:0;}
+.vs-card h3{font-size:19px;font-weight:800;margin:0 0 8px; color:var(--vs-ink);}
+.vs-card p{color:#64748B; font-size:14.5px; line-height:1.85; margin:0;}
 
-.vs-bento .c1{grid-column:span 3;background:linear-gradient(160deg,#F0EDFA 0%,#fff 60%);}
+.vs-bento .c1{grid-column:span 3; background:linear-gradient(160deg,#F0EDFA 0%,#fff 60%);}
 .vs-bento .c2{grid-column:span 3;}
 .vs-bento .c3{grid-column:span 2;}
 .vs-bento .c4{
   grid-column:span 2;
-  background:linear-gradient(160deg,var(--vs-primary) 0%,#0a0648 100%);
+  background:linear-gradient(160deg,var(--vs-primary) 0%,#0a0640 100%);
   border-color:transparent;
 }
 .vs-bento .c4 h3{color:#fff;}
 .vs-bento .c4 p{color:rgba(255,255,255,.78);}
 .vs-bento .c4 .ic{background:var(--vs-cyan); color:var(--vs-primary);}
 .vs-bento .c5{grid-column:span 2;}
-.vs-bento .c6{
-  grid-column:span 6;
-  background:linear-gradient(135deg,#FAF6EC 0%, #EFE3CA 100%);
-  display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:center;
-}
-.vs-bento .c6 .ic{margin-bottom:0; background:linear-gradient(135deg,var(--vs-secondary),var(--vs-cyan));}
 
-@media (max-width:880px){
+/* ===== کارت با اسپارک‌لاین ===== */
+.vs-spark{
+  margin-top:14px; height:42px; display:flex; align-items:flex-end; gap:4px;
+}
+.vs-spark i{
+  flex:1; background:linear-gradient(180deg,var(--vs-cyan),var(--vs-secondary));
+  border-radius:3px 3px 0 0; opacity:.85;
+  animation:vs-bar 2.4s ease-in-out infinite;
+}
+.vs-spark i:nth-child(1){animation-delay:0s; height:30%;}
+.vs-spark i:nth-child(2){animation-delay:.1s; height:55%;}
+.vs-spark i:nth-child(3){animation-delay:.2s; height:42%;}
+.vs-spark i:nth-child(4){animation-delay:.3s; height:70%;}
+.vs-spark i:nth-child(5){animation-delay:.4s; height:50%;}
+.vs-spark i:nth-child(6){animation-delay:.5s; height:85%;}
+.vs-spark i:nth-child(7){animation-delay:.6s; height:65%;}
+.vs-spark i:nth-child(8){animation-delay:.7s; height:95%;}
+@keyframes vs-bar{
+  0%,100%{transform:scaleY(.85);}
+  50%{transform:scaleY(1);}
+}
+
+@media (max-width:980px){
+  .vs-tabs{grid-template-columns:1fr; padding:20px;}
+  .vs-tabs__panels{padding:28px; min-height:420px;}
+  .vs-panel{inset:28px;}
   .vs-bento{grid-template-columns:repeat(2,1fr);}
   .vs-bento .vs-card{grid-column:span 2 !important;}
-  .vs-bento .c6{grid-template-columns:1fr;}
 }
 </style>
 
@@ -74,43 +202,156 @@
   <div class="vs-features__inner">
     <div class="vs-section-head">
       <span class="vs-eyebrow"><i></i>چرا ویرا سئو</span>
-      <h2>هرچه کسب‌وکار شما لازم دارد، در یک تیم</h2>
-      <p>از طراحی تا سئو، از سرعت تا امنیت — تمام لایه‌های یک سایت حرفه‌ای را با معیارهای روز جهانی می‌سازیم.</p>
+      <h2>هرچه برای رشد <em>آنلاین</em> لازم دارید، یکجا</h2>
+      <p>نه فقط یک طراحی زیبا — یک سیستم کامل برای جذب، تبدیل و نگهداشت مشتری.</p>
     </div>
 
+    <!-- ===== Tabs تعاملی ===== -->
+    <div class="vs-tabs" data-vs-tabs>
+      <div class="vs-tabs__nav" role="tablist">
+        <button class="vs-tab-btn is-active" data-tab="t1" role="tab" aria-selected="true">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l9 4-9 4-9-4 9-4zM3 10l9 4 9-4M3 14l9 4 9-4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="lbl"><strong>طراحی اختصاصی</strong><small>UI/UX منحصر به برند شما</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button class="vs-tab-btn" data-tab="t2" role="tab" aria-selected="false">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="lbl"><strong>سرعت بارگذاری زیر ۲ ثانیه</strong><small>امتیاز ۹۰+ در PageSpeed</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button class="vs-tab-btn" data-tab="t3" role="tab" aria-selected="false">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></span>
+          <span class="lbl"><strong>سئوی فنی استاندارد</strong><small>اسکیما، سایت‌مپ، کور وایتالز</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button class="vs-tab-btn" data-tab="t4" role="tab" aria-selected="false">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="lbl"><strong>امنیت سطح بانکی</strong><small>SSL، فایروال، بک‌آپ روزانه</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+      </div>
+
+      <div class="vs-tabs__panels">
+        <div class="vs-panel is-active" data-panel="t1">
+          <h3>طراحی اختصاصی <span class="badge">کاملاً سفارشی</span></h3>
+          <p>هیچ قالب آماده‌ای، هیچ کپی از سایت‌های دیگر. تیم طراحی ما با تحلیل برند، مخاطب و هدف کسب‌وکار شما، یک تجربه بصری کاملاً اختصاصی می‌سازد.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>وایرفریم و طراحی نهایی در فیگما</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>۳ نوبت بازنگری رایگان در هر مرحله</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>سیستم طراحی (Design System) منسجم</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تست تعاملی روی کاربران واقعی</li>
+          </ul>
+          <div class="vs-panel__demo vs-panel__metrics">
+            <div><div class="num">۴۸٪</div><div class="lbl">افزایش نرخ تبدیل بعد از redesign</div></div>
+            <div><div class="num">۳.۲×</div><div class="lbl">زمان حضور کاربر در سایت</div></div>
+          </div>
+        </div>
+
+        <div class="vs-panel" data-panel="t2">
+          <h3>سرعت برق‌آسا <span class="badge">PageSpeed 95+</span></h3>
+          <p>هر ثانیه تأخیر = ۷٪ کاهش فروش. ما تک‌تک منابع سایت را برای سرعت بهینه می‌کنیم — از تصاویر گرفته تا کوئری‌های دیتابیس.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تبدیل خودکار تصاویر به WebP/AVIF</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Lazy load و Critical CSS</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>CDN با ۲۰۰+ نقطه حضور جهانی</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>کش چندلایه (Object + Page + Browser)</li>
+          </ul>
+          <div class="vs-panel__demo vs-panel__metrics">
+            <div><div class="num">۱.۲s</div><div class="lbl">میانگین زمان بارگذاری</div></div>
+            <div><div class="num">۹۸/۱۰۰</div><div class="lbl">امتیاز PageSpeed موبایل</div></div>
+          </div>
+        </div>
+
+        <div class="vs-panel" data-panel="t3">
+          <h3>سئوی فنی <span class="badge">Google Approved</span></h3>
+          <p>سایت زیبا اگر در گوگل دیده نشود، فقط یک بروشور دیجیتال است. ما زیرساخت سئو را از روز اول درست می‌سازیم.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Schema Markup در همه صفحات</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>سایت‌مپ XML و robots.txt بهینه</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>ساختار URL سئو-فرندلی</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Hreflang برای سایت‌های چندزبانه</li>
+          </ul>
+          <div class="vs-panel__demo vs-panel__metrics">
+            <div><div class="num">+۲۸۰٪</div><div class="lbl">رشد ترافیک ارگانیک سالانه</div></div>
+            <div><div class="num">۹۰٪</div><div class="lbl">صفحات Index شده در ۱ هفته</div></div>
+          </div>
+        </div>
+
+        <div class="vs-panel" data-panel="t4">
+          <h3>امنیت پیشرفته <span class="badge">Enterprise Grade</span></h3>
+          <p>یک هک می‌تواند سال‌ها اعتماد را نابود کند. سایت شما با لایه‌های متعدد امنیتی محافظت می‌شود.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>SSL گواهی Let's Encrypt یا EV</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>WAF (فایروال اپلیکیشن وب)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>محافظت در برابر brute force و DDoS</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بک‌آپ خودکار روزانه به مدت ۹۰ روز</li>
+          </ul>
+          <div class="vs-panel__demo vs-panel__metrics">
+            <div><div class="num">۹۹.۹٪</div><div class="lbl">آپ‌تایم تضمین‌شده</div></div>
+            <div><div class="num">صفر</div><div class="lbl">حادثه امنیتی در ۵ سال اخیر</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Bento Cards ===== -->
     <div class="vs-bento">
       <div class="vs-card c1">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l9 4-9 4-9-4 9-4zM3 10l9 4 9-4M3 14l9 4 9-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>طراحی کاملاً اختصاصی</h3>
-        <p>صفر تا صد سایت بر اساس برند، هدف و مخاطب شما طراحی می‌شود — نه قالب آماده، نه کپی.</p>
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4" stroke-linecap="round"/></svg></div>
+        <h3>طراحی Mobile-First</h3>
+        <p>بیش از ۷۰٪ کاربران ایرانی از موبایل وارد می‌شوند. ما اول برای موبایل طراحی می‌کنیم، بعد برای دسکتاپ.</p>
       </div>
       <div class="vs-card c2">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>سرعت بارگذاری زیر ۲ ثانیه</h3>
-        <p>بهینه‌سازی هسته‌ای Core Web Vitals، تصاویر، کد و سرور برای امتیاز ۹۰+ در PageSpeed.</p>
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>تحلیل و گزارش رشد</h3>
+        <p>اتصال خودکار به Google Analytics، Search Console و گزارش ماهانه از روند رشد سایت شما.</p>
+        <div class="vs-spark"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
       </div>
       <div class="vs-card c3">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></div>
-        <h3>سئوی فنی</h3>
-        <p>اسکیما، سایت‌مپ و آدرس‌دهی استاندارد در همان لحظه ساخت.</p>
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a4 4 0 01-4 4H7l-4 4V5a4 4 0 014-4h10a4 4 0 014 4v10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>پشتیبانی ۲۴/۷</h3>
+        <p>تیم ما همیشه در دسترس شماست — حتی شب‌ها و تعطیلات.</p>
       </div>
       <div class="vs-card c4">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>امنیت در سطح بانکی</h3>
-        <p>SSL، فایروال، بک‌آپ روزانه و محافظت در برابر حملات brute force.</p>
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></div>
+        <h3>چندزبانه + RTL</h3>
+        <p>سایت‌های دو/سه‌زبانه با پشتیبانی کامل از فارسی، عربی و انگلیسی.</p>
       </div>
       <div class="vs-card c5">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4" stroke-linecap="round"/></svg></div>
-        <h3>طراحی کاملاً ریسپانسیو</h3>
-        <p>تجربه بی‌نقص روی موبایل، تبلت و دسکتاپ — اولویت با موبایل.</p>
-      </div>
-      <div class="vs-card c6">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a4 4 0 01-4 4H7l-4 4V5a4 4 0 014-4h10a4 4 0 014 4v10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div>
-          <h3>پشتیبانی تخصصی، تا همیشه</h3>
-          <p>۶ ماه پشتیبانی رایگان پس از تحویل + پلن‌های نگهداری ماهانه برای رشد بلندمدت سایت شما.</p>
-        </div>
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14M22 4L12 14.01l-3-3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>تست A/B داخلی</h3>
+        <p>دو نسخه از یک صفحه را تست کنید و نسخه پرفروش‌تر را زنده نگه دارید.</p>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+(function(){
+  const root = document.querySelector('[data-vs-tabs]');
+  if(!root) return;
+  const btns = root.querySelectorAll('.vs-tab-btn');
+  const panels = root.querySelectorAll('.vs-panel');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.tab;
+      btns.forEach(b => {
+        const active = b === btn;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      panels.forEach(p => p.classList.toggle('is-active', p.dataset.panel === id));
+    });
+  });
+
+  // اتو ر translation هر ۵ ثانیه (در صورت بدون تعامل کاربر)
+  let auto = setInterval(() => {
+    const active = root.querySelector('.vs-tab-btn.is-active');
+    const all = Array.from(btns);
+    const idx = all.indexOf(active);
+    const next = all[(idx + 1) % all.length];
+    next.click();
+  }, 6000);
+  root.addEventListener('click', () => { clearInterval(auto); });
+})();
+</script>

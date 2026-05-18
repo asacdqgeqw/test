@@ -1,79 +1,239 @@
 <!-- ========================================================
-     سکشن ۸: CTA (دعوت به اقدام)
+     سکشن ۸: CTA خلاقانه با فرم سریع (نسخه v4)
      ======================================================== -->
 <style>
-:root{
+.vs-cta{
   --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
   --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+
+  padding:60px 24px 110px; background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl;
 }
-.vs-cta{padding:60px 24px 100px; background:#fff;
-  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl;}
-.vs-cta__inner{max-width:1240px;margin:0 auto;}
+.vs-cta__inner{max-width:1240px; margin:0 auto;}
 .vs-cta__wrap{
-  background:linear-gradient(135deg,var(--vs-primary) 0%,#0a0648 50%,var(--vs-secondary) 100%);
-  border-radius:32px;
-  padding:72px 48px; color:#fff;
-  position:relative; overflow:hidden; text-align:center;
+  background:
+    radial-gradient(60% 80% at 100% 0%, rgba(138,203,208,.40), transparent 60%),
+    radial-gradient(50% 80% at 0% 100%, rgba(18,139,224,.45), transparent 60%),
+    linear-gradient(135deg,var(--vs-primary) 0%,#0a0648 50%,var(--vs-secondary) 100%);
+  border-radius:36px;
+  padding:64px 56px; color:#fff;
+  position:relative; overflow:hidden;
+  display:grid; grid-template-columns:1.2fr 1fr; gap:48px; align-items:center;
 }
 .vs-cta__wrap::before{
-  content:""; position:absolute; inset:-50%;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(138,203,208,.40), transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(18,139,224,.50), transparent 50%);
-  animation:vs-cta-spin 18s linear infinite;
-  pointer-events:none;
+  content:""; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+          mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+  pointer-events:none; opacity:.5;
 }
-@keyframes vs-cta-spin{to{transform:rotate(360deg);}}
-.vs-cta__wrap > *{position:relative; z-index:1;}
+
+.vs-cta__left{position:relative;}
+.vs-cta__badge{
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,.10); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.20);
+  padding:8px 14px; border-radius:999px;
+  font-size:13px; font-weight:600; margin-bottom:20px; color:#fff;
+}
+.vs-cta__badge .green{
+  width:8px; height:8px; border-radius:50%; background:#22c55e;
+  box-shadow:0 0 0 4px rgba(34,197,94,.25);
+  animation:vs-blink-g 2s ease-in-out infinite;
+}
+@keyframes vs-blink-g{50%{opacity:.4;}}
+
 .vs-cta__wrap h2{
   color:#fff; font-size:clamp(28px,3.4vw,44px); font-weight:800;
-  margin:0 0 16px; line-height:1.4;
+  margin:0 0 14px; line-height:1.4; letter-spacing:-.5px;
 }
-.vs-cta__wrap h2 em{font-style:normal; color:var(--vs-cyan);}
+.vs-cta__wrap h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+}
 .vs-cta__wrap p{
-  color:rgba(255,255,255,.9); font-size:18px; line-height:1.9;
-  max-width:620px; margin:0 auto 32px;
+  color:rgba(255,255,255,.78); font-size:17px; line-height:1.95;
+  margin:0 0 28px; max-width:520px;
 }
-.vs-cta__row{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
-.vs-cta__btn{
-  display:inline-flex; align-items:center; gap:10px;
-  padding:16px 32px; border-radius:14px;
-  font-weight:700; font-size:16px; text-decoration:none;
-  transition:all .25s ease; cursor:pointer; border:none;
+.vs-cta__features{
+  display:flex; gap:20px; flex-wrap:wrap;
 }
-.vs-cta__btn--primary{
-  background:#fff; color:var(--vs-primary);
-  box-shadow:0 16px 36px rgba(0,0,0,.20);
+.vs-cta__features .item{
+  display:flex; align-items:center; gap:8px;
+  color:rgba(255,255,255,.92); font-size:14px;
 }
-.vs-cta__btn--primary:hover{transform:translateY(-2px); background:var(--vs-cream);}
-.vs-cta__btn--ghost{
-  background:rgba(255,255,255,.12); color:#fff;
-  border:1.5px solid rgba(255,255,255,.30);
-  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
-}
-.vs-cta__btn--ghost:hover{background:rgba(255,255,255,.22); border-color:#fff;}
-.vs-cta__btn svg{width:18px;height:18px;}
+.vs-cta__features .item svg{color:var(--vs-cyan);}
 
-@media (max-width:560px){
-  .vs-cta__wrap{padding:48px 24px;}
+/* فرم */
+.vs-cta__form{
+  background:rgba(255,255,255,.10); -webkit-backdrop-filter:blur(20px); backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:24px; padding:32px;
+  position:relative; z-index:1;
+}
+.vs-cta__form h3{
+  font-size:20px; font-weight:800; margin:0 0 6px; color:#fff;
+}
+.vs-cta__form .sub{
+  color:rgba(255,255,255,.65); font-size:13px; margin:0 0 20px;
+}
+.vs-cta__field{margin-bottom:14px;}
+.vs-cta__field label{
+  display:block; font-size:12px; color:rgba(255,255,255,.7);
+  margin-bottom:6px; font-weight:600;
+}
+.vs-cta__field input,
+.vs-cta__field select{
+  width:100%; padding:14px 18px;
+  background:rgba(0,0,0,.20);
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:12px;
+  color:#fff; font-family:inherit; font-size:14.5px;
+  transition:all .25s ease;
+}
+.vs-cta__field input::placeholder{color:rgba(255,255,255,.4);}
+.vs-cta__field input:focus,
+.vs-cta__field select:focus{
+  outline:none; border-color:var(--vs-cyan);
+  background:rgba(0,0,0,.30);
+  box-shadow:0 0 0 4px rgba(138,203,208,.15);
+}
+.vs-cta__field select option{background:#0a0648; color:#fff;}
+
+.vs-cta__submit{
+  width:100%; padding:16px 24px;
+  background:linear-gradient(135deg,var(--vs-cyan) 0%,var(--vs-cream) 100%);
+  color:var(--vs-primary);
+  border:none; border-radius:12px;
+  font-family:inherit; font-weight:800; font-size:15px;
+  cursor:pointer; transition:all .25s ease;
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  margin-top:8px;
+  box-shadow:0 16px 36px rgba(138,203,208,.25);
+}
+.vs-cta__submit:hover{
+  transform:translateY(-2px);
+  box-shadow:0 22px 48px rgba(138,203,208,.40);
+}
+.vs-cta__alt{
+  text-align:center; margin-top:14px;
+  color:rgba(255,255,255,.55); font-size:12px;
+}
+.vs-cta__alt a{
+  color:var(--vs-cyan); text-decoration:none; font-weight:700;
+}
+
+/* ===== Success State ===== */
+.vs-cta__success{
+  display:none; text-align:center; padding:32px 12px;
+}
+.vs-cta__success.is-on{display:block;}
+.vs-cta__form.is-sent{display:none;}
+.vs-cta__success .icon{
+  width:60px; height:60px; border-radius:50%;
+  background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));
+  display:grid; place-items:center; margin:0 auto 16px;
+  color:var(--vs-primary);
+}
+.vs-cta__success h3{font-size:22px; color:#fff; margin:0 0 8px;}
+.vs-cta__success p{color:rgba(255,255,255,.75); font-size:14px;}
+
+@media (max-width:880px){
+  .vs-cta__wrap{grid-template-columns:1fr; padding:40px 28px;}
+  .vs-cta__form{padding:24px;}
 }
 </style>
 
 <section class="vs-cta" id="contact">
   <div class="vs-cta__inner">
     <div class="vs-cta__wrap">
-      <h2>آماده‌ای سایتی بسازی که واقعاً <em>می‌فروشد</em>؟</h2>
-      <p>فقط چند دقیقه وقت بگذار برای یک مشاوره رایگان. ما به ایده‌ت گوش می‌دیم و راهکار دقیق پیشنهاد می‌دیم.</p>
-      <div class="vs-cta__row">
-        <a href="tel:+982100000000" class="vs-cta__btn vs-cta__btn--primary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.72 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0122 16.92z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          تماس فوری با کارشناس
-        </a>
-        <a href="https://wa.me/989000000000" class="vs-cta__btn vs-cta__btn--ghost">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.555-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.607z"/></svg>
-          گفت‌و‌گو در واتساپ
-        </a>
+      <div class="vs-cta__left">
+        <div class="vs-cta__badge">
+          <span class="green"></span>
+          <span>کارشناسان آنلاین — همین الان</span>
+        </div>
+        <h2>پروژه شما، یک <em>تماس</em> دور است.</h2>
+        <p>فرم را پر کنید یا مستقیم تماس بگیرید. در کمتر از ۲ ساعت کارشناس ما با شما تماس می‌گیرد و یک پیشنهاد اولیه ارائه می‌دهد.</p>
+
+        <div class="vs-cta__features">
+          <div class="item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            مشاوره رایگان
+          </div>
+          <div class="item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            بدون تعهد خرید
+          </div>
+          <div class="item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            پاسخ زیر ۲ ساعت
+          </div>
+        </div>
+      </div>
+
+      <form class="vs-cta__form" data-vs-form>
+        <h3>درخواست مشاوره رایگان</h3>
+        <p class="sub">فرم زیر را پر کنید — به سرعت پاسخ می‌دهیم.</p>
+
+        <div class="vs-cta__field">
+          <label>نام و نام خانوادگی</label>
+          <input type="text" placeholder="مثلاً: علی محمدی" required>
+        </div>
+        <div class="vs-cta__field">
+          <label>شماره تماس</label>
+          <input type="tel" placeholder="۰۹۱۲۳۴۵۶۷۸۹" required>
+        </div>
+        <div class="vs-cta__field">
+          <label>نوع پروژه</label>
+          <select required>
+            <option value="">انتخاب کنید…</option>
+            <option>سایت شرکتی / معرفی خدمات</option>
+            <option>فروشگاه اینترنتی</option>
+            <option>سایت خبری / محتوایی</option>
+            <option>پلتفرم اختصاصی</option>
+            <option>سایر</option>
+          </select>
+        </div>
+
+        <button type="submit" class="vs-cta__submit">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          ارسال درخواست
+        </button>
+
+        <div class="vs-cta__alt">
+          یا تماس مستقیم: <a href="tel:+982100000000">۰۲۱-۰۰۰۰۰۰۰۰</a>
+          ·
+          <a href="https://wa.me/989000000000">واتساپ</a>
+        </div>
+      </form>
+
+      <div class="vs-cta__success" data-vs-success>
+        <div class="icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>درخواست شما ثبت شد ✓</h3>
+        <p>کارشناس ما در کمتر از ۲ ساعت با شما تماس می‌گیرد.</p>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+(function(){
+  const form = document.querySelector('[data-vs-form]');
+  const success = document.querySelector('[data-vs-success]');
+  if(!form) return;
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    // اینجا می‌توانید درخواست واقعی به سرور بفرستید
+    // fetch('/api/lead', { method:'POST', body: new FormData(form) });
+    form.classList.add('is-sent');
+    success.classList.add('is-on');
+  });
+})();
+</script>
