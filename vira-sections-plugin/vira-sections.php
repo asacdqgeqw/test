@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Vira Sections
  * Plugin URI:        https://viraseo.com/
- * Description:       افزونه المنتور حاوی ۹ ویجت آماده و حرفه‌ای برای ساخت لندینگ‌پیج: Hero، خدمات، فرآیند، تب‌ها، پکیج‌ها، نظرات، FAQ، تکنولوژی و فرم تماس. تمام متن‌ها، رنگ‌ها و تصاویر کاملاً قابل ویرایش.
+ * Description:       افزونه المنتور حاوی ۱۲ ویجت آماده و حرفه‌ای برای ساخت لندینگ‌پیج: Hero، خدمات، فرآیند، تب‌ها، پکیج‌ها، نظرات، FAQ، تکنولوژی، فرم تماس، Trust Strip + Showcase، Stats Counter + Compare و Curriculum. تمام متن‌ها، رنگ‌ها و تصاویر کاملاً قابل ویرایش.
  * Version:           1.0.0
  * Author:            Vira SEO Team
  * Author URI:        https://viraseo.com/
@@ -127,6 +127,9 @@ final class Vira_Sections_Plugin {
 			'class-testimonials-slider.php'  => 'Vira_Sections_Widget_Testimonials_Slider',
 			'class-faq-search.php'           => 'Vira_Sections_Widget_Faq_Search',
 			'class-cta-form.php'             => 'Vira_Sections_Widget_Cta_Form',
+			'class-trust-strip.php'          => 'Vira_Sections_Widget_Trust_Strip',
+			'class-stats-counter.php'        => 'Vira_Sections_Widget_Stats_Counter',
+			'class-curriculum.php'           => 'Vira_Sections_Widget_Curriculum',
 		);
 
 		foreach ( $widgets as $file => $class ) {
@@ -228,7 +231,7 @@ final class Vira_Sections_Plugin {
 				<span style="background:#22c55e;color:#fff;font-size:12px;padding:4px 10px;border-radius:6px;font-weight:700;">v<?php echo esc_html( VIRA_SECTIONS_VERSION ); ?></span>
 			</h1>
 			<p style="font-size:15px;color:#475569;line-height:1.8;max-width:680px;">
-				<?php esc_html_e( 'افزونه ویرا سکشنز شامل ۹ ویجت تعاملی و حرفه‌ای برای المنتور است که کاملاً قابل ویرایش هستند. متن، رنگ، تصاویر و استایل هر ویجت را می‌توانید از پنل المنتور تغییر دهید.', 'vira-sections' ); ?>
+				<?php esc_html_e( 'افزونه ویرا سکشنز شامل ۱۲ ویجت تعاملی و حرفه‌ای برای المنتور است که کاملاً قابل ویرایش هستند. متن، رنگ، تصاویر و استایل هر ویجت را می‌توانید از پنل المنتور تغییر دهید.', 'vira-sections' ); ?>
 			</p>
 
 			<form method="post" action="options.php" style="margin-top:24px;background:#fff;padding:24px;border:1px solid #ccd0d4;border-radius:8px;">
@@ -259,6 +262,9 @@ final class Vira_Sections_Plugin {
 					<li><strong>Testimonials Slider (Vira)</strong> — اسلایدر ۳بعدی نظرات</li>
 					<li><strong>FAQ Search (Vira)</strong> — سوالات متداول با جستجو و فیلتر</li>
 					<li><strong>CTA Form (Vira)</strong> — دعوت به اقدام با فرم تماس</li>
+					<li><strong>Trust Strip + Showcase (Vira)</strong> — تب‌های دسکتاپ/تبلت/موبایل با موکاپ متغیر و نوار لوگوها (دو حالت)</li>
+					<li><strong>Stats Counter + Compare (Vira)</strong> — شمارنده‌های انیمیشنی + مقایسه قبل/بعد با تب‌های قابل سوییچ</li>
+					<li><strong>Curriculum Modules (Vira)</strong> — آکاردئون سرفصل دوره با چیپ‌های اطلاعات و لیست تاپیک‌ها</li>
 				</ol>
 				<p style="margin-bottom:0;"><strong><?php esc_html_e( 'نحوه استفاده:', 'vira-sections' ); ?></strong> <?php esc_html_e( 'به پنل المنتور برو، در پنل ویجت‌ها دنبال "Vira Sections" بگرد و ویجت دلخواه رو روی صفحه بکش.', 'vira-sections' ); ?></p>
 			</div>
