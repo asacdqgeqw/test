@@ -1,0 +1,371 @@
+<!-- ========================================================
+     سکشن ۴: CURRICULUM — سرفصل دوره آموزش سئو
+     ======================================================== -->
+<style>
+.vs-trn-curriculum{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-amber:#F59E0B;--vs-amber-soft:rgba(245,158,11,.15);
+  padding:110px 24px;background:linear-gradient(180deg,#FAF6EC 0%,#fff 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-trn-curriculum__inner{max-width:1180px;margin:0 auto;position:relative;z-index:1;}
+.vs-trn-curriculum .vs-section-head{text-align:center;margin-bottom:48px;}
+.vs-trn-curriculum .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-amber-soft);color:#B45309;
+  border:1px solid rgba(245,158,11,.30);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-trn-curriculum .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-amber);box-shadow:0 0 0 4px rgba(245,158,11,.18);display:inline-block;}
+.vs-trn-curriculum h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-trn-curriculum h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-amber),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-trn-curriculum .vs-section-head p{color:#64748B;font-size:18px;max-width:680px;margin:0 auto 20px;}
+
+.vs-trn-curriculum__totals{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#fff;border:1.5px solid var(--vs-amber);
+  padding:10px 20px;border-radius:14px;
+  font-size:14.5px;font-weight:700;color:var(--vs-ink);
+  box-shadow:0 6px 20px rgba(245,158,11,.12);
+}
+.vs-trn-curriculum__totals strong{color:var(--vs-amber);font-weight:900;}
+.vs-trn-curriculum__totals .sep{color:#CBD5E1;}
+
+.vs-trn-modules{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:48px;}
+@media(max-width:780px){.vs-trn-modules{grid-template-columns:1fr;}}
+
+.vs-trn-mod{
+  background:#fff;border:1.5px solid #E2E8F0;border-radius:18px;
+  overflow:hidden;transition:all .35s cubic-bezier(.4,0,.2,1);
+  position:relative;
+}
+.vs-trn-mod:hover{border-color:rgba(245,158,11,.40);transform:translateY(-2px);box-shadow:0 10px 28px rgba(23,12,121,.06);}
+.vs-trn-mod.is-open{
+  border-color:var(--vs-amber);
+  box-shadow:0 18px 40px rgba(245,158,11,.14);
+  grid-column:1 / -1;
+}
+.vs-trn-mod__head{
+  display:flex;align-items:center;gap:14px;
+  padding:18px 20px;cursor:pointer;width:100%;
+  border:none;background:transparent;text-align:right;
+  font-family:inherit;
+}
+.vs-trn-mod__num{
+  width:48px;height:48px;border-radius:14px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--vs-amber),#FBBF24);
+  color:#fff;font-weight:900;font-size:18px;
+  display:grid;place-items:center;
+  box-shadow:0 6px 16px rgba(245,158,11,.30);
+}
+.vs-trn-mod__title{flex:1;}
+.vs-trn-mod__title strong{display:block;font-size:16.5px;font-weight:800;color:var(--vs-ink);margin-bottom:3px;}
+.vs-trn-mod__title span{font-size:12.5px;color:#64748B;font-weight:500;}
+.vs-trn-mod__chev{
+  width:32px;height:32px;border-radius:10px;flex-shrink:0;
+  background:#F1F5F9;color:#64748B;
+  display:grid;place-items:center;
+  transition:all .35s ease;
+}
+.vs-trn-mod.is-open .vs-trn-mod__chev{
+  background:var(--vs-amber-soft);color:var(--vs-amber);
+  transform:rotate(180deg);
+}
+
+.vs-trn-mod__body{
+  max-height:0;overflow:hidden;
+  transition:max-height .5s cubic-bezier(.4,0,.2,1),padding .3s ease;
+  padding:0 20px;
+}
+.vs-trn-mod.is-open .vs-trn-mod__body{max-height:600px;padding:0 20px 22px;}
+.vs-trn-mod__meta{
+  display:flex;flex-wrap:wrap;gap:10px;
+  padding:14px 0;border-top:1px dashed #E2E8F0;margin-bottom:14px;
+}
+.vs-trn-mod__chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#F8FAFC;border:1px solid #E2E8F0;
+  padding:6px 12px;border-radius:10px;
+  font-size:13px;font-weight:600;color:#475569;
+}
+.vs-trn-mod__chip svg{color:var(--vs-amber);}
+.vs-trn-mod__topics{
+  list-style:none;padding:0;margin:0;
+  display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;
+}
+@media(max-width:560px){.vs-trn-mod__topics{grid-template-columns:1fr;}}
+.vs-trn-mod__topics li{
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:14px;color:#475569;line-height:1.7;
+}
+.vs-trn-mod__topics li svg{flex-shrink:0;margin-top:5px;color:var(--vs-amber);}
+
+@media(max-width:560px){.vs-trn-mod__head{padding:14px 16px;}.vs-trn-mod__num{width:42px;height:42px;font-size:16px;}}
+</style>
+
+
+<section class="vs-trn-curriculum" data-vs-trn-curriculum>
+  <div class="vs-trn-curriculum__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>سرفصل آموزش</span>
+      <h2>چه چیزی <em>یاد خواهی گرفت؟</em></h2>
+      <p>یک مسیر گام‌به‌گام از مبانی تا حرفه‌ای — طراحی‌شده توسط متخصصان فعال در پروژه‌های واقعی سئو.</p>
+      <div class="vs-trn-curriculum__totals">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" style="color:var(--vs-amber)"><path d="M2 3h20v14H2zM6 21h12M12 17v4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <strong>۸ ماژول</strong>
+        <span class="sep">·</span>
+        <strong>۴۰+ ساعت آموزش</strong>
+      </div>
+    </div>
+
+    <div class="vs-trn-modules">
+      <!-- 1 -->
+      <div class="vs-trn-mod is-open" data-mod>
+        <button class="vs-trn-mod__head" type="button">
+          <div class="vs-trn-mod__num">۱</div>
+          <div class="vs-trn-mod__title">
+            <strong>مبانی سئو و الگوریتم‌های گوگل</strong>
+            <span>پایه‌گذاری دانش سئو از صفر</span>
+          </div>
+          <div class="vs-trn-mod__chev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="vs-trn-mod__body">
+          <div class="vs-trn-mod__meta">
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۴ جلسه</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>۶ ساعت</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>سطح: مقدماتی</span>
+          </div>
+          <ul class="vs-trn-mod__topics">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>مفاهیم پایه و تاریخچه سئو</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>نحوه کار موتورهای جستجو (Crawl, Index, Rank)</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>الگوریتم‌های مهم گوگل (Panda, Penguin, BERT, Helpful Content)</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>E-E-A-T و فاکتورهای کیفیت محتوا</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تفاوت White-Hat و Black-Hat SEO</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>نقشه راه شخصی برای ورود به سئو</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="vs-trn-mod" data-mod>
+        <button class="vs-trn-mod__head" type="button">
+          <div class="vs-trn-mod__num">۲</div>
+          <div class="vs-trn-mod__title">
+            <strong>تحقیق کلمات کلیدی حرفه‌ای</strong>
+            <span>پیدا کردن کلمات طلایی برای رتبه گرفتن</span>
+          </div>
+          <div class="vs-trn-mod__chev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="vs-trn-mod__body">
+          <div class="vs-trn-mod__meta">
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۵ جلسه</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>۷ ساعت</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>سطح: متوسط</span>
+          </div>
+          <ul class="vs-trn-mod__topics">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>مفاهیم Search Volume، KD و Search Intent</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>کار با Ahrefs و Semrush در تحقیق کلمات</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>کلمات Long-tail و Question-based</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Topic Cluster و Keyword Mapping</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تحلیل کلمات کلیدی رقبا</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پروژه عملی: ساخت Keyword Plan کامل</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="vs-trn-mod" data-mod>
+        <button class="vs-trn-mod__head" type="button">
+          <div class="vs-trn-mod__num">۳</div>
+          <div class="vs-trn-mod__title">
+            <strong>سئو فنی و Core Web Vitals</strong>
+            <span>زیرساخت قدرتمند برای رتبه‌گیری</span>
+          </div>
+          <div class="vs-trn-mod__chev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="vs-trn-mod__body">
+          <div class="vs-trn-mod__meta">
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۶ جلسه</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>۸ ساعت</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>سطح: پیشرفته</span>
+          </div>
+          <ul class="vs-trn-mod__topics">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Crawlability و Indexability سایت</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Core Web Vitals (LCP, INP, CLS)</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Schema Markup و Structured Data</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>robots.txt، sitemap.xml و canonical</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>HTTPS، Mobile-First و JavaScript SEO</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پروژه عملی: آدیت فنی یک سایت واقعی</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="vs-trn-mod" data-mod>
+        <button class="vs-trn-mod__head" type="button">
+          <div class="vs-trn-mod__num">۴</div>
+          <div class="vs-trn-mod__title">
+            <strong>سئو محتوا و Content Strategy</strong>
+            <span>محتوایی که گوگل و کاربر هر دو دوست دارند</span>
+          </div>
+          <div class="vs-trn-mod__chev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="vs-trn-mod__body">
+          <div class="vs-trn-mod__meta">
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۵ جلسه</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>۷ ساعت</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>سطح: متوسط</span>
+          </div>
+          <ul class="vs-trn-mod__topics">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اصول نوشتن محتوای SEO-Friendly</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>ساختار هدینگ‌ها و Featured Snippets</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Search Intent و انواع آن</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Pillar Pages و Topic Clusters</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بازنشر و بروزرسانی محتوای قدیمی</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تقویم محتوایی ۶ ماهه برای کسب‌وکار</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="vs-trn-mod" data-mod>
+        <button class="vs-trn-mod__head" type="button">
+          <div class="vs-trn-mod__num">۵</div>
+          <div class="vs-trn-mod__title">
+            <strong>لینک‌سازی White-Hat</strong>
+            <span>بک‌لینک‌های واقعی و پایدار</span>
+          </div>
+          <div class="vs-trn-mod__chev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="vs-trn-mod__body">
+          <div class="vs-trn-mod__meta">
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۴ جلسه</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>۶ ساعت</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>سطح: پیشرفته</span>
+          </div>
+          <ul class="vs-trn-mod__topics">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اصول و فاکتورهای کیفیت بک‌لینک</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Guest Posting و Digital PR</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Broken Link Building و Skyscraper</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تحلیل پروفایل لینک رقبا</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Disavow و حذف لینک‌های مضر</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پروژه عملی: کمپین لینک‌سازی واقعی</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="vs-trn-mod" data-mod>
+        <button class="vs-trn-mod__head" type="button">
+          <div class="vs-trn-mod__num">۶</div>
+          <div class="vs-trn-mod__title">
+            <strong>ابزارهای سئو</strong>
+            <span>Ahrefs · Semrush · Search Console · GA4</span>
+          </div>
+          <div class="vs-trn-mod__chev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="vs-trn-mod__body">
+          <div class="vs-trn-mod__meta">
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۶ جلسه</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>۸ ساعت</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>سطح: متوسط تا پیشرفته</span>
+          </div>
+          <ul class="vs-trn-mod__topics">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>کار حرفه‌ای با Ahrefs (Site Explorer, Keywords Explorer)</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Semrush برای تحلیل رقبا و کمپین</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Google Search Console — کاربردی</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Google Analytics 4 و گزارش‌های سئو</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Screaming Frog، PageSpeed Insights</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Looker Studio برای داشبوردهای حرفه‌ای</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="vs-trn-mod" data-mod>
+        <button class="vs-trn-mod__head" type="button">
+          <div class="vs-trn-mod__num">۷</div>
+          <div class="vs-trn-mod__title">
+            <strong>سئو محلی و Google Business</strong>
+            <span>دیده شدن در نقشه و جستجوهای محلی تبریز</span>
+          </div>
+          <div class="vs-trn-mod__chev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="vs-trn-mod__body">
+          <div class="vs-trn-mod__meta">
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۳ جلسه</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>۴ ساعت</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>سطح: متوسط</span>
+          </div>
+          <ul class="vs-trn-mod__topics">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>راه‌اندازی و بهینه‌سازی Google Business Profile</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بهینه‌سازی برای Map Pack و Local 3-Pack</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>NAP Citations و Local Business Schema</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>مدیریت ریویوها و واکنش حرفه‌ای</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>صفحات Location و سئو چندشهری</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>کیس‌استادی کسب‌وکارهای موفق تبریز</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="vs-trn-mod" data-mod>
+        <button class="vs-trn-mod__head" type="button">
+          <div class="vs-trn-mod__num">۸</div>
+          <div class="vs-trn-mod__title">
+            <strong>گزارش‌گیری و KPIها</strong>
+            <span>اندازه‌گیری دقیق نتایج سئو</span>
+          </div>
+          <div class="vs-trn-mod__chev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="vs-trn-mod__body">
+          <div class="vs-trn-mod__meta">
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۳ جلسه</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>۴ ساعت</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>سطح: متوسط</span>
+          </div>
+          <ul class="vs-trn-mod__topics">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تعیین KPIهای مهم سئو (Organic Traffic, CTR, Conversions)</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>ساخت داشبورد در Looker Studio</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>گزارش ماهانه برای کارفرما / مدیر</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>محاسبه ROI واقعی سئو</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تحلیل روند رقبا در طول زمان</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پروژه نهایی: ارائه گزارش حرفه‌ای</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const section=document.querySelector('[data-vs-trn-curriculum]');if(!section)return;
+  const mods=section.querySelectorAll('[data-mod]');
+  mods.forEach(mod=>{
+    mod.querySelector('.vs-trn-mod__head').addEventListener('click',()=>{
+      const wasOpen=mod.classList.contains('is-open');
+      mods.forEach(m=>m.classList.remove('is-open'));
+      if(!wasOpen)mod.classList.add('is-open');
+    });
+  });
+})();
+</script>

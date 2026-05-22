@@ -1,0 +1,542 @@
+<!-- ========================================================
+     سکشن ۱: HERO خلاقانه و تعاملی (نسخه v4)
+     ویژگی‌ها:
+     - پس‌زمینه Aurora متحرک
+     - اسپات‌لایت موس (cursor-follow glow)
+     - کلمات چرخان (rotating words)
+     - موکاپ ۳بعدی با Tilt
+     - Marquee متحرک
+     - badge ضربان‌دار
+     ======================================================== -->
+<style>
+.vs-hero{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+
+  position:relative; min-height:90vh; padding:90px 24px 0; overflow:hidden;
+  background:#0a0640;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl;
+  color:#fff; isolation:isolate;
+}
+
+/* ===== Aurora Background ===== */
+.vs-hero::before, .vs-hero::after{
+  content:""; position:absolute; border-radius:50%; filter:blur(90px);
+  pointer-events:none; z-index:0; mix-blend-mode:screen; opacity:.55;
+}
+.vs-hero::before{
+  width:60vw; height:60vw; top:-10vw; right:-10vw;
+  background:radial-gradient(circle,#128BE0 0%,#170C79 60%,transparent 70%);
+  animation:vs-aurora1 14s ease-in-out infinite;
+}
+.vs-hero::after{
+  width:55vw; height:55vw; bottom:-15vw; left:-10vw;
+  background:radial-gradient(circle,#8ACBD0 0%,#0170B9 50%,transparent 70%);
+  animation:vs-aurora2 16s ease-in-out infinite;
+}
+@keyframes vs-aurora1{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(-10vw,10vh) scale(1.15)}
+}
+@keyframes vs-aurora2{
+  0%,100%{transform:translate(0,0) scale(1)}
+  50%{transform:translate(10vw,-8vh) scale(1.1)}
+}
+
+/* ===== Spotlight (موس‌فالو) ===== */
+.vs-hero__spot{
+  position:absolute; inset:0; pointer-events:none; z-index:1;
+  background:radial-gradient(
+    600px circle at var(--mx,50%) var(--my,30%),
+    rgba(138,203,208,.18), transparent 40%);
+  transition:background .15s ease;
+}
+
+/* ===== Grid Pattern ===== */
+.vs-hero__grid-bg{
+  position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.35;
+  background-image:
+    linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);
+  background-size:60px 60px;
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,#000,transparent 70%);
+          mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,#000,transparent 70%);
+}
+
+/* ===== Wrapper ===== */
+.vs-hero__wrap{
+  position:relative; z-index:2; max-width:1240px; margin:0 auto;
+  display:grid; grid-template-columns:1.1fr 1fr; gap:60px; align-items:center;
+  min-height:calc(90vh - 90px); padding-bottom:90px;
+}
+
+/* ===== Top Badge ===== */
+.vs-hero__badge{
+  display:inline-flex; align-items:center; gap:10px;
+  background:rgba(255,255,255,.08); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.15);
+  padding:8px 8px 8px 18px; border-radius:999px;
+  font-size:13px; font-weight:600; margin-bottom:22px; color:#fff;
+}
+.vs-hero__badge .pulse{
+  width:24px; height:24px; border-radius:50%;
+  background:linear-gradient(135deg,#8ACBD0,#128BE0);
+  display:grid; place-items:center;
+  position:relative;
+  font-size:11px; font-weight:900; color:#0a0640;
+}
+.vs-hero__badge .pulse::before{
+  content:""; position:absolute; inset:-6px; border-radius:50%;
+  border:2px solid rgba(138,203,208,.5);
+  animation:vs-pulse 2s ease-out infinite;
+}
+@keyframes vs-pulse{
+  0%{transform:scale(1);opacity:1}
+  100%{transform:scale(1.6);opacity:0}
+}
+.vs-hero__badge .arrow{
+  display:inline-flex; transition:transform .25s ease;
+}
+.vs-hero__badge:hover .arrow{transform:translateX(-4px);}
+
+/* ===== Title with Rotating Words ===== */
+.vs-hero h1{
+  font-size:clamp(34px,5vw,68px); font-weight:900;
+  line-height:1.25; letter-spacing:-1px; margin:0 0 22px; color:#fff;
+}
+.vs-hero h1 .rot{
+  display:inline-block; min-width:0;
+  background:linear-gradient(135deg,#8ACBD0 0%,#128BE0 50%,#EFE3CA 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+  position:relative;
+}
+.vs-hero h1 .rot__list{
+  display:inline-flex; flex-direction:column; vertical-align:top;
+  height:1.25em; overflow:hidden;
+}
+.vs-hero h1 .rot__list span{
+  display:block; height:1.25em;
+  animation:vs-rotate 9s steps(1) infinite;
+}
+@keyframes vs-rotate{
+  0%,28%   {transform:translateY(0);}
+  33%,61%  {transform:translateY(-1.25em);}
+  66%,94%  {transform:translateY(-2.5em);}
+  100%     {transform:translateY(0);}
+}
+.vs-hero h1 .rot::after{
+  content:""; display:inline-block; width:3px; height:.9em;
+  background:#8ACBD0; vertical-align:middle; margin-right:4px;
+  animation:vs-blink 1s steps(2) infinite;
+}
+@keyframes vs-blink{50%{opacity:0}}
+
+.vs-hero p.lead{
+  font-size:19px; color:rgba(255,255,255,.78); line-height:1.95;
+  max-width:560px; margin:0 0 36px;
+}
+
+/* ===== CTA Group ===== */
+.vs-hero__cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:42px;}
+.vs-btn{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:16px 30px; border-radius:14px;
+  font-weight:700; font-size:16px; text-decoration:none;
+  transition:all .25s ease; cursor:pointer; border:none; position:relative; overflow:hidden;
+}
+.vs-btn--primary{
+  background:linear-gradient(135deg,#128BE0 0%,#8ACBD0 100%);
+  color:#0a0640; box-shadow:0 18px 40px rgba(18,139,224,.40);
+}
+.vs-btn--primary::before{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(135deg,#EFE3CA 0%,#8ACBD0 100%);
+  opacity:0; transition:opacity .3s ease;
+}
+.vs-btn--primary:hover::before{opacity:1;}
+.vs-btn--primary:hover{transform:translateY(-2px); box-shadow:0 24px 56px rgba(138,203,208,.50);}
+.vs-btn--primary > *{position:relative; z-index:1;}
+
+.vs-btn--ghost{
+  background:rgba(255,255,255,.06); color:#fff;
+  border:1.5px solid rgba(255,255,255,.18);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+}
+.vs-btn--ghost:hover{background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.40);}
+.vs-btn svg{width:18px;height:18px;}
+.vs-btn--ghost .play{
+  width:28px; height:28px; border-radius:50%;
+  background:rgba(138,203,208,.20); display:grid; place-items:center;
+}
+
+/* ===== Stats ===== */
+.vs-hero__stats{
+  display:flex; gap:36px; flex-wrap:wrap; padding-top:28px;
+  border-top:1px solid rgba(255,255,255,.10);
+}
+.vs-stat .num{
+  font-size:32px; font-weight:900; line-height:1; color:#fff;
+  display:flex; align-items:baseline;
+}
+.vs-stat .num em{
+  font-style:normal;
+  background:linear-gradient(135deg,#8ACBD0,#EFE3CA);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+.vs-stat .lbl{color:rgba(255,255,255,.55); font-size:13px; margin-top:6px;}
+
+/* ============ Visual: 3D Tilt Mockup ============ */
+.vs-visual{
+  position:relative; perspective:1500px;
+  display:flex; align-items:center; justify-content:center;
+}
+.vs-visual__stage{
+  position:relative; width:100%; max-width:560px; aspect-ratio:1/1;
+  transform-style:preserve-3d;
+  transition:transform .15s ease-out;
+}
+
+/* لپ‌تاپ */
+.vs-laptop{
+  position:absolute; inset:8% 6%; transform-style:preserve-3d;
+  border-radius:18px; overflow:hidden;
+  background:#0a0640;
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.55),
+    0 0 0 8px #1a1450,
+    0 0 0 9px rgba(255,255,255,.06);
+  transform:translateZ(0);
+}
+.vs-laptop__bar{
+  height:32px; background:#0e0a3e;
+  display:flex; align-items:center; gap:6px; padding:0 12px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.vs-laptop__bar i{width:10px;height:10px;border-radius:50%;background:#FF6B6B;display:inline-block;}
+.vs-laptop__bar i:nth-child(2){background:#FFD93D}
+.vs-laptop__bar i:nth-child(3){background:#6BCB77}
+.vs-laptop__bar .url{
+  flex:1; margin-right:14px; height:18px; border-radius:5px;
+  background:rgba(255,255,255,.05);
+  display:flex; align-items:center; padding:0 10px;
+  font-size:11px; color:rgba(255,255,255,.4);
+}
+.vs-laptop__screen{
+  padding:18px; display:flex; flex-direction:column; gap:12px;
+  background:linear-gradient(160deg,#0a0640 0%,#1a1268 100%);
+  height:calc(100% - 32px);
+}
+.vs-laptop__hero{
+  height:88px; border-radius:10px;
+  background:
+    radial-gradient(circle at 80% 20%,rgba(138,203,208,.4),transparent 50%),
+    linear-gradient(135deg,#170C79,#128BE0);
+  position:relative; overflow:hidden;
+}
+.vs-laptop__hero::before{
+  content:""; position:absolute; left:14px; top:18px; width:40%; height:8px;
+  background:rgba(255,255,255,.7); border-radius:4px;
+}
+.vs-laptop__hero::after{
+  content:""; position:absolute; left:14px; top:34px; width:60%; height:6px;
+  background:rgba(255,255,255,.4); border-radius:3px;
+}
+.vs-laptop__row{height:8px; background:rgba(255,255,255,.08); border-radius:4px;}
+.vs-laptop__row--short{width:55%;}
+.vs-laptop__grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:auto;}
+.vs-laptop__grid > div{
+  height:48px; border-radius:8px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+}
+.vs-laptop__grid > div:nth-child(2){
+  background:linear-gradient(135deg,rgba(138,203,208,.25),rgba(18,139,224,.25));
+  border-color:rgba(138,203,208,.3);
+}
+
+/* موبایل کوچک کنار لپ‌تاپ */
+.vs-phone{
+  position:absolute; left:-2%; bottom:8%;
+  width:120px; aspect-ratio:9/19;
+  border-radius:24px;
+  background:#0e0a3e;
+  border:1px solid rgba(255,255,255,.10);
+  padding:6px;
+  box-shadow:0 30px 60px rgba(0,0,0,.5);
+  transform:translateZ(80px) rotate(-8deg);
+  overflow:hidden;
+}
+.vs-phone__notch{
+  width:40px; height:14px; background:#0a0640;
+  margin:0 auto; border-radius:0 0 10px 10px;
+  position:relative; z-index:2;
+}
+.vs-phone__screen{
+  position:absolute; inset:6px; border-radius:18px;
+  background:linear-gradient(160deg,#0a0640,#170C79);
+  padding:18px 8px 8px;
+  display:flex; flex-direction:column; gap:6px;
+}
+.vs-phone__hero{
+  height:36px; border-radius:8px;
+  background:linear-gradient(135deg,#128BE0,#8ACBD0);
+}
+.vs-phone__line{height:5px; background:rgba(255,255,255,.10); border-radius:3px;}
+.vs-phone__line--s{width:60%;}
+.vs-phone__btn{
+  margin-top:6px; height:18px; border-radius:6px;
+  background:linear-gradient(90deg,#8ACBD0,#EFE3CA);
+}
+
+/* کارت‌های شناور با glassmorphism */
+.vs-fcard{
+  position:absolute; z-index:3;
+  background:rgba(255,255,255,.10); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:18px; padding:12px 16px;
+  display:flex; align-items:center; gap:12px;
+  box-shadow:0 24px 50px rgba(0,0,0,.30);
+  color:#fff;
+  animation:vs-floatcard 6s ease-in-out infinite;
+}
+.vs-fcard .ic{
+  width:42px; height:42px; border-radius:12px;
+  display:grid; place-items:center; flex-shrink:0;
+}
+.vs-fcard .t{font-weight:700; font-size:14px;}
+.vs-fcard .s{font-size:11px; color:rgba(255,255,255,.65);}
+
+.vs-fcard--1{top:4%; right:-4%; transform:translateZ(60px); animation-delay:.2s;}
+.vs-fcard--1 .ic{background:linear-gradient(135deg,#128BE0,#8ACBD0);}
+.vs-fcard--2{bottom:4%; left:0%; transform:translateZ(50px); animation-delay:1.4s;}
+.vs-fcard--2 .ic{background:linear-gradient(135deg,#EFE3CA,#8ACBD0); color:#170C79;}
+.vs-fcard--3{top:42%; right:-8%; transform:translateZ(70px); animation-delay:2.6s;}
+.vs-fcard--3 .ic{background:linear-gradient(135deg,#0170B9,#170C79); border:1px solid rgba(255,255,255,.20);}
+
+@keyframes vs-floatcard{
+  0%,100%{translate:0 0;}
+  50%{translate:0 -10px;}
+}
+
+/* ===== Marquee نوار اعتماد پایین ===== */
+.vs-marquee{
+  position:relative; z-index:2;
+  margin:0 -24px;
+  background:rgba(0,0,0,.35); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  border-block:1px solid rgba(255,255,255,.08);
+  overflow:hidden;
+}
+.vs-marquee__track{
+  display:flex; gap:60px; padding:18px 0; width:max-content;
+  animation:vs-marquee 28s linear infinite;
+}
+.vs-marquee__track span{
+  color:rgba(255,255,255,.55); font-weight:700; font-size:18px;
+  letter-spacing:-.5px; white-space:nowrap;
+  display:inline-flex; align-items:center; gap:60px;
+}
+.vs-marquee__track span::after{
+  content:"✦"; color:#128BE0; opacity:.7;
+}
+@keyframes vs-marquee{to{transform:translateX(50%);}}
+
+/* responsive */
+@media (max-width:980px){
+  .vs-hero__wrap{grid-template-columns:1fr; gap:40px; padding-bottom:60px;}
+  .vs-hero{min-height:auto; padding:60px 20px 0;}
+  .vs-visual{order:-1; max-width:420px; margin:0 auto;}
+  .vs-fcard--3{display:none;}
+}
+@media (max-width:560px){
+  .vs-hero__stats{gap:20px;}
+  .vs-stat .num{font-size:24px;}
+  .vs-fcard{transform:none !important;}
+  .vs-marquee__track span{font-size:15px; gap:40px;}
+}
+</style>
+
+<section class="vs-hero" data-vs-hero>
+  <div class="vs-hero__grid-bg"></div>
+  <div class="vs-hero__spot"></div>
+
+  <div class="vs-hero__wrap">
+    <div class="vs-hero__content">
+      <a href="#cases" class="vs-hero__badge">
+        <span class="pulse">+</span>
+        <span>۴۸ پروژه فعال در حال انجام</span>
+        <span class="arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+      <h1>
+        ما سایت‌هایی می‌سازیم که<br>
+        <span class="rot">
+          <span class="rot__list">
+            <span>می‌فروشند</span>
+            <span>رشد می‌کنند</span>
+            <span>ماندگار می‌شوند</span>
+          </span>
+        </span>
+      </h1>
+
+      <p class="lead">
+        طراحی اختصاصی، سرعت برق‌آسا و سئوی فنی استاندارد —
+        همه در یک پروژه. ما کسب‌وکار شما را به <strong style="color:#8ACBD0">برند</strong> تبدیل می‌کنیم،
+        نه فقط یک سایت در گوشه‌ای از اینترنت.
+      </p>
+
+      <div class="vs-hero__cta">
+        <a href="#contact" class="vs-btn vs-btn--primary">
+          <span>شروع پروژه من</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#showcase" class="vs-btn vs-btn--ghost">
+          <span class="play">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <span>مشاهده نمونه‌کارها</span>
+        </a>
+      </div>
+
+      <div class="vs-hero__stats">
+        <div class="vs-stat">
+          <div class="num" data-counter="450" data-suffix="+"><em>۰</em></div>
+          <div class="lbl">پروژه موفق</div>
+        </div>
+        <div class="vs-stat">
+          <div class="num" data-counter="98" data-suffix="٪"><em>۰</em></div>
+          <div class="lbl">رضایت مشتری</div>
+        </div>
+        <div class="vs-stat">
+          <div class="num" data-counter="10" data-suffix="+"><em>۰</em></div>
+          <div class="lbl">سال تجربه</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ویژوال تعاملی ===== -->
+    <div class="vs-visual">
+      <div class="vs-visual__stage" data-vs-tilt>
+        <div class="vs-laptop">
+          <div class="vs-laptop__bar">
+            <i></i><i></i><i></i>
+            <div class="url">https://yourbrand.com</div>
+          </div>
+          <div class="vs-laptop__screen">
+            <div class="vs-laptop__hero"></div>
+            <div class="vs-laptop__row"></div>
+            <div class="vs-laptop__row vs-laptop__row--short"></div>
+            <div class="vs-laptop__grid"><div></div><div></div><div></div></div>
+          </div>
+        </div>
+
+        <div class="vs-phone">
+          <div class="vs-phone__notch"></div>
+          <div class="vs-phone__screen">
+            <div class="vs-phone__hero"></div>
+            <div class="vs-phone__line"></div>
+            <div class="vs-phone__line vs-phone__line--s"></div>
+            <div class="vs-phone__line"></div>
+            <div class="vs-phone__btn"></div>
+          </div>
+        </div>
+
+        <div class="vs-fcard vs-fcard--1">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div><div class="t">PageSpeed ۹۸</div><div class="s">سرعت بارگذاری ۱.۲s</div></div>
+        </div>
+
+        <div class="vs-fcard vs-fcard--2">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div><div class="t">رشد ٪۲۸۰</div><div class="s">ترافیک ارگانیک</div></div>
+        </div>
+
+        <div class="vs-fcard vs-fcard--3">
+          <div class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M9 11l3 3 8-8M21 12v6a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2h11" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div><div class="t">Core Web Vitals</div><div class="s">تأییدشده گوگل</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- نوار متحرک پایین Hero -->
+  <div class="vs-marquee">
+    <div class="vs-marquee__track">
+      <span>وردپرس + المنتور</span>
+      <span>طراحی ریسپانسیو</span>
+      <span>سئو فنی</span>
+      <span>سرعت بالا</span>
+      <span>UI/UX اختصاصی</span>
+      <span>پشتیبانی ۲۴/۷</span>
+      <span>وردپرس + المنتور</span>
+      <span>طراحی ریسپانسیو</span>
+      <span>سئو فنی</span>
+      <span>سرعت بالا</span>
+      <span>UI/UX اختصاصی</span>
+      <span>پشتیبانی ۲۴/۷</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const hero = document.querySelector('[data-vs-hero]');
+  if(!hero) return;
+
+  // ===== موس اسپات‌لایت =====
+  hero.addEventListener('pointermove', e => {
+    const r = hero.getBoundingClientRect();
+    hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+
+  // ===== Tilt 3D ویژوال =====
+  const stage = hero.querySelector('[data-vs-tilt]');
+  if(stage){
+    const reset = () => stage.style.transform = 'rotateX(0) rotateY(0)';
+    stage.addEventListener('pointermove', e => {
+      const r = stage.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width  - .5;
+      const py = (e.clientY - r.top)  / r.height - .5;
+      stage.style.transform = `rotateY(${px * -10}deg) rotateX(${py * 8}deg)`;
+    });
+    stage.addEventListener('pointerleave', reset);
+  }
+
+  // ===== شمارنده انیمیشنی =====
+  const toFa = n => String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+  const counters = hero.querySelectorAll('[data-counter]');
+  const animate = (el) => {
+    const target = parseInt(el.dataset.counter, 10);
+    const suffix = el.dataset.suffix || '';
+    const dur = 1600;
+    const start = performance.now();
+    const step = (now) => {
+      const t = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const val = Math.floor(eased * target);
+      el.innerHTML = `<em>${toFa(val)}</em>${suffix}`;
+      if(t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ animate(e.target); io.unobserve(e.target); }
+    });
+  }, {threshold:.5});
+  counters.forEach(c => io.observe(c));
+})();
+</script>

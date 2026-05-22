@@ -1,0 +1,97 @@
+/* ============================================================
+   ویرا سئو — صفحه طراحی سایت
+   Custom CSS برای Astra Customizer (اختیاری)
+   مسیر: Appearance → Customize → Additional CSS
+   ============================================================
+   ⚠️ این فایل فقط در صورت نیاز استفاده شود. هر سکشن CSS
+   داخلی خود را دارد و به‌تنهایی کار می‌کند.
+   این فایل برای override بعضی استایل‌های Astra است.
+   ============================================================ */
+
+/* ===== متغیرهای رنگی برند ===== */
+:root {
+  --vs-primary:   #170C79;
+  --vs-secondary: #0170B9;
+  --vs-accent:    #128BE0;
+  --vs-cyan:      #8ACBD0;
+  --vs-cream:     #EFE3CA;
+  --vs-ink:       #1D2327;
+  --vs-white:     #FFFFFF;
+}
+
+/* ===== فونت Vazirmatn ===== */
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+
+/* ===== رفع padding اضافی Astra برای سکشن‌های HTML ===== */
+.elementor-widget-html {
+  margin-bottom: 0 !important;
+}
+.elementor-section-full_width .elementor-container {
+  max-width: 100% !important;
+}
+.elementor-widget-html > .elementor-widget-container {
+  padding: 0 !important;
+}
+
+/* ===== حذف فاصله بین سکشن‌های صفحه طراحی سایت ===== */
+.page-id-website-design .elementor-section,
+.elementor-page .vs-hero,
+.elementor-page .vs-strip,
+.elementor-page .vs-features,
+.elementor-page .vs-process,
+.elementor-page .vs-pricing,
+.elementor-page .vs-testimonials,
+.elementor-page .vs-faq,
+.elementor-page .vs-cta {
+  padding-block: 0 !important;
+}
+.elementor-page .vs-hero,
+.elementor-page .vs-strip,
+.elementor-page .vs-features,
+.elementor-page .vs-process,
+.elementor-page .vs-pricing,
+.elementor-page .vs-testimonials,
+.elementor-page .vs-faq,
+.elementor-page .vs-cta {
+  /* padding داخلی هر سکشن از خود فایل‌ها می‌آید */
+  margin: 0 !important;
+}
+
+/* ===== جلوگیری از override فونت توسط Astra ===== */
+.vs-hero, .vs-strip, .vs-features, .vs-process,
+.vs-pricing, .vs-testimonials, .vs-faq, .vs-cta {
+  font-family: 'Vazirmatn', 'IRANSans', Tahoma, sans-serif !important;
+}
+
+/* ===== رفع اسکرول افقی ناخواسته ===== */
+.elementor-page {
+  overflow-x: hidden;
+}
+
+/* ===== جلوگیری از تداخل استایل‌های دکمه Astra با دکمه‌های ما ===== */
+.vs-btn,
+.vs-cta__btn,
+.vs-plan__cta {
+  text-decoration: none !important;
+  box-sizing: border-box;
+}
+.vs-btn:hover,
+.vs-cta__btn:hover,
+.vs-plan__cta:hover {
+  text-decoration: none !important;
+}
+
+/* ===== رنگ scrollbar (اختیاری - برای حس یکپارچگی) ===== */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #FAF6EC; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--vs-primary), var(--vs-accent));
+  border-radius: 10px;
+}
+
+/* ===== رفع باگ نمایش summary در سافاری ===== */
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+
+/* ===== انیمیشن نرم اسکرول ===== */
+html { scroll-behavior: smooth; }

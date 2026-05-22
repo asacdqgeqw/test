@@ -1,0 +1,234 @@
+<!-- ========================================================
+     سکشن ۸: CTA — فرم مشاوره سئو
+     ======================================================== -->
+<style>
+.vs-seo-cta{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-green:#22c55e;--vs-green-soft:rgba(34,197,94,.15);
+  padding:110px 24px;
+  background:#060832;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:#fff;
+  position:relative;overflow:hidden;
+}
+.vs-seo-cta::before{
+  content:"";position:absolute;top:30%;left:10%;width:40vw;height:40vw;
+  background:radial-gradient(circle,rgba(34,197,94,.15),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-seo-cta::after{
+  content:"";position:absolute;bottom:20%;right:5%;width:35vw;height:35vw;
+  background:radial-gradient(circle,rgba(138,203,208,.12),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-seo-cta__inner{max-width:1240px;margin:0 auto;position:relative;z-index:1;}
+.vs-seo-cta__grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+}
+
+/* Left Content */
+.vs-seo-cta__content{}
+.vs-seo-cta__badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(34,197,94,.12);color:var(--vs-green);
+  border:1px solid rgba(34,197,94,.30);
+  padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:24px;
+}
+.vs-seo-cta__badge .dot{
+  width:8px;height:8px;border-radius:50%;background:var(--vs-green);
+  animation:vs-seo-blink-dot 2s ease infinite;
+}
+@keyframes vs-seo-blink-dot{0%,100%{opacity:1;}50%{opacity:.3;}}
+.vs-seo-cta h2{
+  font-size:clamp(28px,3.4vw,44px);font-weight:900;
+  line-height:1.4;margin:0 0 20px;color:#fff;
+}
+.vs-seo-cta h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--vs-green),var(--vs-cyan));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+.vs-seo-cta__desc{
+  font-size:17px;line-height:2;color:rgba(255,255,255,.70);margin:0 0 32px;
+}
+.vs-seo-cta__features{list-style:none;padding:0;margin:0;display:grid;gap:14px;}
+.vs-seo-cta__features li{
+  display:flex;align-items:center;gap:12px;font-size:15px;color:rgba(255,255,255,.88);
+}
+.vs-seo-cta__features li .check{
+  width:28px;height:28px;border-radius:8px;
+  background:var(--vs-green-soft);color:var(--vs-green);
+  display:grid;place-items:center;flex-shrink:0;
+}
+
+/* Right Form */
+.vs-seo-cta__form-wrap{
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:28px;padding:40px;
+  position:relative;
+}
+.vs-seo-cta__form-wrap::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--vs-green),var(--vs-accent),transparent);
+  border-radius:28px 28px 0 0;
+}
+.vs-seo-cta__form{display:grid;gap:18px;}
+.vs-seo-cta__field{display:flex;flex-direction:column;gap:6px;}
+.vs-seo-cta__field label{font-size:13px;font-weight:600;color:rgba(255,255,255,.70);}
+.vs-seo-cta__field input,
+.vs-seo-cta__field select{
+  padding:14px 16px;border-radius:12px;
+  background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);
+  color:#fff;font-family:inherit;font-size:15px;
+  transition:all .3s ease;outline:none;width:100%;
+}
+.vs-seo-cta__field input::placeholder{color:rgba(255,255,255,.35);}
+.vs-seo-cta__field input:focus,
+.vs-seo-cta__field select:focus{
+  border-color:var(--vs-green);background:rgba(255,255,255,.08);
+  box-shadow:0 0 0 4px rgba(34,197,94,.10);
+}
+.vs-seo-cta__field select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 14px center;}
+.vs-seo-cta__field select option{background:#1D2327;color:#fff;}
+.vs-seo-cta__submit{
+  width:100%;padding:18px;border:none;border-radius:14px;
+  background:linear-gradient(135deg,var(--vs-green),var(--vs-accent));
+  color:#060832;font-family:inherit;font-size:17px;font-weight:800;
+  cursor:pointer;transition:all .3s ease;
+  box-shadow:0 12px 30px rgba(34,197,94,.30);
+}
+.vs-seo-cta__submit:hover{box-shadow:0 16px 40px rgba(34,197,94,.45);transform:translateY(-2px);}
+.vs-seo-cta__submit:active{transform:translateY(0);}
+
+/* Online Badge */
+.vs-seo-cta__online{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin-top:16px;font-size:13px;color:rgba(255,255,255,.55);
+}
+.vs-seo-cta__online .pulse{
+  width:8px;height:8px;border-radius:50%;background:var(--vs-green);
+  position:relative;
+}
+.vs-seo-cta__online .pulse::before{
+  content:"";position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid rgba(34,197,94,.50);
+  animation:vs-seo-cta-pulse 2s ease-out infinite;
+}
+@keyframes vs-seo-cta-pulse{0%{transform:scale(1);opacity:1;}100%{transform:scale(2);opacity:0;}}
+
+/* Success State */
+.vs-seo-cta__success{
+  display:none;text-align:center;padding:40px 20px;
+}
+.vs-seo-cta__success.is-visible{display:block;}
+.vs-seo-cta__success .check-circle{
+  width:72px;height:72px;border-radius:50%;margin:0 auto 20px;
+  background:linear-gradient(135deg,var(--vs-green),var(--vs-accent));
+  display:grid;place-items:center;
+}
+.vs-seo-cta__success h3{font-size:22px;font-weight:800;margin:0 0 8px;color:#fff;}
+.vs-seo-cta__success p{color:rgba(255,255,255,.65);font-size:15px;margin:0;}
+
+@media(max-width:980px){.vs-seo-cta__grid{grid-template-columns:1fr;gap:48px;}}
+@media(max-width:560px){.vs-seo-cta__form-wrap{padding:24px;}}
+</style>
+
+
+<section class="vs-seo-cta" data-vs-seo-cta>
+  <div class="vs-seo-cta__inner">
+    <div class="vs-seo-cta__grid">
+      <!-- Left: Content -->
+      <div class="vs-seo-cta__content">
+        <div class="vs-seo-cta__badge">
+          <span class="dot"></span>
+          <span>کارشناسان آنلاین</span>
+        </div>
+
+        <h2>آماده‌ای سایتت رو به<br><em>صفحه اول گوگل</em> ببری؟</h2>
+
+        <p class="vs-seo-cta__desc">
+          همین الان فرم رو پر کن تا تیم سئو ما یک آنالیز رایگان از سایتت انجام بده.
+          بدون تعهد، بدون هزینه — فقط یک قدم تا شروع رشد واقعی.
+        </p>
+
+        <ul class="vs-seo-cta__features">
+          <li>
+            <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            آنالیز رایگان سایت و رقبا
+          </li>
+          <li>
+            <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            گزارش کامل رقبای شما
+          </li>
+          <li>
+            <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            بدون تعهد و کاملاً رایگان
+          </li>
+          <li>
+            <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            پاسخ‌گویی در کمتر از ۲ ساعت
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="vs-seo-cta__form-wrap">
+        <form class="vs-seo-cta__form" data-seo-form>
+          <div class="vs-seo-cta__field">
+            <label>نام و نام خانوادگی</label>
+            <input type="text" placeholder="مثلاً: علی محمدی" required>
+          </div>
+          <div class="vs-seo-cta__field">
+            <label>شماره تماس</label>
+            <input type="tel" placeholder="۰۹۱۲۳۴۵۶۷۸۹" required dir="ltr">
+          </div>
+          <div class="vs-seo-cta__field">
+            <label>آدرس سایت</label>
+            <input type="url" placeholder="https://example.com" dir="ltr">
+          </div>
+          <div class="vs-seo-cta__field">
+            <label>بودجه ماهانه</label>
+            <select required>
+              <option value="" disabled selected>انتخاب کنید...</option>
+              <option value="basic">تا ۵ میلیون تومان</option>
+              <option value="pro">۵ تا ۱۰ میلیون تومان</option>
+              <option value="enterprise">بیش از ۱۰ میلیون تومان</option>
+              <option value="custom">نیاز به مشاوره دارم</option>
+            </select>
+          </div>
+          <button type="submit" class="vs-seo-cta__submit">دریافت آنالیز رایگان</button>
+        </form>
+
+        <div class="vs-seo-cta__success" data-success>
+          <div class="check-circle">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#060832" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>درخواست شما ثبت شد!</h3>
+          <p>تیم ما در کمتر از ۲ ساعت با شما تماس خواهد گرفت.</p>
+        </div>
+
+        <div class="vs-seo-cta__online">
+          <span class="pulse"></span>
+          <span>کارشناسان آنلاین — پاسخ‌گویی سریع</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const section=document.querySelector('[data-vs-seo-cta]');if(!section)return;
+  const form=section.querySelector('[data-seo-form]');
+  const success=section.querySelector('[data-success]');
+
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    form.style.display='none';
+    success.classList.add('is-visible');
+  });
+})();
+</script>

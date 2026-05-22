@@ -1,0 +1,229 @@
+<!-- ========================================================
+     سکشن ۶: TESTIMONIALS — نظرات شاگردان و مشتریان
+     ======================================================== -->
+<style>
+.vs-trn-testimonials{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-amber:#F59E0B;--vs-amber-soft:rgba(245,158,11,.15);
+  padding:110px 24px;background:linear-gradient(180deg,#FAF6EC 0%,#fff 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-trn-testimonials__inner{max-width:1240px;margin:0 auto;position:relative;z-index:1;}
+.vs-trn-testimonials .vs-section-head{text-align:center;margin-bottom:64px;}
+.vs-trn-testimonials .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-amber-soft);color:#B45309;
+  border:1px solid rgba(245,158,11,.30);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-trn-testimonials .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-amber);box-shadow:0 0 0 4px rgba(245,158,11,.18);display:inline-block;}
+.vs-trn-testimonials h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-trn-testimonials h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-amber),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-trn-testimonials .vs-section-head p{color:#64748B;font-size:18px;max-width:680px;margin:0 auto;}
+
+/* 3D Slider */
+.vs-trn-slider{position:relative;perspective:1200px;}
+.vs-trn-slider__track{
+  display:flex;align-items:center;justify-content:center;
+  min-height:380px;position:relative;
+}
+.vs-trn-slide{
+  position:absolute;width:100%;max-width:720px;
+  background:#fff;border:1px solid #E2E8F0;border-radius:28px;
+  padding:46px;box-shadow:0 20px 50px rgba(0,0,0,.06);
+  opacity:0;transform:translateX(100px) rotateY(-8deg) scale(.9);
+  transition:all .6s cubic-bezier(.4,0,.2,1);pointer-events:none;
+}
+.vs-trn-slide.is-active{
+  opacity:1;transform:translateX(0) rotateY(0) scale(1);
+  pointer-events:auto;z-index:3;
+}
+.vs-trn-slide.is-prev{
+  opacity:.4;transform:translateX(120px) rotateY(5deg) scale(.85);z-index:1;
+}
+.vs-trn-slide.is-next{
+  opacity:.4;transform:translateX(-120px) rotateY(-5deg) scale(.85);z-index:1;
+}
+
+.vs-trn-slide__quote{
+  font-size:18px;line-height:2;color:#334155;margin:0 0 28px;
+  position:relative;padding-right:28px;
+}
+.vs-trn-slide__quote::before{
+  content:"\201C";position:absolute;right:0;top:-12px;
+  font-size:54px;color:var(--vs-amber);opacity:.35;font-weight:900;line-height:1;
+}
+.vs-trn-slide__author{display:flex;align-items:center;gap:16px;}
+.vs-trn-slide__avatar{
+  width:54px;height:54px;border-radius:50%;
+  background:linear-gradient(135deg,var(--vs-amber),#FBBF24);
+  display:grid;place-items:center;color:#fff;font-weight:900;font-size:20px;
+  flex-shrink:0;box-shadow:0 6px 16px rgba(245,158,11,.35);
+}
+.vs-trn-slide__info{flex:1;min-width:0;}
+.vs-trn-slide__name{font-weight:800;font-size:16px;color:var(--vs-ink);}
+.vs-trn-slide__company{font-size:13px;color:#64748B;}
+.vs-trn-slide__badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--vs-amber-soft);color:#B45309;
+  border:1px solid rgba(245,158,11,.30);
+  padding:8px 14px;border-radius:12px;font-size:13.5px;font-weight:800;
+  white-space:nowrap;
+}
+.vs-trn-slide__badge svg{width:16px;height:16px;color:var(--vs-amber);}
+
+/* Controls */
+.vs-trn-slider__controls{
+  display:flex;align-items:center;justify-content:center;gap:16px;margin-top:40px;
+}
+.vs-trn-slider__btn{
+  width:48px;height:48px;border-radius:50%;
+  background:#fff;border:1.5px solid #E2E8F0;
+  display:grid;place-items:center;cursor:pointer;
+  transition:all .3s ease;color:var(--vs-ink);
+}
+.vs-trn-slider__btn:hover{border-color:var(--vs-amber);color:var(--vs-amber);box-shadow:0 4px 12px rgba(245,158,11,.18);}
+.vs-trn-slider__dots{display:flex;gap:8px;}
+.vs-trn-slider__dot{
+  width:10px;height:10px;border-radius:50%;
+  background:#E2E8F0;cursor:pointer;transition:all .3s ease;border:none;padding:0;
+}
+.vs-trn-slider__dot.is-active{background:var(--vs-amber);transform:scale(1.3);}
+
+@media(max-width:768px){
+  .vs-trn-slide{padding:28px;max-width:92%;}
+  .vs-trn-slide.is-prev,.vs-trn-slide.is-next{opacity:0;}
+  .vs-trn-slide__quote{font-size:16px;}
+  .vs-trn-slide__author{flex-wrap:wrap;}
+}
+</style>
+
+
+<section class="vs-trn-testimonials" data-vs-trn-testimonials>
+  <div class="vs-trn-testimonials__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>تجربه شاگردان و مشتریان</span>
+      <h2>داستان‌های <em>یادگیری و موفقیت</em></h2>
+      <p>نتایج واقعی از کسانی که با آموزش و خدمات سئوی ما مسیر حرفه‌ای‌شان را پیدا کردند.</p>
+    </div>
+
+    <div class="vs-trn-slider" data-vs-trn-slider>
+      <div class="vs-trn-slider__track">
+        <div class="vs-trn-slide is-active" data-slide="0">
+          <p class="vs-trn-slide__quote">از مبتدی به متخصص سئو رسیدم. دوره گروهی ساختار درست داشت و پروژه پایانی کمک کرد رزومه واقعی بسازم. الان مدیر سئو یک شرکت بزرگ هستم و درآمدم چند برابر شده.</p>
+          <div class="vs-trn-slide__author">
+            <div class="vs-trn-slide__avatar">ر</div>
+            <div class="vs-trn-slide__info">
+              <div class="vs-trn-slide__name">رضا نوری</div>
+              <div class="vs-trn-slide__company">شاگرد دوره گروهی · فارغ‌التحصیل ۱۴۰۲</div>
+            </div>
+            <div class="vs-trn-slide__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M8.5 11a4 4 0 100-8 4 4 0 000 8zM20 8v6M23 11h-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              استخدام در ۳ ماه
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-trn-slide" data-slide="1">
+          <p class="vs-trn-slide__quote">گزارش آنالیز ویرا سئو حدود ۵۰ مورد مهم رو پیدا کرد که هیچ‌جای دیگه‌ای ندیده بودم. بعد از اعمال پیشنهادها، ترافیک ارگانیک سایتمون ۲۲۰ درصد رشد کرد. واقعاً عالی بود.</p>
+          <div class="vs-trn-slide__author">
+            <div class="vs-trn-slide__avatar">س</div>
+            <div class="vs-trn-slide__info">
+              <div class="vs-trn-slide__name">سینا فتاحی</div>
+              <div class="vs-trn-slide__company">مدیرعامل، فروشگاه آنلاین آذرین</div>
+            </div>
+            <div class="vs-trn-slide__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              +۲۲۰٪ ترافیک
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-trn-slide" data-slide="2">
+          <p class="vs-trn-slide__quote">تیم مارکتینگ‌مون بعد از دوره سازمانی کاملاً مستقل شد و دیگه نیازی به آژانس نداریم. سرفصل‌ها دقیقاً برای کسب‌وکار ما طراحی شده بود و کیس‌استادی‌های واقعی همه چیز رو ملموس کرد.</p>
+          <div class="vs-trn-slide__author">
+            <div class="vs-trn-slide__avatar">م</div>
+            <div class="vs-trn-slide__info">
+              <div class="vs-trn-slide__name">مهندس مهدی پاکزاد</div>
+              <div class="vs-trn-slide__company">مدیر دیجیتال مارکتینگ، گروه صنعتی پارس</div>
+            </div>
+            <div class="vs-trn-slide__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              صرفه‌جویی ۸۵٪
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-trn-slide" data-slide="3">
+          <p class="vs-trn-slide__quote">تو ۲ ساعت مشاوره فهمیدم چرا سایتم رتبه نمی‌گیره. مشکل اصلی Search Intent بود که با چند تغییر ساختاری حل شد. حالا برای کلمه اصلی توی صفحه اول گوگلم و مشتری‌های جدید میان.</p>
+          <div class="vs-trn-slide__author">
+            <div class="vs-trn-slide__avatar">ل</div>
+            <div class="vs-trn-slide__info">
+              <div class="vs-trn-slide__name">لیلا حسنی</div>
+              <div class="vs-trn-slide__company">مالک، کلینیک تخصصی پوست تبریز</div>
+            </div>
+            <div class="vs-trn-slide__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              صفحه اول گوگل
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vs-trn-slider__controls">
+        <button class="vs-trn-slider__btn" data-slider-prev aria-label="قبلی">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="vs-trn-slider__dots">
+          <button class="vs-trn-slider__dot is-active" data-dot="0" aria-label="اسلاید ۱"></button>
+          <button class="vs-trn-slider__dot" data-dot="1" aria-label="اسلاید ۲"></button>
+          <button class="vs-trn-slider__dot" data-dot="2" aria-label="اسلاید ۳"></button>
+          <button class="vs-trn-slider__dot" data-dot="3" aria-label="اسلاید ۴"></button>
+        </div>
+        <button class="vs-trn-slider__btn" data-slider-next aria-label="بعدی">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const root=document.querySelector('[data-vs-trn-slider]');if(!root)return;
+  const slides=root.querySelectorAll('.vs-trn-slide');
+  const dots=root.querySelectorAll('.vs-trn-slider__dot');
+  const prevBtn=root.querySelector('[data-slider-prev]');
+  const nextBtn=root.querySelector('[data-slider-next]');
+  let current=0;const total=slides.length;
+
+  function goTo(idx){
+    current=((idx%total)+total)%total;
+    slides.forEach((s,i)=>{
+      s.classList.remove('is-active','is-prev','is-next');
+      if(i===current)s.classList.add('is-active');
+      else if(i===((current-1+total)%total))s.classList.add('is-prev');
+      else if(i===((current+1)%total))s.classList.add('is-next');
+    });
+    dots.forEach((d,i)=>d.classList.toggle('is-active',i===current));
+  }
+
+  prevBtn.addEventListener('click',()=>{goTo(current+1);resetAuto();});
+  nextBtn.addEventListener('click',()=>{goTo(current-1);resetAuto();});
+  dots.forEach((d,i)=>d.addEventListener('click',()=>{goTo(i);resetAuto();}));
+
+  // Touch/swipe
+  let startX=0;
+  root.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;},{passive:true});
+  root.addEventListener('touchend',e=>{
+    const diff=e.changedTouches[0].clientX-startX;
+    if(Math.abs(diff)>50){diff>0?goTo(current+1):goTo(current-1);resetAuto();}
+  },{passive:true});
+
+  // Auto-play
+  let auto=setInterval(()=>goTo(current+1),5500);
+  function resetAuto(){clearInterval(auto);auto=setInterval(()=>goTo(current+1),5500);}
+})();
+</script>

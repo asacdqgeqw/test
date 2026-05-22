@@ -1,0 +1,262 @@
+<!-- ========================================================
+     سکشن ۷: FAQ — سوالات متداول آموزش سئو
+     ======================================================== -->
+<style>
+.vs-trn-faq{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-amber:#F59E0B;--vs-amber-soft:rgba(245,158,11,.15);
+  padding:110px 24px;background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-trn-faq__inner{max-width:840px;margin:0 auto;position:relative;z-index:1;}
+.vs-trn-faq .vs-section-head{text-align:center;margin-bottom:48px;}
+.vs-trn-faq .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-amber-soft);color:#B45309;
+  border:1px solid rgba(245,158,11,.30);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-trn-faq .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-amber);box-shadow:0 0 0 4px rgba(245,158,11,.18);display:inline-block;}
+.vs-trn-faq h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-trn-faq h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-amber),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+
+/* Search */
+.vs-trn-faq__search{
+  position:relative;margin-bottom:24px;
+}
+.vs-trn-faq__search input{
+  width:100%;padding:16px 20px 16px 48px;
+  border:1.5px solid #E2E8F0;border-radius:16px;
+  font-family:inherit;font-size:16px;color:var(--vs-ink);
+  background:#F8FAFC;transition:all .3s ease;outline:none;
+}
+.vs-trn-faq__search input:focus{border-color:var(--vs-amber);background:#fff;box-shadow:0 4px 16px rgba(245,158,11,.12);}
+.vs-trn-faq__search input::placeholder{color:#94A3B8;}
+.vs-trn-faq__search svg{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  color:#94A3B8;pointer-events:none;
+}
+
+/* Category Filter */
+.vs-trn-faq__cats{
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;justify-content:center;
+}
+.vs-trn-faq__cat{
+  padding:8px 16px;border-radius:10px;border:1.5px solid #E2E8F0;
+  background:transparent;cursor:pointer;font-family:inherit;
+  font-size:14px;font-weight:600;color:#64748B;transition:all .3s ease;
+}
+.vs-trn-faq__cat:hover{border-color:var(--vs-amber);color:var(--vs-amber);}
+.vs-trn-faq__cat.is-active{background:linear-gradient(135deg,var(--vs-amber),#FBBF24);color:#fff;border-color:var(--vs-amber);box-shadow:0 4px 12px rgba(245,158,11,.30);}
+
+/* Accordion */
+.vs-trn-faq__list{display:grid;gap:12px;}
+.vs-trn-faq__item{
+  background:#F8FAFC;border:1px solid #E2E8F0;border-radius:16px;
+  overflow:hidden;transition:all .3s ease;
+}
+.vs-trn-faq__item:hover{border-color:rgba(245,158,11,.30);}
+.vs-trn-faq__item.is-open{border-color:var(--vs-amber);background:#fff;box-shadow:0 8px 24px rgba(245,158,11,.10);}
+.vs-trn-faq__q{
+  display:flex;align-items:center;gap:14px;padding:20px 24px;
+  cursor:pointer;width:100%;border:none;background:transparent;
+  font-family:inherit;font-size:16px;font-weight:700;color:var(--vs-ink);
+  text-align:right;
+}
+.vs-trn-faq__q span.txt{flex:1;}
+.vs-trn-faq__q .icon{
+  width:32px;height:32px;border-radius:8px;
+  background:var(--vs-amber-soft);color:var(--vs-amber);
+  display:grid;place-items:center;flex-shrink:0;transition:transform .3s cubic-bezier(.4,0,.2,1);
+}
+.vs-trn-faq__item.is-open .vs-trn-faq__q .icon{transform:rotate(45deg);}
+.vs-trn-faq__a{
+  max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1),padding .3s ease;
+  padding:0 24px;
+}
+.vs-trn-faq__item.is-open .vs-trn-faq__a{max-height:340px;padding:0 24px 22px;}
+.vs-trn-faq__a p{margin:0;font-size:15px;line-height:2;color:#475569;}
+
+/* Empty state */
+.vs-trn-faq__empty{
+  text-align:center;padding:48px 24px;display:none;
+}
+.vs-trn-faq__empty.is-visible{display:block;}
+.vs-trn-faq__empty svg{color:#CBD5E1;margin-bottom:16px;}
+.vs-trn-faq__empty p{color:#94A3B8;font-size:16px;margin:0;}
+
+@media(max-width:560px){.vs-trn-faq__q{padding:16px 18px;font-size:15px;}.vs-trn-faq__cats{gap:6px;}.vs-trn-faq__cat{padding:7px 12px;font-size:13px;}}
+</style>
+
+
+<section class="vs-trn-faq" data-vs-trn-faq>
+  <div class="vs-trn-faq__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>سوالات متداول</span>
+      <h2>پاسخ <em>سوالات شما</em></h2>
+    </div>
+
+    <div class="vs-trn-faq__search">
+      <input type="text" placeholder="جستجو در سوالات..." data-faq-search>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+    </div>
+
+    <div class="vs-trn-faq__cats">
+      <button class="vs-trn-faq__cat is-active" data-cat="all">همه</button>
+      <button class="vs-trn-faq__cat" data-cat="courses">دوره‌ها</button>
+      <button class="vs-trn-faq__cat" data-cat="consultation">مشاوره</button>
+      <button class="vs-trn-faq__cat" data-cat="analysis">آنالیز</button>
+      <button class="vs-trn-faq__cat" data-cat="financial">مالی</button>
+    </div>
+
+    <div class="vs-trn-faq__list">
+
+      <div class="vs-trn-faq__item" data-category="courses">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">آموزش‌ها حضوری در تبریز برگزار می‌شود یا آنلاین؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>آموزش خصوصی هم به صورت حضوری در تبریز و هم آنلاین (با Google Meet) قابل برگزاری است. دوره‌های گروهی به صورت ترکیبی برگزار می‌شوند: کلاس حضوری در تبریز با امکان شرکت آنلاین زنده. دوره‌های سازمانی معمولاً حضوری در محل شرکت کارفرما ارائه می‌شود.</p>
+        </div>
+      </div>
+
+      <div class="vs-trn-faq__item" data-category="courses">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">آیا برای دوره گروهی پیش‌نیاز خاصی نیاز است؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>دوره گروهی از مبانی شروع می‌شود و نیازی به دانش قبلی سئو ندارید. تنها پیش‌نیاز، آشنایی پایه با کار با کامپیوتر و اینترنت است. اگر سایتی دارید (وردپرس، شاپیفای یا هر CMS دیگر) بهتر است، چون می‌توانیم تمرین‌ها را روی آن انجام دهیم. در جلسه اول هم تمام ابزارهای موردنیاز معرفی و راه‌اندازی می‌شوند.</p>
+        </div>
+      </div>
+
+      <div class="vs-trn-faq__item" data-category="courses">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">بعد از دوره گواهی دریافت می‌کنم؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>بله، در دوره‌های گروهی و سازمانی پس از اتمام موفق دوره و ارائه پروژه پایانی، گواهی پایان دوره معتبر صادر می‌شود. این گواهی دارای QR کد قابل راستی‌آزمایی است و در رزومه شما جلوه حرفه‌ای دارد. در مشاوره ساعتی و آموزش خصوصی، گواهی صرفاً به درخواست شما صادر می‌شود.</p>
+        </div>
+      </div>
+
+      <div class="vs-trn-faq__item" data-category="consultation analysis">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">چه تفاوتی بین مشاوره و آنالیز سایت وجود دارد؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>مشاوره ساعتی یک جلسه گفت‌وگوی زنده است که شما سوالات و چالش‌های سئوی خود را مطرح می‌کنید و راهکار فوری دریافت می‌کنید. اما آنالیز سایت یک کار پژوهشی و چندروزه است: بررسی کامل ۲۰۰+ فاکتور، تحلیل رقبا، گزارش PDF و در نهایت یک جلسه توضیح. اگر می‌خواهید کل سایتتان معاینه شود، آنالیز را انتخاب کنید؛ اگر سوال خاصی دارید، مشاوره کافی است.</p>
+        </div>
+      </div>
+
+      <div class="vs-trn-faq__item" data-category="analysis">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">آنالیز سایت چه مدت طول می‌کشد؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>گزارش آنالیز سایت معمولاً ۵ تا ۷ روز کاری طول می‌کشد. در این مدت، تیم سئو ما سایت شما را از زوایای مختلف فنی، محتوایی، بک‌لینک، سرعت و رقابتی بررسی می‌کند. پس از تحویل گزارش PDF، یک جلسه ۱ ساعته توضیح حضوری/آنلاین برگزار می‌شود تا تمام موارد را کامل برایتان شرح دهیم.</p>
+        </div>
+      </div>
+
+      <div class="vs-trn-faq__item" data-category="financial">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">آیا امکان پرداخت اقساطی برای دوره‌ها وجود دارد؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>بله، برای دوره‌های گروهی امکان پرداخت در ۲ یا ۳ قسط بدون افزایش قیمت فراهم است. برای دوره‌های سازمانی نیز شرایط پرداخت کاملاً انعطاف‌پذیر و طبق توافق با کارفرما تنظیم می‌شود. آموزش خصوصی و مشاوره ساعتی به دلیل ماهیت تک‌جلسه‌ای، معمولاً در همان جلسه تسویه می‌شود.</p>
+        </div>
+      </div>
+
+      <div class="vs-trn-faq__item" data-category="consultation">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">مشاوره ساعتی برای کدام نوع کسب‌وکار مناسب‌تر است؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>مشاوره ساعتی برای کسانی مناسب است که قبلاً سایت دارند و با چالش مشخصی روبه‌رو هستند: مثلاً افت ترافیک ناگهانی، رتبه نگرفتن کلمه کلیدی خاص، تردید در انتخاب استراتژی، یا نیاز به نظر کارشناس قبل از انتخاب آژانس. برای کسب‌وکارهای کوچک تا متوسط که بودجه استخدام تیم سئو ندارند، گزینه‌ای عالی است.</p>
+        </div>
+      </div>
+
+      <div class="vs-trn-faq__item" data-category="financial">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">اگر از دوره راضی نباشم، هزینه برمی‌گردد؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>بله، در دوره‌های گروهی تا پایان جلسه دوم اگر از دوره راضی نباشید، کل هزینه پرداختی شما (به‌جز هزینه ۲ جلسه برگزارشده) عودت داده می‌شود. این تضمین به شما اطمینان می‌دهد که با خیال راحت ثبت‌نام کنید. در آموزش خصوصی نیز اگر بعد از جلسه اول راضی نبودید، جلسه‌های بعدی الزامی نیست.</p>
+        </div>
+      </div>
+
+      <div class="vs-trn-faq__item" data-category="courses">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">آموزش سازمانی چقدر زمان می‌برد؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>زمان دوره سازمانی بسته به سطح فعلی تیم، تعداد افراد و سرفصل‌های انتخابی، معمولاً بین ۱۵ تا ۴۰ ساعت در ۲ تا ۸ هفته متغیر است. ما در جلسه نیازسنجی اول، ساعت‌ها و برنامه دقیق را با مدیر شرکت توافق می‌کنیم. امکان فشرده کردن دوره در چند روز پیاپی برای کارخانه‌ها و شرکت‌های بزرگ هم وجود دارد.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="vs-trn-faq__empty">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/><path d="M8 11h6" stroke-linecap="round"/></svg>
+      <p>سوالی با این عبارت پیدا نشد. لطفاً عبارت دیگری جستجو کنید.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const section=document.querySelector('[data-vs-trn-faq]');if(!section)return;
+  const items=section.querySelectorAll('.vs-trn-faq__item');
+  const cats=section.querySelectorAll('.vs-trn-faq__cat');
+  const searchInput=section.querySelector('[data-faq-search]');
+  const emptyState=section.querySelector('.vs-trn-faq__empty');
+  let activeCategory='all';
+
+  // Accordion
+  items.forEach(item=>{
+    item.querySelector('.vs-trn-faq__q').addEventListener('click',()=>{
+      const wasOpen=item.classList.contains('is-open');
+      items.forEach(i=>i.classList.remove('is-open'));
+      if(!wasOpen)item.classList.add('is-open');
+    });
+  });
+
+  // Category filter
+  cats.forEach(cat=>{
+    cat.addEventListener('click',()=>{
+      cats.forEach(c=>c.classList.remove('is-active'));
+      cat.classList.add('is-active');
+      activeCategory=cat.dataset.cat;
+      filterItems();
+    });
+  });
+
+  // Search
+  searchInput.addEventListener('input',()=>filterItems());
+
+  function filterItems(){
+    const query=searchInput.value.trim().toLowerCase();
+    let visible=0;
+    items.forEach(item=>{
+      const text=item.querySelector('.vs-trn-faq__q .txt').textContent.toLowerCase();
+      const answer=item.querySelector('.vs-trn-faq__a p').textContent.toLowerCase();
+      const cats=(item.dataset.category||'').split(/\s+/);
+      const catMatch=activeCategory==='all'||cats.includes(activeCategory);
+      const searchMatch=!query||text.includes(query)||answer.includes(query);
+      const show=catMatch&&searchMatch;
+      item.style.display=show?'':'none';
+      if(show)visible++;
+    });
+    emptyState.classList.toggle('is-visible',visible===0);
+  }
+})();
+</script>
