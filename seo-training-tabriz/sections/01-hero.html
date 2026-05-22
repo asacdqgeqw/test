@@ -1,0 +1,427 @@
+<!-- ========================================================
+     سکشن ۱: HERO — آموزش سئو در تبریز
+     ======================================================== -->
+<style>
+.vs-trn-hero{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+  --vs-amber:#F59E0B; --vs-amber-soft:rgba(245,158,11,.15);
+  --vs-gold:#FBBF24;
+
+  position:relative; min-height:92vh; padding:90px 24px 0; overflow:hidden;
+  background:#0a0640;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl;
+  color:#fff; isolation:isolate;
+}
+.vs-trn-hero::before,.vs-trn-hero::after{
+  content:""; position:absolute; border-radius:50%; filter:blur(110px);
+  pointer-events:none; z-index:0; mix-blend-mode:screen; opacity:.55;
+}
+.vs-trn-hero::before{
+  width:55vw; height:55vw; top:-12vw; right:-8vw;
+  background:radial-gradient(circle,#F59E0B 0%,#170C79 55%,transparent 70%);
+  animation:vs-trn-aurora1 16s ease-in-out infinite;
+}
+.vs-trn-hero::after{
+  width:50vw; height:50vw; bottom:-18vw; left:-8vw;
+  background:radial-gradient(circle,#128BE0 0%,#FBBF24 50%,transparent 70%);
+  animation:vs-trn-aurora2 18s ease-in-out infinite;
+}
+@keyframes vs-trn-aurora1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-8vw,8vh) scale(1.12)}}
+@keyframes vs-trn-aurora2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(8vw,-6vh) scale(1.08)}}
+
+.vs-trn-hero__spot{
+  position:absolute; inset:0; pointer-events:none; z-index:1;
+  background:radial-gradient(600px circle at var(--mx,50%) var(--my,30%),rgba(245,158,11,.15),transparent 40%);
+  transition:background .15s ease;
+}
+.vs-trn-hero__grid{
+  position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.30;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:60px 60px;
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,#000,transparent 70%);
+          mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,#000,transparent 70%);
+}
+.vs-trn-hero__wrap{
+  position:relative; z-index:2; max-width:1240px; margin:0 auto;
+  display:grid; grid-template-columns:1.1fr 1fr; gap:60px; align-items:center;
+  min-height:calc(92vh - 90px); padding-bottom:90px;
+}
+
+.vs-trn-hero__badge{
+  display:inline-flex; align-items:center; gap:10px;
+  background:rgba(255,255,255,.07); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.14);
+  padding:8px 8px 8px 18px; border-radius:999px;
+  font-size:13px; font-weight:600; margin-bottom:22px; color:#fff;
+  text-decoration:none;
+}
+.vs-trn-hero__badge .pulse{
+  width:24px; height:24px; border-radius:50%;
+  background:linear-gradient(135deg,#F59E0B,#FBBF24);
+  display:grid; place-items:center;
+  position:relative; font-size:13px; font-weight:900; color:#0a0640;
+}
+.vs-trn-hero__badge .pulse::before{
+  content:""; position:absolute; inset:-6px; border-radius:50%;
+  border:2px solid rgba(245,158,11,.50);
+  animation:vs-trn-pulse 2s ease-out infinite;
+}
+@keyframes vs-trn-pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(1.6);opacity:0}}
+
+.vs-trn-hero h1{
+  font-size:clamp(34px,5vw,64px); font-weight:900;
+  line-height:1.25; letter-spacing:-1px; margin:0 0 22px; color:#fff;
+}
+.vs-trn-hero h1 .rot{
+  display:inline-block;
+  background:linear-gradient(135deg,#F59E0B 0%,#FBBF24 50%,#EFE3CA 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+  position:relative;
+}
+.vs-trn-hero h1 .rot__list{
+  display:inline-flex; flex-direction:column; vertical-align:top;
+  height:1.25em; overflow:hidden;
+}
+.vs-trn-hero h1 .rot__list span{
+  display:block; height:1.25em;
+  animation:vs-trn-rot 12s steps(1) infinite;
+}
+@keyframes vs-trn-rot{
+  0%,22%  {transform:translateY(0);}
+  25%,47% {transform:translateY(-1.25em);}
+  50%,72% {transform:translateY(-2.5em);}
+  75%,97% {transform:translateY(-3.75em);}
+  100%    {transform:translateY(0);}
+}
+.vs-trn-hero h1 .rot::after{
+  content:""; display:inline-block; width:3px; height:.85em;
+  background:#FBBF24; vertical-align:middle; margin-right:4px;
+  animation:vs-trn-blink 1s steps(2) infinite;
+}
+@keyframes vs-trn-blink{50%{opacity:0}}
+
+.vs-trn-hero p.lead{
+  font-size:18px; color:rgba(255,255,255,.78); line-height:1.95;
+  max-width:560px; margin:0 0 36px;
+}
+
+.vs-trn-hero__cta{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:42px;}
+.vs-trn-btn{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:16px 30px; border-radius:14px;
+  font-weight:700; font-size:16px; text-decoration:none;
+  transition:all .25s ease; cursor:pointer; border:none; position:relative; overflow:hidden;
+}
+.vs-trn-btn--primary{
+  background:linear-gradient(135deg,#F59E0B 0%,#FBBF24 100%);
+  color:#0a0640; box-shadow:0 18px 40px rgba(245,158,11,.40);
+}
+.vs-trn-btn--primary::before{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(135deg,#FBBF24 0%,#EFE3CA 100%);
+  opacity:0; transition:opacity .3s ease;
+}
+.vs-trn-btn--primary:hover::before{opacity:1;}
+.vs-trn-btn--primary:hover{transform:translateY(-2px); box-shadow:0 24px 56px rgba(245,158,11,.55);}
+.vs-trn-btn--primary > *{position:relative; z-index:1;}
+.vs-trn-btn--ghost{
+  background:rgba(255,255,255,.06); color:#fff;
+  border:1.5px solid rgba(255,255,255,.18);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+}
+.vs-trn-btn--ghost:hover{background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.40);}
+.vs-trn-btn svg{width:18px; height:18px;}
+.vs-trn-btn--ghost .play{
+  width:28px; height:28px; border-radius:50%;
+  background:rgba(245,158,11,.20); display:grid; place-items:center;
+}
+
+.vs-trn-hero__stats{
+  display:flex; gap:36px; flex-wrap:wrap; padding-top:28px;
+  border-top:1px solid rgba(255,255,255,.10);
+}
+.vs-trn-stat .num{font-size:32px; font-weight:900; line-height:1; color:#fff; display:flex; align-items:baseline;}
+.vs-trn-stat .num em{
+  font-style:normal;
+  background:linear-gradient(135deg,#F59E0B,#FBBF24);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+.vs-trn-stat .lbl{color:rgba(255,255,255,.55); font-size:13px; margin-top:6px;}
+
+/* Visual: Live Class Board */
+.vs-trn-visual{position:relative; perspective:1500px; display:flex; align-items:center; justify-content:center;}
+.vs-trn-visual__stage{
+  position:relative; width:100%; max-width:540px; aspect-ratio:1/1;
+  transform-style:preserve-3d; transition:transform .15s ease-out;
+}
+.vs-trn-board{
+  position:absolute; inset:6% 4%;
+  background:linear-gradient(160deg,#170C79 0%,#0a0640 100%);
+  border-radius:20px;
+  box-shadow:0 30px 80px rgba(0,0,0,.55);
+  border:8px solid #1a1450;
+  overflow:hidden;
+  transform:translateZ(0);
+  display:flex; flex-direction:column;
+}
+.vs-trn-board__title{
+  background:rgba(255,255,255,.06); padding:14px 20px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  font-size:13px; font-weight:700; color:rgba(255,255,255,.85);
+}
+.vs-trn-board__title .live{
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:11px; color:#FBBF24;
+}
+.vs-trn-board__title .live::before{
+  content:""; width:8px; height:8px; border-radius:50%; background:#FBBF24;
+  box-shadow:0 0 12px #FBBF24;
+  animation:vs-trn-live 1.5s ease-in-out infinite;
+}
+@keyframes vs-trn-live{0%,100%{opacity:1}50%{opacity:.5}}
+.vs-trn-board__content{
+  flex:1; padding:24px; position:relative;
+  display:flex; flex-direction:column; gap:14px;
+}
+.vs-trn-board__chart{
+  height:90px; background:rgba(255,255,255,.04); border-radius:10px;
+  position:relative; overflow:hidden; padding:10px;
+  display:flex; align-items:flex-end; gap:6px;
+}
+.vs-trn-board__chart i{
+  flex:1; background:linear-gradient(180deg,#F59E0B,#FBBF24);
+  border-radius:3px 3px 0 0; opacity:.85;
+  animation:vs-trn-bar 2.4s ease-in-out infinite;
+}
+.vs-trn-board__chart i:nth-child(1){animation-delay:0s; height:30%;}
+.vs-trn-board__chart i:nth-child(2){animation-delay:.1s; height:50%;}
+.vs-trn-board__chart i:nth-child(3){animation-delay:.2s; height:42%;}
+.vs-trn-board__chart i:nth-child(4){animation-delay:.3s; height:65%;}
+.vs-trn-board__chart i:nth-child(5){animation-delay:.4s; height:55%;}
+.vs-trn-board__chart i:nth-child(6){animation-delay:.5s; height:80%;}
+.vs-trn-board__chart i:nth-child(7){animation-delay:.6s; height:70%;}
+.vs-trn-board__chart i:nth-child(8){animation-delay:.7s; height:95%;}
+@keyframes vs-trn-bar{0%,100%{transform:scaleY(.85);}50%{transform:scaleY(1);}}
+.vs-trn-board__row{
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; background:rgba(255,255,255,.04);
+  border-radius:10px; border:1px solid rgba(255,255,255,.06);
+}
+.vs-trn-board__row .rank{
+  width:28px; height:28px; border-radius:50%;
+  background:linear-gradient(135deg,#F59E0B,#FBBF24); color:#0a0640;
+  display:grid; place-items:center; font-weight:900; font-size:12px;
+  flex-shrink:0;
+}
+.vs-trn-board__row .info{flex:1; min-width:0;}
+.vs-trn-board__row .info .t{font-size:12px; font-weight:700; color:#fff;}
+.vs-trn-board__row .info .s{font-size:10px; color:rgba(255,255,255,.50); margin-top:2px;}
+.vs-trn-board__row .grade{font-size:13px; font-weight:900; color:#FBBF24;}
+
+.vs-trn-fcard{
+  position:absolute; z-index:3;
+  background:rgba(255,255,255,.10); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:18px; padding:12px 16px;
+  display:flex; align-items:center; gap:12px;
+  box-shadow:0 24px 50px rgba(0,0,0,.30);
+  color:#fff;
+  animation:vs-trn-fcard 6s ease-in-out infinite;
+}
+.vs-trn-fcard .ic{
+  width:42px; height:42px; border-radius:12px;
+  display:grid; place-items:center; flex-shrink:0;
+}
+.vs-trn-fcard .t{font-weight:700; font-size:14px;}
+.vs-trn-fcard .s{font-size:11px; color:rgba(255,255,255,.65);}
+.vs-trn-fcard--1{top:4%; right:-4%; animation-delay:.2s;}
+.vs-trn-fcard--1 .ic{background:linear-gradient(135deg,#F59E0B,#FBBF24); color:#0a0640;}
+.vs-trn-fcard--2{bottom:12%; left:-2%; animation-delay:1.4s;}
+.vs-trn-fcard--2 .ic{background:linear-gradient(135deg,#EFE3CA,#FBBF24); color:#170C79;}
+.vs-trn-fcard--3{top:45%; right:-8%; animation-delay:2.6s;}
+.vs-trn-fcard--3 .ic{background:linear-gradient(135deg,#0170B9,#170C79); border:1px solid rgba(255,255,255,.20); color:#fff;}
+@keyframes vs-trn-fcard{0%,100%{translate:0 0;}50%{translate:0 -10px;}}
+
+.vs-trn-marquee{
+  position:relative; z-index:2; margin:0 -24px;
+  background:rgba(0,0,0,.35); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  border-block:1px solid rgba(255,255,255,.08);
+  overflow:hidden;
+}
+.vs-trn-marquee__track{
+  display:flex; gap:60px; padding:18px 0; width:max-content;
+  animation:vs-trn-mq 32s linear infinite;
+}
+.vs-trn-marquee__track span{
+  color:rgba(255,255,255,.55); font-weight:700; font-size:17px;
+  letter-spacing:-.5px; white-space:nowrap;
+  display:inline-flex; align-items:center; gap:60px;
+}
+.vs-trn-marquee__track span::after{content:"✦"; color:#F59E0B; opacity:.7;}
+@keyframes vs-trn-mq{to{transform:translateX(50%);}}
+
+@media (max-width:980px){
+  .vs-trn-hero__wrap{grid-template-columns:1fr; gap:40px; padding-bottom:60px;}
+  .vs-trn-hero{min-height:auto; padding:60px 20px 0;}
+  .vs-trn-visual{order:-1; max-width:400px; margin:0 auto;}
+  .vs-trn-fcard--3{display:none;}
+}
+@media (max-width:560px){
+  .vs-trn-hero__stats{gap:20px;}
+  .vs-trn-stat .num{font-size:24px;}
+  .vs-trn-fcard{transform:none !important;}
+  .vs-trn-marquee__track span{font-size:14px; gap:40px;}
+}
+</style>
+
+<section class="vs-trn-hero" data-vs-trn-hero>
+  <div class="vs-trn-hero__grid"></div>
+  <div class="vs-trn-hero__spot"></div>
+
+  <div class="vs-trn-hero__wrap">
+    <div class="vs-trn-hero__content">
+      <a href="#courses" class="vs-trn-hero__badge">
+        <span class="pulse">🎓</span>
+        <span>۸۰۰+ شاگرد در تبریز و سراسر ایران</span>
+      </a>
+
+      <h1>
+        تو تبریز<br>
+        <span class="rot">
+          <span class="rot__list">
+            <span>متخصص سئو شو</span>
+            <span>درآمد دلاری بساز</span>
+            <span>سایت خودت رو رشد بده</span>
+            <span>گوگل رو بشناس</span>
+          </span>
+        </span>
+      </h1>
+
+      <p class="lead">
+        از <strong style="color:#FBBF24">آموزش خصوصی</strong> تا <strong style="color:#FBBF24">دوره‌های گروهی</strong>،
+        از مشاوره ساعتی تا آنالیز کامل سایت — هر آنچه برای ورود حرفه‌ای به دنیای سئو نیاز داری،
+        با تجربه ۱۰ سال تدریس در تبریز.
+      </p>
+
+      <div class="vs-trn-hero__cta">
+        <a href="#pricing" class="vs-trn-btn vs-trn-btn--primary">
+          <span>ثبت‌نام دوره</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="vs-trn-btn vs-trn-btn--ghost">
+          <span class="play">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <span>مشاوره رایگان</span>
+        </a>
+      </div>
+
+      <div class="vs-trn-hero__stats">
+        <div class="vs-trn-stat"><div class="num" data-counter="800" data-suffix="+"><em>۰</em></div><div class="lbl">شاگرد آموزش‌دیده</div></div>
+        <div class="vs-trn-stat"><div class="num" data-counter="92" data-suffix="٪"><em>۰</em></div><div class="lbl">رضایت شاگردان</div></div>
+        <div class="vs-trn-stat"><div class="num" data-counter="10" data-suffix="+"><em>۰</em></div><div class="lbl">سال تدریس</div></div>
+      </div>
+    </div>
+
+    <div class="vs-trn-visual">
+      <div class="vs-trn-visual__stage" data-vs-trn-tilt>
+        <div class="vs-trn-board">
+          <div class="vs-trn-board__title">
+            <span>📊 داشبورد رشد شاگردان</span>
+            <span class="live">آنلاین</span>
+          </div>
+          <div class="vs-trn-board__content">
+            <div class="vs-trn-board__chart">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="vs-trn-board__row">
+              <div class="rank">۱</div>
+              <div class="info"><div class="t">علی رضایی</div><div class="s">دوره گروهی · ماه ۳</div></div>
+              <div class="grade">A+</div>
+            </div>
+            <div class="vs-trn-board__row">
+              <div class="rank">۲</div>
+              <div class="info"><div class="t">سارا کریمی</div><div class="s">آموزش خصوصی · هفته ۸</div></div>
+              <div class="grade">A</div>
+            </div>
+            <div class="vs-trn-board__row">
+              <div class="rank">۳</div>
+              <div class="info"><div class="t">محمد احمدی</div><div class="s">سازمانی · شرکت تبریزتک</div></div>
+              <div class="grade">A</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-trn-fcard vs-trn-fcard--1">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z M6 12v5c3 3 9 3 12 0v-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><div class="t">۸ ماژول جامع</div><div class="s">۴۰+ ساعت آموزش</div></div>
+        </div>
+        <div class="vs-trn-fcard vs-trn-fcard--2">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><div class="t">گواهی پایان دوره</div><div class="s">معتبر برای رزومه</div></div>
+        </div>
+        <div class="vs-trn-fcard vs-trn-fcard--3">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><div class="t">جامعه شاگردان</div><div class="s">شبکه‌سازی حرفه‌ای</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vs-trn-marquee">
+    <div class="vs-trn-marquee__track">
+      <span>آموزش خصوصی</span><span>دوره گروهی</span><span>آموزش سازمانی</span><span>مشاوره ساعتی</span><span>آنالیز سایت</span><span>گواهی معتبر</span><span>پروژه واقعی</span><span>آموزش خصوصی</span><span>دوره گروهی</span><span>آموزش سازمانی</span><span>مشاوره ساعتی</span><span>آنالیز سایت</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const hero = document.querySelector('[data-vs-trn-hero]');
+  if(!hero) return;
+
+  hero.addEventListener('pointermove', e => {
+    const r = hero.getBoundingClientRect();
+    hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+
+  const stage = hero.querySelector('[data-vs-trn-tilt]');
+  if(stage){
+    stage.addEventListener('pointermove', e => {
+      const r = stage.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - .5;
+      const py = (e.clientY - r.top) / r.height - .5;
+      stage.style.transform = `rotateY(${px * -8}deg) rotateX(${py * 6}deg)`;
+    });
+    stage.addEventListener('pointerleave', () => stage.style.transform = 'rotateX(0) rotateY(0)');
+  }
+
+  const toFa = n => String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+  const counters = hero.querySelectorAll('[data-counter]');
+  const animate = el => {
+    const target = parseInt(el.dataset.counter, 10);
+    const suffix = el.dataset.suffix || '';
+    const dur = 1800;
+    const start = performance.now();
+    const step = now => {
+      const t = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const val = Math.floor(eased * target);
+      el.innerHTML = `<em>${toFa(val)}</em>${suffix}`;
+      if(t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){animate(e.target); io.unobserve(e.target);} });
+  }, {threshold:.5});
+  counters.forEach(c => io.observe(c));
+})();
+</script>
