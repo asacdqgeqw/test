@@ -1,0 +1,284 @@
+<!-- ========================================================
+     سکشن ۷: FAQ — سوالات متداول ساخت اپلیکیشن اندروید
+     ======================================================== -->
+<style>
+.vs-app-faq{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-android-green:#3DDC84;--vs-tech-purple:#A855F7;
+  --vs-green-soft:rgba(61,220,132,.15);--vs-purple-soft:rgba(168,85,247,.14);
+  padding:110px 24px;background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-app-faq__inner{max-width:860px;margin:0 auto;position:relative;z-index:1;}
+.vs-app-faq .vs-section-head{text-align:center;margin-bottom:48px;}
+.vs-app-faq .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-green-soft);color:#0F8A4A;
+  border:1px solid rgba(61,220,132,.35);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-app-faq .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-android-green);box-shadow:0 0 0 4px rgba(61,220,132,.20);display:inline-block;}
+.vs-app-faq h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-app-faq h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--vs-android-green),var(--vs-tech-purple));
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+}
+
+/* Search */
+.vs-app-faq__search{
+  position:relative;margin-bottom:24px;
+}
+.vs-app-faq__search input{
+  width:100%;padding:16px 20px 16px 48px;
+  border:1.5px solid #E2E8F0;border-radius:16px;
+  font-family:inherit;font-size:16px;color:var(--vs-ink);
+  background:#F8FAFC;transition:all .3s ease;outline:none;
+  box-sizing:border-box;
+}
+.vs-app-faq__search input:focus{
+  border-color:var(--vs-android-green);background:#fff;
+  box-shadow:0 4px 16px rgba(61,220,132,.16);
+}
+.vs-app-faq__search input::placeholder{color:#94A3B8;}
+.vs-app-faq__search svg{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  color:#94A3B8;pointer-events:none;
+}
+
+/* Category Filter */
+.vs-app-faq__cats{
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;justify-content:center;
+}
+.vs-app-faq__cat{
+  padding:8px 16px;border-radius:10px;border:1.5px solid #E2E8F0;
+  background:transparent;cursor:pointer;font-family:inherit;
+  font-size:14px;font-weight:600;color:#64748B;transition:all .3s ease;
+}
+.vs-app-faq__cat:hover{border-color:var(--vs-android-green);color:var(--vs-android-green);}
+.vs-app-faq__cat.is-active{
+  background:linear-gradient(135deg,var(--vs-android-green),#2DB76B);
+  color:#fff;border-color:var(--vs-android-green);
+  box-shadow:0 4px 14px rgba(61,220,132,.35);
+}
+
+/* Accordion */
+.vs-app-faq__list{display:grid;gap:12px;}
+.vs-app-faq__item{
+  background:#F8FAFC;border:1px solid #E2E8F0;border-radius:16px;
+  overflow:hidden;transition:all .3s ease;
+}
+.vs-app-faq__item:hover{border-color:rgba(61,220,132,.35);}
+.vs-app-faq__item.is-open{
+  border-color:var(--vs-android-green);background:#fff;
+  box-shadow:0 10px 28px rgba(61,220,132,.12);
+}
+.vs-app-faq__q{
+  display:flex;align-items:center;gap:14px;padding:20px 24px;
+  cursor:pointer;width:100%;border:none;background:transparent;
+  font-family:inherit;font-size:16px;font-weight:700;color:var(--vs-ink);
+  text-align:right;
+}
+.vs-app-faq__q span.txt{flex:1;}
+.vs-app-faq__q .icon{
+  width:32px;height:32px;border-radius:8px;
+  background:var(--vs-green-soft);color:var(--vs-android-green);
+  display:grid;place-items:center;flex-shrink:0;
+  transition:transform .3s cubic-bezier(.4,0,.2,1);
+}
+.vs-app-faq__item.is-open .vs-app-faq__q .icon{transform:rotate(45deg);}
+.vs-app-faq__a{
+  max-height:0;overflow:hidden;
+  transition:max-height .45s cubic-bezier(.4,0,.2,1),padding .3s ease;
+  padding:0 24px;
+}
+.vs-app-faq__item.is-open .vs-app-faq__a{max-height:380px;padding:0 24px 22px;}
+.vs-app-faq__a p{margin:0;font-size:15px;line-height:2;color:#475569;}
+
+/* Empty state */
+.vs-app-faq__empty{
+  text-align:center;padding:48px 24px;display:none;
+}
+.vs-app-faq__empty.is-visible{display:block;}
+.vs-app-faq__empty svg{color:#CBD5E1;margin-bottom:16px;}
+.vs-app-faq__empty p{color:#94A3B8;font-size:16px;margin:0;}
+
+@media(max-width:560px){
+  .vs-app-faq__q{padding:16px 18px;font-size:14.5px;}
+  .vs-app-faq__cats{gap:6px;}
+  .vs-app-faq__cat{padding:7px 12px;font-size:13px;}
+}
+</style>
+
+
+<section class="vs-app-faq" data-vs-app-faq>
+  <div class="vs-app-faq__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>سوالات متداول</span>
+      <h2>پاسخ <em>سوالات شما</em></h2>
+    </div>
+
+    <div class="vs-app-faq__search">
+      <input type="text" placeholder="جستجو در سوالات..." data-faq-search>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+    </div>
+
+    <div class="vs-app-faq__cats">
+      <button class="vs-app-faq__cat is-active" data-cat="all">همه</button>
+      <button class="vs-app-faq__cat" data-cat="tech">فنی</button>
+      <button class="vs-app-faq__cat" data-cat="time">زمان‌بندی</button>
+      <button class="vs-app-faq__cat" data-cat="price">قیمت</button>
+      <button class="vs-app-faq__cat" data-cat="support">پشتیبانی</button>
+    </div>
+
+    <div class="vs-app-faq__list">
+
+      <div class="vs-app-faq__item" data-category="time">
+        <button class="vs-app-faq__q" type="button">
+          <span class="txt">مدت ساخت اپلیکیشن چقدر است؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-app-faq__a">
+          <p>زمان ساخت اپلیکیشن بسته به پیچیدگی و امکانات متفاوت است. اپ پایه با ۵-۸ صفحه معمولاً ۴ تا ۶ هفته، اپ حرفه‌ای با ۱۵+ صفحه و امکانات کامل ۸ تا ۱۲ هفته، و اپ‌های سازمانی پیچیده ۳ تا ۶ ماه زمان می‌برند. در جلسه نیازسنجی اولیه، یک تخمین زمانی دقیق همراه با Roadmap و Milestone مشخص ارائه می‌دهیم.</p>
+        </div>
+      </div>
+
+      <div class="vs-app-faq__item" data-category="tech">
+        <button class="vs-app-faq__q" type="button">
+          <span class="txt">آیا اپلیکیشن من در گوگل پلی منتشر می‌شود؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-app-faq__a">
+          <p>بله، انتشار در گوگل پلی استور بخشی از تمام پکیج‌های ماست. ما اکانت توسعه‌دهنده گوگل پلی شما را راه‌اندازی می‌کنیم (یا با اکانت موجودتان کار می‌کنیم)، اپ را آماده انتشار می‌کنیم، Screenshotهای حرفه‌ای می‌سازیم و فرآیند ریویو گوگل را تا تأیید نهایی پیگیری می‌کنیم. در پکیج حرفه‌ای، انتشار در کافه‌بازار، مایکت و اپ‌استور Apple نیز شامل می‌شود.</p>
+        </div>
+      </div>
+
+      <div class="vs-app-faq__item" data-category="tech">
+        <button class="vs-app-faq__q" type="button">
+          <span class="txt">تفاوت اپلیکیشن Native و Cross-Platform چیست؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-app-faq__a">
+          <p>Native یعنی اپلیکیشنی که با زبان رسمی پلتفرم نوشته می‌شود — Kotlin/Java برای اندروید و Swift برای iOS. این روش بالاترین Performance را دارد ولی برای هر پلتفرم باید جداگانه کدنویسی شود. Cross-Platform مثل Flutter یا React Native، با یک کدبیس واحد، اپ هر دو پلتفرم را تولید می‌کند که در زمان و هزینه ۴۰-۵۰٪ صرفه‌جویی می‌شود. در جلسه مشاوره، بسته به نیاز پروژه شما بهترین گزینه را پیشنهاد می‌دهیم.</p>
+        </div>
+      </div>
+
+      <div class="vs-app-faq__item" data-category="tech">
+        <button class="vs-app-faq__q" type="button">
+          <span class="txt">آیا کد منبع به من تحویل داده می‌شود؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-app-faq__a">
+          <p>بله، در پایان پروژه و پس از تسویه نهایی، تمام کد منبع (Source Code) به همراه مستندات فنی کامل به شما تحویل داده می‌شود. کد در ریپوزیتوری گیت‌هاب یا گیت‌لب اختصاصی شما قرار می‌گیرد و دسترسی کامل دارید. این یعنی شما در آینده می‌توانید با هر تیم دیگری ادامه کار را پیش ببرید — ما به وابسته نگه داشتن مشتری اعتقادی نداریم.</p>
+        </div>
+      </div>
+
+      <div class="vs-app-faq__item" data-category="support">
+        <button class="vs-app-faq__q" type="button">
+          <span class="txt">آپدیت‌های اپلیکیشن چگونه انجام می‌شود؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-app-faq__a">
+          <p>آپدیت‌ها در دو دسته هستند: ۱) آپدیت‌های امنیتی و رفع باگ که در دوره پشتیبانی رایگان (۳ تا ۶ ماه بسته به پکیج) کاملاً رایگان انجام می‌شود. ۲) آپدیت‌های قابلیت‌های جدید که بعد از تحلیل و توافق روی هزینه و زمان، توسط تیم ما توسعه و در گوگل پلی منتشر می‌شود. برای React Native و Flutter، می‌توانیم از CodePush استفاده کنیم که آپدیت بدون نیاز به ری‌سابمیت در استور است.</p>
+        </div>
+      </div>
+
+      <div class="vs-app-faq__item" data-category="tech">
+        <button class="vs-app-faq__q" type="button">
+          <span class="txt">آیا امکان ارتقای اپلیکیشن به iOS هم هست؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-app-faq__a">
+          <p>قطعاً امکان دارد. اگر اپ شما با Flutter یا React Native توسعه یافته باشد، نسخه iOS تقریباً با همان کدبیس و در زمان کم (۲ تا ۴ هفته اضافه) قابل تولید است. اگر اپ Native اندروید است، نسخه iOS باید جداگانه با Swift توسعه داده شود که هزینه و زمانی مشابه نسخه اندروید دارد. در جلسه نیازسنجی اولیه، اگر هدف بلندمدت شما iOS هم هست، ما توصیه می‌کنیم از همان ابتدا Cross-Platform انتخاب شود.</p>
+        </div>
+      </div>
+
+      <div class="vs-app-faq__item" data-category="price">
+        <button class="vs-app-faq__q" type="button">
+          <span class="txt">هزینه پشتیبانی پس از تحویل چقدر است؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-app-faq__a">
+          <p>پشتیبانی فنی رایگان در پکیج پایه ۳ ماه و در پکیج حرفه‌ای ۶ ماه است. پس از این دوره، قراردادهای پشتیبانی سالیانه از ۱۸٪ ارزش پروژه شروع می‌شود که شامل: رفع باگ، آپدیت سازگاری با نسخه‌های جدید اندروید، نظارت بر سرور و دیتابیس، پشتیبان‌گیری منظم و SLA پاسخگویی است. برای پکیج‌های سازمانی، قرارداد SLA اختصاصی با ضریب پاسخگویی مشخص (مثلاً ۲ ساعت برای issueهای Critical) تنظیم می‌شود.</p>
+        </div>
+      </div>
+
+      <div class="vs-app-faq__item" data-category="tech">
+        <button class="vs-app-faq__q" type="button">
+          <span class="txt">آیا اپلیکیشن من امن است؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-app-faq__a">
+          <p>امنیت در تمام پروژه‌های ما در اولویت است. ما از SSL/HTTPS برای ارتباطات، ذخیره‌سازی توکن‌ها در Keystore اندروید، رمزنگاری دیتاهای حساس با AES-256، احراز هویت دو مرحله‌ای (در صورت نیاز)، Code Obfuscation برای جلوگیری از مهندسی معکوس، و رعایت OWASP Mobile Top 10 استفاده می‌کنیم. در پکیج سازمانی، تست نفوذ توسط شرکت ثالث و گزارش امنیتی هم انجام می‌شود.</p>
+        </div>
+      </div>
+
+      <div class="vs-app-faq__item" data-category="support">
+        <button class="vs-app-faq__q" type="button">
+          <span class="txt">نسخه دمو قبل از تحویل ارائه می‌شود؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-app-faq__a">
+          <p>بله، ما با متد توسعه چابک (Agile) کار می‌کنیم و در پایان هر Sprint (معمولاً هر ۲ هفته)، یک نسخه قابل نصب APK روی گوشی شما قرار می‌دهیم تا پیشرفت کار را ببینید و بازخورد بدهید. علاوه بر این، نسخه نهایی Beta حداقل ۱ هفته قبل از تحویل، در دسترس شما و تیمتان قرار می‌گیرد تا تست UAT انجام شود و هر اصلاحی نیاز باشد، قبل از Release انجام شود.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="vs-app-faq__empty">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/><path d="M8 11h6" stroke-linecap="round"/></svg>
+      <p>سوالی با این عبارت پیدا نشد. لطفاً عبارت دیگری جستجو کنید.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const section=document.querySelector('[data-vs-app-faq]');if(!section)return;
+  const items=section.querySelectorAll('.vs-app-faq__item');
+  const cats=section.querySelectorAll('.vs-app-faq__cat');
+  const searchInput=section.querySelector('[data-faq-search]');
+  const emptyState=section.querySelector('.vs-app-faq__empty');
+  let activeCategory='all';
+
+  // Accordion
+  items.forEach(item=>{
+    item.querySelector('.vs-app-faq__q').addEventListener('click',()=>{
+      const wasOpen=item.classList.contains('is-open');
+      items.forEach(i=>i.classList.remove('is-open'));
+      if(!wasOpen)item.classList.add('is-open');
+    });
+  });
+
+  // Category filter
+  cats.forEach(cat=>{
+    cat.addEventListener('click',()=>{
+      cats.forEach(c=>c.classList.remove('is-active'));
+      cat.classList.add('is-active');
+      activeCategory=cat.dataset.cat;
+      filterItems();
+    });
+  });
+
+  // Search
+  searchInput.addEventListener('input',()=>filterItems());
+
+  function filterItems(){
+    const query=searchInput.value.trim().toLowerCase();
+    let visible=0;
+    items.forEach(item=>{
+      const text=item.querySelector('.vs-app-faq__q .txt').textContent.toLowerCase();
+      const answer=item.querySelector('.vs-app-faq__a p').textContent.toLowerCase();
+      const itemCats=(item.dataset.category||'').split(/\s+/);
+      const catMatch=activeCategory==='all'||itemCats.includes(activeCategory);
+      const searchMatch=!query||text.includes(query)||answer.includes(query);
+      const show=catMatch&&searchMatch;
+      item.style.display=show?'':'none';
+      if(show)visible++;
+    });
+    emptyState.classList.toggle('is-visible',visible===0);
+  }
+})();
+</script>

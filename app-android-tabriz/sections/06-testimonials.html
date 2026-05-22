@@ -1,0 +1,254 @@
+<!-- ========================================================
+     سکشن ۶: TESTIMONIALS — تجربه مشتریان از اپلیکیشن‌های ساخته شده
+     ======================================================== -->
+<style>
+.vs-app-testimonials{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-android-green:#3DDC84;--vs-tech-purple:#A855F7;
+  --vs-green-soft:rgba(61,220,132,.15);--vs-purple-soft:rgba(168,85,247,.14);
+  padding:110px 24px;background:linear-gradient(180deg,#fff 0%,#FAF6EC 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-app-testimonials::before{
+  content:"";position:absolute;top:10%;right:-8%;width:38vw;height:38vw;
+  background:radial-gradient(circle,rgba(61,220,132,.10),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-app-testimonials::after{
+  content:"";position:absolute;bottom:5%;left:-10%;width:35vw;height:35vw;
+  background:radial-gradient(circle,rgba(168,85,247,.10),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-app-testimonials__inner{max-width:1240px;margin:0 auto;position:relative;z-index:1;}
+.vs-app-testimonials .vs-section-head{text-align:center;margin-bottom:64px;}
+.vs-app-testimonials .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-green-soft);color:#0F8A4A;
+  border:1px solid rgba(61,220,132,.35);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-app-testimonials .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-android-green);box-shadow:0 0 0 4px rgba(61,220,132,.20);display:inline-block;}
+.vs-app-testimonials h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-app-testimonials h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--vs-android-green),var(--vs-tech-purple));
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+}
+.vs-app-testimonials .vs-section-head p{color:#64748B;font-size:18px;max-width:680px;margin:0 auto;}
+
+/* 3D Slider */
+.vs-app-slider{position:relative;perspective:1200px;}
+.vs-app-slider__track{
+  display:flex;align-items:center;justify-content:center;
+  min-height:400px;position:relative;
+}
+.vs-app-slide{
+  position:absolute;width:100%;max-width:740px;
+  background:#fff;border:1px solid #E2E8F0;border-radius:28px;
+  padding:46px;box-shadow:0 20px 50px rgba(0,0,0,.06);
+  opacity:0;transform:translateX(100px) rotateY(-8deg) scale(.9);
+  transition:all .6s cubic-bezier(.4,0,.2,1);pointer-events:none;
+}
+.vs-app-slide.is-active{
+  opacity:1;transform:translateX(0) rotateY(0) scale(1);
+  pointer-events:auto;z-index:3;
+  border-color:rgba(61,220,132,.35);
+  box-shadow:0 24px 60px rgba(15,23,42,.08),0 0 0 1px rgba(61,220,132,.15);
+}
+.vs-app-slide.is-prev{
+  opacity:.4;transform:translateX(120px) rotateY(5deg) scale(.85);z-index:1;
+}
+.vs-app-slide.is-next{
+  opacity:.4;transform:translateX(-120px) rotateY(-5deg) scale(.85);z-index:1;
+}
+
+.vs-app-slide__quote{
+  font-size:18px;line-height:2;color:#334155;margin:0 0 28px;
+  position:relative;padding-right:30px;
+}
+.vs-app-slide__quote::before{
+  content:"\201C";position:absolute;right:0;top:-14px;
+  font-size:56px;color:var(--vs-android-green);opacity:.45;font-weight:900;line-height:1;
+}
+.vs-app-slide__author{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.vs-app-slide__avatar{
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,var(--vs-android-green),var(--vs-tech-purple));
+  display:grid;place-items:center;color:#fff;font-weight:900;font-size:20px;
+  flex-shrink:0;box-shadow:0 8px 20px rgba(61,220,132,.30);
+}
+.vs-app-slide__info{flex:1;min-width:0;}
+.vs-app-slide__name{font-weight:800;font-size:16.5px;color:var(--vs-ink);}
+.vs-app-slide__company{font-size:13px;color:#64748B;margin-top:2px;}
+.vs-app-slide__badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--vs-green-soft);color:#0F8A4A;
+  border:1px solid rgba(61,220,132,.35);
+  padding:8px 14px;border-radius:12px;font-size:13.5px;font-weight:800;
+  white-space:nowrap;
+}
+.vs-app-slide__badge svg{width:16px;height:16px;color:var(--vs-android-green);}
+
+/* Controls */
+.vs-app-slider__controls{
+  display:flex;align-items:center;justify-content:center;gap:16px;margin-top:40px;
+}
+.vs-app-slider__btn{
+  width:48px;height:48px;border-radius:50%;
+  background:#fff;border:1.5px solid #E2E8F0;
+  display:grid;place-items:center;cursor:pointer;
+  transition:all .3s ease;color:var(--vs-ink);
+}
+.vs-app-slider__btn:hover{border-color:var(--vs-android-green);color:var(--vs-android-green);box-shadow:0 4px 12px rgba(61,220,132,.20);}
+.vs-app-slider__dots{display:flex;gap:8px;}
+.vs-app-slider__dot{
+  width:10px;height:10px;border-radius:50%;
+  background:#E2E8F0;cursor:pointer;transition:all .3s ease;border:none;padding:0;
+}
+.vs-app-slider__dot.is-active{
+  background:linear-gradient(135deg,var(--vs-android-green),var(--vs-tech-purple));
+  transform:scale(1.4);width:26px;border-radius:6px;
+}
+
+@media(max-width:768px){
+  .vs-app-slide{padding:28px;max-width:92%;}
+  .vs-app-slide.is-prev,.vs-app-slide.is-next{opacity:0;}
+  .vs-app-slide__quote{font-size:16px;}
+}
+</style>
+
+
+<section class="vs-app-testimonials" data-vs-app-testimonials>
+  <div class="vs-app-testimonials__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>تجربه مشتریان</span>
+      <h2>اپ‌هایی که <em>نتیجه واقعی</em> دادند</h2>
+      <p>کسب‌وکارهایی که با اپلیکیشن اختصاصی، فروش و رضایت مشتری‌شان را چند برابر کردند.</p>
+    </div>
+
+    <div class="vs-app-slider" data-vs-app-slider>
+      <div class="vs-app-slider__track">
+
+        <!-- Slide 1 -->
+        <div class="vs-app-slide is-active" data-slide="0">
+          <p class="vs-app-slide__quote">اپلیکیشنی که برامون ساختن، فروش‌مون رو ۲ برابر کرد. سرعتش بی‌نظیره و کاربرها مدام بازخورد مثبت می‌دن. درگاه پرداخت داخل اپ هم باعث شد سبد خریدها رها نشن.</p>
+          <div class="vs-app-slide__author">
+            <div class="vs-app-slide__avatar">ف</div>
+            <div class="vs-app-slide__info">
+              <div class="vs-app-slide__name">فرهاد رضایی</div>
+              <div class="vs-app-slide__company">مدیرعامل، فروشگاه آنلاین آذرتاپ</div>
+            </div>
+            <div class="vs-app-slide__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              +۲۰۰٪ فروش
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="vs-app-slide" data-slide="1">
+          <p class="vs-app-slide__quote">تو ۸ هفته یه اپ کامل تحویل دادن که الان ۱۰،۰۰۰ کاربر فعال داره. تجربه کاربری روان و طراحی مدرنش باعث شد رشد ارگانیک خیلی خوبی داشته باشیم. تیم پشتیبانی هم همیشه در دسترسه.</p>
+          <div class="vs-app-slide__author">
+            <div class="vs-app-slide__avatar">س</div>
+            <div class="vs-app-slide__info">
+              <div class="vs-app-slide__name">سعید نجفی</div>
+              <div class="vs-app-slide__company">بنیان‌گذار، استارتاپ دلیوری ساعت</div>
+            </div>
+            <div class="vs-app-slide__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              ۱۰K کاربر فعال
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="vs-app-slide" data-slide="2">
+          <p class="vs-app-slide__quote">اپ نوبت‌دهی ما بعد از ۳ ماه راه‌اندازی، هزینه پذیرش رو نصف کرد. منشی‌ها وقت بیشتری برای رسیدگی به بیماران دارن و بیمارها هم راحت‌تر نوبت می‌گیرن. واقعاً ارزشش رو داشت.</p>
+          <div class="vs-app-slide__author">
+            <div class="vs-app-slide__avatar">ل</div>
+            <div class="vs-app-slide__info">
+              <div class="vs-app-slide__name">دکتر لیلا کریمی</div>
+              <div class="vs-app-slide__company">مدیر، کلینیک تخصصی نوین تبریز</div>
+            </div>
+            <div class="vs-app-slide__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              ۵۰٪ صرفه‌جویی
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="vs-app-slide" data-slide="3">
+          <p class="vs-app-slide__quote">اپ کاربردی برای فروشنده‌های ما کاملاً مطابق نیازمون طراحی شد. عالی! هر فروشنده الان موجودی، سفارش و کمیسیون‌هاش رو لحظه‌ای می‌بینه. اتصال به ERPمون هم بدون مشکل انجام شد.</p>
+          <div class="vs-app-slide__author">
+            <div class="vs-app-slide__avatar">م</div>
+            <div class="vs-app-slide__info">
+              <div class="vs-app-slide__name">مهندس مهدی احمدی</div>
+              <div class="vs-app-slide__company">معاون فروش، شرکت تولیدی پارس‌صنعت</div>
+            </div>
+            <div class="vs-app-slide__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linejoin="round"/></svg>
+              Custom Solution
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="vs-app-slider__controls">
+        <button class="vs-app-slider__btn" data-slider-prev aria-label="قبلی">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="vs-app-slider__dots">
+          <button class="vs-app-slider__dot is-active" data-dot="0" aria-label="اسلاید ۱"></button>
+          <button class="vs-app-slider__dot" data-dot="1" aria-label="اسلاید ۲"></button>
+          <button class="vs-app-slider__dot" data-dot="2" aria-label="اسلاید ۳"></button>
+          <button class="vs-app-slider__dot" data-dot="3" aria-label="اسلاید ۴"></button>
+        </div>
+        <button class="vs-app-slider__btn" data-slider-next aria-label="بعدی">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const root=document.querySelector('[data-vs-app-slider]');if(!root)return;
+  const slides=root.querySelectorAll('.vs-app-slide');
+  const dots=root.querySelectorAll('.vs-app-slider__dot');
+  const prevBtn=root.querySelector('[data-slider-prev]');
+  const nextBtn=root.querySelector('[data-slider-next]');
+  let current=0;const total=slides.length;
+
+  function goTo(idx){
+    current=((idx%total)+total)%total;
+    slides.forEach((s,i)=>{
+      s.classList.remove('is-active','is-prev','is-next');
+      if(i===current)s.classList.add('is-active');
+      else if(i===((current-1+total)%total))s.classList.add('is-prev');
+      else if(i===((current+1)%total))s.classList.add('is-next');
+    });
+    dots.forEach((d,i)=>d.classList.toggle('is-active',i===current));
+  }
+
+  prevBtn.addEventListener('click',()=>{goTo(current+1);resetAuto();});
+  nextBtn.addEventListener('click',()=>{goTo(current-1);resetAuto();});
+  dots.forEach((d,i)=>d.addEventListener('click',()=>{goTo(i);resetAuto();}));
+
+  // Touch/swipe
+  let startX=0;
+  root.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;},{passive:true});
+  root.addEventListener('touchend',e=>{
+    const diff=e.changedTouches[0].clientX-startX;
+    if(Math.abs(diff)>50){diff>0?goTo(current+1):goTo(current-1);resetAuto();}
+  },{passive:true});
+
+  // Auto-play
+  let auto=setInterval(()=>goTo(current+1),5500);
+  function resetAuto(){clearInterval(auto);auto=setInterval(()=>goTo(current+1),5500);}
+})();
+</script>
