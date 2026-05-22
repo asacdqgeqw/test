@@ -7,41 +7,41 @@
  *
  * @package ViraSections
  */
-
+ 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
+ 
 class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
-
+ 
 	public function get_name() {
 		return 'vira_hero';
 	}
-
+ 
 	public function get_title() {
 		return __( 'Hero (Vira)', 'vira-sections' );
 	}
-
+ 
 	public function get_icon() {
 		return 'eicon-banner';
 	}
-
+ 
 	public function get_categories() {
 		return array( 'vira-sections' );
 	}
-
+ 
 	public function get_keywords() {
 		return array( 'vira', 'hero', 'banner', 'header', 'aurora' );
 	}
-
+ 
 	protected function register_controls() {
-
+ 
 		/* ============= Content: Header ============= */
 		$this->start_controls_section(
 			'section_content',
 			array( 'label' => __( 'Hero Content', 'vira-sections' ), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT )
 		);
-
+ 
 		$this->add_control(
 			'badge_icon',
 			array(
@@ -50,7 +50,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'default' => '🚀',
 			)
 		);
-
+ 
 		$this->add_control(
 			'badge_text',
 			array(
@@ -60,7 +60,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'label_block' => true,
 			)
 		);
-
+ 
 		$this->add_control(
 			'heading_before',
 			array(
@@ -71,7 +71,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'description' => __( 'Multiple lines supported.', 'vira-sections' ),
 			)
 		);
-
+ 
 		$rep_words = new \Elementor\Repeater();
 		$rep_words->add_control(
 			'word',
@@ -81,7 +81,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'default' => __( 'محصول موفق', 'vira-sections' ),
 			)
 		);
-
+ 
 		$this->add_control(
 			'rotating_words',
 			array(
@@ -97,7 +97,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				),
 			)
 		);
-
+ 
 		$this->add_control(
 			'description',
 			array(
@@ -107,15 +107,15 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'rows'    => 4,
 			)
 		);
-
+ 
 		$this->end_controls_section();
-
+ 
 		/* ============= Content: CTA Buttons ============= */
 		$this->start_controls_section(
 			'section_cta',
 			array( 'label' => __( 'CTA Buttons', 'vira-sections' ), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT )
 		);
-
+ 
 		$this->add_control(
 			'btn_primary_text',
 			array(
@@ -148,15 +148,15 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'default' => array( 'url' => '#pricing' ),
 			)
 		);
-
+ 
 		$this->end_controls_section();
-
+ 
 		/* ============= Content: Stats ============= */
 		$this->start_controls_section(
 			'section_stats',
 			array( 'label' => __( 'Stats', 'vira-sections' ), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT )
 		);
-
+ 
 		$rep_stat = new \Elementor\Repeater();
 		$rep_stat->add_control(
 			'value',
@@ -170,7 +170,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 			'label',
 			array( 'label' => __( 'Label', 'vira-sections' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => __( 'پروژه موفق', 'vira-sections' ) )
 		);
-
+ 
 		$this->add_control(
 			'stats',
 			array(
@@ -185,15 +185,15 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				),
 			)
 		);
-
+ 
 		$this->end_controls_section();
-
+ 
 		/* ============= Content: Visual ============= */
 		$this->start_controls_section(
 			'section_visual',
 			array( 'label' => __( 'Hero Visual', 'vira-sections' ), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT )
 		);
-
+ 
 		$this->add_control(
 			'visual_type',
 			array(
@@ -207,7 +207,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				),
 			)
 		);
-
+ 
 		$this->add_control(
 			'visual_image',
 			array(
@@ -216,7 +216,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'condition' => array( 'visual_type' => 'image' ),
 			)
 		);
-
+ 
 		$this->add_control(
 			'visual_caption',
 			array(
@@ -226,15 +226,120 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'condition' => array( 'visual_type' => 'mockup' ),
 			)
 		);
-
+ 
 		$this->end_controls_section();
-
+ 
+		/* ============= Content: Floating Cards ============= */
+		$this->start_controls_section(
+			'section_floats',
+			array( 'label' => __( 'Floating Cards', 'vira-sections' ), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT )
+		);
+ 
+		$this->add_control(
+			'show_floats',
+			array(
+				'label'        => __( 'Show Floating Cards', 'vira-sections' ),
+				'type'         => \Elementor\Controls_Manager::SWITCHER,
+				'default'      => 'yes',
+				'return_value' => 'yes',
+			)
+		);
+ 
+		$rep_float = new \Elementor\Repeater();
+		$rep_float->add_control(
+			'float_icon',
+			array(
+				'label'   => __( 'Icon', 'vira-sections' ),
+				'type'    => \Elementor\Controls_Manager::ICONS,
+				'default' => array( 'value' => 'fas fa-bolt', 'library' => 'fa-solid' ),
+			)
+		);
+		$rep_float->add_control(
+			'float_title',
+			array( 'label' => __( 'Title', 'vira-sections' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => __( 'عنوان', 'vira-sections' ) )
+		);
+		$rep_float->add_control(
+			'float_subtitle',
+			array( 'label' => __( 'Subtitle', 'vira-sections' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => __( 'توضیح کوتاه', 'vira-sections' ) )
+		);
+		$rep_float->add_control(
+			'float_position',
+			array(
+				'label'   => __( 'Position', 'vira-sections' ),
+				'type'    => \Elementor\Controls_Manager::SELECT,
+				'default' => 'top-right',
+				'options' => array(
+					'top-right'    => __( 'بالا راست', 'vira-sections' ),
+					'top-left'     => __( 'بالا چپ', 'vira-sections' ),
+					'middle-right' => __( 'وسط راست', 'vira-sections' ),
+					'middle-left'  => __( 'وسط چپ', 'vira-sections' ),
+					'bottom-right' => __( 'پایین راست', 'vira-sections' ),
+					'bottom-left'  => __( 'پایین چپ', 'vira-sections' ),
+				),
+			)
+		);
+		$rep_float->add_control(
+			'float_color_from',
+			array(
+				'label'   => __( 'Icon Gradient — From', 'vira-sections' ),
+				'type'    => \Elementor\Controls_Manager::COLOR,
+				'default' => '#128BE0',
+			)
+		);
+		$rep_float->add_control(
+			'float_color_to',
+			array(
+				'label'   => __( 'Icon Gradient — To', 'vira-sections' ),
+				'type'    => \Elementor\Controls_Manager::COLOR,
+				'default' => '#170C79',
+			)
+		);
+ 
+		$this->add_control(
+			'floats',
+			array(
+				'label'       => __( 'Floating Cards', 'vira-sections' ),
+				'type'        => \Elementor\Controls_Manager::REPEATER,
+				'fields'      => $rep_float->get_controls(),
+				'title_field' => '{{{ float_title }}}',
+				'condition'   => array( 'show_floats' => 'yes' ),
+				'default'     => array(
+					array(
+						'float_icon'       => array( 'value' => 'fas fa-bolt', 'library' => 'fa-solid' ),
+						'float_title'      => __( 'سرعت بالا', 'vira-sections' ),
+						'float_subtitle'   => __( 'PageSpeed 95+', 'vira-sections' ),
+						'float_position'   => 'top-right',
+						'float_color_from' => '#128BE0',
+						'float_color_to'   => '#170C79',
+					),
+					array(
+						'float_icon'       => array( 'value' => 'fas fa-chart-line', 'library' => 'fa-solid' ),
+						'float_title'      => __( 'رشد ۲۰۰٪', 'vira-sections' ),
+						'float_subtitle'   => __( 'میانگین مشتریان', 'vira-sections' ),
+						'float_position'   => 'middle-left',
+						'float_color_from' => '#8ACBD0',
+						'float_color_to'   => '#0170B9',
+					),
+					array(
+						'float_icon'       => array( 'value' => 'fas fa-shield-alt', 'library' => 'fa-solid' ),
+						'float_title'      => __( 'امنیت بانکی', 'vira-sections' ),
+						'float_subtitle'   => __( 'رمزنگاری کامل', 'vira-sections' ),
+						'float_position'   => 'bottom-right',
+						'float_color_from' => '#0170B9',
+						'float_color_to'   => '#170C79',
+					),
+				),
+			)
+		);
+ 
+		$this->end_controls_section();
+ 
 		/* ============= Content: Marquee ============= */
 		$this->start_controls_section(
 			'section_marquee',
 			array( 'label' => __( 'Marquee (Bottom Strip)', 'vira-sections' ), 'tab' => \Elementor\Controls_Manager::TAB_CONTENT )
 		);
-
+ 
 		$this->add_control(
 			'show_marquee',
 			array(
@@ -244,13 +349,13 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'return_value' => 'yes',
 			)
 		);
-
+ 
 		$rep_mq = new \Elementor\Repeater();
 		$rep_mq->add_control(
 			'item',
 			array( 'label' => __( 'Item', 'vira-sections' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => __( 'ویژگی', 'vira-sections' ) )
 		);
-
+ 
 		$this->add_control(
 			'marquee_items',
 			array(
@@ -269,15 +374,15 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'condition'   => array( 'show_marquee' => 'yes' ),
 			)
 		);
-
+ 
 		$this->end_controls_section();
-
+ 
 		/* ============= Style: Background ============= */
 		$this->start_controls_section(
 			'style_bg',
 			array( 'label' => __( 'Background', 'vira-sections' ), 'tab' => \Elementor\Controls_Manager::TAB_STYLE )
 		);
-
+ 
 		$this->add_control(
 			'bg_color',
 			array(
@@ -286,7 +391,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'default' => '#060832',
 			)
 		);
-
+ 
 		$this->add_control(
 			'aurora_color_1',
 			array(
@@ -295,7 +400,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'default' => '#128BE0',
 			)
 		);
-
+ 
 		$this->add_control(
 			'aurora_color_2',
 			array(
@@ -304,15 +409,15 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'default' => '#170C79',
 			)
 		);
-
+ 
 		$this->end_controls_section();
-
+ 
 		/* ============= Style: Colors ============= */
 		$this->start_controls_section(
 			'style_colors',
 			array( 'label' => __( 'Colors', 'vira-sections' ), 'tab' => \Elementor\Controls_Manager::TAB_STYLE )
 		);
-
+ 
 		$this->add_control(
 			'text_color',
 			array(
@@ -321,7 +426,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'default' => '#FFFFFF',
 			)
 		);
-
+ 
 		$this->add_control(
 			'rotating_grad_from',
 			array(
@@ -330,7 +435,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'default' => '#8ACBD0',
 			)
 		);
-
+ 
 		$this->add_control(
 			'rotating_grad_to',
 			array(
@@ -339,7 +444,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'default' => '#EFE3CA',
 			)
 		);
-
+ 
 		$this->add_control(
 			'btn_grad_from',
 			array(
@@ -348,7 +453,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'default' => '#128BE0',
 			)
 		);
-
+ 
 		$this->add_control(
 			'btn_grad_to',
 			array(
@@ -357,14 +462,14 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'default' => '#8ACBD0',
 			)
 		);
-
+ 
 		$this->end_controls_section();
 	}
-
+ 
 	protected function render() {
 		$s         = $this->get_settings_for_display();
 		$unique_id = 'vira-hero-' . $this->get_id();
-
+ 
 		$bg          = ! empty( $s['bg_color'] ) ? $s['bg_color'] : '#060832';
 		$aurora_1    = ! empty( $s['aurora_color_1'] ) ? $s['aurora_color_1'] : '#128BE0';
 		$aurora_2    = ! empty( $s['aurora_color_2'] ) ? $s['aurora_color_2'] : '#170C79';
@@ -373,14 +478,14 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 		$rot_to      = ! empty( $s['rotating_grad_to'] ) ? $s['rotating_grad_to'] : '#EFE3CA';
 		$btn_from    = ! empty( $s['btn_grad_from'] ) ? $s['btn_grad_from'] : '#128BE0';
 		$btn_to      = ! empty( $s['btn_grad_to'] ) ? $s['btn_grad_to'] : '#8ACBD0';
-
+ 
 		$words = ! empty( $s['rotating_words'] ) ? $s['rotating_words'] : array();
 		$stats = ! empty( $s['stats'] ) ? $s['stats'] : array();
 		$mq    = ! empty( $s['marquee_items'] ) ? $s['marquee_items'] : array();
-
+ 
 		$word_count   = max( 1, count( $words ) );
 		$rotate_height = $word_count * 1.25;
-
+ 
 		$btn1_url = ! empty( $s['btn_primary_link']['url'] ) ? $s['btn_primary_link']['url'] : '#';
 		$btn2_url = ! empty( $s['btn_secondary_link']['url'] ) ? $s['btn_secondary_link']['url'] : '#';
 		?>
@@ -469,21 +574,11 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				display:inline-flex;flex-direction:column;vertical-align:top;
 				height:1.25em;overflow:hidden;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1 .rot__list span{
-				display:block;height:1.25em;
-				animation:vira-hero-rot <?php echo (int) ($word_count * 3); ?>s steps(1) infinite;
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1 .rot__list{
+				transition: transform .6s cubic-bezier(.4,0,.2,1);
 			}
-			@keyframes vira-hero-rot{
-				<?php
-				$step = 100 / $word_count;
-				for ( $i = 0; $i < $word_count; $i++ ) {
-					$start = $i * $step;
-					$end   = $start + ( $step * 0.85 );
-					$y     = $i * -1.25;
-					echo $start . '%,' . $end . '%{transform:translateY(' . $y . 'em);}';
-				}
-				echo '100%{transform:translateY(0);}';
-				?>
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1 .rot__list span{
+				display:block;height:1.25em;line-height:1.25em;white-space:nowrap;
 			}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1 .rot::after{
 				content:"";display:inline-block;width:3px;height:.85em;
@@ -595,11 +690,11 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				#<?php echo esc_attr( $unique_id ); ?> .vira-hero__stat .num{font-size:24px;}
 			}
 		</style>
-
+ 
 		<section id="<?php echo esc_attr( $unique_id ); ?>" class="vira-hero" data-vira-hero>
 			<div class="vira-hero__grid-bg"></div>
 			<div class="vira-hero__spot"></div>
-
+ 
 			<div class="vira-hero__wrap">
 				<div class="vira-hero__content">
 					<?php if ( ! empty( $s['badge_text'] ) ) : ?>
@@ -608,7 +703,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 							<span><?php echo esc_html( $s['badge_text'] ); ?></span>
 						</a>
 					<?php endif; ?>
-
+ 
 					<h1>
 						<?php echo nl2br( esc_html( $s['heading_before'] ) ); ?>
 						<?php if ( ! empty( $words ) ) : ?>
@@ -621,11 +716,11 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 							</span>
 						<?php endif; ?>
 					</h1>
-
+ 
 					<?php if ( ! empty( $s['description'] ) ) : ?>
 						<p class="lead"><?php echo esc_html( $s['description'] ); ?></p>
 					<?php endif; ?>
-
+ 
 					<div class="vira-hero__cta">
 						<?php if ( ! empty( $s['btn_primary_text'] ) ) : ?>
 							<a href="<?php echo esc_url( $btn1_url ); ?>" class="vira-hero__btn vira-hero__btn--primary">
@@ -639,7 +734,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 							</a>
 						<?php endif; ?>
 					</div>
-
+ 
 					<?php if ( ! empty( $stats ) ) : ?>
 						<div class="vira-hero__stats">
 							<?php foreach ( $stats as $stat ) : ?>
@@ -653,7 +748,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 						</div>
 					<?php endif; ?>
 				</div>
-
+ 
 				<?php if ( 'none' !== $s['visual_type'] ) : ?>
 					<div class="vira-hero__visual">
 						<div class="vira-hero__visual-stage" data-vira-tilt>
@@ -676,7 +771,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 					</div>
 				<?php endif; ?>
 			</div>
-
+ 
 			<?php if ( 'yes' === $s['show_marquee'] && ! empty( $mq ) ) : ?>
 				<div class="vira-hero__marquee">
 					<div class="vira-hero__marquee-track">
@@ -689,18 +784,18 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				</div>
 			<?php endif; ?>
 		</section>
-
+ 
 		<script>
 		(function(){
 			var hero = document.getElementById('<?php echo esc_js( $unique_id ); ?>');
 			if (!hero) return;
-
+ 
 			hero.addEventListener('pointermove', function(e){
 				var r = hero.getBoundingClientRect();
 				hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
 				hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
 			});
-
+ 
 			var stage = hero.querySelector('[data-vira-tilt]');
 			if (stage) {
 				stage.addEventListener('pointermove', function(e){
@@ -713,9 +808,9 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 					stage.style.transform = 'rotateX(0) rotateY(0)';
 				});
 			}
-
+ 
 			function toFa(n){ return String(n).replace(/\d/g, function(d){ return '۰۱۲۳۴۵۶۷۸۹'[d]; }); }
-
+ 
 			var counters = hero.querySelectorAll('[data-counter]');
 			function animate(el){
 				var target = parseInt(el.getAttribute('data-counter'), 10);
@@ -744,3 +839,4 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 		<?php
 	}
 }
+ 
