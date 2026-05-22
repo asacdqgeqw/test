@@ -1,0 +1,22 @@
+/**
+ * Vira Sections — Elementor Editor Styles
+ * Branding for the Vira Sections category in the widgets panel.
+ */
+
+.elementor-element[data-element_type$="-vira_hero"] .elementor-widget-icon i,
+.elementor-element[data-element_type$="-vira_services_bento"] .elementor-widget-icon i,
+.elementor-element[data-element_type$="-vira_tabs"] .elementor-widget-icon i,
+.elementor-element[data-element_type$="-vira_process_timeline"] .elementor-widget-icon i,
+.elementor-element[data-element_type$="-vira_tech_stack"] .elementor-widget-icon i,
+.elementor-element[data-element_type$="-vira_pricing"] .elementor-widget-icon i,
+.elementor-element[data-element_type$="-vira_testimonials_slider"] .elementor-widget-icon i,
+.elementor-element[data-element_type$="-vira_faq_search"] .elementor-widget-icon i,
+.elementor-element[data-element_type$="-vira_cta_form"] .elementor-widget-icon i {
+  color: #128BE0;
+}
+
+/* Highlight Vira Sections category in panel */
+.elementor-panel-category[data-elementor-category="vira-sections"] .elementor-panel-category-title {
+  background: linear-gradient(135deg, #170C79, #128BE0);
+  color: #fff;
+}

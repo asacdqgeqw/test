@@ -1,0 +1,23 @@
+/**
+ * Vira Sections — Shared Frontend Styles
+ * Minor cross-widget tweaks. Most styling is inline per-widget for scoping.
+ */
+
+/* Smooth scroll for in-page anchors */
+html { scroll-behavior: smooth; }
+
+/* Prevent horizontal scroll caused by gradients/aurora */
+body.elementor-page { overflow-x: hidden; }
+
+/* Better focus rings for form fields inside Vira widgets */
+[id^="vira-"] input:focus,
+[id^="vira-"] select:focus,
+[id^="vira-"] textarea:focus,
+[id^="vira-"] button:focus {
+  outline: none;
+}
+
+/* Ensure RTL is consistent */
+[id^="vira-"] {
+  direction: rtl;
+}
