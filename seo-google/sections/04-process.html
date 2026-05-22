@@ -1,0 +1,224 @@
+<!-- ========================================================
+     سکشن ۴: PROCESS — تایملاین فرایند سئو
+     ======================================================== -->
+<style>
+.vs-seo-process{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-green:#22c55e;--vs-green-soft:rgba(34,197,94,.15);
+  padding:110px 24px;background:#060832;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:#fff;
+  position:relative;overflow:hidden;
+}
+.vs-seo-process::before{
+  content:"";position:absolute;top:20%;left:-10%;width:50vw;height:50vw;
+  background:radial-gradient(circle,rgba(34,197,94,.12),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-seo-process::after{
+  content:"";position:absolute;bottom:10%;right:-10%;width:40vw;height:40vw;
+  background:radial-gradient(circle,rgba(18,139,224,.10),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-seo-process__inner{max-width:1240px;margin:0 auto;position:relative;z-index:1;}
+.vs-seo-process .vs-section-head{text-align:center;margin-bottom:64px;}
+.vs-seo-process .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(34,197,94,.12);color:var(--vs-green);
+  border:1px solid rgba(34,197,94,.25);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-seo-process .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-green);box-shadow:0 0 0 4px rgba(34,197,94,.18);display:inline-block;}
+.vs-seo-process h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;color:#fff;}
+.vs-seo-process h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-green),var(--vs-cyan));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-seo-process .vs-section-head p{color:rgba(255,255,255,.65);font-size:18px;max-width:680px;margin:0 auto;}
+
+/* Timeline Layout */
+.vs-seo-timeline{display:grid;grid-template-columns:320px 1fr;gap:48px;align-items:start;}
+.vs-seo-timeline__steps{display:flex;flex-direction:column;gap:0;position:relative;}
+.vs-seo-timeline__steps::before{
+  content:"";position:absolute;top:0;bottom:0;right:23px;width:2px;
+  background:linear-gradient(180deg,var(--vs-green),var(--vs-accent),rgba(255,255,255,.1));
+  border-radius:2px;
+}
+
+.vs-seo-step{
+  display:flex;align-items:center;gap:16px;padding:18px 16px;
+  border-radius:16px;cursor:pointer;position:relative;
+  transition:all .3s ease;background:transparent;
+  border:1.5px solid transparent;
+}
+.vs-seo-step:hover{background:rgba(255,255,255,.04);}
+.vs-seo-step.is-active{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.25);}
+.vs-seo-step__ring{
+  width:46px;height:46px;border-radius:50%;
+  display:grid;place-items:center;flex-shrink:0;
+  background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.5);font-weight:800;font-size:16px;
+  transition:all .3s ease;position:relative;z-index:1;
+}
+.vs-seo-step.is-active .vs-seo-step__ring{
+  background:linear-gradient(135deg,var(--vs-green),var(--vs-accent));
+  border-color:var(--vs-green);color:#060832;
+  box-shadow:0 0 20px rgba(34,197,94,.40);
+}
+.vs-seo-step__info{flex:1;}
+.vs-seo-step__info strong{display:block;font-size:16px;font-weight:700;color:#fff;margin-bottom:2px;}
+.vs-seo-step__info span{font-size:13px;color:rgba(255,255,255,.50);}
+.vs-seo-step.is-active .vs-seo-step__info span{color:var(--vs-green);}
+
+/* Detail Panel */
+.vs-seo-timeline__detail{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:28px;padding:40px;min-height:380px;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  position:relative;overflow:hidden;
+}
+.vs-seo-timeline__detail::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--vs-green),var(--vs-accent),transparent);
+  border-radius:0 0 4px 4px;
+}
+.vs-seo-detail-panel{display:none;animation:vs-seo-fadeUp .4s ease;}
+.vs-seo-detail-panel.is-active{display:block;}
+@keyframes vs-seo-fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+.vs-seo-detail-panel h3{font-size:24px;font-weight:800;margin:0 0 8px;color:#fff;}
+.vs-seo-detail-panel .dur{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,.15);color:var(--vs-green);padding:4px 12px;border-radius:8px;font-size:13px;font-weight:600;margin-bottom:20px;}
+.vs-seo-detail-panel p{color:rgba(255,255,255,.75);line-height:1.9;font-size:15px;margin:0 0 20px;}
+.vs-seo-detail-panel ul{list-style:none;padding:0;margin:0;display:grid;gap:12px;}
+.vs-seo-detail-panel li{display:flex;align-items:flex-start;gap:10px;color:rgba(255,255,255,.88);font-size:14.5px;}
+.vs-seo-detail-panel li svg{flex-shrink:0;margin-top:3px;color:var(--vs-green);}
+
+/* Progress Bar */
+.vs-seo-progress{margin-top:48px;text-align:center;}
+.vs-seo-progress__bar{height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;margin-bottom:12px;}
+.vs-seo-progress__fill{height:100%;background:linear-gradient(90deg,var(--vs-green),var(--vs-accent));border-radius:3px;transition:width .6s ease;width:20%;}
+.vs-seo-progress__label{color:rgba(255,255,255,.50);font-size:13px;}
+
+@media(max-width:980px){.vs-seo-timeline{grid-template-columns:1fr;gap:32px;}}
+@media(max-width:560px){.vs-seo-timeline__detail{padding:24px;}.vs-seo-step{padding:14px 12px;}}
+</style>
+
+
+<section class="vs-seo-process" data-vs-seo-process>
+  <div class="vs-seo-process__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>فرایند کاری ما</span>
+      <h2>مسیر شفاف تا <em>صفحه اول</em></h2>
+      <p>هر مرحله از فرایند سئو ما با دقت طراحی شده تا بهترین نتیجه را در کوتاه‌ترین زمان بدست آورید.</p>
+    </div>
+
+    <div class="vs-seo-timeline">
+      <div class="vs-seo-timeline__steps">
+        <div class="vs-seo-step is-active" data-step="1">
+          <div class="vs-seo-step__ring">۱</div>
+          <div class="vs-seo-step__info"><strong>آدیت و تحلیل</strong><span>هفته اول</span></div>
+        </div>
+        <div class="vs-seo-step" data-step="2">
+          <div class="vs-seo-step__ring">۲</div>
+          <div class="vs-seo-step__info"><strong>استراتژی و تحقیق</strong><span>هفته دوم</span></div>
+        </div>
+        <div class="vs-seo-step" data-step="3">
+          <div class="vs-seo-step__ring">۳</div>
+          <div class="vs-seo-step__info"><strong>اجرا و بهینه‌سازی</strong><span>مداوم</span></div>
+        </div>
+        <div class="vs-seo-step" data-step="4">
+          <div class="vs-seo-step__ring">۴</div>
+          <div class="vs-seo-step__info"><strong>لینک‌سازی و محتوا</strong><span>مداوم</span></div>
+        </div>
+        <div class="vs-seo-step" data-step="5">
+          <div class="vs-seo-step__ring">۵</div>
+          <div class="vs-seo-step__info"><strong>گزارش و رشد</strong><span>ماهانه</span></div>
+        </div>
+      </div>
+
+      <div class="vs-seo-timeline__detail">
+        <div class="vs-seo-detail-panel is-active" data-detail="1">
+          <h3>آدیت و تحلیل جامع</h3>
+          <div class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>مدت: ۱ هفته</div>
+          <p>قبل از هر اقدامی، سایت شما را از نظر فنی، محتوایی و بک‌لینک‌ها بررسی کامل می‌کنیم. هر مشکلی شناسایی و اولویت‌بندی می‌شود.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>آدیت فنی کامل (۲۰۰+ فاکتور)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بررسی پروفایل بک‌لینک</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>آنالیز رقبای اصلی</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>شناسایی فرصت‌های Quick Win</li>
+          </ul>
+        </div>
+        <div class="vs-seo-detail-panel" data-detail="2">
+          <h3>استراتژی و تحقیق کلمات کلیدی</h3>
+          <div class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>مدت: ۱ هفته</div>
+          <p>بر اساس نتایج آدیت، استراتژی جامع سئو و تحقیق کلمات کلیدی انجام می‌شود.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تحقیق و دسته‌بندی کلمات کلیدی</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تعیین صفحات هدف (Landing Pages)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>نقشه راه ۶ ماهه سئو</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تقویم محتوایی اولیه</li>
+          </ul>
+        </div>
+        <div class="vs-seo-detail-panel" data-detail="3">
+          <h3>اجرا و بهینه‌سازی فنی</h3>
+          <div class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>مدت: مداوم</div>
+          <p>تغییرات فنی، بهینه‌سازی On-Page و ساختاردهی سایت طبق استراتژی تدوین‌شده اجرا می‌شود.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>رفع مشکلات فنی شناسایی‌شده</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بهینه‌سازی Meta Tags و Headings</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پیاده‌سازی Schema و Structured Data</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بهبود Internal Linking</li>
+          </ul>
+        </div>
+        <div class="vs-seo-detail-panel" data-detail="4">
+          <h3>لینک‌سازی و تولید محتوا</h3>
+          <div class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>مدت: مداوم</div>
+          <p>تولید محتوای هدفمند و لینک‌سازی حرفه‌ای برای تقویت اعتبار دامنه.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تولید محتوا طبق تقویم محتوایی</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>لینک‌سازی White-Hat ماهانه</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Guest Posting و Digital PR</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بازنشر و بروزرسانی محتوای قدیمی</li>
+          </ul>
+        </div>
+        <div class="vs-seo-detail-panel" data-detail="5">
+          <h3>گزارش‌دهی و رشد مداوم</h3>
+          <div class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>مدت: ماهانه</div>
+          <p>گزارش شفاف از نتایج، تحلیل روند و بهبود مستمر استراتژی.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>گزارش جامع ماهانه (رتبه، ترافیک، تبدیل)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>جلسه مشاوره ماهانه با تیم</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تنظیم استراتژی بر اساس نتایج</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>شناسایی فرصت‌های رشد جدید</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="vs-seo-progress">
+      <div class="vs-seo-progress__bar"><div class="vs-seo-progress__fill" data-progress></div></div>
+      <div class="vs-seo-progress__label">مرحله ۱ از ۵</div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const section=document.querySelector('[data-vs-seo-process]');if(!section)return;
+  const steps=section.querySelectorAll('.vs-seo-step');
+  const panels=section.querySelectorAll('.vs-seo-detail-panel');
+  const progressFill=section.querySelector('[data-progress]');
+  const progressLabel=section.querySelector('.vs-seo-progress__label');
+  const toFa=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+
+  function activate(idx){
+    steps.forEach((s,i)=>s.classList.toggle('is-active',i===idx));
+    panels.forEach((p,i)=>p.classList.toggle('is-active',i===idx));
+    const pct=((idx+1)/steps.length)*100;
+    progressFill.style.width=pct+'%';
+    progressLabel.textContent='مرحله '+toFa(idx+1)+' از '+toFa(steps.length);
+  }
+
+  steps.forEach((s,i)=>s.addEventListener('click',()=>{activate(i);clearInterval(auto);}));
+
+  let current=0;
+  let auto=setInterval(()=>{current=(current+1)%steps.length;activate(current);},5000);
+})();
+</script>

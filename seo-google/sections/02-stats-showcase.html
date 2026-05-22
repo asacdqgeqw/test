@@ -1,0 +1,348 @@
+<!-- ========================================================
+     سکشن ۲: STATS SHOWCASE — نمایش نتایج سئو
+     ویژگی‌ها:
+     - شمارنده‌های انیمیشنی بزرگ
+     - مقایسه قبل/بعد با اسلایدر
+     - نوار اعتماد مشتریان
+     ======================================================== -->
+<style>
+.vs-seo-stats{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+  --vs-green:#22c55e; --vs-green-soft:rgba(34,197,94,.15);
+
+  padding:110px 24px 80px; background:linear-gradient(180deg,#fff 0%,#FAF6EC 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+  position:relative; overflow:hidden;
+}
+.vs-seo-stats::before{
+  content:""; position:absolute; top:0; left:0; width:45%; height:100%;
+  background:radial-gradient(50% 50% at 0% 40%, rgba(34,197,94,.08), transparent 60%);
+  pointer-events:none;
+}
+.vs-seo-stats__inner{max-width:1240px; margin:0 auto; position:relative; z-index:1;}
+
+/* Section Head */
+.vs-seo-stats .vs-section-head{text-align:center; margin-bottom:64px;}
+.vs-seo-stats .vs-eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--vs-green-soft); color:var(--vs-green);
+  border:1px solid rgba(34,197,94,.25);
+  padding:8px 16px; border-radius:999px; font-size:14px; font-weight:600; margin-bottom:16px;
+}
+.vs-seo-stats .vs-eyebrow i{
+  width:8px; height:8px; border-radius:50%; background:var(--vs-green);
+  box-shadow:0 0 0 4px rgba(34,197,94,.18); display:inline-block;
+}
+.vs-seo-stats h2{font-size:clamp(28px,3.4vw,46px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-seo-stats h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--vs-green),var(--vs-accent));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+.vs-seo-stats .vs-section-head p{color:#64748B; font-size:18px; max-width:680px; margin:0 auto;}
+
+/* Counter Grid */
+.vs-seo-stats__counters{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:24px;
+  margin-bottom:72px;
+}
+.vs-seo-counter{
+  background:#fff; border:1px solid #E2E8F0; border-radius:24px;
+  padding:36px 28px; text-align:center; position:relative; overflow:hidden;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.vs-seo-counter:hover{transform:translateY(-4px); box-shadow:0 16px 40px rgba(23,12,121,.10);}
+.vs-seo-counter::before{
+  content:""; position:absolute; top:0; left:50%; transform:translateX(-50%);
+  width:60%; height:3px; border-radius:0 0 4px 4px;
+  background:linear-gradient(90deg,var(--vs-green),var(--vs-accent));
+}
+.vs-seo-counter .ic{
+  width:56px; height:56px; border-radius:16px; margin:0 auto 18px;
+  display:grid; place-items:center;
+  background:var(--vs-green-soft); color:var(--vs-green);
+}
+.vs-seo-counter .num{
+  font-size:clamp(36px,4vw,52px); font-weight:900; line-height:1;
+  background:linear-gradient(135deg,var(--vs-ink) 0%,var(--vs-primary) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:8px;
+}
+.vs-seo-counter .lbl{color:#64748B; font-size:15px; font-weight:500;}
+
+/* Before/After Comparison */
+.vs-seo-compare{
+  background:#fff; border:1px solid #E2E8F0; border-radius:32px;
+  padding:48px; margin-bottom:72px;
+  box-shadow:0 24px 60px rgba(23,12,121,.06);
+}
+.vs-seo-compare__header{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:36px; flex-wrap:wrap; gap:16px;
+}
+.vs-seo-compare__header h3{font-size:24px; font-weight:800; margin:0;}
+.vs-seo-compare__toggle{
+  display:flex; align-items:center; gap:12px;
+  background:#F1F5F9; border-radius:12px; padding:6px;
+}
+.vs-seo-compare__toggle-btn{
+  padding:10px 20px; border-radius:8px; border:none; cursor:pointer;
+  font-family:inherit; font-size:14px; font-weight:600;
+  background:transparent; color:#64748B; transition:all .3s ease;
+}
+.vs-seo-compare__toggle-btn.is-active{
+  background:var(--vs-green); color:#fff;
+  box-shadow:0 4px 12px rgba(34,197,94,.30);
+}
+
+.vs-seo-compare__grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:32px;
+  position:relative;
+}
+.vs-seo-compare__panel{
+  border-radius:20px; padding:32px; position:relative;
+  transition:all .4s ease;
+}
+.vs-seo-compare__panel--before{
+  background:linear-gradient(135deg,#FEF2F2,#FFF);
+  border:1px solid #FECACA;
+}
+.vs-seo-compare__panel--after{
+  background:linear-gradient(135deg,#F0FDF4,#FFF);
+  border:1px solid #BBF7D0;
+}
+.vs-seo-compare__panel-badge{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 12px; border-radius:8px; font-size:12px; font-weight:700;
+  margin-bottom:20px;
+}
+.vs-seo-compare__panel--before .vs-seo-compare__panel-badge{
+  background:#FEE2E2; color:#DC2626;
+}
+.vs-seo-compare__panel--after .vs-seo-compare__panel-badge{
+  background:#DCFCE7; color:#16A34A;
+}
+.vs-seo-compare__metric{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 0; border-bottom:1px solid rgba(0,0,0,.06);
+}
+.vs-seo-compare__metric:last-child{border-bottom:none;}
+.vs-seo-compare__metric .label{font-size:14px; color:#64748B;}
+.vs-seo-compare__metric .value{font-size:18px; font-weight:800;}
+.vs-seo-compare__panel--before .vs-seo-compare__metric .value{color:#DC2626;}
+.vs-seo-compare__panel--after .vs-seo-compare__metric .value{color:#16A34A;}
+
+/* Arrow between panels */
+.vs-seo-compare__arrow{
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:56px; height:56px; border-radius:50%;
+  background:linear-gradient(135deg,var(--vs-green),var(--vs-accent));
+  display:grid; place-items:center; color:#fff;
+  box-shadow:0 8px 24px rgba(34,197,94,.35);
+  z-index:2;
+}
+
+/* Trust Strip */
+.vs-seo-stats__trust{
+  text-align:center; padding-top:40px;
+  border-top:1px solid #E2E8F0;
+}
+.vs-seo-stats__trust p{
+  color:#94A3B8; font-size:14px; font-weight:500; margin:0 0 24px;
+  text-transform:uppercase; letter-spacing:1px;
+}
+.vs-seo-stats__logos{
+  display:flex; align-items:center; justify-content:center; gap:48px;
+  flex-wrap:wrap; opacity:.55;
+}
+.vs-seo-stats__logos .logo-item{
+  font-size:20px; font-weight:900; color:var(--vs-ink);
+  letter-spacing:-1px;
+}
+.vs-seo-stats__logos .logo-item span{
+  color:var(--vs-accent);
+}
+
+/* Responsive */
+@media (max-width:980px){
+  .vs-seo-stats__counters{grid-template-columns:repeat(2,1fr);}
+  .vs-seo-compare__grid{grid-template-columns:1fr;}
+  .vs-seo-compare__arrow{position:static; transform:none; margin:16px auto;}
+  .vs-seo-compare{padding:28px;}
+}
+@media (max-width:560px){
+  .vs-seo-stats__counters{grid-template-columns:1fr;}
+  .vs-seo-stats__logos{gap:24px;}
+  .vs-seo-counter{padding:28px 20px;}
+}
+</style>
+
+<section class="vs-seo-stats" data-vs-seo-stats>
+  <div class="vs-seo-stats__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>نتایج واقعی</span>
+      <h2>اعدادی که <em>خودشان حرف می‌زنند</em></h2>
+      <p>این‌ها فقط آمار نیستند — هر عدد نتیجه ماه‌ها کار تخصصی تیم سئو ما روی سایت‌های واقعی است.</p>
+    </div>
+
+    <!-- Counter Grid -->
+    <div class="vs-seo-stats__counters">
+      <div class="vs-seo-counter">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></div>
+        <div class="num" data-seo-counter="850" data-suffix="+">۰</div>
+        <div class="lbl">کلمه کلیدی رتبه‌بندی شده</div>
+      </div>
+      <div class="vs-seo-counter">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="num" data-seo-counter="340" data-suffix="٪">۰</div>
+        <div class="lbl">میانگین رشد ترافیک</div>
+      </div>
+      <div class="vs-seo-counter">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="num" data-seo-counter="12500" data-suffix="+">۰</div>
+        <div class="lbl">صفحه ایندکس شده</div>
+      </div>
+      <div class="vs-seo-counter">
+        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="num" data-seo-counter="45" data-suffix="+">۰</div>
+        <div class="lbl">افزایش Domain Authority</div>
+      </div>
+    </div>
+
+    <!-- Before/After Comparison -->
+    <div class="vs-seo-compare" data-vs-compare>
+      <div class="vs-seo-compare__header">
+        <h3>مقایسه قبل و بعد از سئو</h3>
+        <div class="vs-seo-compare__toggle">
+          <button class="vs-seo-compare__toggle-btn is-active" data-compare="organic">ترافیک ارگانیک</button>
+          <button class="vs-seo-compare__toggle-btn" data-compare="rankings">رتبه‌بندی</button>
+          <button class="vs-seo-compare__toggle-btn" data-compare="revenue">درآمد</button>
+        </div>
+      </div>
+
+      <div class="vs-seo-compare__grid">
+        <div class="vs-seo-compare__panel vs-seo-compare__panel--before">
+          <div class="vs-seo-compare__panel-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6 6-6-6M12 21V3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            قبل از سئو
+          </div>
+          <div class="vs-seo-compare__metrics" data-before-metrics>
+            <div class="vs-seo-compare__metric"><span class="label">ترافیک ماهانه</span><span class="value">۱,۲۰۰</span></div>
+            <div class="vs-seo-compare__metric"><span class="label">صفحات ایندکس</span><span class="value">۲۳</span></div>
+            <div class="vs-seo-compare__metric"><span class="label">کلمات صفحه اول</span><span class="value">۲</span></div>
+            <div class="vs-seo-compare__metric"><span class="label">نرخ کلیک (CTR)</span><span class="value">۱.۲٪</span></div>
+            <div class="vs-seo-compare__metric"><span class="label">Domain Authority</span><span class="value">۱۲</span></div>
+          </div>
+        </div>
+
+        <div class="vs-seo-compare__arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div class="vs-seo-compare__panel vs-seo-compare__panel--after">
+          <div class="vs-seo-compare__panel-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 9l-6-6-6 6M12 3v18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            بعد از ۶ ماه سئو
+          </div>
+          <div class="vs-seo-compare__metrics" data-after-metrics>
+            <div class="vs-seo-compare__metric"><span class="label">ترافیک ماهانه</span><span class="value">۱۸,۶۰۰</span></div>
+            <div class="vs-seo-compare__metric"><span class="label">صفحات ایندکس</span><span class="value">۱۵۶</span></div>
+            <div class="vs-seo-compare__metric"><span class="label">کلمات صفحه اول</span><span class="value">۵۸</span></div>
+            <div class="vs-seo-compare__metric"><span class="label">نرخ کلیک (CTR)</span><span class="value">۸.۴٪</span></div>
+            <div class="vs-seo-compare__metric"><span class="label">Domain Authority</span><span class="value">۴۵</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust Strip -->
+    <div class="vs-seo-stats__trust">
+      <p>اعتماد بیش از ۱۲۵ کسب‌وکار به تیم سئو ما</p>
+      <div class="vs-seo-stats__logos">
+        <div class="logo-item">دیجی<span>کالا</span></div>
+        <div class="logo-item">اسنپ<span>فود</span></div>
+        <div class="logo-item">تپسی<span>+</span></div>
+        <div class="logo-item">فیلیمو<span>.</span></div>
+        <div class="logo-item">کافه<span>بازار</span></div>
+        <div class="logo-item">ایران<span>خودرو</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const section = document.querySelector('[data-vs-seo-stats]');
+  if(!section) return;
+
+  // Persian number converter
+  const toFa = n => String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+  const formatNum = n => toFa(n.toLocaleString('en-US'));
+
+  // Counter animation
+  const counters = section.querySelectorAll('[data-seo-counter]');
+  const animateCounter = el => {
+    const target = parseInt(el.dataset.seoCounter, 10);
+    const suffix = el.dataset.suffix || '';
+    const dur = 2200;
+    const start = performance.now();
+    const step = now => {
+      const t = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - t, 4);
+      const val = Math.floor(eased * target);
+      el.textContent = formatNum(val) + suffix;
+      if(t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){animateCounter(e.target); io.unobserve(e.target);} });
+  }, {threshold:.4});
+  counters.forEach(c => io.observe(c));
+
+  // Compare toggle data
+  const data = {
+    organic: {
+      before: ['۱,۲۰۰','۲۳','۲','۱.۲٪','۱۲'],
+      after: ['۱۸,۶۰۰','۱۵۶','۵۸','۸.۴٪','۴۵'],
+      labels: ['ترافیک ماهانه','صفحات ایندکس','کلمات صفحه اول','نرخ کلیک (CTR)','Domain Authority']
+    },
+    rankings: {
+      before: ['صفحه ۵+','۰','۲','۱۲٪','غیرفعال'],
+      after: ['صفحه ۱','۱۲','۵۸','۸۹٪','فعال و بهینه'],
+      labels: ['میانگین رتبه','کلمات Top 3','کلمات صفحه اول','نرخ ایندکس','Featured Snippets']
+    },
+    revenue: {
+      before: ['۲.۱M','۰.۸٪','۱۵','۱۲,۰۰۰','ندارد'],
+      after: ['۲۸.۵M','۳.۲٪','۱۸۰+','۱۵۶,۰۰۰','فعال'],
+      labels: ['درآمد ماهانه (تومان)','نرخ تبدیل','لید ارگانیک','بازدید ارگانیک','فروش مستقیم SEO']
+    }
+  };
+
+  const toggleBtns = section.querySelectorAll('.vs-seo-compare__toggle-btn');
+  const beforePanel = section.querySelector('[data-before-metrics]');
+  const afterPanel = section.querySelector('[data-after-metrics]');
+
+  function updateMetrics(type){
+    const d = data[type];
+    if(!d) return;
+    beforePanel.innerHTML = d.labels.map((l,i) =>
+      `<div class="vs-seo-compare__metric"><span class="label">${l}</span><span class="value">${d.before[i]}</span></div>`
+    ).join('');
+    afterPanel.innerHTML = d.labels.map((l,i) =>
+      `<div class="vs-seo-compare__metric"><span class="label">${l}</span><span class="value">${d.after[i]}</span></div>`
+    ).join('');
+  }
+
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      toggleBtns.forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      updateMetrics(btn.dataset.compare);
+    });
+  });
+})();
+</script>

@@ -1,0 +1,235 @@
+<!-- ========================================================
+     سکشن ۳: PROCESS — فرآیند ساخت اپلیکیشن (تایم‌لاین تعاملی)
+     ======================================================== -->
+<style>
+.vs-app-process{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-android-green:#3DDC84;--vs-tech-purple:#A855F7;
+  --vs-green-soft:rgba(61,220,132,.15);--vs-purple-soft:rgba(168,85,247,.14);
+  padding:110px 24px;background:#060832;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:#fff;
+  position:relative;overflow:hidden;
+}
+.vs-app-process::before{
+  content:"";position:absolute;top:20%;left:-10%;width:50vw;height:50vw;
+  background:radial-gradient(circle,rgba(61,220,132,.14),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-app-process::after{
+  content:"";position:absolute;bottom:10%;right:-10%;width:40vw;height:40vw;
+  background:radial-gradient(circle,rgba(168,85,247,.14),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-app-process__inner{max-width:1240px;margin:0 auto;position:relative;z-index:1;}
+.vs-app-process .vs-section-head{text-align:center;margin-bottom:64px;}
+.vs-app-process .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(61,220,132,.12);color:#6EE7A8;
+  border:1px solid rgba(61,220,132,.30);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-app-process .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-android-green);box-shadow:0 0 0 4px rgba(61,220,132,.20);display:inline-block;}
+.vs-app-process h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;color:#fff;}
+.vs-app-process h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-android-green),var(--vs-tech-purple));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-app-process .vs-section-head p{color:rgba(255,255,255,.65);font-size:18px;max-width:680px;margin:0 auto;}
+
+/* Timeline */
+.vs-app-tl{display:grid;grid-template-columns:320px 1fr;gap:48px;align-items:start;}
+.vs-app-tl__steps{display:flex;flex-direction:column;gap:0;position:relative;}
+.vs-app-tl__steps::before{
+  content:"";position:absolute;top:0;bottom:0;right:23px;width:2px;
+  background:linear-gradient(180deg,var(--vs-android-green),var(--vs-tech-purple),rgba(255,255,255,.10));
+  border-radius:2px;
+}
+
+.vs-app-step{
+  display:flex;align-items:center;gap:16px;padding:18px 16px;
+  border-radius:16px;cursor:pointer;position:relative;
+  transition:all .3s ease;background:transparent;
+  border:1.5px solid transparent;
+}
+.vs-app-step:hover{background:rgba(255,255,255,.04);}
+.vs-app-step.is-active{background:rgba(61,220,132,.08);border-color:rgba(61,220,132,.25);}
+.vs-app-step__ring{
+  width:46px;height:46px;border-radius:50%;
+  display:grid;place-items:center;flex-shrink:0;
+  background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.5);font-weight:800;font-size:16px;
+  transition:all .3s ease;position:relative;z-index:1;
+}
+.vs-app-step.is-active .vs-app-step__ring{
+  background:linear-gradient(135deg,var(--vs-android-green),var(--vs-tech-purple));
+  border-color:var(--vs-android-green);color:#fff;
+  box-shadow:0 0 24px rgba(61,220,132,.45);
+}
+.vs-app-step__info{flex:1;}
+.vs-app-step__info strong{display:block;font-size:16px;font-weight:700;color:#fff;margin-bottom:2px;}
+.vs-app-step__info span{font-size:13px;color:rgba(255,255,255,.50);}
+.vs-app-step.is-active .vs-app-step__info span{color:#6EE7A8;}
+
+.vs-app-tl__detail{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:28px;padding:40px;min-height:380px;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  position:relative;overflow:hidden;
+}
+.vs-app-tl__detail::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--vs-android-green),var(--vs-tech-purple),transparent);
+}
+.vs-app-tl__panel{display:none;animation:vs-app-tl-fade .4s ease;}
+.vs-app-tl__panel.is-active{display:block;}
+@keyframes vs-app-tl-fade{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+.vs-app-tl__panel h3{font-size:24px;font-weight:800;margin:0 0 8px;color:#fff;}
+.vs-app-tl__panel .dur{display:inline-flex;align-items:center;gap:6px;background:rgba(61,220,132,.15);color:#6EE7A8;padding:4px 12px;border-radius:8px;font-size:13px;font-weight:600;margin-bottom:20px;}
+.vs-app-tl__panel p{color:rgba(255,255,255,.75);line-height:1.95;font-size:15px;margin:0 0 22px;}
+.vs-app-tl__panel ul{list-style:none;padding:0;margin:0;display:grid;gap:12px;grid-template-columns:1fr 1fr;}
+.vs-app-tl__panel li{display:flex;align-items:flex-start;gap:10px;color:rgba(255,255,255,.88);font-size:14.5px;}
+.vs-app-tl__panel li svg{flex-shrink:0;margin-top:3px;color:var(--vs-android-green);}
+
+.vs-app-tl__progress{margin-top:48px;text-align:center;}
+.vs-app-tl__progress-bar{height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;margin-bottom:12px;}
+.vs-app-tl__progress-fill{height:100%;background:linear-gradient(90deg,var(--vs-android-green),var(--vs-tech-purple));border-radius:3px;transition:width .6s ease;width:20%;}
+.vs-app-tl__progress-label{color:rgba(255,255,255,.50);font-size:13px;}
+
+@media(max-width:980px){.vs-app-tl{grid-template-columns:1fr;gap:32px;}.vs-app-tl__panel ul{grid-template-columns:1fr;}}
+@media(max-width:560px){.vs-app-tl__detail{padding:24px;}.vs-app-step{padding:14px 12px;}}
+</style>
+
+<section class="vs-app-process" data-vs-app-process>
+  <div class="vs-app-process__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>فرآیند ساخت اپلیکیشن</span>
+      <h2>از ایده تا انتشار، در <em>۵ گام شفاف</em></h2>
+      <p>هر مرحله از پروژه با شفافیت کامل پیش می‌رود. روی هر گام کلیک کن تا جزئیات اون مرحله رو ببینی.</p>
+    </div>
+
+    <div class="vs-app-tl">
+      <div class="vs-app-tl__steps">
+        <div class="vs-app-step is-active" data-step="1">
+          <div class="vs-app-step__ring">۱</div>
+          <div class="vs-app-step__info"><strong>کشف و تحلیل</strong><span>۱ هفته</span></div>
+        </div>
+        <div class="vs-app-step" data-step="2">
+          <div class="vs-app-step__ring">۲</div>
+          <div class="vs-app-step__info"><strong>طراحی UI/UX</strong><span>۲ هفته</span></div>
+        </div>
+        <div class="vs-app-step" data-step="3">
+          <div class="vs-app-step__ring">۳</div>
+          <div class="vs-app-step__info"><strong>توسعه و کدنویسی</strong><span>۴-۸ هفته</span></div>
+        </div>
+        <div class="vs-app-step" data-step="4">
+          <div class="vs-app-step__ring">۴</div>
+          <div class="vs-app-step__info"><strong>تست و QA</strong><span>۱ هفته</span></div>
+        </div>
+        <div class="vs-app-step" data-step="5">
+          <div class="vs-app-step__ring">۵</div>
+          <div class="vs-app-step__info"><strong>انتشار و پشتیبانی</strong><span>۳-۶ ماه پشتیبانی</span></div>
+        </div>
+      </div>
+
+      <div class="vs-app-tl__detail">
+        <div class="vs-app-tl__panel is-active" data-panel="1">
+          <h3>کشف و تحلیل نیازمندی‌ها</h3>
+          <div class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>مدت: ۱ هفته</div>
+          <p>قبل از خط زدن یک خط کد، باید بدونیم دقیقاً چی می‌خواهیم بسازیم. در این مرحله با تحلیل کسب‌وکار شما، رقبا و کاربران هدف، نقشه راه پروژه طراحی می‌شه.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>جلسه ۲ ساعته نیازسنجی</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تحلیل ۵ رقیب اصلی</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>User Persona و User Journey</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>سند SRS و Roadmap پروژه</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پیشنهاد تکنولوژی مناسب</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تخمین زمان و هزینه دقیق</li>
+          </ul>
+        </div>
+
+        <div class="vs-app-tl__panel" data-panel="2">
+          <h3>طراحی UI/UX اختصاصی</h3>
+          <div class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>مدت: ۲ هفته</div>
+          <p>طراحان UI/UX ما در فیگما تجربه کاربری رو طراحی می‌کنن. ابتدا وایرفریم، سپس Mockup نهایی و در پایان پروتوتایپ تعاملی.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>وایرفریم Low-Fidelity</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>طراحی نهایی همه صفحات</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Design System منسجم</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پروتوتایپ تعاملی فیگما</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>۳ نوبت بازنگری رایگان</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>طراحی آیکون و اسپلش اپ</li>
+          </ul>
+        </div>
+
+        <div class="vs-app-tl__panel" data-panel="3">
+          <h3>توسعه و کدنویسی Agile</h3>
+          <div class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>مدت: ۴ تا ۸ هفته</div>
+          <p>توسعه با متد Agile در Sprintهای ۲ هفته‌ای. در پایان هر Sprint نسخه قابل نصب APK دریافت می‌کنید و بازخورد می‌دید.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>راه‌اندازی Backend و API</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پیاده‌سازی پیکسل-پرفکت</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اتصال به سرویس‌های ثالث</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Code Review مرحله‌ای</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>دموی پایان هر Sprint</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>گزارش هفتگی پیشرفت</li>
+          </ul>
+        </div>
+
+        <div class="vs-app-tl__panel" data-panel="4">
+          <h3>تست، QA و بهینه‌سازی</h3>
+          <div class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>مدت: ۱ هفته</div>
+          <p>قبل از تحویل، تیم QA همه چیز رو تست می‌کنه. روی ۱۵+ مدل گوشی، در شرایط مختلف اینترنت و حالت‌های Edge Case.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تست روی ۱۵+ مدل گوشی واقعی</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تست Performance و باتری</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تست امنیتی و OWASP</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تست UAT با کاربر شما</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بهینه‌سازی APK Size</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>رفع نهایی باگ‌ها</li>
+          </ul>
+        </div>
+
+        <div class="vs-app-tl__panel" data-panel="5">
+          <h3>انتشار و پشتیبانی پایدار</h3>
+          <div class="dur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۳-۶ ماه پشتیبانی رایگان</div>
+          <p>اپ شما در گوگل پلی، کافه‌بازار و مایکت منتشر می‌شه. پس از انتشار، مانیتورینگ مداوم و پشتیبانی فنی رایگان ارائه می‌شه.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>راه‌اندازی Google Play Console</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>طراحی Screenshot و توضیحات</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>انتشار در کافه‌بازار و مایکت</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اتصال Crashlytics و Analytics</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تحویل کد منبع و مستندات</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پشتیبانی فنی رایگان</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="vs-app-tl__progress">
+      <div class="vs-app-tl__progress-bar"><div class="vs-app-tl__progress-fill" data-progress></div></div>
+      <div class="vs-app-tl__progress-label">مرحله ۱ از ۵</div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const section=document.querySelector('[data-vs-app-process]');if(!section)return;
+  const steps=section.querySelectorAll('.vs-app-step');
+  const panels=section.querySelectorAll('.vs-app-tl__panel');
+  const progressFill=section.querySelector('[data-progress]');
+  const progressLabel=section.querySelector('.vs-app-tl__progress-label');
+  const toFa=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+
+  function activate(idx){
+    steps.forEach((s,i)=>s.classList.toggle('is-active',i===idx));
+    panels.forEach((p,i)=>p.classList.toggle('is-active',i===idx));
+    const pct=((idx+1)/steps.length)*100;
+    progressFill.style.width=pct+'%';
+    progressLabel.textContent='مرحله '+toFa(idx+1)+' از '+toFa(steps.length);
+  }
+
+  steps.forEach((s,i)=>s.addEventListener('click',()=>{activate(i);clearInterval(auto);}));
+
+  let current=0;
+  let auto=setInterval(()=>{current=(current+1)%steps.length;activate(current);},5000);
+})();
+</script>
