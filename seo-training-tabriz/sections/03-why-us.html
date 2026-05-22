@@ -1,0 +1,210 @@
+<!-- ========================================================
+     سکشن ۳: WHY US — تب‌های تعاملی چرا ما؟
+     ======================================================== -->
+<style>
+.vs-trn-why{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-amber:#F59E0B;--vs-amber-soft:rgba(245,158,11,.15);
+  padding:110px 24px;background:linear-gradient(180deg,#fff 0%,#FAF6EC 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-trn-why::before{
+  content:"";position:absolute;top:0;left:0;width:50%;height:100%;
+  background:radial-gradient(50% 50% at 0% 30%,rgba(245,158,11,.08),transparent 60%);
+  pointer-events:none;
+}
+.vs-trn-why__inner{max-width:1240px;margin:0 auto;position:relative;}
+.vs-trn-why .vs-section-head{text-align:center;margin-bottom:60px;}
+.vs-trn-why .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-amber-soft);color:#B45309;
+  border:1px solid rgba(245,158,11,.30);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-trn-why .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-amber);box-shadow:0 0 0 4px rgba(245,158,11,.18);display:inline-block;}
+.vs-trn-why h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-trn-why h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-amber),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-trn-why .vs-section-head p{color:#64748B;font-size:18px;max-width:680px;margin:0 auto;}
+
+/* ===== Tabs ===== */
+.vs-trn-tabs{
+  display:grid;grid-template-columns:1fr 1.4fr;gap:32px;align-items:stretch;
+  background:#fff;border:1px solid #E2E8F0;border-radius:32px;padding:32px;
+  box-shadow:0 24px 60px rgba(245,158,11,.06);
+}
+.vs-trn-tabs__nav{display:flex;flex-direction:column;gap:10px;}
+.vs-trn-tab-btn{
+  display:flex;align-items:center;gap:14px;
+  padding:18px 20px;border-radius:18px;cursor:pointer;
+  background:transparent;border:1.5px solid transparent;
+  text-align:right;transition:all .3s ease;
+  font-family:inherit;font-size:16px;color:var(--vs-ink);width:100%;
+}
+.vs-trn-tab-btn:hover{background:#FAF6EC;border-color:rgba(245,158,11,.20);}
+.vs-trn-tab-btn.is-active{background:#FFFBEB;border-color:rgba(245,158,11,.30);box-shadow:0 12px 30px rgba(245,158,11,.10);}
+.vs-trn-tab-btn .ic{
+  width:46px;height:46px;border-radius:12px;display:grid;place-items:center;
+  background:var(--vs-amber-soft);color:var(--vs-amber);flex-shrink:0;transition:all .3s ease;
+}
+.vs-trn-tab-btn.is-active .ic{background:linear-gradient(135deg,var(--vs-amber),#FBBF24);color:#fff;transform:scale(1.05);box-shadow:0 6px 14px rgba(245,158,11,.30);}
+.vs-trn-tab-btn .lbl{display:flex;flex-direction:column;gap:2px;flex:1;}
+.vs-trn-tab-btn .lbl strong{font-weight:800;font-size:16.5px;}
+.vs-trn-tab-btn .lbl small{color:#64748B;font-size:13px;font-weight:400;}
+.vs-trn-tab-btn .arrow{opacity:0;transform:translateX(8px);transition:all .3s ease;color:var(--vs-amber);}
+.vs-trn-tab-btn.is-active .arrow{opacity:1;transform:translateX(0);}
+
+.vs-trn-tabs__panels{
+  position:relative;
+  background:linear-gradient(160deg,#0a0640 0%,#170C79 100%);
+  border-radius:24px;padding:36px;color:#fff;overflow:hidden;min-height:420px;
+}
+.vs-trn-tabs__panels::before{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:30px 30px;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+          mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+}
+.vs-trn-panel{position:absolute;inset:36px;opacity:0;transform:translateY(20px);transition:opacity .4s ease,transform .4s ease;pointer-events:none;}
+.vs-trn-panel.is-active{opacity:1;transform:none;pointer-events:auto;}
+.vs-trn-panel h3{font-size:22px;font-weight:800;margin:0 0 12px;color:#fff;display:flex;align-items:center;gap:10px;}
+.vs-trn-panel h3 .badge{background:rgba(245,158,11,.20);color:#FBBF24;font-size:11px;padding:4px 10px;border-radius:999px;font-weight:700;}
+.vs-trn-panel p{color:rgba(255,255,255,.78);line-height:1.95;margin:0 0 20px;font-size:15px;}
+.vs-trn-panel ul{list-style:none;padding:0;margin:0;display:grid;gap:10px;}
+.vs-trn-panel li{display:flex;align-items:flex-start;gap:10px;color:rgba(255,255,255,.92);font-size:14.5px;}
+.vs-trn-panel li svg{flex-shrink:0;margin-top:4px;color:#FBBF24;}
+.vs-trn-panel__metrics{display:flex;gap:16px;flex-wrap:wrap;margin-top:22px;padding:16px;background:rgba(0,0,0,.30);border:1px solid rgba(255,255,255,.10);border-radius:14px;}
+.vs-trn-panel__metrics > div{flex:1;min-width:100px;text-align:center;}
+.vs-trn-panel__metrics .num{color:#FBBF24;font-weight:900;font-size:26px;line-height:1;}
+.vs-trn-panel__metrics .lbl{color:rgba(255,255,255,.55);font-size:11px;margin-top:4px;}
+
+@media(max-width:980px){
+  .vs-trn-tabs{grid-template-columns:1fr;padding:20px;}
+  .vs-trn-tabs__panels{min-height:460px;padding:28px;}
+  .vs-trn-panel{inset:28px;}
+}
+</style>
+
+<section class="vs-trn-why">
+  <div class="vs-trn-why__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>چرا ما</span>
+      <h2>چه چیزی ما را <em>متفاوت</em> می‌کند؟</h2>
+      <p>تجربه واقعی، روش‌های اثبات‌شده و حمایت بعد از دوره — تفاوت ما در جزئیات است.</p>
+    </div>
+
+    <div class="vs-trn-tabs" data-vs-trn-tabs>
+      <div class="vs-trn-tabs__nav" role="tablist">
+        <button class="vs-trn-tab-btn is-active" data-tab="t1" role="tab" aria-selected="true">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke-linecap="round"/></svg></span>
+          <span class="lbl"><strong>تجربه واقعی، نه تئوری</strong><small>۱۰ سال تدریس + پروژه واقعی</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round"/></svg></span>
+        </button>
+        <button class="vs-trn-tab-btn" data-tab="t2" role="tab" aria-selected="false">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 3h20v14H2zM6 21h12M12 17v4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="lbl"><strong>محتوای به‌روز ۱۴۰۴</strong><small>الگوریتم‌های جدید Google AI</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round"/></svg></span>
+        </button>
+        <button class="vs-trn-tab-btn" data-tab="t3" role="tab" aria-selected="false">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a4 4 0 01-4 4H7l-4 4V5a4 4 0 014-4h10a4 4 0 014 4v10z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="lbl"><strong>پشتیبانی پس از دوره</strong><small>پاسخ به سوالات تا ۶ ماه</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round"/></svg></span>
+        </button>
+        <button class="vs-trn-tab-btn" data-tab="t4" role="tab" aria-selected="false">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span class="lbl"><strong>مدرس بومی تبریز</strong><small>کیس‌استادی محلی + شبکه‌سازی</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round"/></svg></span>
+        </button>
+      </div>
+
+      <div class="vs-trn-tabs__panels">
+        <div class="vs-trn-panel is-active" data-panel="t1">
+          <h3>تجربه واقعی <span class="badge">۱۰ سال در میدان</span></h3>
+          <p>ما فقط کتاب نخوندیم — هر روز با پروژه‌های واقعی روی سایت‌های ایرانی کار می‌کنیم. آنچه آموزش می‌دهیم، آن چیزی است که خودمان امروز در پروژه‌های مشتریان استفاده می‌کنیم.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>۱۲۵+ پروژه سئوی موفق در سال‌های اخیر</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تمرین روی سایت واقعی — نه مثال‌های فرضی</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بحث درباره چالش‌های روزمره با حضور مشاوران فعال</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>دسترسی به ابزارهای سئوی پولی در طول دوره</li>
+          </ul>
+          <div class="vs-trn-panel__metrics">
+            <div><div class="num">۸۰۰+</div><div class="lbl">شاگرد آموزش‌دیده</div></div>
+            <div><div class="num">۹۲٪</div><div class="lbl">رضایت پایان دوره</div></div>
+            <div><div class="num">۷۵٪</div><div class="lbl">استخدام در ۶ ماه</div></div>
+          </div>
+        </div>
+
+        <div class="vs-trn-panel" data-panel="t2">
+          <h3>محتوای به‌روز <span class="badge">Updated 2026</span></h3>
+          <p>سئو هر ۶ ماه عوض می‌شود. بسیاری از دوره‌ها هنوز روش‌های ۲۰۲۰ را تدریس می‌کنند! ما هر فصل سرفصل‌ها را به‌روزرسانی می‌کنیم تا با آخرین تغییرات گوگل و SGE هماهنگ باشید.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>الگوریتم Helpful Content و E-E-A-T جدید</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>سئو در عصر AI (ChatGPT, Gemini, SGE)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Core Web Vitals و معیار INP جدید</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>استراتژی محتوا برای Search Generative Experience</li>
+          </ul>
+          <div class="vs-trn-panel__metrics">
+            <div><div class="num">۴×</div><div class="lbl">به‌روزرسانی سالانه</div></div>
+            <div><div class="num">۲۰۲۶</div><div class="lbl">آخرین تغییرات گوگل</div></div>
+            <div><div class="num">۱۰۰٪</div><div class="lbl">محتوای کاربردی</div></div>
+          </div>
+        </div>
+
+        <div class="vs-trn-panel" data-panel="t3">
+          <h3>پشتیبانی پس از دوره <span class="badge">تا ۶ ماه</span></h3>
+          <p>دوره که تموم شد، تنها نیستی. در ۶ ماه پس از پایان دوره، می‌تونی سوالاتت رو در گروه خصوصی مطرح کنی یا برای جلسات Q&A رایگان ماهانه شرکت کنی.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>گروه تلگرام/واتساپ خصوصی شاگردان</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>جلسات Q&A زنده ماهانه (رایگان)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>دسترسی دائمی به ویدیوهای دوره</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>به‌روزرسانی محتوا — بدون پرداخت اضافه</li>
+          </ul>
+          <div class="vs-trn-panel__metrics">
+            <div><div class="num">۶ ماه</div><div class="lbl">پشتیبانی رایگان</div></div>
+            <div><div class="num">۲۴/۷</div><div class="lbl">گروه پشتیبانی</div></div>
+            <div><div class="num">+۵۰۰</div><div class="lbl">عضو فعال</div></div>
+          </div>
+        </div>
+
+        <div class="vs-trn-panel" data-panel="t4">
+          <h3>مدرس بومی <span class="badge">تبریز · آذربایجان</span></h3>
+          <p>به جای دوره‌های آنلاین تهرانی، اینجا مدرسی داری که با کسب‌وکار تبریز آشناست. کیس‌استادی‌های ما از کسب‌وکارهای واقعی تبریز و آذربایجان است و شبکه شاگردان بومی به شما کمک می‌کند.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>کلاس‌های حضوری در تبریز — آشنایی نزدیک</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>کیس‌استادی از کسب‌وکارهای موفق آذربایجان</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>شبکه‌سازی با شاگردان و کسب‌وکارهای محلی</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پاسخ به چالش‌های خاص بازار آذربایجان</li>
+          </ul>
+          <div class="vs-trn-panel__metrics">
+            <div><div class="num">تبریز</div><div class="lbl">پایتخت یادگیری ما</div></div>
+            <div><div class="num">+۲۰۰</div><div class="lbl">کسب‌وکار محلی</div></div>
+            <div><div class="num">۱۰ سال</div><div class="lbl">حضور در منطقه</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const root=document.querySelector('[data-vs-trn-tabs]');if(!root)return;
+  const btns=root.querySelectorAll('.vs-trn-tab-btn');
+  const panels=root.querySelectorAll('.vs-trn-panel');
+  btns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const id=btn.dataset.tab;
+      btns.forEach(b=>{const a=b===btn;b.classList.toggle('is-active',a);b.setAttribute('aria-selected',a?'true':'false');});
+      panels.forEach(p=>p.classList.toggle('is-active',p.dataset.panel===id));
+    });
+  });
+  let auto=setInterval(()=>{
+    const active=root.querySelector('.vs-trn-tab-btn.is-active');
+    const all=Array.from(btns);const idx=all.indexOf(active);
+    const next=all[(idx+1)%all.length];next.click();
+  },6000);
+  root.addEventListener('click',()=>{clearInterval(auto);});
+})();
+</script>

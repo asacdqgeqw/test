@@ -1,0 +1,260 @@
+<!-- ========================================================
+     سکشن ۸: CTA — فرم مشاوره رایگان آموزش سئو
+     ======================================================== -->
+<style>
+.vs-trn-cta{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-amber:#F59E0B;--vs-amber-soft:rgba(245,158,11,.15);
+  padding:110px 24px;
+  background:#060832;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:#fff;
+  position:relative;overflow:hidden;
+}
+.vs-trn-cta::before{
+  content:"";position:absolute;top:25%;left:8%;width:42vw;height:42vw;
+  background:radial-gradient(circle,rgba(245,158,11,.18),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-trn-cta::after{
+  content:"";position:absolute;bottom:15%;right:5%;width:35vw;height:35vw;
+  background:radial-gradient(circle,rgba(138,203,208,.15),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-trn-cta__inner{max-width:1240px;margin:0 auto;position:relative;z-index:1;}
+.vs-trn-cta__grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+}
+
+/* Left Content */
+.vs-trn-cta__content{}
+.vs-trn-cta__badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,158,11,.14);color:#FBBF24;
+  border:1px solid rgba(245,158,11,.35);
+  padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:24px;
+}
+.vs-trn-cta__badge .dot{
+  width:8px;height:8px;border-radius:50%;background:var(--vs-amber);
+  animation:vs-trn-blink-dot 2s ease infinite;
+}
+@keyframes vs-trn-blink-dot{0%,100%{opacity:1;}50%{opacity:.3;}}
+.vs-trn-cta h2{
+  font-size:clamp(28px,3.4vw,44px);font-weight:900;
+  line-height:1.4;margin:0 0 20px;color:#fff;
+}
+.vs-trn-cta h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--vs-amber),#FBBF24);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+.vs-trn-cta__desc{
+  font-size:17px;line-height:2;color:rgba(255,255,255,.72);margin:0 0 32px;
+}
+.vs-trn-cta__features{list-style:none;padding:0;margin:0;display:grid;gap:14px;}
+.vs-trn-cta__features li{
+  display:flex;align-items:center;gap:12px;font-size:15px;color:rgba(255,255,255,.88);
+}
+.vs-trn-cta__features li .check{
+  width:30px;height:30px;border-radius:9px;
+  background:rgba(245,158,11,.16);color:var(--vs-amber);
+  display:grid;place-items:center;flex-shrink:0;
+}
+
+/* Right Form */
+.vs-trn-cta__form-wrap{
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:28px;padding:40px;
+  position:relative;
+}
+.vs-trn-cta__form-wrap::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--vs-amber),#FBBF24,var(--vs-accent),transparent);
+  border-radius:28px 28px 0 0;
+}
+.vs-trn-cta__form{display:grid;gap:16px;}
+.vs-trn-cta__field{display:flex;flex-direction:column;gap:6px;}
+.vs-trn-cta__field label{font-size:13px;font-weight:600;color:rgba(255,255,255,.72);}
+.vs-trn-cta__field input,
+.vs-trn-cta__field select,
+.vs-trn-cta__field textarea{
+  padding:13px 16px;border-radius:12px;
+  background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);
+  color:#fff;font-family:inherit;font-size:15px;
+  transition:all .3s ease;outline:none;width:100%;
+  resize:none;
+}
+.vs-trn-cta__field textarea{min-height:84px;}
+.vs-trn-cta__field input::placeholder,
+.vs-trn-cta__field textarea::placeholder{color:rgba(255,255,255,.35);}
+.vs-trn-cta__field input:focus,
+.vs-trn-cta__field select:focus,
+.vs-trn-cta__field textarea:focus{
+  border-color:var(--vs-amber);background:rgba(255,255,255,.08);
+  box-shadow:0 0 0 4px rgba(245,158,11,.14);
+}
+.vs-trn-cta__field select{
+  appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:left 14px center;
+  padding-left:42px;
+}
+.vs-trn-cta__field select option{background:#1D2327;color:#fff;}
+.vs-trn-cta__submit{
+  width:100%;padding:18px;border:none;border-radius:14px;
+  background:linear-gradient(135deg,var(--vs-amber),#D97706);
+  color:#fff;font-family:inherit;font-size:17px;font-weight:800;
+  cursor:pointer;transition:all .3s ease;
+  box-shadow:0 12px 30px rgba(245,158,11,.35);
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+}
+.vs-trn-cta__submit:hover{box-shadow:0 16px 40px rgba(245,158,11,.50);transform:translateY(-2px);}
+.vs-trn-cta__submit:active{transform:translateY(0);}
+.vs-trn-cta__submit svg{transition:transform .3s ease;}
+.vs-trn-cta__submit:hover svg{transform:translateX(-4px);}
+
+/* Online Badge */
+.vs-trn-cta__online{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin-top:18px;font-size:13px;color:rgba(255,255,255,.55);
+}
+.vs-trn-cta__online .pulse{
+  width:8px;height:8px;border-radius:50%;background:var(--vs-amber);
+  position:relative;
+}
+.vs-trn-cta__online .pulse::before{
+  content:"";position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid rgba(245,158,11,.55);
+  animation:vs-trn-cta-pulse 2s ease-out infinite;
+}
+@keyframes vs-trn-cta-pulse{0%{transform:scale(1);opacity:1;}100%{transform:scale(2);opacity:0;}}
+
+/* Success State */
+.vs-trn-cta__success{
+  display:none;text-align:center;padding:30px 20px;
+}
+.vs-trn-cta__success.is-visible{display:block;animation:vs-trn-fadeUp .5s ease;}
+@keyframes vs-trn-fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+.vs-trn-cta__success .check-circle{
+  width:76px;height:76px;border-radius:50%;margin:0 auto 22px;
+  background:linear-gradient(135deg,var(--vs-amber),#FBBF24);
+  display:grid;place-items:center;
+  box-shadow:0 12px 30px rgba(245,158,11,.40);
+  animation:vs-trn-pop .5s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes vs-trn-pop{0%{transform:scale(0);}100%{transform:scale(1);}}
+.vs-trn-cta__success h3{font-size:22px;font-weight:800;margin:0 0 8px;color:#fff;}
+.vs-trn-cta__success p{color:rgba(255,255,255,.65);font-size:15px;margin:0;line-height:1.8;}
+
+@media(max-width:980px){.vs-trn-cta__grid{grid-template-columns:1fr;gap:48px;}}
+@media(max-width:560px){.vs-trn-cta__form-wrap{padding:24px;}}
+</style>
+
+
+<section class="vs-trn-cta" data-vs-trn-cta>
+  <div class="vs-trn-cta__inner">
+    <div class="vs-trn-cta__grid">
+      <!-- Left: Content -->
+      <div class="vs-trn-cta__content">
+        <div class="vs-trn-cta__badge">
+          <span class="dot"></span>
+          <span>کارشناسان آنلاین — آماده پاسخگویی</span>
+        </div>
+
+        <h2>آماده‌ای <em>متخصص سئو</em><br>شوی؟</h2>
+
+        <p class="vs-trn-cta__desc">
+          همین حالا فرم رو پر کن تا مشاوره رایگان ۳۰ دقیقه‌ای رزرو شه. تعیین می‌کنیم
+          الان کجای مسیر سئو هستی و بهترین خدمت برای شروع شما کدومه — بدون تعهد و بدون فروش.
+        </p>
+
+        <ul class="vs-trn-cta__features">
+          <li>
+            <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            مشاوره کاملاً رایگان ۳۰ دقیقه‌ای
+          </li>
+          <li>
+            <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            تعیین سطح فعلی شما در سئو
+          </li>
+          <li>
+            <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            پیشنهاد بهترین خدمت متناسب با هدفت
+          </li>
+          <li>
+            <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            بدون تعهد و بدون فشار فروش
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="vs-trn-cta__form-wrap">
+        <form class="vs-trn-cta__form" data-trn-form>
+          <div class="vs-trn-cta__field">
+            <label>نام و نام خانوادگی</label>
+            <input type="text" placeholder="مثلاً: علی محمدی" required>
+          </div>
+          <div class="vs-trn-cta__field">
+            <label>شماره تماس</label>
+            <input type="tel" placeholder="۰۹۱۲۳۴۵۶۷۸۹" required dir="ltr">
+          </div>
+          <div class="vs-trn-cta__field">
+            <label>ایمیل</label>
+            <input type="email" placeholder="you@example.com" dir="ltr">
+          </div>
+          <div class="vs-trn-cta__field">
+            <label>علاقه‌مند به</label>
+            <select required>
+              <option value="" disabled selected>یک گزینه را انتخاب کنید...</option>
+              <option value="private">آموزش خصوصی</option>
+              <option value="group">آموزش گروهی</option>
+              <option value="corporate">آموزش سازمانی</option>
+              <option value="hourly">مشاوره ساعتی</option>
+              <option value="analysis">آنالیز سایت</option>
+              <option value="unsure">نمی‌دانم — کمک می‌خواهم</option>
+            </select>
+          </div>
+          <div class="vs-trn-cta__field">
+            <label>پیام (اختیاری)</label>
+            <textarea placeholder="هر توضیح اضافه‌ای که می‌خواهید بگید..." rows="3"></textarea>
+          </div>
+          <button type="submit" class="vs-trn-cta__submit">
+            <span>رزرو مشاوره رایگان</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+
+        <div class="vs-trn-cta__success" data-success>
+          <div class="check-circle">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>درخواست شما ثبت شد!</h3>
+          <p>کارشناس ما در کمتر از ۲ ساعت کاری<br>برای هماهنگی جلسه با شما تماس می‌گیرد.</p>
+        </div>
+
+        <div class="vs-trn-cta__online">
+          <span class="pulse"></span>
+          <span>کارشناسان آنلاین — پاسخ‌گویی سریع</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const section=document.querySelector('[data-vs-trn-cta]');if(!section)return;
+  const form=section.querySelector('[data-trn-form]');
+  const success=section.querySelector('[data-success]');
+
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    form.style.display='none';
+    success.classList.add('is-visible');
+  });
+})();
+</script>
