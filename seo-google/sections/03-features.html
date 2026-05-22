@@ -1,0 +1,248 @@
+<!-- ========================================================
+     سکشن ۳: FEATURES — خدمات سئو با تب تعاملی + Bento Grid
+     ======================================================== -->
+<style>
+.vs-seo-features{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-green:#22c55e;--vs-green-soft:rgba(34,197,94,.15);
+  padding:110px 24px;background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-seo-features::before{
+  content:"";position:absolute;top:0;right:0;width:50%;height:100%;
+  background:radial-gradient(50% 50% at 100% 30%,rgba(34,197,94,.08),transparent 60%);
+  pointer-events:none;
+}
+.vs-seo-features__inner{max-width:1240px;margin:0 auto;position:relative;}
+.vs-seo-features .vs-section-head{text-align:center;margin-bottom:60px;}
+.vs-seo-features .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-green-soft);color:var(--vs-green);
+  border:1px solid rgba(34,197,94,.25);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-seo-features .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-green);box-shadow:0 0 0 4px rgba(34,197,94,.18);display:inline-block;}
+.vs-seo-features h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-seo-features h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-green),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-seo-features .vs-section-head p{color:#64748B;font-size:18px;max-width:680px;margin:0 auto;}
+.vs-seo-tabs{
+  display:grid;grid-template-columns:1fr 1.4fr;gap:32px;align-items:stretch;
+  background:linear-gradient(160deg,#FAF6EC 0%,#fff 100%);
+  border:1px solid rgba(23,12,121,.08);border-radius:32px;padding:32px;
+  margin-bottom:60px;box-shadow:0 24px 60px rgba(23,12,121,.06);
+}
+.vs-seo-tabs__nav{display:flex;flex-direction:column;gap:10px;}
+.vs-seo-tab-btn{
+  display:flex;align-items:center;gap:14px;
+  padding:18px 20px;border-radius:18px;cursor:pointer;
+  background:transparent;border:1.5px solid transparent;
+  text-align:right;transition:all .3s ease;
+  font-family:inherit;font-size:16px;color:var(--vs-ink);width:100%;
+}
+.vs-seo-tab-btn:hover{background:rgba(255,255,255,.7);border-color:rgba(34,197,94,.15);}
+.vs-seo-tab-btn.is-active{background:#fff;border-color:rgba(34,197,94,.20);box-shadow:0 12px 30px rgba(34,197,94,.10);}
+.vs-seo-tab-btn .ic{
+  width:46px;height:46px;border-radius:12px;display:grid;place-items:center;
+  background:var(--vs-green-soft);color:var(--vs-green);flex-shrink:0;transition:all .3s ease;
+}
+.vs-seo-tab-btn.is-active .ic{background:linear-gradient(135deg,var(--vs-green),var(--vs-accent));color:#fff;transform:scale(1.05);}
+.vs-seo-tab-btn .lbl{display:flex;flex-direction:column;gap:2px;flex:1;}
+.vs-seo-tab-btn .lbl strong{font-weight:800;font-size:17px;}
+.vs-seo-tab-btn .lbl small{color:#64748B;font-size:13px;font-weight:400;}
+.vs-seo-tab-btn .arrow{opacity:0;transform:translateX(8px);transition:all .3s ease;color:var(--vs-green);}
+.vs-seo-tab-btn.is-active .arrow{opacity:1;transform:translateX(0);}
+.vs-seo-tabs__panels{
+  position:relative;
+  background:linear-gradient(160deg,#060832 0%,#0a0640 60%,var(--vs-secondary) 100%);
+  border-radius:24px;padding:36px;color:#fff;overflow:hidden;min-height:400px;
+}
+.vs-seo-tabs__panels::before{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:30px 30px;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000,transparent 70%);mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+}
+.vs-seo-panel{position:absolute;inset:36px;opacity:0;transform:translateY(20px);transition:opacity .4s ease,transform .4s ease;pointer-events:none;}
+.vs-seo-panel.is-active{opacity:1;transform:none;pointer-events:auto;}
+.vs-seo-panel h3{font-size:22px;font-weight:800;margin:0 0 12px;color:#fff;display:flex;align-items:center;gap:10px;}
+.vs-seo-panel h3 .badge{background:rgba(34,197,94,.20);color:var(--vs-green);font-size:11px;padding:4px 10px;border-radius:999px;font-weight:700;}
+.vs-seo-panel p{color:rgba(255,255,255,.78);line-height:1.95;margin:0 0 20px;font-size:15px;}
+.vs-seo-panel ul{list-style:none;padding:0;margin:0;display:grid;gap:10px;}
+.vs-seo-panel li{display:flex;align-items:flex-start;gap:10px;color:rgba(255,255,255,.92);font-size:14.5px;}
+.vs-seo-panel li svg{flex-shrink:0;margin-top:4px;color:var(--vs-green);}
+.vs-seo-panel__metrics{display:flex;gap:24px;flex-wrap:wrap;margin-top:22px;padding:16px;background:rgba(0,0,0,.30);border:1px solid rgba(255,255,255,.10);border-radius:14px;}
+.vs-seo-panel__metrics>div{flex:1;min-width:100px;text-align:center;}
+.vs-seo-panel__metrics .num{color:var(--vs-cyan);font-weight:900;font-size:28px;line-height:1;}
+.vs-seo-panel__metrics .lbl{color:rgba(255,255,255,.55);font-size:11px;margin-top:4px;}
+.vs-seo-bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(200px,auto);gap:20px;}
+.vs-seo-bcard{
+  background:#fff;border:1px solid #E2E8F0;border-radius:24px;
+  padding:28px;position:relative;overflow:hidden;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.vs-seo-bcard:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(23,12,121,.10);}
+.vs-seo-bcard .ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:#fff;margin-bottom:16px;background:linear-gradient(135deg,var(--vs-green),var(--vs-accent));}
+.vs-seo-bcard h4{font-size:18px;font-weight:800;margin:0 0 8px;color:var(--vs-ink);}
+.vs-seo-bcard p{color:#64748B;font-size:14px;line-height:1.85;margin:0;}
+.vs-seo-bento .b1{grid-column:span 3;background:linear-gradient(160deg,#F0FDF4 0%,#fff 60%);}
+.vs-seo-bento .b2{grid-column:span 3;}
+.vs-seo-bento .b3{grid-column:span 2;}
+.vs-seo-bento .b4{grid-column:span 2;background:linear-gradient(160deg,#060832,#0a0640);border-color:transparent;}
+.vs-seo-bento .b4 h4{color:#fff;}.vs-seo-bento .b4 p{color:rgba(255,255,255,.78);}
+.vs-seo-bento .b4 .ic{background:var(--vs-cyan);color:var(--vs-primary);}
+.vs-seo-bento .b5{grid-column:span 2;}
+@media(max-width:980px){.vs-seo-tabs{grid-template-columns:1fr;padding:20px;}.vs-seo-tabs__panels{min-height:440px;padding:28px;}.vs-seo-panel{inset:28px;}.vs-seo-bento{grid-template-columns:1fr 1fr;}.vs-seo-bento .vs-seo-bcard{grid-column:span 2!important;}}
+@media(max-width:560px){.vs-seo-bento{grid-template-columns:1fr;}}
+</style>
+
+
+<section class="vs-seo-features">
+  <div class="vs-seo-features__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>خدمات تخصصی سئو</span>
+      <h2>همه چیز برای <em>تسخیر گوگل</em></h2>
+      <p>از سئو فنی تا لینک‌سازی — هر آنچه برای رسیدن به صفحه اول نیاز دارید.</p>
+    </div>
+
+    <div class="vs-seo-tabs" data-vs-seo-tabs>
+      <div class="vs-seo-tabs__nav" role="tablist">
+        <button class="vs-seo-tab-btn is-active" data-tab="st1" role="tab" aria-selected="true">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="lbl"><strong>سئو فنی</strong><small>Technical SEO & Core Web Vitals</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button class="vs-seo-tab-btn" data-tab="st2" role="tab" aria-selected="false">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="lbl"><strong>تولید محتوا</strong><small>Content Strategy & Optimization</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button class="vs-seo-tab-btn" data-tab="st3" role="tab" aria-selected="false">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="lbl"><strong>لینک‌سازی</strong><small>White-hat Link Building</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <button class="vs-seo-tab-btn" data-tab="st4" role="tab" aria-selected="false">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span class="lbl"><strong>سئو محلی</strong><small>Local SEO & Google Business</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+      </div>
+
+      <div class="vs-seo-tabs__panels">
+        <div class="vs-seo-panel is-active" data-panel="st1">
+          <h3>سئو فنی <span class="badge">Core Web Vitals</span></h3>
+          <p>زیرساخت فنی سایت شما را طوری می‌سازیم که گوگل عاشقش شود. سرعت، ساختار، اسکیما و همه چیز بهینه.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بهینه‌سازی Core Web Vitals (LCP, FID, CLS)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>ساختار URL و Internal Linking بهینه</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Schema Markup (FAQ, Product, Article)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بهینه‌سازی سرعت و Crawl Budget</li>
+          </ul>
+          <div class="vs-seo-panel__metrics">
+            <div><div class="num">۹۵+</div><div class="lbl">PageSpeed Score</div></div>
+            <div><div class="num">۱۰۰٪</div><div class="lbl">صفحات ایندکس</div></div>
+            <div><div class="num">&lt;۲s</div><div class="lbl">زمان بارگذاری</div></div>
+          </div>
+        </div>
+
+        <div class="vs-seo-panel" data-panel="st2">
+          <h3>تولید محتوا <span class="badge">Content Marketing</span></h3>
+          <p>محتوای هدفمند بر اساس تحقیق کلمات کلیدی — محتوایی که هم کاربر دوست دارد و هم گوگل.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تحقیق کلمات کلیدی با ابزارهای حرفه‌ای</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تقویم محتوایی ماهانه</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بهینه‌سازی محتوای موجود (Content Refresh)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Pillar Pages و Topic Clusters</li>
+          </ul>
+          <div class="vs-seo-panel__metrics">
+            <div><div class="num">۳۲+</div><div class="lbl">محتوا/ماه</div></div>
+            <div><div class="num">۴.۵×</div><div class="lbl">افزایش ترافیک</div></div>
+            <div><div class="num">۸۵٪</div><div class="lbl">نرخ ایندکس</div></div>
+          </div>
+        </div>
+
+        <div class="vs-seo-panel" data-panel="st3">
+          <h3>لینک‌سازی <span class="badge">White-Hat Only</span></h3>
+          <p>لینک‌سازی امن و مؤثر با رویکرد کیفی — فقط بک‌لینک‌هایی که گوگل تأیید می‌کند.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Guest Posting در سایت‌های معتبر</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Digital PR و Brand Mentions</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>رفع Toxic Backlinks با Disavow</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Broken Link Building Strategy</li>
+          </ul>
+          <div class="vs-seo-panel__metrics">
+            <div><div class="num">۵۰+</div><div class="lbl">بک‌لینک/ماه</div></div>
+            <div><div class="num">DA 40+</div><div class="lbl">میانگین DA منابع</div></div>
+            <div><div class="num">صفر</div><div class="lbl">لینک اسپم</div></div>
+          </div>
+        </div>
+
+        <div class="vs-seo-panel" data-panel="st4">
+          <h3>سئو محلی <span class="badge">Google Maps</span></h3>
+          <p>برای کسب‌وکارهای محلی — در نقشه گوگل و جستجوهای «نزدیک من» دیده شوید.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بهینه‌سازی Google Business Profile</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>ثبت در دایرکتوری‌های محلی (Citations)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>مدیریت نظرات و Reviews</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Schema LocalBusiness و Map Pack</li>
+          </ul>
+          <div class="vs-seo-panel__metrics">
+            <div><div class="num">Top 3</div><div class="lbl">Map Pack</div></div>
+            <div><div class="num">+۲۲۰٪</div><div class="lbl">تماس‌های محلی</div></div>
+            <div><div class="num">۴.۸★</div><div class="lbl">میانگین امتیاز</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bento Grid -->
+    <div class="vs-seo-bento">
+      <div class="vs-seo-bcard b1">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h4>گزارش‌دهی هفتگی</h4>
+        <p>داشبورد زنده با گزارش رتبه‌ها، ترافیک و تبدیل‌ها — همه چیز شفاف و قابل‌فهم.</p>
+      </div>
+      <div class="vs-seo-bcard b2">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></div>
+        <h4>آنالیز رقبا</h4>
+        <p>بررسی استراتژی رقبا، کلمات کلیدی آن‌ها و فرصت‌هایی که از دست داده‌اند.</p>
+      </div>
+      <div class="vs-seo-bcard b3">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h4>سرعت‌سنجی</h4>
+        <p>مانیتورینگ مداوم سرعت و عملکرد سایت.</p>
+      </div>
+      <div class="vs-seo-bcard b4">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h4>امنیت سئو</h4>
+        <p>محافظت در برابر Negative SEO و حملات اسپم لینک.</p>
+      </div>
+      <div class="vs-seo-bcard b5">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14M22 4L12 14.01l-3-3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h4>آدیت فنی ماهانه</h4>
+        <p>بررسی کامل سلامت فنی سایت هر ماه و رفع مشکلات جدید.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const root=document.querySelector('[data-vs-seo-tabs]');if(!root)return;
+  const btns=root.querySelectorAll('.vs-seo-tab-btn');
+  const panels=root.querySelectorAll('.vs-seo-panel');
+  btns.forEach(btn=>{btn.addEventListener('click',()=>{
+    const id=btn.dataset.tab;
+    btns.forEach(b=>{const a=b===btn;b.classList.toggle('is-active',a);b.setAttribute('aria-selected',a?'true':'false');});
+    panels.forEach(p=>p.classList.toggle('is-active',p.dataset.panel===id));
+  });});
+  let auto=setInterval(()=>{
+    const active=root.querySelector('.vs-seo-tab-btn.is-active');
+    const all=Array.from(btns);const idx=all.indexOf(active);
+    const next=all[(idx+1)%all.length];next.click();
+  },6000);
+  root.addEventListener('click',()=>{clearInterval(auto);});
+})();
+</script>

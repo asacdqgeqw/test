@@ -1,0 +1,205 @@
+<!-- ========================================================
+     سکشن ۵: PRICING — پکیج‌های سئو با تاگل ماهانه/سالانه
+     ======================================================== -->
+<style>
+.vs-seo-pricing{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-green:#22c55e;--vs-green-soft:rgba(34,197,94,.15);
+  padding:110px 24px;background:linear-gradient(180deg,#FAF6EC 0%,#fff 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-seo-pricing__inner{max-width:1240px;margin:0 auto;position:relative;z-index:1;}
+.vs-seo-pricing .vs-section-head{text-align:center;margin-bottom:48px;}
+.vs-seo-pricing .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-green-soft);color:var(--vs-green);
+  border:1px solid rgba(34,197,94,.25);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-seo-pricing .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-green);box-shadow:0 0 0 4px rgba(34,197,94,.18);display:inline-block;}
+.vs-seo-pricing h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-seo-pricing h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-green),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-seo-pricing .vs-section-head p{color:#64748B;font-size:18px;max-width:680px;margin:0 auto;}
+
+/* Toggle */
+.vs-seo-pricing__toggle{
+  display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:52px;
+}
+.vs-seo-pricing__toggle span{font-size:15px;font-weight:600;color:#64748B;}
+.vs-seo-pricing__toggle span.is-active{color:var(--vs-ink);}
+.vs-seo-toggle-switch{
+  width:56px;height:30px;border-radius:15px;
+  background:#E2E8F0;cursor:pointer;position:relative;
+  transition:background .3s ease;border:none;padding:0;
+}
+.vs-seo-toggle-switch.is-yearly{background:var(--vs-green);}
+.vs-seo-toggle-switch::after{
+  content:"";position:absolute;top:3px;right:3px;
+  width:24px;height:24px;border-radius:50%;background:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,.15);transition:transform .3s ease;
+}
+.vs-seo-toggle-switch.is-yearly::after{transform:translateX(-26px);}
+.vs-seo-pricing__save{
+  background:#DCFCE7;color:#16A34A;padding:4px 10px;border-radius:6px;
+  font-size:12px;font-weight:700;
+}
+
+/* Cards */
+.vs-seo-pricing__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch;}
+.vs-seo-pcard{
+  background:#fff;border:1.5px solid #E2E8F0;border-radius:28px;
+  padding:36px 28px;display:flex;flex-direction:column;
+  transition:all .3s ease;position:relative;overflow:hidden;
+}
+.vs-seo-pcard:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(23,12,121,.08);}
+.vs-seo-pcard--featured{
+  border-color:var(--vs-green);
+  box-shadow:0 20px 50px rgba(34,197,94,.15);
+  transform:scale(1.03);
+}
+.vs-seo-pcard--featured:hover{transform:scale(1.03) translateY(-4px);}
+.vs-seo-pcard--featured::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--vs-green),var(--vs-accent));
+}
+.vs-seo-pcard__popular{
+  position:absolute;top:16px;left:16px;
+  background:linear-gradient(135deg,var(--vs-green),var(--vs-accent));
+  color:#fff;padding:5px 12px;border-radius:8px;
+  font-size:11px;font-weight:800;
+}
+.vs-seo-pcard__name{font-size:20px;font-weight:800;margin:0 0 4px;color:var(--vs-ink);}
+.vs-seo-pcard__desc{font-size:14px;color:#64748B;margin:0 0 24px;}
+.vs-seo-pcard__price{margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid #F1F5F9;}
+.vs-seo-pcard__amount{font-size:clamp(32px,3vw,42px);font-weight:900;color:var(--vs-ink);}
+.vs-seo-pcard__period{font-size:14px;color:#94A3B8;font-weight:400;}
+.vs-seo-pcard__features{list-style:none;padding:0;margin:0 0 32px;display:grid;gap:12px;flex:1;}
+.vs-seo-pcard__features li{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;color:#475569;}
+.vs-seo-pcard__features li svg{flex-shrink:0;margin-top:3px;color:var(--vs-green);}
+.vs-seo-pcard__features li.disabled{color:#CBD5E1;}
+.vs-seo-pcard__features li.disabled svg{color:#CBD5E1;}
+.vs-seo-pcard__btn{
+  display:block;width:100%;padding:16px;border-radius:14px;
+  text-align:center;font-weight:700;font-size:16px;
+  text-decoration:none;transition:all .3s ease;cursor:pointer;border:none;
+  font-family:inherit;
+}
+.vs-seo-pcard__btn--outline{
+  background:transparent;border:2px solid #E2E8F0;color:var(--vs-ink);
+}
+.vs-seo-pcard__btn--outline:hover{border-color:var(--vs-green);color:var(--vs-green);}
+.vs-seo-pcard__btn--primary{
+  background:linear-gradient(135deg,var(--vs-green),var(--vs-accent));
+  color:#fff;box-shadow:0 8px 24px rgba(34,197,94,.30);
+}
+.vs-seo-pcard__btn--primary:hover{box-shadow:0 12px 32px rgba(34,197,94,.45);transform:translateY(-2px);}
+@media(max-width:980px){.vs-seo-pricing__grid{grid-template-columns:1fr;max-width:440px;margin:0 auto;}.vs-seo-pcard--featured{transform:none;}.vs-seo-pcard--featured:hover{transform:translateY(-4px);}}
+</style>
+
+
+<section class="vs-seo-pricing" data-vs-seo-pricing>
+  <div class="vs-seo-pricing__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>قیمت‌گذاری شفاف</span>
+      <h2>پکیج مناسب <em>کسب‌وکار شما</em></h2>
+      <p>بدون هزینه پنهان — دقیقاً می‌دانید برای چه چیزی هزینه می‌کنید.</p>
+    </div>
+
+    <div class="vs-seo-pricing__toggle">
+      <span class="is-active" data-label="monthly">ماهانه</span>
+      <button class="vs-seo-toggle-switch" data-toggle-billing aria-label="تغییر بین ماهانه و سالانه"></button>
+      <span data-label="yearly">سالانه</span>
+      <span class="vs-seo-pricing__save">۲ ماه رایگان</span>
+    </div>
+
+    <div class="vs-seo-pricing__grid">
+      <!-- Basic -->
+      <div class="vs-seo-pcard">
+        <div class="vs-seo-pcard__name">پایه</div>
+        <div class="vs-seo-pcard__desc">برای کسب‌وکارهای کوچک و استارتاپ‌ها</div>
+        <div class="vs-seo-pcard__price">
+          <span class="vs-seo-pcard__amount" data-price-monthly="۴.۹" data-price-yearly="۴.۱">۴.۹</span>
+          <span class="vs-seo-pcard__period"> میلیون تومان / <span data-period>ماهانه</span></span>
+        </div>
+        <ul class="vs-seo-pcard__features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>۱۰ کلمه کلیدی هدف</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>گزارش ماهانه</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>لینک‌سازی پایه (۱۰ بک‌لینک/ماه)</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>آدیت فنی اولیه</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بهینه‌سازی On-Page</li>
+          <li class="disabled"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/></svg>تولید محتوا</li>
+          <li class="disabled"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/></svg>مدیر سئو اختصاصی</li>
+        </ul>
+        <button class="vs-seo-pcard__btn vs-seo-pcard__btn--outline">شروع پکیج پایه</button>
+      </div>
+
+      <!-- Pro (Featured) -->
+      <div class="vs-seo-pcard vs-seo-pcard--featured">
+        <div class="vs-seo-pcard__popular">محبوب‌ترین</div>
+        <div class="vs-seo-pcard__name">حرفه‌ای</div>
+        <div class="vs-seo-pcard__desc">برای کسب‌وکارهای در حال رشد</div>
+        <div class="vs-seo-pcard__price">
+          <span class="vs-seo-pcard__amount" data-price-monthly="۹.۸" data-price-yearly="۸.۲">۹.۸</span>
+          <span class="vs-seo-pcard__period"> میلیون تومان / <span data-period>ماهانه</span></span>
+        </div>
+        <ul class="vs-seo-pcard__features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>۳۰ کلمه کلیدی هدف</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>گزارش هفتگی + داشبورد زنده</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>لینک‌سازی پیشرفته (۳۰+ بک‌لینک/ماه)</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تولید ۸ محتوا/ماه</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بهینه‌سازی فنی کامل</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>آنالیز رقبا ماهانه</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پشتیبانی اولویت‌دار</li>
+        </ul>
+        <button class="vs-seo-pcard__btn vs-seo-pcard__btn--primary">شروع پکیج حرفه‌ای</button>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="vs-seo-pcard">
+        <div class="vs-seo-pcard__name">سازمانی</div>
+        <div class="vs-seo-pcard__desc">برای برندها و سازمان‌های بزرگ</div>
+        <div class="vs-seo-pcard__price">
+          <span class="vs-seo-pcard__amount">سفارشی</span>
+          <span class="vs-seo-pcard__period"> بر اساس نیاز شما</span>
+        </div>
+        <ul class="vs-seo-pcard__features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>کلمات کلیدی نامحدود</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>مدیر سئو اختصاصی</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>مانیتورینگ روزانه</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تولید محتوا نامحدود</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>لینک‌سازی Premium (DA 50+)</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>جلسات هفتگی استراتژی</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>SLA تضمینی + پشتیبانی ۲۴/۷</li>
+        </ul>
+        <button class="vs-seo-pcard__btn vs-seo-pcard__btn--outline">درخواست مشاوره</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const section=document.querySelector('[data-vs-seo-pricing]');if(!section)return;
+  const toggle=section.querySelector('[data-toggle-billing]');
+  const labels=section.querySelectorAll('[data-label]');
+  const amounts=section.querySelectorAll('[data-price-monthly]');
+  const periods=section.querySelectorAll('[data-period]');
+  let isYearly=false;
+
+  toggle.addEventListener('click',()=>{
+    isYearly=!isYearly;
+    toggle.classList.toggle('is-yearly',isYearly);
+    labels.forEach(l=>{
+      l.classList.toggle('is-active',
+        (isYearly && l.dataset.label==='yearly')||(!isYearly && l.dataset.label==='monthly')
+      );
+    });
+    amounts.forEach(a=>{
+      a.textContent=isYearly?a.dataset.priceYearly:a.dataset.priceMonthly;
+    });
+    periods.forEach(p=>{p.textContent=isYearly?'ماهانه (سالانه)':'ماهانه';});
+  });
+})();
+</script>

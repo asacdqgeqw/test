@@ -1,0 +1,348 @@
+<!-- ========================================================
+     سکشن ۴: PROCESS تعاملی - تایم‌لاین کلیک‌شونده (نسخه v4)
+     ======================================================== -->
+<style>
+.vs-process{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+
+  padding:110px 24px;
+  background:#0a0640;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:#fff;
+  position:relative; overflow:hidden;
+}
+.vs-process::before{
+  content:""; position:absolute; inset:0;
+  background:
+    radial-gradient(50% 50% at 100% 0%, rgba(18,139,224,.30), transparent 60%),
+    radial-gradient(40% 50% at 0% 100%, rgba(138,203,208,.20), transparent 60%);
+  pointer-events:none;
+}
+.vs-process::after{
+  content:""; position:absolute; inset:0; opacity:.30;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+          mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+  pointer-events:none;
+}
+.vs-process__inner{max-width:1240px; margin:0 auto; position:relative;}
+.vs-section-head{text-align:center; margin-bottom:64px;}
+.vs-section-head .vs-eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,.08); color:#fff;
+  border:1px solid rgba(255,255,255,.18);
+  padding:8px 16px; border-radius:999px; font-size:14px; font-weight:600; margin-bottom:16px;
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+}
+.vs-section-head .vs-eyebrow i{
+  width:8px; height:8px; border-radius:50%; background:var(--vs-cyan);
+  box-shadow:0 0 0 4px rgba(138,203,208,.25); display:inline-block;
+}
+.vs-section-head h2{font-size:clamp(28px,3.4vw,46px); font-weight:800; margin:0 0 16px; line-height:1.4; color:#fff;}
+.vs-section-head h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+.vs-section-head p{color:rgba(255,255,255,.65); font-size:18px; max-width:680px; margin:0 auto;}
+
+/* ===== Timeline ===== */
+.vs-timeline{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:18px;
+  position:relative; margin-bottom:32px;
+}
+.vs-timeline::before{
+  content:""; position:absolute; top:32px; right:5%; left:5%; height:2px;
+  background:linear-gradient(90deg,
+    rgba(138,203,208,.20) 0%,
+    rgba(138,203,208,.50) var(--progress, 25%),
+    rgba(255,255,255,.10) var(--progress, 25%),
+    rgba(255,255,255,.10) 100%);
+  transition:--progress 1s ease;
+}
+.vs-step{
+  position:relative; cursor:pointer;
+  padding-top:60px; text-align:center;
+  transition:transform .25s ease;
+}
+.vs-step:hover{transform:translateY(-2px);}
+.vs-step__dot{
+  position:absolute; top:14px; right:50%; transform:translateX(50%);
+  width:42px; height:42px; border-radius:50%;
+  background:#0a0640; border:2px solid rgba(255,255,255,.20);
+  display:grid; place-items:center;
+  font-weight:900; font-size:16px; color:#fff;
+  transition:all .35s ease;
+  z-index:2;
+}
+.vs-step.is-active .vs-step__dot,
+.vs-step.is-done .vs-step__dot{
+  background:linear-gradient(135deg,var(--vs-cyan),var(--vs-secondary));
+  border-color:transparent;
+  box-shadow:0 0 0 8px rgba(138,203,208,.20), 0 12px 30px rgba(138,203,208,.40);
+  transform:translateX(50%) scale(1.1);
+}
+.vs-step.is-active .vs-step__dot::after{
+  content:""; position:absolute; inset:-12px; border-radius:50%;
+  border:2px solid var(--vs-cyan);
+  animation:vs-pulse-step 2s ease-out infinite;
+}
+@keyframes vs-pulse-step{
+  0%{transform:scale(1); opacity:1;}
+  100%{transform:scale(1.6); opacity:0;}
+}
+.vs-step__title{
+  font-size:15px; font-weight:700; color:#fff;
+  transition:color .25s ease;
+}
+.vs-step:not(.is-active) .vs-step__title{color:rgba(255,255,255,.55);}
+.vs-step__sub{font-size:12px; color:rgba(255,255,255,.45); margin-top:4px;}
+
+/* ===== Content Display ===== */
+.vs-stage{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:28px;
+  padding:48px;
+  -webkit-backdrop-filter:blur(20px); backdrop-filter:blur(20px);
+  display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;
+  min-height:340px;
+  position:relative; overflow:hidden;
+}
+.vs-stage__content{position:relative;}
+.vs-stage__step-num{
+  font-size:120px; line-height:1; font-weight:900;
+  background:linear-gradient(180deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,0) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:-30px; user-select:none;
+}
+.vs-stage__title{
+  font-size:32px; font-weight:800; color:#fff;
+  margin-bottom:12px;
+}
+.vs-stage__desc{
+  color:rgba(255,255,255,.78); font-size:16px;
+  line-height:1.95; margin-bottom:24px;
+}
+.vs-stage__list{
+  list-style:none; padding:0; margin:0; display:grid; gap:10px;
+}
+.vs-stage__list li{
+  display:flex; align-items:flex-start; gap:10px;
+  font-size:14.5px; color:rgba(255,255,255,.85);
+}
+.vs-stage__list li svg{flex-shrink:0; color:var(--vs-cyan); margin-top:4px;}
+
+/* ویژوال */
+.vs-stage__visual{
+  position:relative; aspect-ratio:1/1; max-width:340px; margin:0 auto;
+  display:grid; place-items:center;
+}
+.vs-stage__visual .ring{
+  position:absolute; border-radius:50%;
+  border:1.5px solid rgba(138,203,208,.15);
+  animation:vs-ring-rot 30s linear infinite;
+}
+.vs-stage__visual .ring--1{inset:0;}
+.vs-stage__visual .ring--2{inset:14%; border-style:dashed; animation-direction:reverse; animation-duration:24s;}
+.vs-stage__visual .ring--3{inset:30%; border-color:rgba(138,203,208,.30);}
+@keyframes vs-ring-rot{to{transform:rotate(360deg);}}
+.vs-stage__visual .core{
+  width:60%; aspect-ratio:1/1; border-radius:50%;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  display:grid; place-items:center; color:#fff;
+  box-shadow:0 0 60px rgba(18,139,224,.40);
+  position:relative;
+}
+.vs-stage__visual .core svg{width:50%; height:50%;}
+.vs-stage__visual .orb{
+  position:absolute; width:36px; height:36px; border-radius:50%;
+  background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));
+  box-shadow:0 0 20px rgba(138,203,208,.50);
+  animation:vs-orb 8s ease-in-out infinite;
+}
+.vs-stage__visual .orb--1{top:8%; right:30%; animation-delay:0s;}
+.vs-stage__visual .orb--2{bottom:10%; left:20%; animation-delay:2s;}
+.vs-stage__visual .orb--3{top:50%; right:0%; animation-delay:4s;}
+@keyframes vs-orb{
+  0%,100%{transform:translateY(0) scale(1);}
+  50%{transform:translateY(-12px) scale(1.15);}
+}
+
+/* محتوای متغیر */
+.vs-stage__content,
+.vs-stage__visual{
+  transition:opacity .35s ease, transform .35s ease;
+}
+.vs-stage.is-changing .vs-stage__content,
+.vs-stage.is-changing .vs-stage__visual{
+  opacity:0; transform:translateY(12px);
+}
+
+@media (max-width:880px){
+  .vs-timeline{grid-template-columns:repeat(2,1fr); gap:32px;}
+  .vs-timeline::before{display:none;}
+  .vs-stage{grid-template-columns:1fr; padding:32px 24px;}
+  .vs-stage__visual{order:-1; max-width:240px;}
+  .vs-stage__step-num{font-size:80px;}
+  .vs-stage__title{font-size:24px;}
+}
+</style>
+
+<section class="vs-process">
+  <div class="vs-process__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>فرآیند کار</span>
+      <h2>از ایده تا انتشار، در ۴ گام <em>شفاف</em></h2>
+      <p>هیچ ابهامی، هیچ هزینه پنهانی. روی هر مرحله کلیک کنید.</p>
+    </div>
+
+    <div class="vs-timeline" data-vs-timeline>
+      <div class="vs-step is-active" data-step="1">
+        <div class="vs-step__dot">۱</div>
+        <div class="vs-step__title">کشف</div>
+        <div class="vs-step__sub">۲ روز</div>
+      </div>
+      <div class="vs-step" data-step="2">
+        <div class="vs-step__dot">۲</div>
+        <div class="vs-step__title">طراحی</div>
+        <div class="vs-step__sub">۷ روز</div>
+      </div>
+      <div class="vs-step" data-step="3">
+        <div class="vs-step__dot">۳</div>
+        <div class="vs-step__title">توسعه</div>
+        <div class="vs-step__sub">۱۴ روز</div>
+      </div>
+      <div class="vs-step" data-step="4">
+        <div class="vs-step__dot">۴</div>
+        <div class="vs-step__title">انتشار</div>
+        <div class="vs-step__sub">۲ روز</div>
+      </div>
+    </div>
+
+    <div class="vs-stage" data-vs-stage>
+      <div class="vs-stage__content">
+        <div class="vs-stage__step-num" data-stage-num>۰۱</div>
+        <h3 class="vs-stage__title" data-stage-title>کشف و استراتژی</h3>
+        <p class="vs-stage__desc" data-stage-desc>جلسه تحلیل کسب‌وکار، رقبا و مخاطب هدف. در این مرحله نقشه راه پروژه تدوین و KPI‌های موفقیت تعیین می‌شوند.</p>
+        <ul class="vs-stage__list" data-stage-list>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>جلسه ۹۰ دقیقه‌ای کشف نیازمندی‌ها</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تحلیل ۵ رقیب اصلی شما</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تعریف Persona و User Journey</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تدوین سند RFP و نقشه راه</li>
+        </ul>
+      </div>
+      <div class="vs-stage__visual">
+        <div class="ring ring--1"></div>
+        <div class="ring ring--2"></div>
+        <div class="ring ring--3"></div>
+        <div class="core" data-stage-icon>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+        </div>
+        <div class="orb orb--1"></div>
+        <div class="orb orb--2"></div>
+        <div class="orb orb--3"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const timeline = document.querySelector('[data-vs-timeline]');
+  const stage    = document.querySelector('[data-vs-stage]');
+  if(!timeline || !stage) return;
+
+  const data = {
+    1: {
+      num:'۰۱', title:'کشف و استراتژی',
+      desc:'جلسه تحلیل کسب‌وکار، رقبا و مخاطب هدف. در این مرحله نقشه راه پروژه تدوین و KPI‌های موفقیت تعیین می‌شوند.',
+      list:[
+        'جلسه ۹۰ دقیقه‌ای کشف نیازمندی‌ها',
+        'تحلیل ۵ رقیب اصلی شما',
+        'تعریف Persona و User Journey',
+        'تدوین سند RFP و نقشه راه'
+      ],
+      icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>'
+    },
+    2: {
+      num:'۰۲', title:'طراحی UI/UX اختصاصی',
+      desc:'ابتدا وایرفریم برای تأیید ساختار، سپس طراحی نهایی در فیگما با امکان مشاهده زنده و کامنت‌گذاری شما در تمام مراحل.',
+      list:[
+        'وایرفریم تعاملی در Figma',
+        'طراحی نهایی موبایل + دسکتاپ',
+        'سیستم طراحی (Design System)',
+        '۳ نوبت بازنگری رایگان'
+      ],
+      icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>'
+    },
+    3: {
+      num:'۰۳', title:'توسعه و پیاده‌سازی',
+      desc:'کدنویسی استاندارد روی وردپرس + المنتور یا Headless. Code review مرحله‌ای + تست کیفی توسط تیم QA قبل از تحویل.',
+      list:[
+        'پیاده‌سازی پیکسل-پرفکت طبق طرح',
+        'بهینه‌سازی برای Core Web Vitals',
+        'پیاده‌سازی سئو فنی + Schema',
+        'تست در ۵ مرورگر و ۸ دستگاه'
+      ],
+      icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6" stroke-linecap="round" stroke-linejoin="round"/><polyline points="8 6 2 12 8 18" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    },
+    4: {
+      num:'۰۴', title:'تست، انتشار و رشد',
+      desc:'بعد از تست نهایی، سایت لانچ می‌شود. آموزش کامل پنل + شروع برنامه سئو برای رشد ترافیک ارگانیک.',
+      list:[
+        'تست بار + امنیت + سرعت',
+        'آموزش ویدیویی پنل ادمین',
+        'ثبت در Search Console + GA',
+        'گزارش ماهانه رشد سایت'
+      ],
+      icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09zM12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>'
+    }
+  };
+
+  const update = (n) => {
+    const d = data[n];
+    stage.classList.add('is-changing');
+    setTimeout(() => {
+      stage.querySelector('[data-stage-num]').textContent = d.num;
+      stage.querySelector('[data-stage-title]').textContent = d.title;
+      stage.querySelector('[data-stage-desc]').textContent = d.desc;
+      const ul = stage.querySelector('[data-stage-list]');
+      ul.innerHTML = d.list.map(x => `<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>${x}</li>`).join('');
+      stage.querySelector('[data-stage-icon]').innerHTML = d.icon;
+      stage.classList.remove('is-changing');
+    }, 300);
+
+    // وضعیت stepها
+    const steps = timeline.querySelectorAll('.vs-step');
+    steps.forEach((s,i) => {
+      s.classList.remove('is-active','is-done');
+      if(i+1 < n) s.classList.add('is-done');
+      if(i+1 === n) s.classList.add('is-active');
+    });
+    // پروگرس بار
+    const pct = ((n - 1) / (steps.length - 1)) * 100;
+    timeline.style.setProperty('--progress', pct + '%');
+  };
+
+  let current = 1;
+  timeline.querySelectorAll('.vs-step').forEach(s => {
+    s.addEventListener('click', () => {
+      current = parseInt(s.dataset.step,10);
+      update(current);
+      clearInterval(auto);
+    });
+  });
+
+  // اتو پلی
+  let auto = setInterval(() => {
+    current = (current % 4) + 1;
+    update(current);
+  }, 5000);
+})();
+</script>

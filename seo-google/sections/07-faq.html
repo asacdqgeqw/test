@@ -1,0 +1,209 @@
+<!-- ========================================================
+     سکشن ۷: FAQ — سوالات متداول سئو با جستجو و فیلتر
+     ======================================================== -->
+<style>
+.vs-seo-faq{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-green:#22c55e;--vs-green-soft:rgba(34,197,94,.15);
+  padding:110px 24px;background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-seo-faq__inner{max-width:820px;margin:0 auto;position:relative;z-index:1;}
+.vs-seo-faq .vs-section-head{text-align:center;margin-bottom:48px;}
+.vs-seo-faq .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-green-soft);color:var(--vs-green);
+  border:1px solid rgba(34,197,94,.25);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-seo-faq .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-green);box-shadow:0 0 0 4px rgba(34,197,94,.18);display:inline-block;}
+.vs-seo-faq h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-seo-faq h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-green),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+
+/* Search */
+.vs-seo-faq__search{
+  position:relative;margin-bottom:24px;
+}
+.vs-seo-faq__search input{
+  width:100%;padding:16px 20px 16px 48px;
+  border:1.5px solid #E2E8F0;border-radius:16px;
+  font-family:inherit;font-size:16px;color:var(--vs-ink);
+  background:#F8FAFC;transition:all .3s ease;outline:none;
+}
+.vs-seo-faq__search input:focus{border-color:var(--vs-green);background:#fff;box-shadow:0 4px 16px rgba(34,197,94,.10);}
+.vs-seo-faq__search input::placeholder{color:#94A3B8;}
+.vs-seo-faq__search svg{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  color:#94A3B8;pointer-events:none;
+}
+
+/* Category Filter */
+.vs-seo-faq__cats{
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;justify-content:center;
+}
+.vs-seo-faq__cat{
+  padding:8px 16px;border-radius:10px;border:1.5px solid #E2E8F0;
+  background:transparent;cursor:pointer;font-family:inherit;
+  font-size:14px;font-weight:600;color:#64748B;transition:all .3s ease;
+}
+.vs-seo-faq__cat:hover{border-color:var(--vs-green);color:var(--vs-green);}
+.vs-seo-faq__cat.is-active{background:var(--vs-green);color:#fff;border-color:var(--vs-green);}
+
+/* Accordion */
+.vs-seo-faq__list{display:grid;gap:12px;}
+.vs-seo-faq__item{
+  background:#F8FAFC;border:1px solid #E2E8F0;border-radius:16px;
+  overflow:hidden;transition:all .3s ease;
+}
+.vs-seo-faq__item:hover{border-color:rgba(34,197,94,.25);}
+.vs-seo-faq__item.is-open{border-color:var(--vs-green);background:#fff;box-shadow:0 8px 24px rgba(34,197,94,.08);}
+.vs-seo-faq__q{
+  display:flex;align-items:center;gap:14px;padding:20px 24px;
+  cursor:pointer;width:100%;border:none;background:transparent;
+  font-family:inherit;font-size:16px;font-weight:700;color:var(--vs-ink);
+  text-align:right;
+}
+.vs-seo-faq__q span{flex:1;}
+.vs-seo-faq__q .icon{
+  width:32px;height:32px;border-radius:8px;
+  background:var(--vs-green-soft);color:var(--vs-green);
+  display:grid;place-items:center;flex-shrink:0;transition:transform .3s ease;
+}
+.vs-seo-faq__item.is-open .vs-seo-faq__q .icon{transform:rotate(45deg);}
+.vs-seo-faq__a{
+  max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;
+  padding:0 24px;
+}
+.vs-seo-faq__item.is-open .vs-seo-faq__a{max-height:300px;padding:0 24px 20px;}
+.vs-seo-faq__a p{margin:0;font-size:15px;line-height:2;color:#475569;}
+
+/* Empty state */
+.vs-seo-faq__empty{
+  text-align:center;padding:48px 24px;display:none;
+}
+.vs-seo-faq__empty.is-visible{display:block;}
+.vs-seo-faq__empty svg{color:#CBD5E1;margin-bottom:16px;}
+.vs-seo-faq__empty p{color:#94A3B8;font-size:16px;}
+
+@media(max-width:560px){.vs-seo-faq__q{padding:16px 18px;font-size:15px;}.vs-seo-faq__cats{gap:6px;}}
+</style>
+
+
+<section class="vs-seo-faq" data-vs-seo-faq>
+  <div class="vs-seo-faq__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>سوالات متداول</span>
+      <h2>پاسخ <em>سوالات شما</em></h2>
+    </div>
+
+    <div class="vs-seo-faq__search">
+      <input type="text" placeholder="جستجوی سوال..." data-faq-search>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+    </div>
+
+    <div class="vs-seo-faq__cats">
+      <button class="vs-seo-faq__cat is-active" data-cat="all">همه</button>
+      <button class="vs-seo-faq__cat" data-cat="general">عمومی</button>
+      <button class="vs-seo-faq__cat" data-cat="technical">فنی</button>
+      <button class="vs-seo-faq__cat" data-cat="pricing">قیمت</button>
+      <button class="vs-seo-faq__cat" data-cat="results">نتایج</button>
+    </div>
+
+    <div class="vs-seo-faq__list">
+      <div class="vs-seo-faq__item" data-category="results">
+        <button class="vs-seo-faq__q"><span>سئو چقدر زمان می‌برد تا نتیجه دهد؟</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span></button>
+        <div class="vs-seo-faq__a"><p>معمولاً نتایج اولیه سئو بین ۳ تا ۶ ماه قابل مشاهده است. البته این بستگی به رقابت کلمات کلیدی، وضعیت فعلی سایت و بودجه دارد. ما از همان ماه اول Quick Winها را اجرا می‌کنیم تا بهبودهای اولیه زودتر دیده شوند.</p></div>
+      </div>
+
+      <div class="vs-seo-faq__item" data-category="general">
+        <button class="vs-seo-faq__q"><span>آیا تضمین رتبه اول دارید؟</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span></button>
+        <div class="vs-seo-faq__a"><p>هیچ شرکت معتبری نمی‌تواند رتبه ۱ را تضمین کند چون الگوریتم گوگل خارج از کنترل ماست. اما ما تضمین می‌کنیم که با بهترین متدهای روز دنیا کار می‌کنیم و در ۹۵٪ پروژه‌هایمان، کلمات کلیدی به صفحه اول رسیده‌اند.</p></div>
+      </div>
+
+      <div class="vs-seo-faq__item" data-category="general">
+        <button class="vs-seo-faq__q"><span>تفاوت سئو با تبلیغات گوگل چیست؟</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span></button>
+        <div class="vs-seo-faq__a"><p>تبلیغات گوگل (Google Ads) نتیجه فوری دارد اما با پایان بودجه متوقف می‌شود. سئو یک سرمایه‌گذاری بلندمدت است که ترافیک رایگان و مداوم ایجاد می‌کند. بهترین استراتژی ترکیب هر دو است.</p></div>
+      </div>
+
+      <div class="vs-seo-faq__item" data-category="technical">
+        <button class="vs-seo-faq__q"><span>اگر الگوریتم گوگل تغییر کند چه می‌شود؟</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span></button>
+        <div class="vs-seo-faq__a"><p>ما همیشه از روش‌های White-Hat و مطابق با دستورالعمل‌های گوگل استفاده می‌کنیم. به‌روزرسانی‌های الگوریتم معمولاً سایت‌هایی را جریمه می‌کنند که از روش‌های غیراستاندارد استفاده کرده‌اند. سایت‌های ما نه تنها آسیب نمی‌بینند بلکه اغلب رشد می‌کنند.</p></div>
+      </div>
+
+      <div class="vs-seo-faq__item" data-category="technical">
+        <button class="vs-seo-faq__q"><span>آیا لینک‌سازی شما امن است؟</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span></button>
+        <div class="vs-seo-faq__a"><p>بله، ما فقط از روش‌های White-Hat لینک‌سازی استفاده می‌کنیم: Guest Posting در سایت‌های معتبر، Digital PR، و Broken Link Building. هیچ PBN یا لینک اسپمی در کار نیست. هر بک‌لینک با بررسی DA، ترافیک و Relevancy ساخته می‌شود.</p></div>
+      </div>
+
+      <div class="vs-seo-faq__item" data-category="results">
+        <button class="vs-seo-faq__q"><span>گزارش‌ها شامل چه مواردی هستند؟</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span></button>
+        <div class="vs-seo-faq__a"><p>گزارش‌های ما شامل: رتبه‌بندی کلمات کلیدی، ترافیک ارگانیک، بک‌لینک‌های جدید، وضعیت فنی سایت، نرخ کلیک (CTR)، صفحات برتر و اقدامات انجام‌شده و برنامه ماه آینده است. همچنین داشبورد زنده در اختیار شما قرار می‌گیرد.</p></div>
+      </div>
+
+      <div class="vs-seo-faq__item" data-category="pricing">
+        <button class="vs-seo-faq__q"><span>چه تفاوتی بین پکیج‌ها وجود دارد؟</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span></button>
+        <div class="vs-seo-faq__a"><p>تفاوت اصلی در تعداد کلمات کلیدی هدف، حجم لینک‌سازی و تولید محتوا، و سطح پشتیبانی است. پکیج پایه برای شروع مناسب است، حرفه‌ای برای رشد جدی و سازمانی برای برندهای بزرگ با نیازهای خاص طراحی شده.</p></div>
+      </div>
+
+      <div class="vs-seo-faq__item" data-category="pricing">
+        <button class="vs-seo-faq__q"><span>آیا می‌توانم پکیج را در طول مسیر تغییر دهم؟</span><span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span></button>
+        <div class="vs-seo-faq__a"><p>بله، می‌توانید هر زمان پکیج خود را ارتقا دهید. همچنین بعد از ۳ ماه اول، امکان تنظیم سفارشی بر اساس نیازهای شما وجود دارد. ما منعطف هستیم و هدفمان نتیجه‌گرفتن شماست.</p></div>
+      </div>
+    </div>
+
+    <div class="vs-seo-faq__empty">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/><path d="M8 11h6" stroke-linecap="round"/></svg>
+      <p>سوالی با این عبارت پیدا نشد. لطفاً عبارت دیگری جستجو کنید.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const section=document.querySelector('[data-vs-seo-faq]');if(!section)return;
+  const items=section.querySelectorAll('.vs-seo-faq__item');
+  const cats=section.querySelectorAll('.vs-seo-faq__cat');
+  const searchInput=section.querySelector('[data-faq-search]');
+  const emptyState=section.querySelector('.vs-seo-faq__empty');
+  let activeCategory='all';
+
+  // Accordion
+  items.forEach(item=>{
+    item.querySelector('.vs-seo-faq__q').addEventListener('click',()=>{
+      const wasOpen=item.classList.contains('is-open');
+      items.forEach(i=>i.classList.remove('is-open'));
+      if(!wasOpen)item.classList.add('is-open');
+    });
+  });
+
+  // Category filter
+  cats.forEach(cat=>{
+    cat.addEventListener('click',()=>{
+      cats.forEach(c=>c.classList.remove('is-active'));
+      cat.classList.add('is-active');
+      activeCategory=cat.dataset.cat;
+      filterItems();
+    });
+  });
+
+  // Search
+  searchInput.addEventListener('input',()=>filterItems());
+
+  function filterItems(){
+    const query=searchInput.value.trim().toLowerCase();
+    let visible=0;
+    items.forEach(item=>{
+      const text=item.querySelector('.vs-seo-faq__q span').textContent.toLowerCase();
+      const answer=item.querySelector('.vs-seo-faq__a p').textContent.toLowerCase();
+      const catMatch=activeCategory==='all'||item.dataset.category===activeCategory;
+      const searchMatch=!query||text.includes(query)||answer.includes(query);
+      const show=catMatch&&searchMatch;
+      item.style.display=show?'':'none';
+      if(show)visible++;
+    });
+    emptyState.classList.toggle('is-visible',visible===0);
+  }
+})();
+</script>
