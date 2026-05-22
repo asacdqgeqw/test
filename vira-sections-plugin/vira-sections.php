@@ -61,6 +61,13 @@ final class Vira_Sections_Plugin {
 		// Translations.
 		load_plugin_textdomain( 'vira-sections', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
+		// Load Leads system (works regardless of Elementor).
+		require_once VIRA_SECTIONS_PATH . 'includes/class-leads.php';
+		new Vira_Sections_Leads();
+
+		// Frontend AJAX nonce + URL.
+		add_action( 'wp_enqueue_scripts', array( $this, 'localize_form_data' ) );
+
 		// Check Elementor.
 		if ( ! did_action( 'elementor/loaded' ) ) {
 			add_action( 'admin_notices', array( $this, 'notice_missing_elementor' ) );
@@ -178,6 +185,23 @@ final class Vira_Sections_Plugin {
 	}
 
 	/**
+	 * Make AJAX URL + nonce available on every page so CTA Form widgets work.
+	 */
+	public function localize_form_data() {
+		// Inline script — no separate JS file needed.
+		$data = array(
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'nonce'   => wp_create_nonce( Vira_Sections_Leads::NONCE_KEY ),
+		);
+		wp_register_script( 'vira-sections-form-bootstrap', '', array(), VIRA_SECTIONS_VERSION, true );
+		wp_enqueue_script( 'vira-sections-form-bootstrap' );
+		wp_add_inline_script(
+			'vira-sections-form-bootstrap',
+			'window.ViraSectionsForm = ' . wp_json_encode( $data ) . ';'
+		);
+	}
+
+	/**
 	 * Add admin menu page.
 	 */
 	public function admin_menu() {
@@ -213,8 +237,11 @@ final class Vira_Sections_Plugin {
 	 * Sanitize settings.
 	 */
 	public function sanitize_settings( $input ) {
-		$out                   = array();
-		$out['load_vazirmatn'] = ! empty( $input['load_vazirmatn'] ) ? '1' : '0';
+		$out                       = array();
+		$out['load_vazirmatn']     = ! empty( $input['load_vazirmatn'] ) ? '1' : '0';
+		$out['enable_emails']      = ! empty( $input['enable_emails'] ) ? '1' : '0';
+		$out['notification_email'] = isset( $input['notification_email'] ) ? sanitize_text_field( $input['notification_email'] ) : '';
+		$out['email_subject']      = isset( $input['email_subject'] ) ? sanitize_text_field( $input['email_subject'] ) : '';
 		return $out;
 	}
 
@@ -222,9 +249,17 @@ final class Vira_Sections_Plugin {
 	 * Render settings page.
 	 */
 	public function render_settings_page() {
-		$opts = get_option( 'vira_sections_settings', array( 'load_vazirmatn' => '1' ) );
+		$defaults = array(
+			'load_vazirmatn'     => '1',
+			'enable_emails'      => '1',
+			'notification_email' => get_option( 'admin_email' ),
+			'email_subject'      => __( 'درخواست جدید از سایت', 'vira-sections' ),
+		);
+		$opts          = wp_parse_args( get_option( 'vira_sections_settings', array() ), $defaults );
+		$leads_count   = class_exists( 'Vira_Sections_Leads' ) ? Vira_Sections_Leads::count() : 0;
+		$leads_admin   = admin_url( 'edit.php?post_type=' . Vira_Sections_Leads::CPT );
 		?>
-		<div class="wrap" style="max-width:800px;">
+		<div class="wrap" style="max-width:900px;">
 			<h1 style="display:flex;align-items:center;gap:10px;">
 				<span style="background:linear-gradient(135deg,#170C79,#128BE0);color:#fff;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-weight:900;">V</span>
 				<?php esc_html_e( 'Vira Sections', 'vira-sections' ); ?>
@@ -234,8 +269,61 @@ final class Vira_Sections_Plugin {
 				<?php esc_html_e( 'افزونه ویرا سکشنز شامل ۱۲ ویجت تعاملی و حرفه‌ای برای المنتور است که کاملاً قابل ویرایش هستند. متن، رنگ، تصاویر و استایل هر ویجت را می‌توانید از پنل المنتور تغییر دهید.', 'vira-sections' ); ?>
 			</p>
 
-			<form method="post" action="options.php" style="margin-top:24px;background:#fff;padding:24px;border:1px solid #ccd0d4;border-radius:8px;">
+			<!-- Stats Card -->
+			<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0;">
+				<div style="background:linear-gradient(135deg,#170C79,#128BE0);color:#fff;padding:24px;border-radius:12px;">
+					<div style="font-size:13px;opacity:.8;margin-bottom:6px;"><?php esc_html_e( 'پیام‌های دریافت‌شده', 'vira-sections' ); ?></div>
+					<div style="font-size:36px;font-weight:900;line-height:1;"><?php echo esc_html( number_format_i18n( $leads_count ) ); ?></div>
+					<a href="<?php echo esc_url( $leads_admin ); ?>" style="display:inline-block;margin-top:12px;color:#fff;background:rgba(255,255,255,.18);padding:6px 14px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:700;">
+						<?php esc_html_e( 'مشاهده پیام‌ها', 'vira-sections' ); ?> ←
+					</a>
+				</div>
+				<div style="background:#FAF6EC;border:1px solid #E2E8F0;padding:24px;border-radius:12px;">
+					<div style="font-size:13px;color:#64748B;margin-bottom:6px;"><?php esc_html_e( 'تعداد ویجت‌ها', 'vira-sections' ); ?></div>
+					<div style="font-size:36px;font-weight:900;line-height:1;color:#170C79;">۱۲</div>
+					<div style="margin-top:12px;color:#64748B;font-size:13px;">
+						<?php esc_html_e( 'ویجت آماده برای ساخت لندینگ‌پیج حرفه‌ای', 'vira-sections' ); ?>
+					</div>
+				</div>
+			</div>
+
+			<form method="post" action="options.php" style="background:#fff;padding:24px;border:1px solid #ccd0d4;border-radius:8px;">
 				<?php settings_fields( 'vira_sections_group' ); ?>
+
+				<h2 style="margin-top:0;border-bottom:2px solid #170C79;padding-bottom:10px;">
+					✉️ <?php esc_html_e( 'تنظیمات فرم تماس و ایمیل', 'vira-sections' ); ?>
+				</h2>
+
+				<table class="form-table">
+					<tr>
+						<th scope="row"><?php esc_html_e( 'فعال‌سازی ارسال ایمیل', 'vira-sections' ); ?></th>
+						<td>
+							<label>
+								<input type="checkbox" name="vira_sections_settings[enable_emails]" value="1" <?php checked( ! empty( $opts['enable_emails'] ) ); ?> />
+								<?php esc_html_e( 'هنگام دریافت پیام جدید از فرم، ایمیل اطلاع‌رسانی ارسال شود.', 'vira-sections' ); ?>
+							</label>
+							<p class="description"><?php esc_html_e( 'پیام‌ها بدون توجه به این تنظیم در پنل وردپرس ذخیره می‌شوند.', 'vira-sections' ); ?></p>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="vira_email_to"><?php esc_html_e( 'ایمیل دریافت‌کننده', 'vira-sections' ); ?></label></th>
+						<td>
+							<input type="text" id="vira_email_to" name="vira_sections_settings[notification_email]" value="<?php echo esc_attr( $opts['notification_email'] ); ?>" class="regular-text" dir="ltr" />
+							<p class="description"><?php esc_html_e( 'برای چند ایمیل، آن‌ها را با کاما (,) جدا کنید.', 'vira-sections' ); ?></p>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="vira_email_subj"><?php esc_html_e( 'عنوان ایمیل', 'vira-sections' ); ?></label></th>
+						<td>
+							<input type="text" id="vira_email_subj" name="vira_sections_settings[email_subject]" value="<?php echo esc_attr( $opts['email_subject'] ); ?>" class="regular-text" />
+						</td>
+					</tr>
+				</table>
+
+				<h2 style="margin-top:32px;border-bottom:2px solid #170C79;padding-bottom:10px;">
+					🎨 <?php esc_html_e( 'تنظیمات ظاهری', 'vira-sections' ); ?>
+				</h2>
+
 				<table class="form-table">
 					<tr>
 						<th scope="row"><?php esc_html_e( 'بارگذاری فونت Vazirmatn', 'vira-sections' ); ?></th>
@@ -247,6 +335,7 @@ final class Vira_Sections_Plugin {
 						</td>
 					</tr>
 				</table>
+
 				<?php submit_button(); ?>
 			</form>
 

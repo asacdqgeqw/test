@@ -489,10 +489,90 @@ class Vira_Sections_Widget_Cta_Form extends \Elementor\Widget_Base {
 			if (!section) return;
 			var form = section.querySelector('[data-vira-form]');
 			var success = section.querySelector('[data-vira-success]');
-			if (form) form.addEventListener('submit', function(e){
+			var submit = section.querySelector('.vira-cta__submit');
+			if (!form) return;
+
+			// Inject hidden honeypot field (anti-spam) once.
+			if (!form.querySelector('input[name="vira_hp"]')) {
+				var hp = document.createElement('input');
+				hp.type = 'text';
+				hp.name = 'vira_hp';
+				hp.tabIndex = -1;
+				hp.autocomplete = 'off';
+				hp.style.cssText = 'position:absolute;left:-9999px;top:-9999px;height:0;width:0;opacity:0;';
+				hp.setAttribute('aria-hidden', 'true');
+				form.appendChild(hp);
+			}
+
+			function showError(msg){
+				var existing = form.querySelector('.vira-cta__error');
+				if (existing) existing.remove();
+				var div = document.createElement('div');
+				div.className = 'vira-cta__error';
+				div.style.cssText = 'background:rgba(220,38,38,.15);color:#fecaca;border:1px solid rgba(220,38,38,.40);padding:12px 16px;border-radius:10px;margin-top:12px;font-size:14px;';
+				div.textContent = msg;
+				form.appendChild(div);
+			}
+
+			form.addEventListener('submit', function(e){
 				e.preventDefault();
-				form.style.display = 'none';
-				if (success) success.classList.add('is-visible');
+				var existing = form.querySelector('.vira-cta__error');
+				if (existing) existing.remove();
+
+				// If global Vira AJAX object isn't available, fall back to local-only success state.
+				if (typeof window.ViraSectionsForm === 'undefined' || !window.ViraSectionsForm.ajaxurl) {
+					form.style.display = 'none';
+					if (success) success.classList.add('is-visible');
+					return;
+				}
+
+				if (submit) {
+					submit.disabled = true;
+					submit.style.opacity = '0.65';
+					submit.style.cursor = 'wait';
+				}
+
+				var data = new FormData(form);
+				data.append('action', 'vira_submit_lead');
+				data.append('vira_nonce', window.ViraSectionsForm.nonce);
+				data.append('page_url', window.location.href);
+
+				// Map field names to backend convention (name, phone, email, select, message)
+				// (Already handled by input name="vira_name" etc., but normalize here.)
+				if (data.has('vira_name')) { data.append('name', data.get('vira_name')); }
+				if (data.has('vira_phone')) { data.append('phone', data.get('vira_phone')); }
+				if (data.has('vira_email')) { data.append('email', data.get('vira_email')); }
+				if (data.has('vira_select')) { data.append('select', data.get('vira_select')); }
+				if (data.has('vira_message')) { data.append('message', data.get('vira_message')); }
+
+				fetch(window.ViraSectionsForm.ajaxurl, {
+					method: 'POST',
+					body: data,
+					credentials: 'same-origin'
+				})
+				.then(function(r){ return r.json().catch(function(){ return { success:false, data:{ msg:'خطا در پاسخ سرور' } }; }); })
+				.then(function(res){
+					if (submit) {
+						submit.disabled = false;
+						submit.style.opacity = '';
+						submit.style.cursor = '';
+					}
+					if (res && res.success) {
+						form.style.display = 'none';
+						if (success) success.classList.add('is-visible');
+					} else {
+						var msg = (res && res.data && res.data.msg) ? res.data.msg : 'خطا در ارسال پیام. لطفاً بعداً تلاش کنید.';
+						showError(msg);
+					}
+				})
+				.catch(function(){
+					if (submit) {
+						submit.disabled = false;
+						submit.style.opacity = '';
+						submit.style.cursor = '';
+					}
+					showError('خطا در ارتباط با سرور. لطفاً اتصال اینترنت خود را بررسی کنید.');
+				});
 			});
 		})();
 		</script>
