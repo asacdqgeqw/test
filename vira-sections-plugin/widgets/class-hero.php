@@ -689,6 +689,32 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				#<?php echo esc_attr( $unique_id ); ?> .vira-hero__stats{gap:20px;}
 				#<?php echo esc_attr( $unique_id ); ?> .vira-hero__stat .num{font-size:24px;}
 			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero__float{
+				position:absolute;z-index:10;
+				background:rgba(255,255,255,.08);backdrop-filter:blur(14px);
+				border:1px solid rgba(255,255,255,.14);border-radius:18px;
+				padding:14px 18px;display:flex;align-items:center;gap:12px;
+				box-shadow:0 12px 40px rgba(0,0,0,.25);
+				animation:vira-hero-float 5s ease-in-out infinite;
+				transition:transform .3s ease;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero__float:hover{transform:translateY(-4px) scale(1.03);}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero__float-ico{
+				width:42px;height:42px;border-radius:12px;
+				display:grid;place-items:center;color:#fff;font-size:18px;flex-shrink:0;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero__float-t{font-weight:700;font-size:14px;color:var(--vira-text);}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero__float-s{font-size:12px;color:rgba(255,255,255,.55);}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero__float--top-right{top:4%;right:0;animation-delay:.2s;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero__float--top-left{top:4%;left:0;animation-delay:.6s;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero__float--middle-right{top:45%;right:-5%;animation-delay:1s;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero__float--middle-left{top:45%;left:-5%;animation-delay:1.4s;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero__float--bottom-right{bottom:8%;right:0;animation-delay:1.8s;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero__float--bottom-left{bottom:8%;left:0;animation-delay:2.2s;}
+			@keyframes vira-hero-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+			@media(max-width:980px){
+				#<?php echo esc_attr( $unique_id ); ?> .vira-hero__float{display:none;}
+			}
 		</style>
  
 		<section id="<?php echo esc_attr( $unique_id ); ?>" class="vira-hero" data-vira-hero>
@@ -766,6 +792,22 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 										<?php endif; ?>
 									</div>
 								</div>
+							<?php endif; ?>
+							<?php if ( 'yes' === $s['show_floats'] && ! empty( $s['floats'] ) ) : ?>
+								<?php foreach ( $s['floats'] as $index => $fc ) :
+									$pos_class = 'vira-hero__float--' . esc_attr( $fc['float_position'] );
+									$grad = 'background:linear-gradient(135deg,' . esc_attr( $fc['float_color_from'] ) . ',' . esc_attr( $fc['float_color_to'] ) . ')';
+								?>
+									<div class="vira-hero__float <?php echo $pos_class; ?>">
+										<div class="vira-hero__float-ico" style="<?php echo $grad; ?>">
+											<?php \Elementor\Icons_Manager::render_icon( $fc['float_icon'], array( 'aria-hidden' => 'true' ) ); ?>
+										</div>
+										<div>
+											<div class="vira-hero__float-t"><?php echo esc_html( $fc['float_title'] ); ?></div>
+											<div class="vira-hero__float-s"><?php echo esc_html( $fc['float_subtitle'] ); ?></div>
+										</div>
+									</div>
+								<?php endforeach; ?>
 							<?php endif; ?>
 						</div>
 					</div>
