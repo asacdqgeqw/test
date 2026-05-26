@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "feat",
   "description": "Create the preset data infrastructure: a central PHP class that stores all preset data arrays for all 12 widgets across all 4 pages, plus a trait/helper that each widget uses to add the preset dropdown control and apply preset values.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create /projects/sandbox/test/vira-sections-plugin/includes/class-presets.php with a static class Vira_Sections_Presets that contains all preset data organized by widget name and page slug.",
     "The class should have a static method get_presets( $widget_name ) that returns an associative array of presets for that widget. Each preset key is the page slug (website-design, seo-google, seo-training-tabriz, app-android-tabriz) and value is an array of control_id => value pairs matching the widget's controls.",
@@ -38,5 +38,5 @@
     "Run php -l on vira-sections.php to confirm no syntax errors after adding require statements"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "PHP is available at /opt/toolchains/.local/share/mise/installs/php/8.3.31/bin/php. Must export PATH to use it. All 12 widget presets implemented with real Persian content from HTML files. The preset options use 'custom' as default (no change) plus page-specific options per SECTIONS-MAP.md mapping."
 }
