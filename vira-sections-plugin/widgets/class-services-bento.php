@@ -20,6 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Vira_Sections_Widget_Services_Bento extends \Elementor\Widget_Base {
 
+	use Vira_Sections_Preset_Trait;
+
 	public function get_name() {
 		return 'vira_services_bento';
 	}
@@ -44,6 +46,8 @@ class Vira_Sections_Widget_Services_Bento extends \Elementor\Widget_Base {
 	 * Register Elementor controls (Content + Style tabs).
 	 */
 	protected function register_controls() {
+
+		$this->register_preset_control();
 
 		/* ============================================================
 		 * CONTENT TAB — Section Header

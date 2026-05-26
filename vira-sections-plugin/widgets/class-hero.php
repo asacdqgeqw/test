@@ -13,7 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
  
 class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
- 
+
+	use Vira_Sections_Preset_Trait;
+
 	public function get_name() {
 		return 'vira_hero';
 	}
@@ -35,7 +37,9 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 	}
  
 	protected function register_controls() {
- 
+
+		$this->register_preset_control();
+
 		/* ============= Content: Header ============= */
 		$this->start_controls_section(
 			'section_content',

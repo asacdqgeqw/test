@@ -19,6 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Vira_Sections_Widget_Trust_Strip extends \Elementor\Widget_Base {
 
+	use Vira_Sections_Preset_Trait;
+
 	public function get_name() {
 		return 'vira_trust_strip';
 	}
@@ -43,6 +45,8 @@ class Vira_Sections_Widget_Trust_Strip extends \Elementor\Widget_Base {
 	 * Register Elementor controls.
 	 */
 	protected function register_controls() {
+
+		$this->register_preset_control();
 
 		/* ============================================================
 		 * Mode

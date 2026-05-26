@@ -17,6 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Vira_Sections_Widget_Tech_Stack extends \Elementor\Widget_Base {
 
+	use Vira_Sections_Preset_Trait;
+
 	public function get_name() {
 		return 'vira_tech_stack';
 	}
@@ -41,6 +43,8 @@ class Vira_Sections_Widget_Tech_Stack extends \Elementor\Widget_Base {
 	 * Register controls.
 	 */
 	protected function register_controls() {
+
+		$this->register_preset_control();
 
 		/* ============================================================
 		 * Section Header

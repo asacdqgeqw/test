@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Vira_Sections_Widget_Pricing extends \Elementor\Widget_Base {
 
+	use Vira_Sections_Preset_Trait;
+
 	public function get_name() { return 'vira_pricing'; }
 	public function get_title() { return __( 'Pricing (Vira)', 'vira-sections' ); }
 	public function get_icon() { return 'eicon-price-table'; }
@@ -21,6 +23,8 @@ class Vira_Sections_Widget_Pricing extends \Elementor\Widget_Base {
 	public function get_keywords() { return array( 'vira', 'pricing', 'plans', 'packages' ); }
 
 	protected function register_controls() {
+
+		$this->register_preset_control();
 
 		/* ============= Section Header ============= */
 		$this->start_controls_section(

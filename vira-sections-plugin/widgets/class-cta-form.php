@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Vira_Sections_Widget_Cta_Form extends \Elementor\Widget_Base {
 
+	use Vira_Sections_Preset_Trait;
+
 	public function get_name() { return 'vira_cta_form'; }
 	public function get_title() { return __( 'CTA Form (Vira)', 'vira-sections' ); }
 	public function get_icon() { return 'eicon-form-horizontal'; }
@@ -21,6 +23,8 @@ class Vira_Sections_Widget_Cta_Form extends \Elementor\Widget_Base {
 	public function get_keywords() { return array( 'vira', 'cta', 'form', 'contact', 'lead' ); }
 
 	protected function register_controls() {
+
+		$this->register_preset_control();
 
 		/* ============= Content: Left Side ============= */
 		$this->start_controls_section(

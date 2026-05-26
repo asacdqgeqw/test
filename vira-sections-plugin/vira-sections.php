@@ -99,6 +99,9 @@ final class Vira_Sections_Plugin {
 		// Frontend scripts/styles for editor preview.
 		add_action( 'elementor/editor/after_enqueue_styles', array( $this, 'enqueue_editor_styles' ) );
 
+		// Preset handler script for editor.
+		add_action( 'elementor/editor/after_enqueue_scripts', array( $this, 'enqueue_preset_scripts' ) );
+
 		// Load Vazirmatn font on frontend (optional - only if enabled in settings).
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_assets' ) );
 
@@ -163,6 +166,25 @@ final class Vira_Sections_Plugin {
 			VIRA_SECTIONS_URL . 'assets/css/editor.css',
 			array(),
 			VIRA_SECTIONS_VERSION
+		);
+	}
+
+	/**
+	 * Enqueue preset handler script for the Elementor editor.
+	 */
+	public function enqueue_preset_scripts() {
+		wp_enqueue_script(
+			'vira-sections-presets',
+			VIRA_SECTIONS_URL . 'assets/js/preset-handler.js',
+			array( 'elementor-editor' ),
+			VIRA_SECTIONS_VERSION,
+			true
+		);
+
+		wp_localize_script(
+			'vira-sections-presets',
+			'ViraPresetsData',
+			Vira_Sections_Presets::get_all_presets_for_js()
 		);
 	}
 
