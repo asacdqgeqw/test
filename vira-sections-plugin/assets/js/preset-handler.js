@@ -26,6 +26,12 @@
     });
 
     function bindPresetHandler(panel, model, view, widgetType) {
+        // Prevent duplicate bindings using a data attribute flag
+        if (panel.el.dataset.viraPresetBound) {
+            return;
+        }
+        panel.el.dataset.viraPresetBound = '1';
+
         // Use Elementor's built-in control change event
         panel.el.addEventListener('change', function(e) {
             if (e.target && e.target.dataset && e.target.dataset.setting === 'vira_preset') {
@@ -47,12 +53,12 @@
         var data = presets[presetSlug];
         var settings = model.get('settings');
 
-        // Apply each preset setting
+        // Apply each preset setting and trigger change events for reactivity
         Object.keys(data).forEach(function(key) {
             settings.set(key, data[key]);
         });
 
-        // Trigger panel refresh
-        model.renderRemoteServer();
+        // Trigger change on settings to update panel controls and live preview
+        settings.trigger('change');
     }
 })();
