@@ -65,6 +65,10 @@ final class Vira_Sections_Plugin {
 		require_once VIRA_SECTIONS_PATH . 'includes/class-leads.php';
 		new Vira_Sections_Leads();
 
+		// Load Preset system.
+		require_once VIRA_SECTIONS_PATH . 'includes/class-presets.php';
+		require_once VIRA_SECTIONS_PATH . 'includes/trait-preset-controls.php';
+
 		// Frontend AJAX nonce + URL.
 		add_action( 'wp_enqueue_scripts', array( $this, 'localize_form_data' ) );
 
