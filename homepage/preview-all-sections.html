@@ -16,330 +16,116 @@
 </head>
 <body>
 
-<div class="mock-header">⬇️ این بالا هدر سایت شماست (دست نخورده) ⬇️</div>
+<div class="mock-header">header</div>
 
-<!-- ========================================================
-     سکشن ۱: HERO صفحه اصلی آژانس دیجیتال ویرا سئو
-     ویژگی‌ها:
-     - پس‌زمینه Aurora متحرک
-     - اسپات‌لایت موس (cursor-follow glow)
-     - کلمات چرخان (rotating words)
-     - موکاپ ۳بعدی با Tilt
-     - Marquee متحرک
-     - badge ضربان‌دار
-     ======================================================== -->
+
+<!-- سکشن ۱: HERO صفحه اصلی - نسخه پیشرفته با Gradient Mesh و Services Orbit -->
 <style>
 .vs-home-hero{
-  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
-  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
-
-  position:relative; min-height:90vh; padding:90px 24px 0; overflow:hidden;
-  background:#0a0640;
-  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl;
-  color:#fff; isolation:isolate;
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  position:relative;min-height:100vh;padding:100px 24px 0;overflow:hidden;
+  background:#050225;font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;
+  direction:rtl;color:#fff;isolation:isolate;
 }
-
-/* ===== Aurora Background ===== */
-.vs-home-hero::before, .vs-home-hero::after{
-  content:""; position:absolute; border-radius:50%; filter:blur(90px);
-  pointer-events:none; z-index:0; mix-blend-mode:screen; opacity:.55;
-}
-.vs-home-hero::before{
-  width:60vw; height:60vw; top:-10vw; right:-10vw;
-  background:radial-gradient(circle,#128BE0 0%,#170C79 60%,transparent 70%);
-  animation:vs-home-hero-aurora1 14s ease-in-out infinite;
-}
-.vs-home-hero::after{
-  width:55vw; height:55vw; bottom:-15vw; left:-10vw;
-  background:radial-gradient(circle,#8ACBD0 0%,#0170B9 50%,transparent 70%);
-  animation:vs-home-hero-aurora2 16s ease-in-out infinite;
-}
-@keyframes vs-home-hero-aurora1{
-  0%,100%{transform:translate(0,0) scale(1)}
-  50%{transform:translate(-10vw,10vh) scale(1.15)}
-}
-@keyframes vs-home-hero-aurora2{
-  0%,100%{transform:translate(0,0) scale(1)}
-  50%{transform:translate(10vw,-8vh) scale(1.1)}
-}
-
-/* ===== Spotlight ===== */
-.vs-home-hero__spot{
-  position:absolute; inset:0; pointer-events:none; z-index:1;
-  background:radial-gradient(
-    600px circle at var(--mx,50%) var(--my,30%),
-    rgba(138,203,208,.18), transparent 40%);
-  transition:background .15s ease;
-}
-
-/* ===== Grid Pattern ===== */
-.vs-home-hero__grid-bg{
-  position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.35;
-  background-image:
-    linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);
-  background-size:60px 60px;
-  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,#000,transparent 70%);
-          mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,#000,transparent 70%);
-}
-
-/* ===== Wrapper ===== */
-.vs-home-hero__wrap{
-  position:relative; z-index:2; max-width:1240px; margin:0 auto;
-  display:grid; grid-template-columns:1.1fr 1fr; gap:60px; align-items:center;
-  min-height:calc(90vh - 90px); padding-bottom:90px;
-}
-
-/* ===== Top Badge ===== */
-.vs-home-hero__badge{
-  display:inline-flex; align-items:center; gap:10px;
-  background:rgba(255,255,255,.08); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,.15);
-  padding:8px 8px 8px 18px; border-radius:999px;
-  font-size:13px; font-weight:600; margin-bottom:22px; color:#fff;
-  text-decoration:none;
-}
-.vs-home-hero__badge .pulse{
-  width:24px; height:24px; border-radius:50%;
-  background:linear-gradient(135deg,#8ACBD0,#128BE0);
-  display:grid; place-items:center;
-  position:relative;
-  font-size:11px; font-weight:900; color:#0a0640;
-}
-.vs-home-hero__badge .pulse::before{
-  content:""; position:absolute; inset:-6px; border-radius:50%;
-  border:2px solid rgba(138,203,208,.5);
-  animation:vs-home-hero-pulse 2s ease-out infinite;
-}
-@keyframes vs-home-hero-pulse{
-  0%{transform:scale(1);opacity:1}
-  100%{transform:scale(1.6);opacity:0}
-}
-
-/* ===== Title with Rotating Words ===== */
-.vs-home-hero h1{
-  font-size:clamp(32px,4.5vw,62px); font-weight:900;
-  line-height:1.3; letter-spacing:-1px; margin:0 0 22px; color:#fff;
-}
-.vs-home-hero h1 .rot{
-  display:inline-block; min-width:0;
-  background:linear-gradient(135deg,#8ACBD0 0%,#128BE0 50%,#EFE3CA 100%);
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-  -webkit-text-fill-color:transparent;
-  position:relative;
-}
-.vs-home-hero h1 .rot__list{
-  display:inline-flex; flex-direction:column; vertical-align:top;
-  height:1.3em; overflow:hidden;
-}
-.vs-home-hero h1 .rot__list span{
-  display:block; height:1.3em;
-  animation:vs-home-hero-rotate 12s steps(1) infinite;
-}
-@keyframes vs-home-hero-rotate{
-  0%,22%   {transform:translateY(0);}
-  25%,47%  {transform:translateY(-1.3em);}
-  50%,72%  {transform:translateY(-2.6em);}
-  75%,97%  {transform:translateY(-3.9em);}
-  100%     {transform:translateY(0);}
-}
-.vs-home-hero h1 .rot::after{
-  content:""; display:inline-block; width:3px; height:.9em;
-  background:#8ACBD0; vertical-align:middle; margin-right:4px;
-  animation:vs-home-hero-blink 1s steps(2) infinite;
-}
-@keyframes vs-home-hero-blink{50%{opacity:0}}
-
-.vs-home-hero p.lead{
-  font-size:18px; color:rgba(255,255,255,.78); line-height:1.95;
-  max-width:560px; margin:0 0 36px;
-}
-
-/* ===== CTA Group ===== */
+/* Gradient Mesh Background - distinct from service pages */
+.vs-home-hero__mesh{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.vs-home-hero__mesh-layer{position:absolute;border-radius:50%;filter:blur(80px);mix-blend-mode:screen;opacity:.6;will-change:transform;}
+.vs-home-hero__mesh-layer--1{width:70vw;height:70vw;top:-20%;right:-15%;background:conic-gradient(from 0deg,#128BE0,#170C79,#8ACBD0,#0170B9,#128BE0);animation:vs-hero-mesh-spin 20s linear infinite;}
+.vs-home-hero__mesh-layer--2{width:50vw;height:50vw;bottom:-10%;left:-10%;background:conic-gradient(from 180deg,#8ACBD0,#EFE3CA,#0170B9,#170C79,#8ACBD0);animation:vs-hero-mesh-spin 25s linear infinite reverse;}
+.vs-home-hero__mesh-layer--3{width:35vw;height:35vw;top:30%;left:30%;background:radial-gradient(circle,rgba(239,227,202,.4),rgba(138,203,208,.2),transparent 70%);animation:vs-hero-mesh-float 12s ease-in-out infinite;}
+@keyframes vs-hero-mesh-spin{to{transform:rotate(360deg);}}
+@keyframes vs-hero-mesh-float{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-5vw,3vh) scale(1.15);}}
+/* Noise overlay */
+.vs-home-hero__noise{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+/* Grid */
+.vs-home-hero__grid-bg{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.2;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:80px 80px;-webkit-mask-image:radial-gradient(ellipse 70% 50% at 50% 40%,#000,transparent 70%);mask-image:radial-gradient(ellipse 70% 50% at 50% 40%,#000,transparent 70%);}
+/* Spotlight */
+.vs-home-hero__spot{position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(600px circle at var(--mx,50%) var(--my,30%),rgba(138,203,208,.15),transparent 40%);transition:background .15s ease;}
+/* Wrapper */
+.vs-home-hero__wrap{position:relative;z-index:3;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center;min-height:calc(100vh - 100px);padding-bottom:100px;}
+/* Badge with animated gradient ring */
+.vs-home-hero__badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:none;padding:6px 6px 6px 18px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:24px;color:#fff;text-decoration:none;position:relative;overflow:hidden;}
+.vs-home-hero__badge::before{content:"";position:absolute;inset:-2px;border-radius:999px;background:conic-gradient(from 0deg,#128BE0,#8ACBD0,#EFE3CA,#170C79,#128BE0);animation:vs-hero-badge-spin 3s linear infinite;z-index:-1;}
+.vs-home-hero__badge::after{content:"";position:absolute;inset:2px;border-radius:999px;background:rgba(5,2,37,.9);z-index:-1;}
+.vs-home-hero__badge .pulse{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#8ACBD0,#128BE0);display:grid;place-items:center;position:relative;font-size:12px;font-weight:900;color:#050225;}
+.vs-home-hero__badge .pulse::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(138,203,208,.5);animation:vs-hero-pulse 2s ease-out infinite;}
+@keyframes vs-hero-badge-spin{to{transform:rotate(360deg);}}
+@keyframes vs-hero-pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(1.8);opacity:0}}
+/* Title */
+.vs-home-hero h1{font-size:clamp(34px,4.8vw,66px);font-weight:900;line-height:1.25;letter-spacing:-1.5px;margin:0 0 24px;color:#fff;}
+.vs-home-hero h1 .rot{display:inline-block;background:linear-gradient(135deg,#8ACBD0 0%,#128BE0 50%,#EFE3CA 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;position:relative;}
+.vs-home-hero h1 .rot__list{display:inline-flex;flex-direction:column;vertical-align:top;height:1.25em;overflow:hidden;}
+.vs-home-hero h1 .rot__list span{display:block;height:1.25em;animation:vs-hero-rotate 12s steps(1) infinite;}
+@keyframes vs-hero-rotate{0%,22%{transform:translateY(0)}25%,47%{transform:translateY(-1.25em)}50%,72%{transform:translateY(-2.5em)}75%,97%{transform:translateY(-3.75em)}100%{transform:translateY(0)}}
+.vs-home-hero h1 .rot::after{content:"";display:inline-block;width:3px;height:.85em;background:#8ACBD0;vertical-align:middle;margin-right:4px;animation:vs-hero-blink 1s steps(2) infinite;}
+@keyframes vs-hero-blink{50%{opacity:0}}
+.vs-home-hero p.lead{font-size:18px;color:rgba(255,255,255,.75);line-height:2;max-width:560px;margin:0 0 36px;}
+/* CTA */
 .vs-home-hero__cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:42px;}
-.vs-home-hero .vs-btn{
-  display:inline-flex; align-items:center; gap:10px;
-  padding:16px 30px; border-radius:14px;
-  font-weight:700; font-size:16px; text-decoration:none;
-  transition:all .25s ease; cursor:pointer; border:none; position:relative; overflow:hidden;
-  font-family:inherit;
-}
-.vs-home-hero .vs-btn--primary{
-  background:linear-gradient(135deg,#128BE0 0%,#8ACBD0 100%);
-  color:#0a0640; box-shadow:0 18px 40px rgba(18,139,224,.40);
-}
-.vs-home-hero .vs-btn--primary::before{
-  content:""; position:absolute; inset:0;
-  background:linear-gradient(135deg,#EFE3CA 0%,#8ACBD0 100%);
-  opacity:0; transition:opacity .3s ease;
-}
+.vs-home-hero .vs-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;border-radius:14px;font-weight:700;font-size:16px;text-decoration:none;transition:all .25s ease;cursor:pointer;border:none;position:relative;overflow:hidden;font-family:inherit;}
+.vs-home-hero .vs-btn--primary{background:linear-gradient(135deg,#128BE0 0%,#8ACBD0 100%);color:#050225;box-shadow:0 20px 50px rgba(18,139,224,.40);}
+.vs-home-hero .vs-btn--primary::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#EFE3CA 0%,#8ACBD0 100%);opacity:0;transition:opacity .3s ease;}
 .vs-home-hero .vs-btn--primary:hover::before{opacity:1;}
-.vs-home-hero .vs-btn--primary:hover{transform:translateY(-2px); box-shadow:0 24px 56px rgba(138,203,208,.50);}
-.vs-home-hero .vs-btn--primary > *{position:relative; z-index:1;}
-
-.vs-home-hero .vs-btn--ghost{
-  background:rgba(255,255,255,.06); color:#fff;
-  border:1.5px solid rgba(255,255,255,.18);
-  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
-}
-.vs-home-hero .vs-btn--ghost:hover{background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.40);}
+.vs-home-hero .vs-btn--primary:hover{transform:translateY(-2px);box-shadow:0 28px 60px rgba(138,203,208,.50);}
+.vs-home-hero .vs-btn--primary>*{position:relative;z-index:1;}
+.vs-home-hero .vs-btn--ghost{background:rgba(255,255,255,.06);color:#fff;border:1.5px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+.vs-home-hero .vs-btn--ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.40);}
 .vs-home-hero .vs-btn svg{width:18px;height:18px;}
-
-/* ===== Stats ===== */
-.vs-home-hero__stats{
-  display:flex; gap:36px; flex-wrap:wrap; padding-top:28px;
-  border-top:1px solid rgba(255,255,255,.10);
-}
-.vs-home-hero__stat .num{
-  font-size:32px; font-weight:900; line-height:1; color:#fff;
-  display:flex; align-items:baseline;
-}
-.vs-home-hero__stat .num em{
-  font-style:normal;
-  background:linear-gradient(135deg,#8ACBD0,#EFE3CA);
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-  -webkit-text-fill-color:transparent;
-}
-.vs-home-hero__stat .lbl{color:rgba(255,255,255,.55); font-size:13px; margin-top:6px;}
-
-/* ============ Visual: 3D Tilt Mockup ============ */
-.vs-home-hero__visual{
-  position:relative; perspective:1500px;
-  display:flex; align-items:center; justify-content:center;
-}
-.vs-home-hero__stage{
-  position:relative; width:100%; max-width:520px; aspect-ratio:1/1;
-  transform-style:preserve-3d;
-  transition:transform .15s ease-out;
-}
-
+/* Stats */
+.vs-home-hero__stats{display:flex;gap:36px;flex-wrap:wrap;padding-top:28px;border-top:1px solid rgba(255,255,255,.10);}
+.vs-home-hero__stat .num{font-size:34px;font-weight:900;line-height:1;color:#fff;display:flex;align-items:baseline;}
+.vs-home-hero__stat .num em{font-style:normal;background:linear-gradient(135deg,#8ACBD0,#EFE3CA);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-home-hero__stat .lbl{color:rgba(255,255,255,.5);font-size:13px;margin-top:6px;}
+/* Visual with Orbit */
+.vs-home-hero__visual{position:relative;perspective:1500px;display:flex;align-items:center;justify-content:center;}
+.vs-home-hero__stage{position:relative;width:100%;max-width:540px;aspect-ratio:1/1;transform-style:preserve-3d;transition:transform .15s ease-out;}
+/* Services Orbit */
+.vs-home-hero__orbit{position:absolute;inset:0;animation:vs-hero-orbit 24s linear infinite;}
+.vs-home-hero__orbit-item{position:absolute;width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.15);display:grid;place-items:center;color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.3);animation:vs-hero-orbit-counter 24s linear infinite;}
+.vs-home-hero__orbit-item:nth-child(1){top:5%;left:50%;transform:translateX(-50%);}
+.vs-home-hero__orbit-item:nth-child(2){top:50%;right:0%;transform:translateY(-50%);}
+.vs-home-hero__orbit-item:nth-child(3){bottom:5%;left:50%;transform:translateX(-50%);}
+.vs-home-hero__orbit-item:nth-child(4){top:50%;left:0%;transform:translateY(-50%);}
+@keyframes vs-hero-orbit{to{transform:rotate(360deg);}}
+@keyframes vs-hero-orbit-counter{to{transform:rotate(-360deg);}}
 /* Dashboard Mockup */
-.vs-home-hero__dashboard{
-  position:absolute; inset:8% 6%; transform-style:preserve-3d;
-  border-radius:18px; overflow:hidden;
-  background:#0a0640;
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow:
-    0 30px 80px rgba(0,0,0,.55),
-    0 0 0 8px #1a1450,
-    0 0 0 9px rgba(255,255,255,.06);
-  transform:translateZ(0);
-}
-.vs-home-hero__dashboard-bar{
-  height:32px; background:#0e0a3e;
-  display:flex; align-items:center; gap:6px; padding:0 12px;
-  border-bottom:1px solid rgba(255,255,255,.05);
-}
-.vs-home-hero__dashboard-bar i{width:10px;height:10px;border-radius:50%;background:#FF6B6B;display:inline-block;}
+.vs-home-hero__dashboard{position:absolute;inset:15% 12%;border-radius:18px;overflow:hidden;background:#0a0640;border:1px solid rgba(255,255,255,.10);box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 8px #1a1450,0 0 0 9px rgba(255,255,255,.06);}
+.vs-home-hero__dashboard-bar{height:30px;background:#0e0a3e;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid rgba(255,255,255,.05);}
+.vs-home-hero__dashboard-bar i{width:9px;height:9px;border-radius:50%;background:#FF6B6B;display:inline-block;}
 .vs-home-hero__dashboard-bar i:nth-child(2){background:#FFD93D}
 .vs-home-hero__dashboard-bar i:nth-child(3){background:#6BCB77}
-.vs-home-hero__dashboard-bar .url{
-  flex:1; margin-right:14px; height:18px; border-radius:5px;
-  background:rgba(255,255,255,.05);
-  display:flex; align-items:center; padding:0 10px;
-  font-size:11px; color:rgba(255,255,255,.4);
-}
-.vs-home-hero__dashboard-screen{
-  padding:18px; display:flex; flex-direction:column; gap:12px;
-  background:linear-gradient(160deg,#0a0640 0%,#1a1268 100%);
-  height:calc(100% - 32px);
-}
-.vs-home-hero__dashboard-hero{
-  height:80px; border-radius:10px;
-  background:
-    radial-gradient(circle at 80% 20%,rgba(138,203,208,.4),transparent 50%),
-    linear-gradient(135deg,#170C79,#128BE0);
-  position:relative; overflow:hidden;
-}
-.vs-home-hero__dashboard-hero::before{
-  content:""; position:absolute; left:14px; top:18px; width:40%; height:8px;
-  background:rgba(255,255,255,.7); border-radius:4px;
-}
-.vs-home-hero__dashboard-hero::after{
-  content:""; position:absolute; left:14px; top:34px; width:60%; height:6px;
-  background:rgba(255,255,255,.4); border-radius:3px;
-}
-.vs-home-hero__dashboard-row{height:8px; background:rgba(255,255,255,.08); border-radius:4px;}
-.vs-home-hero__dashboard-row--short{width:55%;}
-.vs-home-hero__dashboard-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:auto;}
-.vs-home-hero__dashboard-grid > div{
-  height:48px; border-radius:8px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.08);
-}
-.vs-home-hero__dashboard-grid > div:nth-child(2){
-  background:linear-gradient(135deg,rgba(138,203,208,.25),rgba(18,139,224,.25));
-  border-color:rgba(138,203,208,.3);
-}
-
-/* Floating cards */
-.vs-home-hero__fcard{
-  position:absolute; z-index:3;
-  background:rgba(255,255,255,.10); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:18px; padding:12px 16px;
-  display:flex; align-items:center; gap:12px;
-  box-shadow:0 24px 50px rgba(0,0,0,.30);
-  color:#fff;
-  animation:vs-home-hero-floatcard 6s ease-in-out infinite;
-}
-.vs-home-hero__fcard .ic{
-  width:42px; height:42px; border-radius:12px;
-  display:grid; place-items:center; flex-shrink:0;
-}
-.vs-home-hero__fcard .t{font-weight:700; font-size:14px;}
-.vs-home-hero__fcard .s{font-size:11px; color:rgba(255,255,255,.65);}
-
-.vs-home-hero__fcard--1{top:4%; right:-4%; transform:translateZ(60px); animation-delay:.2s;}
-.vs-home-hero__fcard--1 .ic{background:linear-gradient(135deg,#128BE0,#8ACBD0);}
-.vs-home-hero__fcard--2{bottom:4%; left:0%; transform:translateZ(50px); animation-delay:1.4s;}
-.vs-home-hero__fcard--2 .ic{background:linear-gradient(135deg,#EFE3CA,#8ACBD0); color:#170C79;}
-.vs-home-hero__fcard--3{top:42%; right:-8%; transform:translateZ(70px); animation-delay:2.6s;}
-.vs-home-hero__fcard--3 .ic{background:linear-gradient(135deg,#0170B9,#170C79); border:1px solid rgba(255,255,255,.20);}
-
-@keyframes vs-home-hero-floatcard{
-  0%,100%{translate:0 0;}
-  50%{translate:0 -10px;}
-}
-
-/* ===== Marquee ===== */
-.vs-home-hero__marquee{
-  position:relative; z-index:2;
-  margin:0 -24px;
-  background:rgba(0,0,0,.35); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
-  border-block:1px solid rgba(255,255,255,.08);
-  overflow:hidden;
-}
-.vs-home-hero__marquee-track{
-  display:flex; gap:60px; padding:18px 0; width:max-content;
-  animation:vs-home-hero-marquee 30s linear infinite;
-}
-.vs-home-hero__marquee-track span{
-  color:rgba(255,255,255,.55); font-weight:700; font-size:18px;
-  letter-spacing:-.5px; white-space:nowrap;
-  display:inline-flex; align-items:center; gap:60px;
-}
-.vs-home-hero__marquee-track span::after{
-  content:"\2726"; color:#128BE0; opacity:.7;
-}
-@keyframes vs-home-hero-marquee{to{transform:translateX(50%);}}
-
-/* responsive */
-@media (max-width:980px){
-  .vs-home-hero__wrap{grid-template-columns:1fr; gap:40px; padding-bottom:60px;}
-  .vs-home-hero{min-height:auto; padding:60px 20px 0;}
-  .vs-home-hero__visual{order:-1; max-width:420px; margin:0 auto;}
-  .vs-home-hero__fcard--3{display:none;}
-}
-@media (max-width:560px){
-  .vs-home-hero__stats{gap:20px;}
-  .vs-home-hero__stat .num{font-size:24px;}
-  .vs-home-hero__fcard{transform:none !important;}
-  .vs-home-hero__marquee-track span{font-size:15px; gap:40px;}
-}
+.vs-home-hero__dashboard-bar .url{flex:1;margin-right:14px;height:16px;border-radius:4px;background:rgba(255,255,255,.05);display:flex;align-items:center;padding:0 8px;font-size:10px;color:rgba(255,255,255,.35);}
+.vs-home-hero__dashboard-screen{padding:14px;display:grid;grid-template-rows:auto 1fr;gap:10px;background:linear-gradient(160deg,#0a0640 0%,#1a1268 100%);height:calc(100% - 30px);}
+.vs-home-hero__dash-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+.vs-home-hero__dash-card{border-radius:10px;padding:10px;border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden;}
+.vs-home-hero__dash-card::before{content:"";position:absolute;inset:0;opacity:.15;}
+.vs-home-hero__dash-card:nth-child(1)::before{background:linear-gradient(135deg,#128BE0,#8ACBD0);}
+.vs-home-hero__dash-card:nth-child(2)::before{background:linear-gradient(135deg,#22c55e,#128BE0);}
+.vs-home-hero__dash-card:nth-child(3)::before{background:linear-gradient(135deg,#3DDC84,#A855F7);}
+.vs-home-hero__dash-card:nth-child(4)::before{background:linear-gradient(135deg,#F59E0B,#FBBF24);}
+.vs-home-hero__dash-card-lbl{font-size:8px;color:rgba(255,255,255,.5);margin-bottom:4px;position:relative;}
+.vs-home-hero__dash-card-val{font-size:14px;font-weight:800;color:#fff;position:relative;}
+.vs-home-hero__dash-bar{height:4px;border-radius:2px;background:rgba(255,255,255,.1);margin-top:6px;position:relative;overflow:hidden;}
+.vs-home-hero__dash-bar::after{content:"";position:absolute;inset:0;border-radius:2px;width:var(--w,60%);background:linear-gradient(90deg,#128BE0,#8ACBD0);}
+/* Marquee */
+.vs-home-hero__marquee{position:relative;z-index:3;margin:0 -24px;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-block:1px solid rgba(255,255,255,.06);overflow:hidden;}
+.vs-home-hero__marquee-track{display:flex;gap:60px;padding:18px 0;width:max-content;animation:vs-hero-marquee 30s linear infinite;}
+.vs-home-hero__marquee-track span{color:rgba(255,255,255,.5);font-weight:700;font-size:18px;letter-spacing:-.5px;white-space:nowrap;display:inline-flex;align-items:center;gap:60px;}
+.vs-home-hero__marquee-track span::after{content:"\2726";color:#128BE0;opacity:.7;}
+@keyframes vs-hero-marquee{to{transform:translateX(50%);}}
+/* Responsive */
+@media(max-width:980px){.vs-home-hero__wrap{grid-template-columns:1fr;gap:40px;padding-bottom:60px;}.vs-home-hero{min-height:auto;padding:60px 20px 0;}.vs-home-hero__visual{order:-1;max-width:380px;margin:0 auto;}}
+@media(max-width:560px){.vs-home-hero__stats{gap:20px;}.vs-home-hero__stat .num{font-size:24px;}.vs-home-hero__orbit-item{width:40px;height:40px;border-radius:12px;}.vs-home-hero__marquee-track span{font-size:15px;gap:40px;}}
 </style>
 
 <section class="vs-home-hero" data-vs-home-hero>
+  <div class="vs-home-hero__mesh">
+    <div class="vs-home-hero__mesh-layer vs-home-hero__mesh-layer--1"></div>
+    <div class="vs-home-hero__mesh-layer vs-home-hero__mesh-layer--2"></div>
+    <div class="vs-home-hero__mesh-layer vs-home-hero__mesh-layer--3"></div>
+  </div>
+  <div class="vs-home-hero__noise"></div>
   <div class="vs-home-hero__grid-bg"></div>
   <div class="vs-home-hero__spot"></div>
 
@@ -349,161 +135,64 @@
         <span class="pulse">+</span>
         <span>۱۰ سال تجربه حرفه‌ای</span>
       </a>
-
-      <h1>
-        ما برای شما<br>
-        <span class="rot">
-          <span class="rot__list">
-            <span>سایت می‌سازیم</span>
-            <span>سئو می‌کنیم</span>
-            <span>اپلیکیشن می‌سازیم</span>
-            <span>آموزش می‌دهیم</span>
-          </span>
-        </span>
-      </h1>
-
-      <p class="lead">
-        آژانس دیجیتال مارکتینگ ویرا سئو، ارائه‌دهنده خدمات جامع طراحی سایت، سئو گوگل،
-        توسعه اپلیکیشن و آموزش تخصصی. ما کسب‌وکار شما را به یک
-        <strong style="color:#8ACBD0">برند دیجیتال</strong> تبدیل می‌کنیم.
-      </p>
-
+      <h1>ما برای شما<br><span class="rot"><span class="rot__list"><span>سایت می‌سازیم</span><span>سئو می‌کنیم</span><span>اپلیکیشن می‌سازیم</span><span>آموزش می‌دهیم</span></span></span></h1>
+      <p class="lead">آژانس دیجیتال مارکتینگ ویرا سئو، ارائه‌دهنده خدمات جامع طراحی سایت، سئو گوگل، توسعه اپلیکیشن و آموزش تخصصی. ما کسب‌وکار شما را به یک <strong style="color:#8ACBD0">برند دیجیتال</strong> تبدیل می‌کنیم.</p>
       <div class="vs-home-hero__cta">
-        <a href="#contact" class="vs-btn vs-btn--primary">
-          <span>مشاوره رایگان</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="#portfolio" class="vs-btn vs-btn--ghost">
-          <span>نمونه‌کارها</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" stroke-linecap="round"/><circle cx="12" cy="12" r="3"/></svg>
-        </a>
+        <a href="#contact" class="vs-btn vs-btn--primary"><span>مشاوره رایگان</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#portfolio" class="vs-btn vs-btn--ghost"><span>نمونه‌کارها</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" stroke-linecap="round"/><circle cx="12" cy="12" r="3"/></svg></a>
       </div>
-
       <div class="vs-home-hero__stats">
-        <div class="vs-home-hero__stat">
-          <div class="num" data-counter="450" data-suffix="+"><em>۰</em></div>
-          <div class="lbl">پروژه موفق</div>
-        </div>
-        <div class="vs-home-hero__stat">
-          <div class="num" data-counter="98" data-suffix="٪"><em>۰</em></div>
-          <div class="lbl">رضایت مشتری</div>
-        </div>
-        <div class="vs-home-hero__stat">
-          <div class="num" data-counter="10" data-suffix="+"><em>۰</em></div>
-          <div class="lbl">سال تجربه</div>
-        </div>
+        <div class="vs-home-hero__stat"><div class="num" data-counter="450" data-suffix="+"><em>۰</em></div><div class="lbl">پروژه موفق</div></div>
+        <div class="vs-home-hero__stat"><div class="num" data-counter="98" data-suffix="٪"><em>۰</em></div><div class="lbl">رضایت مشتری</div></div>
+        <div class="vs-home-hero__stat"><div class="num" data-counter="10" data-suffix="+"><em>۰</em></div><div class="lbl">سال تجربه</div></div>
       </div>
     </div>
-
-    <!-- ===== Visual ===== -->
+    <!-- Visual with Orbit -->
     <div class="vs-home-hero__visual">
       <div class="vs-home-hero__stage" data-vs-home-tilt>
+        <div class="vs-home-hero__orbit">
+          <div class="vs-home-hero__orbit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8ACBD0" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg></div>
+          <div class="vs-home-hero__orbit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></div>
+          <div class="vs-home-hero__orbit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01" stroke-linecap="round"/></svg></div>
+          <div class="vs-home-hero__orbit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+        </div>
         <div class="vs-home-hero__dashboard">
-          <div class="vs-home-hero__dashboard-bar">
-            <i></i><i></i><i></i>
-            <div class="url">https://viraseo.com</div>
-          </div>
+          <div class="vs-home-hero__dashboard-bar"><i></i><i></i><i></i><div class="url">viraseo.com</div></div>
           <div class="vs-home-hero__dashboard-screen">
-            <div class="vs-home-hero__dashboard-hero"></div>
-            <div class="vs-home-hero__dashboard-row"></div>
-            <div class="vs-home-hero__dashboard-row vs-home-hero__dashboard-row--short"></div>
-            <div class="vs-home-hero__dashboard-grid"><div></div><div></div><div></div></div>
+            <div class="vs-home-hero__dash-cards">
+              <div class="vs-home-hero__dash-card"><div class="vs-home-hero__dash-card-lbl">طراحی سایت</div><div class="vs-home-hero__dash-card-val">۴۵۰+</div><div class="vs-home-hero__dash-bar" style="--w:85%"></div></div>
+              <div class="vs-home-hero__dash-card"><div class="vs-home-hero__dash-card-lbl">سئو گوگل</div><div class="vs-home-hero__dash-card-val">۱۲۵+</div><div class="vs-home-hero__dash-bar" style="--w:70%"></div></div>
+              <div class="vs-home-hero__dash-card"><div class="vs-home-hero__dash-card-lbl">اپلیکیشن</div><div class="vs-home-hero__dash-card-val">۸۰+</div><div class="vs-home-hero__dash-bar" style="--w:55%"></div></div>
+              <div class="vs-home-hero__dash-card"><div class="vs-home-hero__dash-card-lbl">آموزش</div><div class="vs-home-hero__dash-card-val">۸۰۰+</div><div class="vs-home-hero__dash-bar" style="--w:90%"></div></div>
+            </div>
           </div>
-        </div>
-
-        <div class="vs-home-hero__fcard vs-home-hero__fcard--1">
-          <div class="ic">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div><div class="t">رتبه ۱ گوگل</div><div class="s">۱۲۵+ سایت در صفحه اول</div></div>
-        </div>
-
-        <div class="vs-home-hero__fcard vs-home-hero__fcard--2">
-          <div class="ic">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div><div class="t">رشد ٪۳۴۰</div><div class="s">ترافیک ارگانیک</div></div>
-        </div>
-
-        <div class="vs-home-hero__fcard vs-home-hero__fcard--3">
-          <div class="ic">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div><div class="t">امتیاز ۴.۹/۵</div><div class="s">رضایت مشتریان</div></div>
         </div>
       </div>
     </div>
   </div>
-
   <!-- Marquee -->
   <div class="vs-home-hero__marquee">
     <div class="vs-home-hero__marquee-track">
-      <span>طراحی سایت</span>
-      <span>سئو گوگل</span>
-      <span>اپلیکیشن اندروید</span>
-      <span>آموزش سئو</span>
-      <span>دیجیتال مارکتینگ</span>
-      <span>پشتیبانی ۲۴/۷</span>
-      <span>طراحی سایت</span>
-      <span>سئو گوگل</span>
-      <span>اپلیکیشن اندروید</span>
-      <span>آموزش سئو</span>
-      <span>دیجیتال مارکتینگ</span>
-      <span>پشتیبانی ۲۴/۷</span>
+      <span>طراحی سایت</span><span>سئو گوگل</span><span>اپلیکیشن اندروید</span><span>آموزش سئو</span><span>دیجیتال مارکتینگ</span><span>پشتیبانی ۲۴/۷</span><span>طراحی سایت</span><span>سئو گوگل</span><span>اپلیکیشن اندروید</span><span>آموزش سئو</span><span>دیجیتال مارکتینگ</span><span>پشتیبانی ۲۴/۷</span>
     </div>
   </div>
 </section>
 
 <script>
 (function(){
-  const hero = document.querySelector('[data-vs-home-hero]');
-  if(!hero) return;
-
-  // Spotlight
-  hero.addEventListener('pointermove', e => {
-    const r = hero.getBoundingClientRect();
-    hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-    hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
-  });
-
-  // Tilt 3D
-  const stage = hero.querySelector('[data-vs-home-tilt]');
-  if(stage){
-    const reset = () => stage.style.transform = 'rotateX(0) rotateY(0)';
-    stage.addEventListener('pointermove', e => {
-      const r = stage.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width  - .5;
-      const py = (e.clientY - r.top)  / r.height - .5;
-      stage.style.transform = `rotateY(${px * -10}deg) rotateX(${py * 8}deg)`;
-    });
-    stage.addEventListener('pointerleave', reset);
-  }
-
-  // Animated counters
-  const toFa = n => String(n).replace(/\d/g, d => '\u06F0\u06F1\u06F2\u06F3\u06F4\u06F5\u06F6\u06F7\u06F8\u06F9'[d]);
-  const counters = hero.querySelectorAll('[data-counter]');
-  const animate = (el) => {
-    const target = parseInt(el.dataset.counter, 10);
-    const suffix = el.dataset.suffix || '';
-    const dur = 1600;
-    const start = performance.now();
-    const step = (now) => {
-      const t = Math.min(1, (now - start) / dur);
-      const eased = 1 - Math.pow(1 - t, 3);
-      const val = Math.floor(eased * target);
-      el.innerHTML = '<em>' + toFa(val) + '</em>' + suffix;
-      if(t < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  };
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting){ animate(e.target); io.unobserve(e.target); }
-    });
-  }, {threshold:.5});
-  counters.forEach(c => io.observe(c));
+  const hero=document.querySelector('[data-vs-home-hero]');
+  if(!hero)return;
+  hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();hero.style.setProperty('--mx',(e.clientX-r.left)+'px');hero.style.setProperty('--my',(e.clientY-r.top)+'px');});
+  const stage=hero.querySelector('[data-vs-home-tilt]');
+  if(stage){stage.addEventListener('pointermove',e=>{const r=stage.getBoundingClientRect();const px=(e.clientX-r.left)/r.width-.5;const py=(e.clientY-r.top)/r.height-.5;stage.style.transform='rotateY('+(px*-8)+'deg) rotateX('+(py*6)+'deg)';});stage.addEventListener('pointerleave',()=>{stage.style.transform='rotateX(0) rotateY(0)';});}
+  const toFa=n=>String(n).replace(/\d/g,d=>'\u06F0\u06F1\u06F2\u06F3\u06F4\u06F5\u06F6\u06F7\u06F8\u06F9'[d]);
+  const counters=hero.querySelectorAll('[data-counter]');
+  const animate=(el)=>{const target=parseInt(el.dataset.counter,10);const suffix=el.dataset.suffix||'';const dur=1600;const start=performance.now();const step=(now)=>{const t=Math.min(1,(now-start)/dur);const eased=1-Math.pow(1-t,3);const val=Math.floor(eased*target);el.innerHTML='<em>'+toFa(val)+'</em>'+suffix;if(t<1)requestAnimationFrame(step);};requestAnimationFrame(step);};
+  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animate(e.target);io.unobserve(e.target);}});},{threshold:.5});
+  counters.forEach(c=>io.observe(c));
 })();
 </script>
+
 
 <!-- ========================================================
      سکشن ۲: نوار اعتماد - لوگوها + آمار
@@ -600,134 +289,85 @@
   </div>
 </section>
 
-<!-- ========================================================
-     سکشن ۳: نمای کلی خدمات - Bento Grid
-     ویژگی‌ها: ۴ سرویس اصلی + کارت CTA در چیدمان Bento
-     ======================================================== -->
+
+<!-- سکشن ۳: خدمات - Bento Grid پیشرفته با انیمیشن و تصاویر منحصربفرد -->
 <style>
 .vs-home-svc{
-  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
-  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
-
-  padding:110px 24px; background:#fff;
-  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
-  position:relative; overflow:hidden;
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  padding:110px 24px;background:#fff;font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);position:relative;overflow:hidden;
 }
-.vs-home-svc::before{
-  content:""; position:absolute; top:0; left:0; width:50%; height:100%;
-  background:radial-gradient(50% 50% at 0% 30%, rgba(138,203,208,.12), transparent 60%);
-  pointer-events:none;
-}
-.vs-home-svc__inner{max-width:1240px; margin:0 auto; position:relative;}
-
-.vs-home-svc__head{text-align:center; margin-bottom:60px;}
-.vs-home-svc__head .vs-eyebrow{
-  display:inline-flex; align-items:center; gap:8px;
-  background:rgba(23,12,121,.08); color:var(--vs-primary);
-  border:1px solid rgba(23,12,121,.18);
-  padding:8px 16px; border-radius:999px; font-size:14px; font-weight:600; margin-bottom:16px;
-}
-.vs-home-svc__head .vs-eyebrow i{
-  width:8px; height:8px; border-radius:50%; background:var(--vs-accent);
-  box-shadow:0 0 0 4px rgba(18,139,224,.18); display:inline-block;
-}
-.vs-home-svc__head h2{font-size:clamp(28px,3.4vw,46px); font-weight:800; margin:0 0 16px; line-height:1.4;}
-.vs-home-svc__head h2 em{
-  font-style:normal;
-  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-  -webkit-text-fill-color:transparent;
-}
-
-/* Bento Grid */
-.vs-home-svc__grid{
-  display:grid; grid-template-columns:repeat(6,1fr); gap:20px;
-}
-.vs-home-svc__card{
-  background:#fff; border:1px solid rgba(23,12,121,.10);
-  border-radius:24px; padding:36px 30px;
-  position:relative; overflow:hidden;
-  transition:all .35s ease;
-}
-.vs-home-svc__card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 20px 50px rgba(23,12,121,.12);
-}
-
-/* Card sizes */
-.vs-home-svc__card--lg{grid-column:span 3;}
-.vs-home-svc__card--md{grid-column:span 2;}
-
-/* Dark card */
-.vs-home-svc__card--dark{
-  background:linear-gradient(160deg,#0a0640,#170C79);
-  color:#fff; border-color:transparent;
-}
-.vs-home-svc__card--dark .vs-home-svc__card-desc{color:rgba(255,255,255,.75);}
-.vs-home-svc__card--dark .vs-home-svc__card-price{color:var(--vs-cyan);}
-.vs-home-svc__card--dark .vs-home-svc__card-link{color:var(--vs-cyan);}
-
-/* CTA card */
-.vs-home-svc__card--cta{
-  background:linear-gradient(135deg,rgba(138,203,208,.15),rgba(18,139,224,.10));
-  border-color:rgba(18,139,224,.20);
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  text-align:center;
-}
-
-/* Card elements */
-.vs-home-svc__card-icon{
-  width:56px; height:56px; border-radius:16px;
-  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
-  display:grid; place-items:center; color:#fff;
-  margin-bottom:20px;
-  box-shadow:0 10px 24px rgba(23,12,121,.20);
-}
-.vs-home-svc__card--dark .vs-home-svc__card-icon{
-  background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));
-  color:var(--vs-primary);
-}
-.vs-home-svc__card-title{
-  font-size:20px; font-weight:800; margin:0 0 10px; color:inherit;
-}
-.vs-home-svc__card-desc{
-  font-size:15px; line-height:1.8; color:#475569; margin:0 0 16px;
-}
-.vs-home-svc__card-price{
-  font-size:14px; font-weight:700; color:var(--vs-primary); margin-bottom:14px;
-}
-.vs-home-svc__card-link{
-  display:inline-flex; align-items:center; gap:6px;
-  font-size:14px; font-weight:700; color:var(--vs-primary);
-  text-decoration:none; transition:gap .25s ease;
-}
+.vs-home-svc::before{content:"";position:absolute;top:0;left:0;width:50%;height:100%;background:radial-gradient(50% 50% at 0% 30%,rgba(138,203,208,.08),transparent 60%);pointer-events:none;}
+.vs-home-svc__inner{max-width:1240px;margin:0 auto;position:relative;}
+.vs-home-svc__head{text-align:center;margin-bottom:60px;}
+.vs-home-svc__head .vs-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(23,12,121,.08);color:var(--vs-primary);border:1px solid rgba(23,12,121,.18);padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;}
+.vs-home-svc__head .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-accent);box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;}
+.vs-home-svc__head h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-home-svc__head h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+/* Grid */
+.vs-home-svc__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.vs-home-svc__card{background:#fff;border:1px solid rgba(23,12,121,.08);border-radius:28px;padding:40px 32px;position:relative;overflow:hidden;transition:all .4s cubic-bezier(.22,1,.36,1);}
+.vs-home-svc__card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 30px 60px rgba(23,12,121,.12);}
+.vs-home-svc__card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;opacity:0;transition:opacity .3s ease;}
+.vs-home-svc__card:hover::before{opacity:1;}
+/* Unique accents per card */
+.vs-home-svc__card--web::before{background:linear-gradient(90deg,#128BE0,#8ACBD0);}
+.vs-home-svc__card--web:hover{box-shadow:0 30px 60px rgba(18,139,224,.15);}
+.vs-home-svc__card--seo::before{background:linear-gradient(90deg,#22c55e,#128BE0);}
+.vs-home-svc__card--seo:hover{box-shadow:0 30px 60px rgba(34,197,94,.12);}
+.vs-home-svc__card--app::before{background:linear-gradient(90deg,#3DDC84,#A855F7);}
+.vs-home-svc__card--app:hover{box-shadow:0 30px 60px rgba(168,85,247,.12);}
+.vs-home-svc__card--edu::before{background:linear-gradient(90deg,#F59E0B,#FBBF24);}
+.vs-home-svc__card--edu:hover{box-shadow:0 30px 60px rgba(245,158,11,.12);}
+/* Card illustration area */
+.vs-home-svc__card-illust{width:100%;height:120px;border-radius:16px;margin-bottom:24px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.vs-home-svc__card--web .vs-home-svc__card-illust{background:linear-gradient(135deg,rgba(18,139,224,.08),rgba(138,203,208,.12));}
+.vs-home-svc__card--seo .vs-home-svc__card-illust{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(18,139,224,.08));}
+.vs-home-svc__card--app .vs-home-svc__card-illust{background:linear-gradient(135deg,rgba(61,220,132,.08),rgba(168,85,247,.08));}
+.vs-home-svc__card--edu .vs-home-svc__card-illust{background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(251,191,36,.08));}
+/* Mini animations inside cards */
+.vs-home-svc__illust-web{display:flex;gap:6px;align-items:flex-end;height:60px;}
+.vs-home-svc__illust-web span{width:16px;border-radius:4px 4px 0 0;animation:vs-svc-bars 2s ease-in-out infinite;}
+.vs-home-svc__illust-web span:nth-child(1){height:30px;background:#128BE0;animation-delay:0s;}
+.vs-home-svc__illust-web span:nth-child(2){height:50px;background:#8ACBD0;animation-delay:.2s;}
+.vs-home-svc__illust-web span:nth-child(3){height:40px;background:#128BE0;animation-delay:.4s;}
+.vs-home-svc__illust-web span:nth-child(4){height:60px;background:#170C79;animation-delay:.6s;}
+.vs-home-svc__illust-web span:nth-child(5){height:35px;background:#8ACBD0;animation-delay:.8s;}
+@keyframes vs-svc-bars{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.6)}}
+.vs-home-svc__illust-seo{position:relative;width:80px;height:80px;}
+.vs-home-svc__illust-seo svg{width:80px;height:80px;}
+.vs-home-svc__illust-seo .arrow{animation:vs-svc-rise 2s ease-in-out infinite;}
+@keyframes vs-svc-rise{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.vs-home-svc__illust-app{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;width:60px;}
+.vs-home-svc__illust-app span{width:16px;height:16px;border-radius:5px;animation:vs-svc-pop 2.5s ease-in-out infinite;}
+.vs-home-svc__illust-app span:nth-child(1){background:#3DDC84;animation-delay:0s;}
+.vs-home-svc__illust-app span:nth-child(2){background:#A855F7;animation-delay:.15s;}
+.vs-home-svc__illust-app span:nth-child(3){background:#3DDC84;animation-delay:.3s;}
+.vs-home-svc__illust-app span:nth-child(4){background:#A855F7;animation-delay:.45s;}
+.vs-home-svc__illust-app span:nth-child(5){background:#3DDC84;animation-delay:.6s;}
+.vs-home-svc__illust-app span:nth-child(6){background:#A855F7;animation-delay:.75s;}
+@keyframes vs-svc-pop{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.7);opacity:.5}}
+.vs-home-svc__illust-edu{display:flex;gap:4px;align-items:center;}
+.vs-home-svc__illust-edu span{display:block;width:8px;border-radius:3px;background:#F59E0B;animation:vs-svc-eq 1.5s ease-in-out infinite;}
+.vs-home-svc__illust-edu span:nth-child(1){height:20px;animation-delay:0s;}
+.vs-home-svc__illust-edu span:nth-child(2){height:35px;animation-delay:.1s;}
+.vs-home-svc__illust-edu span:nth-child(3){height:25px;animation-delay:.2s;}
+.vs-home-svc__illust-edu span:nth-child(4){height:45px;animation-delay:.3s;}
+.vs-home-svc__illust-edu span:nth-child(5){height:30px;animation-delay:.4s;}
+.vs-home-svc__illust-edu span:nth-child(6){height:40px;animation-delay:.5s;}
+@keyframes vs-svc-eq{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.4)}}
+/* Card content */
+.vs-home-svc__card-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;color:#fff;margin-bottom:16px;box-shadow:0 8px 20px rgba(0,0,0,.15);}
+.vs-home-svc__card--web .vs-home-svc__card-icon{background:linear-gradient(135deg,#128BE0,#8ACBD0);}
+.vs-home-svc__card--seo .vs-home-svc__card-icon{background:linear-gradient(135deg,#22c55e,#128BE0);}
+.vs-home-svc__card--app .vs-home-svc__card-icon{background:linear-gradient(135deg,#3DDC84,#A855F7);}
+.vs-home-svc__card--edu .vs-home-svc__card-icon{background:linear-gradient(135deg,#F59E0B,#FBBF24);color:#170C79;}
+.vs-home-svc__card-title{font-size:22px;font-weight:800;margin:0 0 10px;color:var(--vs-ink);}
+.vs-home-svc__card-desc{font-size:15px;line-height:1.85;color:#475569;margin:0 0 16px;}
+.vs-home-svc__card-price{font-size:14px;font-weight:700;color:var(--vs-primary);margin-bottom:14px;}
+.vs-home-svc__card-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:var(--vs-primary);text-decoration:none;transition:gap .25s ease;}
 .vs-home-svc__card-link:hover{gap:10px;}
-
-/* CTA card specific */
-.vs-home-svc__card--cta .vs-home-svc__card-title{font-size:18px; margin-bottom:14px;}
-.vs-home-svc__card--cta .vs-home-svc__cta-btn{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:14px 28px; border-radius:14px;
-  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
-  color:#fff; text-decoration:none; font-weight:700; font-size:15px;
-  transition:all .25s ease;
-  box-shadow:0 12px 30px rgba(23,12,121,.25);
-}
-.vs-home-svc__card--cta .vs-home-svc__cta-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 18px 40px rgba(23,12,121,.35);
-}
-
-@media (max-width:880px){
-  .vs-home-svc__grid{grid-template-columns:repeat(2,1fr);}
-  .vs-home-svc__card--lg{grid-column:span 2;}
-  .vs-home-svc__card--md{grid-column:span 1;}
-}
-@media (max-width:560px){
-  .vs-home-svc__grid{grid-template-columns:1fr;}
-  .vs-home-svc__card--lg,
-  .vs-home-svc__card--md{grid-column:span 1;}
-}
+@media(max-width:880px){.vs-home-svc__grid{grid-template-columns:1fr;}}
 </style>
 
 <section class="vs-home-svc" id="services">
@@ -736,76 +376,161 @@
       <span class="vs-eyebrow"><i></i>خدمات ما</span>
       <h2>هر آنچه برای رشد دیجیتال نیاز دارید، <em>یکجا</em></h2>
     </div>
-
     <div class="vs-home-svc__grid">
-      <!-- Card 1: Web Design (large, dark) -->
-      <div class="vs-home-svc__card vs-home-svc__card--lg vs-home-svc__card--dark">
-        <div class="vs-home-svc__card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg>
-        </div>
+      <!-- Web Design -->
+      <div class="vs-home-svc__card vs-home-svc__card--web">
+        <div class="vs-home-svc__card-illust"><div class="vs-home-svc__illust-web"><span></span><span></span><span></span><span></span><span></span></div></div>
+        <div class="vs-home-svc__card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg></div>
         <h3 class="vs-home-svc__card-title">طراحی سایت</h3>
-        <p class="vs-home-svc__card-desc">طراحی اختصاصی و حرفه‌ای وب‌سایت با وردپرس و المنتور. سرعت بالا، سئو فنی استاندارد و رابط کاربری مدرن برای رشد کسب‌وکار شما.</p>
+        <p class="vs-home-svc__card-desc">طراحی اختصاصی و حرفه‌ای وب‌سایت با وردپرس و المنتور. سرعت بالا، سئو فنی استاندارد و رابط کاربری مدرن.</p>
         <div class="vs-home-svc__card-price">از ۱۸ میلیون تومان</div>
-        <a href="/website-design/" class="vs-home-svc__card-link">
-          مشاهده جزئیات
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+        <a href="/website-design/" class="vs-home-svc__card-link">مشاهده جزئیات <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
-
-      <!-- Card 2: SEO (large) -->
-      <div class="vs-home-svc__card vs-home-svc__card--lg">
-        <div class="vs-home-svc__card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/><path d="M11 8v6M8 11h6" stroke-linecap="round"/></svg>
-        </div>
+      <!-- SEO -->
+      <div class="vs-home-svc__card vs-home-svc__card--seo">
+        <div class="vs-home-svc__card-illust"><div class="vs-home-svc__illust-seo"><svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="30" stroke="#22c55e" stroke-width="3" stroke-dasharray="6 4" opacity=".3"/><path class="arrow" d="M25 55 L40 25 L55 55" stroke="#22c55e" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40" cy="22" r="4" fill="#128BE0"/></svg></div></div>
+        <div class="vs-home-svc__card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></div>
         <h3 class="vs-home-svc__card-title">سئو گوگل</h3>
-        <p class="vs-home-svc__card-desc">بهینه‌سازی حرفه‌ای سایت برای موتورهای جستجو. تحلیل رقبا، تولید محتوای سئوشده و لینک‌سازی اصولی برای رسیدن به صفحه اول گوگل.</p>
+        <p class="vs-home-svc__card-desc">بهینه‌سازی حرفه‌ای سایت برای موتورهای جستجو. تحلیل رقبا، تولید محتوای سئوشده و لینک‌سازی اصولی.</p>
         <div class="vs-home-svc__card-price">از ۴.۹ میلیون تومان / ماه</div>
-        <a href="/seo-google/" class="vs-home-svc__card-link">
-          مشاهده جزئیات
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+        <a href="/seo-google/" class="vs-home-svc__card-link">مشاهده جزئیات <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
-
-      <!-- Card 3: Android App (medium) -->
-      <div class="vs-home-svc__card vs-home-svc__card--md">
-        <div class="vs-home-svc__card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01" stroke-linecap="round"/></svg>
-        </div>
+      <!-- App -->
+      <div class="vs-home-svc__card vs-home-svc__card--app">
+        <div class="vs-home-svc__card-illust"><div class="vs-home-svc__illust-app"><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+        <div class="vs-home-svc__card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01" stroke-linecap="round"/></svg></div>
         <h3 class="vs-home-svc__card-title">اپلیکیشن اندروید</h3>
         <p class="vs-home-svc__card-desc">طراحی و توسعه اپلیکیشن‌های اندروید سفارشی با رابط کاربری جذاب و عملکرد بالا.</p>
         <div class="vs-home-svc__card-price">از ۲۵ میلیون تومان</div>
-        <a href="/app-android-tabriz/" class="vs-home-svc__card-link">
-          مشاهده جزئیات
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+        <a href="/app-android-tabriz/" class="vs-home-svc__card-link">مشاهده جزئیات <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
-
-      <!-- Card 4: SEO Training (medium) -->
-      <div class="vs-home-svc__card vs-home-svc__card--md">
-        <div class="vs-home-svc__card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        </div>
+      <!-- Education -->
+      <div class="vs-home-svc__card vs-home-svc__card--edu">
+        <div class="vs-home-svc__card-illust"><div class="vs-home-svc__illust-edu"><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+        <div class="vs-home-svc__card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
         <h3 class="vs-home-svc__card-title">آموزش سئو تبریز</h3>
         <p class="vs-home-svc__card-desc">دوره‌های آموزشی حضوری و آنلاین سئو با مدرسین باتجربه. از مبتدی تا پیشرفته.</p>
         <div class="vs-home-svc__card-price">از ۸۵۰ هزار تومان / جلسه</div>
-        <a href="/seo-training-tabriz/" class="vs-home-svc__card-link">
-          مشاهده جزئیات
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-      <!-- Card 5: CTA (medium) -->
-      <div class="vs-home-svc__card vs-home-svc__card--md vs-home-svc__card--cta">
-        <h3 class="vs-home-svc__card-title">مشاوره رایگان</h3>
-        <p class="vs-home-svc__card-desc">ایده‌ات رو بگو، ما راهکار می‌دیم</p>
-        <a href="#contact" class="vs-home-svc__cta-btn">
-          درخواست مشاوره
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+        <a href="/seo-training-tabriz/" class="vs-home-svc__card-link">مشاهده جزئیات <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
   </div>
 </section>
+
+
+<!-- سکشن ۴: نمونه‌کارها / پورتفولیو -->
+<style>
+.vs-home-portfolio{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  padding:110px 24px;background:#0a0640;font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:#fff;position:relative;overflow:hidden;
+}
+.vs-home-portfolio::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 40% at 80% 20%,rgba(18,139,224,.15),transparent),radial-gradient(50% 50% at 10% 80%,rgba(138,203,208,.10),transparent);pointer-events:none;}
+.vs-home-portfolio__inner{max-width:1240px;margin:0 auto;position:relative;}
+.vs-home-portfolio__head{text-align:center;margin-bottom:48px;}
+.vs-home-portfolio__head .vs-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.15);padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;backdrop-filter:blur(8px);}
+.vs-home-portfolio__head .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-cyan);box-shadow:0 0 0 4px rgba(138,203,208,.25);display:inline-block;}
+.vs-home-portfolio__head h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0;line-height:1.4;color:#fff;}
+.vs-home-portfolio__head h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+/* Filter tabs */
+.vs-home-portfolio__filters{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:48px;}
+.vs-home-portfolio__filter{padding:10px 22px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);font-family:inherit;font-size:14px;font-weight:600;color:rgba(255,255,255,.7);cursor:pointer;transition:all .25s ease;}
+.vs-home-portfolio__filter:hover{color:#fff;border-color:rgba(255,255,255,.3);}
+.vs-home-portfolio__filter.is-active{background:linear-gradient(135deg,var(--vs-accent),var(--vs-cyan));color:#050225;border-color:transparent;box-shadow:0 8px 24px rgba(18,139,224,.30);}
+/* Grid */
+.vs-home-portfolio__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.vs-home-portfolio__card{background:rgba(255,255,255,.04);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.10);border-radius:24px;padding:32px 28px;position:relative;overflow:hidden;transition:all .4s cubic-bezier(.22,1,.36,1);opacity:0;transform:translateY(30px);}
+.vs-home-portfolio__card.is-visible{opacity:1;transform:translateY(0);}
+.vs-home-portfolio__card:hover{transform:translateY(-6px);border-color:rgba(138,203,208,.30);box-shadow:0 30px 60px rgba(0,0,0,.3);}
+.vs-home-portfolio__card-badge{display:inline-block;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:700;margin-bottom:16px;}
+.vs-home-portfolio__card-badge--web{background:rgba(18,139,224,.15);color:#8ACBD0;}
+.vs-home-portfolio__card-badge--seo{background:rgba(34,197,94,.15);color:#22c55e;}
+.vs-home-portfolio__card-badge--app{background:rgba(168,85,247,.15);color:#A855F7;}
+.vs-home-portfolio__card-title{font-size:20px;font-weight:800;margin:0 0 10px;color:#fff;}
+.vs-home-portfolio__card-desc{font-size:14px;line-height:1.8;color:rgba(255,255,255,.6);margin:0 0 20px;}
+.vs-home-portfolio__card-metric{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:10px;background:rgba(138,203,208,.10);border:1px solid rgba(138,203,208,.20);font-size:18px;font-weight:900;color:var(--vs-cyan);}
+.vs-home-portfolio__card-metric svg{width:16px;height:16px;color:var(--vs-cyan);}
+@media(max-width:980px){.vs-home-portfolio__grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.vs-home-portfolio__grid{grid-template-columns:1fr;}}
+</style>
+
+<section class="vs-home-portfolio" id="portfolio">
+  <div class="vs-home-portfolio__inner">
+    <div class="vs-home-portfolio__head">
+      <span class="vs-eyebrow"><i></i>نمونه کارها</span>
+      <h2>پروژه‌هایی که افتخار <em>همکاری‌شان</em> را داشتیم</h2>
+    </div>
+    <div class="vs-home-portfolio__filters" data-portfolio-filters>
+      <button class="vs-home-portfolio__filter is-active" data-filter="all">همه</button>
+      <button class="vs-home-portfolio__filter" data-filter="web">طراحی سایت</button>
+      <button class="vs-home-portfolio__filter" data-filter="seo">سئو</button>
+      <button class="vs-home-portfolio__filter" data-filter="app">اپلیکیشن</button>
+    </div>
+    <div class="vs-home-portfolio__grid" data-portfolio-grid>
+      <div class="vs-home-portfolio__card" data-cat="seo">
+        <span class="vs-home-portfolio__card-badge vs-home-portfolio__card-badge--seo">سئو گوگل</span>
+        <h3 class="vs-home-portfolio__card-title">فروشگاه آنلاین دیجی‌استایل</h3>
+        <p class="vs-home-portfolio__card-desc">بهینه‌سازی کامل سایت و رساندن ۴۵ کلمه کلیدی به صفحه اول گوگل در ۶ ماه.</p>
+        <div class="vs-home-portfolio__card-metric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>+۳۴۰٪ ترافیک</div>
+      </div>
+      <div class="vs-home-portfolio__card" data-cat="web">
+        <span class="vs-home-portfolio__card-badge vs-home-portfolio__card-badge--web">طراحی سایت</span>
+        <h3 class="vs-home-portfolio__card-title">شرکت فناوری نوین پارس</h3>
+        <p class="vs-home-portfolio__card-desc">طراحی سایت شرکتی مدرن با سیستم مدیریت محتوای اختصاصی و سرعت لود زیر ۲ ثانیه.</p>
+        <div class="vs-home-portfolio__card-metric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg>امتیاز ۹۸ PageSpeed</div>
+      </div>
+      <div class="vs-home-portfolio__card" data-cat="seo">
+        <span class="vs-home-portfolio__card-badge vs-home-portfolio__card-badge--seo">سئو گوگل</span>
+        <h3 class="vs-home-portfolio__card-title">کلینیک زیبایی رزگلد</h3>
+        <p class="vs-home-portfolio__card-desc">رتبه ۱ گوگل برای ۱۲ کلمه کلیدی رقابتی حوزه زیبایی و پزشکی در تبریز.</p>
+        <div class="vs-home-portfolio__card-metric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>رتبه ۱ گوگل</div>
+      </div>
+      <div class="vs-home-portfolio__card" data-cat="app">
+        <span class="vs-home-portfolio__card-badge vs-home-portfolio__card-badge--app">اپلیکیشن</span>
+        <h3 class="vs-home-portfolio__card-title">اپلیکیشن فروشگاهی مارکت‌پلاس</h3>
+        <p class="vs-home-portfolio__card-desc">طراحی و توسعه اپلیکیشن فروشگاهی با قابلیت پرداخت آنلاین و مدیریت سفارشات.</p>
+        <div class="vs-home-portfolio__card-metric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke-linecap="round"/><circle cx="9" cy="7" r="4"/></svg>۵۰۰۰+ دانلود</div>
+      </div>
+      <div class="vs-home-portfolio__card" data-cat="web">
+        <span class="vs-home-portfolio__card-badge vs-home-portfolio__card-badge--web">طراحی سایت</span>
+        <h3 class="vs-home-portfolio__card-title">آموزشگاه زبان ایرانمهر</h3>
+        <p class="vs-home-portfolio__card-desc">پلتفرم آموزش آنلاین با سیستم ثبت‌نام، پرداخت و مدیریت دوره‌ها.</p>
+        <div class="vs-home-portfolio__card-metric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>+۲۸۰٪ ثبت‌نام</div>
+      </div>
+      <div class="vs-home-portfolio__card" data-cat="seo">
+        <span class="vs-home-portfolio__card-badge vs-home-portfolio__card-badge--seo">سئو گوگل</span>
+        <h3 class="vs-home-portfolio__card-title">فروشگاه لوازم خانگی سامان</h3>
+        <p class="vs-home-portfolio__card-desc">افزایش فروش آنلاین از طریق سئو تکنیکال و محتوایی در بازار رقابتی لوازم خانگی.</p>
+        <div class="vs-home-portfolio__card-metric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke-linecap="round" stroke-linejoin="round"/></svg>+۴۲۰٪ فروش</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var grid=document.querySelector('[data-portfolio-grid]');
+  var filters=document.querySelectorAll('[data-portfolio-filters] .vs-home-portfolio__filter');
+  var cards=grid?grid.querySelectorAll('.vs-home-portfolio__card'):[];
+  if(!grid||!cards.length)return;
+  // Animate cards on scroll
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}});},{threshold:.15});
+  cards.forEach(function(c){io.observe(c);});
+  // Filter logic
+  filters.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      filters.forEach(function(f){f.classList.remove('is-active');});
+      btn.classList.add('is-active');
+      var cat=btn.dataset.filter;
+      cards.forEach(function(c){
+        if(cat==='all'||c.dataset.cat===cat){c.style.display='';setTimeout(function(){c.classList.add('is-visible');},50);}
+        else{c.style.display='none';c.classList.remove('is-visible');}
+      });
+    });
+  });
+})();
+</script>
+
 
 <!-- ========================================================
      سکشن ۴: چرا ویرا سئو - تب‌های تعاملی
@@ -1045,6 +770,7 @@
 })();
 </script>
 
+
 <!-- سکشن ۵: فرآیند همکاری -->
 <style>
 .vs-home-proc{--vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;--vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;padding:110px 24px;background:#0a0640;font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:#fff;position:relative;overflow:hidden;}
@@ -1154,29 +880,63 @@
 })();
 </script>
 
-<!-- سکشن ۶: آمار و ارقام متحرک -->
+
+<!-- سکشن ۷: آمار و ارقام - نسخه پیشرفته با حلقه‌های پیشرفت و افکت‌های بصری -->
 <style>
-.vs-home-stats{--vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;--vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;padding:110px 24px;background:linear-gradient(180deg,#FAF6EC 0%,#fff 100%);font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);position:relative;overflow:hidden;}
-.vs-home-stats::before{content:"";position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(18,139,224,.12),transparent 70%);filter:blur(40px);pointer-events:none;}
+.vs-home-stats{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  padding:120px 24px;background:linear-gradient(180deg,#050225 0%,#0a0640 50%,#050225 100%);font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:#fff;position:relative;overflow:hidden;
+}
+/* Dot grid background */
+.vs-home-stats__dots{position:absolute;inset:0;pointer-events:none;opacity:.3;background-image:radial-gradient(circle,rgba(138,203,208,.3) 1px,transparent 1px);background-size:40px 40px;-webkit-mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,#000,transparent 70%);mask-image:radial-gradient(ellipse 60% 50% at 50% 50%,#000,transparent 70%);animation:vs-stats-dots 20s linear infinite;}
+@keyframes vs-stats-dots{to{background-position:40px 40px;}}
 .vs-home-stats__inner{max-width:1100px;margin:0 auto;position:relative;}
-.vs-home-stats .vs-section-head{text-align:center;margin-bottom:60px;}
-.vs-home-stats .vs-section-head .vs-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(23,12,121,.08);color:var(--vs-primary);border:1px solid rgba(23,12,121,.18);padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;}
-.vs-home-stats .vs-section-head .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-accent);box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;}
+.vs-home-stats .vs-section-head{text-align:center;margin-bottom:72px;}
+.vs-home-stats .vs-section-head .vs-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.15);padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;backdrop-filter:blur(8px);}
+.vs-home-stats .vs-section-head .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-cyan);box-shadow:0 0 0 4px rgba(138,203,208,.25);display:inline-block;}
 .vs-home-stats .vs-section-head h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0;line-height:1.4;}
-.vs-home-stats .vs-section-head h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
-.vs-home-stats__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
-.vs-home-stats__card{background:#fff;border:1px solid rgba(23,12,121,.10);border-radius:24px;padding:40px 28px;text-align:center;position:relative;overflow:hidden;transition:all .35s ease;}
-.vs-home-stats__card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(23,12,121,.12);}
-.vs-home-stats__card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--vs-primary),var(--vs-accent));opacity:0;transition:opacity .3s ease;}
-.vs-home-stats__card:hover::before{opacity:1;}
-.vs-home-stats__card-icon{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,rgba(23,12,121,.08),rgba(18,139,224,.08));display:grid;place-items:center;margin:0 auto 20px;color:var(--vs-primary);}
-.vs-home-stats__card-num{font-size:42px;font-weight:900;line-height:1;margin-bottom:8px;background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
-.vs-home-stats__card-label{font-size:15px;color:#64748B;font-weight:600;}
-@media(max-width:880px){.vs-home-stats__grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:560px){.vs-home-stats__grid{grid-template-columns:1fr;}.vs-home-stats__card-num{font-size:36px;}}
+.vs-home-stats .vs-section-head h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+/* Stats grid */
+.vs-home-stats__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-bottom:64px;}
+.vs-home-stats__card{text-align:center;position:relative;padding:40px 20px;border-radius:28px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px);transition:all .35s ease;}
+.vs-home-stats__card:hover{transform:translateY(-4px);border-color:rgba(138,203,208,.25);box-shadow:0 20px 50px rgba(0,0,0,.3);}
+/* SVG Ring */
+.vs-home-stats__ring{position:relative;width:120px;height:120px;margin:0 auto 20px;}
+.vs-home-stats__ring svg{width:100%;height:100%;transform:rotate(-90deg);}
+.vs-home-stats__ring-bg{fill:none;stroke:rgba(255,255,255,.08);stroke-width:6;}
+.vs-home-stats__ring-progress{fill:none;stroke:url(#vs-stats-grad);stroke-width:6;stroke-linecap:round;stroke-dasharray:314;stroke-dashoffset:314;transition:stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1);}
+.vs-home-stats__card:nth-child(2) .vs-home-stats__ring-progress{stroke:url(#vs-stats-grad2);}
+.vs-home-stats__card:nth-child(3) .vs-home-stats__ring-progress{stroke:url(#vs-stats-grad3);}
+.vs-home-stats__card:nth-child(4) .vs-home-stats__ring-progress{stroke:url(#vs-stats-grad4);}
+/* Number */
+.vs-home-stats__card-num{font-size:52px;font-weight:900;line-height:1;position:absolute;top:50%;left:50%;transform:translate(-50%,-65%);text-shadow:0 0 30px rgba(138,203,208,.3);}
+.vs-home-stats__card-label{font-size:15px;color:rgba(255,255,255,.7);font-weight:600;}
+/* Before/After comparison */
+.vs-home-stats__compare{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:36px 40px;backdrop-filter:blur(8px);}
+.vs-home-stats__compare-title{font-size:18px;font-weight:800;margin-bottom:28px;text-align:center;color:#fff;}
+.vs-home-stats__compare-bars{display:grid;gap:20px;}
+.vs-home-stats__compare-item{display:grid;grid-template-columns:100px 1fr 60px;gap:16px;align-items:center;}
+.vs-home-stats__compare-label{font-size:13px;font-weight:700;color:rgba(255,255,255,.7);}
+.vs-home-stats__compare-bar{height:12px;border-radius:6px;background:rgba(255,255,255,.08);position:relative;overflow:hidden;}
+.vs-home-stats__compare-bar-fill{position:absolute;inset:0;border-radius:6px;width:0;transition:width 1.5s cubic-bezier(.4,0,.2,1);}
+.vs-home-stats__compare-bar-fill--before{background:rgba(255,255,255,.2);}
+.vs-home-stats__compare-bar-fill--after{background:linear-gradient(90deg,var(--vs-accent),var(--vs-cyan));}
+.vs-home-stats__compare-val{font-size:14px;font-weight:800;color:var(--vs-cyan);text-align:left;}
+@media(max-width:880px){.vs-home-stats__grid{grid-template-columns:repeat(2,1fr);}.vs-home-stats__compare-item{grid-template-columns:80px 1fr 50px;}}
+@media(max-width:560px){.vs-home-stats__grid{grid-template-columns:1fr;}.vs-home-stats__card-num{font-size:42px;}.vs-home-stats__compare-item{grid-template-columns:1fr;gap:8px;}}
 </style>
 
 <section class="vs-home-stats" data-vs-home-stats>
+  <div class="vs-home-stats__dots"></div>
+  <!-- SVG Gradient definitions -->
+  <svg width="0" height="0" style="position:absolute"><defs>
+    <linearGradient id="vs-stats-grad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#128BE0"/><stop offset="100%" stop-color="#8ACBD0"/></linearGradient>
+    <linearGradient id="vs-stats-grad2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#22c55e"/><stop offset="100%" stop-color="#128BE0"/></linearGradient>
+    <linearGradient id="vs-stats-grad3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#A855F7"/><stop offset="100%" stop-color="#3DDC84"/></linearGradient>
+    <linearGradient id="vs-stats-grad4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#EFE3CA"/></linearGradient>
+  </defs></svg>
+
   <div class="vs-home-stats__inner">
     <div class="vs-section-head">
       <span class="vs-eyebrow"><i></i>عملکرد ما در اعداد</span>
@@ -1184,24 +944,45 @@
     </div>
     <div class="vs-home-stats__grid">
       <div class="vs-home-stats__card">
-        <div class="vs-home-stats__card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke-linecap="round"/><polyline points="22 4 12 14.01 9 11.01" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="vs-home-stats__ring"><svg viewBox="0 0 108 108"><circle class="vs-home-stats__ring-bg" cx="54" cy="54" r="50"/><circle class="vs-home-stats__ring-progress" cx="54" cy="54" r="50" data-progress="90"/></svg></div>
         <div class="vs-home-stats__card-num" data-count="450" data-suffix="+">۰</div>
         <div class="vs-home-stats__card-label">پروژه موفق</div>
       </div>
       <div class="vs-home-stats__card">
-        <div class="vs-home-stats__card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></div>
+        <div class="vs-home-stats__ring"><svg viewBox="0 0 108 108"><circle class="vs-home-stats__ring-bg" cx="54" cy="54" r="50"/><circle class="vs-home-stats__ring-progress" cx="54" cy="54" r="50" data-progress="75"/></svg></div>
         <div class="vs-home-stats__card-num" data-count="125" data-suffix="+">۰</div>
         <div class="vs-home-stats__card-label">سایت در صفحه اول گوگل</div>
       </div>
       <div class="vs-home-stats__card">
-        <div class="vs-home-stats__card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="vs-home-stats__ring"><svg viewBox="0 0 108 108"><circle class="vs-home-stats__ring-bg" cx="54" cy="54" r="50"/><circle class="vs-home-stats__ring-progress" cx="54" cy="54" r="50" data-progress="85"/></svg></div>
         <div class="vs-home-stats__card-num" data-count="800" data-suffix="+">۰</div>
         <div class="vs-home-stats__card-label">شاگرد آموزش‌دیده</div>
       </div>
       <div class="vs-home-stats__card">
-        <div class="vs-home-stats__card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="vs-home-stats__ring"><svg viewBox="0 0 108 108"><circle class="vs-home-stats__ring-bg" cx="54" cy="54" r="50"/><circle class="vs-home-stats__ring-progress" cx="54" cy="54" r="50" data-progress="95"/></svg></div>
         <div class="vs-home-stats__card-num" data-count="10" data-suffix="+">۰</div>
         <div class="vs-home-stats__card-label">سال تجربه حرفه‌ای</div>
+      </div>
+    </div>
+    <!-- Before/After comparison -->
+    <div class="vs-home-stats__compare" data-stats-compare>
+      <div class="vs-home-stats__compare-title">میانگین نتایج مشتریان ما</div>
+      <div class="vs-home-stats__compare-bars">
+        <div class="vs-home-stats__compare-item">
+          <div class="vs-home-stats__compare-label">ترافیک ارگانیک</div>
+          <div class="vs-home-stats__compare-bar"><div class="vs-home-stats__compare-bar-fill vs-home-stats__compare-bar-fill--after" data-width="85%"></div></div>
+          <div class="vs-home-stats__compare-val">+۳۴۰٪</div>
+        </div>
+        <div class="vs-home-stats__compare-item">
+          <div class="vs-home-stats__compare-label">نرخ تبدیل</div>
+          <div class="vs-home-stats__compare-bar"><div class="vs-home-stats__compare-bar-fill vs-home-stats__compare-bar-fill--after" data-width="70%"></div></div>
+          <div class="vs-home-stats__compare-val">+۱۸۰٪</div>
+        </div>
+        <div class="vs-home-stats__compare-item">
+          <div class="vs-home-stats__compare-label">سرعت سایت</div>
+          <div class="vs-home-stats__compare-bar"><div class="vs-home-stats__compare-bar-fill vs-home-stats__compare-bar-fill--after" data-width="92%"></div></div>
+          <div class="vs-home-stats__compare-val">+۲۲۰٪</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1213,25 +994,26 @@
   if(!section)return;
   var toFa=function(n){return String(n).replace(/\d/g,function(d){return'\u06F0\u06F1\u06F2\u06F3\u06F4\u06F5\u06F6\u06F7\u06F8\u06F9'[d];});};
   var cards=section.querySelectorAll('[data-count]');
+  var rings=section.querySelectorAll('[data-progress]');
+  var bars=section.querySelectorAll('[data-width]');
   var animate=function(el){
-    var target=parseInt(el.dataset.count,10);
-    var suffix=el.dataset.suffix||'';
-    var dur=1800;var start=performance.now();
-    var step=function(now){
-      var t=Math.min(1,(now-start)/dur);
-      var eased=1-Math.pow(1-t,3);
-      var val=Math.floor(eased*target);
-      el.textContent=toFa(val)+suffix;
-      if(t<1)requestAnimationFrame(step);
-    };
+    var target=parseInt(el.dataset.count,10);var suffix=el.dataset.suffix||'';var dur=1800;var start=performance.now();
+    var step=function(now){var t=Math.min(1,(now-start)/dur);var eased=1-Math.pow(1-t,3);var val=Math.floor(eased*target);el.textContent=toFa(val)+suffix;if(t<1)requestAnimationFrame(step);};
     requestAnimationFrame(step);
   };
+  var animateRings=function(){
+    rings.forEach(function(ring){var pct=parseInt(ring.dataset.progress,10)/100;var circumference=2*Math.PI*50;ring.style.strokeDasharray=circumference;ring.style.strokeDashoffset=circumference*(1-pct);});
+  };
+  var animateBars=function(){
+    bars.forEach(function(bar){bar.style.width=bar.dataset.width;});
+  };
   var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){if(e.isIntersecting){animate(e.target);io.unobserve(e.target);}});
-  },{threshold:.5});
-  cards.forEach(function(c){io.observe(c);});
+    entries.forEach(function(e){if(e.isIntersecting){cards.forEach(function(c){animate(c);});animateRings();animateBars();io.unobserve(e.target);}});
+  },{threshold:.3});
+  io.observe(section);
 })();
 </script>
+
 
 <!-- سکشن ۷: نظرات مشتریان - اسلایدر ۳بعدی -->
 <style>
@@ -1353,6 +1135,7 @@
 })();
 </script>
 
+
 <!-- سکشن ۸: سوالات متداول -->
 <style>
 .vs-home-faq{--vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;--vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;padding:110px 24px;background:#fff;font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);position:relative;overflow:hidden;}
@@ -1431,6 +1214,7 @@
   document.querySelector('[data-vs-home-faq-search]').addEventListener('input',function(e){activeQuery=e.target.value.trim();refresh();});
 })();
 </script>
+
 
 <!-- سکشن ۹: فرم تماس و مشاوره -->
 <style>
@@ -1517,7 +1301,7 @@
 </script>
 
 
-<div class="mock-footer">⬆️ این پایین فوتر سایت شماست (دست نخورده) ⬆️</div>
+<div class="mock-footer">footer</div>
 
 </body>
 </html>
