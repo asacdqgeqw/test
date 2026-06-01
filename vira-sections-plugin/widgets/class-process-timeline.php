@@ -488,6 +488,52 @@ class Vira_Sections_Widget_Process_Timeline extends \Elementor\Widget_Base {
 				#<?php echo esc_attr( $unique_id ); ?> .vira-proc__tl{grid-template-columns:1fr;gap:32px;}
 				#<?php echo esc_attr( $unique_id ); ?> .vira-proc__panel ul{grid-template-columns:1fr;}
 			}
+
+			/* === Step Entrance Animations (staggered slide-in) === */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-step{
+				opacity:0;transform:translateX(30px);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-step.vira-visible{
+				opacity:1;transform:translateX(0);
+				transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .5s cubic-bezier(.4,0,.2,1);
+			}
+
+			/* === Enhanced Pulse/Glow on Active Step Ring === */
+			@keyframes <?php echo esc_attr( $unique_id ); ?>-pulse{
+				0%,100%{box-shadow:0 0 24px rgba(1,112,185,.45);}
+				50%{box-shadow:0 0 36px rgba(1,112,185,.7),0 0 60px rgba(1,112,185,.3);}
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-step.is-active .vira-step__ring{
+				animation:<?php echo esc_attr( $unique_id ); ?>-pulse 2.5s ease-in-out infinite;
+			}
+
+			/* === Smooth Panel Content Transition (slide+fade) === */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-proc__panel{
+				animation:none;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-proc__panel.is-active{
+				display:block;
+				animation:<?php echo esc_attr( $unique_id ); ?>-panel-in .5s cubic-bezier(.4,0,.2,1) forwards;
+			}
+			@keyframes <?php echo esc_attr( $unique_id ); ?>-panel-in{
+				from{opacity:0;transform:translateY(20px) scale(.98);}
+				to{opacity:1;transform:translateY(0) scale(1);}
+			}
+
+			/* === Animated Progress Bar Fill === */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-proc__progress-fill{
+				transition:width .8s cubic-bezier(.4,0,.2,1);
+			}
+
+			/* === Reduced Motion === */
+			@media(prefers-reduced-motion:reduce){
+				#<?php echo esc_attr( $unique_id ); ?> .vira-step{opacity:1;transform:none;transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-step.is-active .vira-step__ring{animation:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-proc__panel.is-active{animation:none;opacity:1;transform:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-proc__progress-fill{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-step__ring{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-step{transition:none !important;}
+			}
 		</style>
 
 		<section id="<?php echo esc_attr( $unique_id ); ?>" class="vira-proc" data-vira-process>
@@ -573,6 +619,25 @@ class Vira_Sections_Widget_Process_Timeline extends \Elementor\Widget_Base {
 				if (label) label.textContent = 'مرحله ' + toFa(idx+1) + ' از ' + toFa(total);
 			}
 			steps.forEach(function(s,i){ s.addEventListener('click', function(){ activate(i); resetAuto(); }); });
+
+			// IntersectionObserver for staggered step entrance
+			var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			if (reduced) {
+				steps.forEach(function(s){ s.classList.add('vira-visible'); });
+			} else {
+				var stepObs = new IntersectionObserver(function(entries){
+					entries.forEach(function(entry){
+						if (entry.isIntersecting) {
+							var step = entry.target;
+							var idx = Array.prototype.indexOf.call(steps, step);
+							setTimeout(function(){ step.classList.add('vira-visible'); }, idx * 150);
+							stepObs.unobserve(step);
+						}
+					});
+				}, { threshold: 0.2 });
+				steps.forEach(function(s){ stepObs.observe(s); });
+			}
+
 			var auto = null;
 			<?php if ( $auto ) : ?>
 			function startAuto(){

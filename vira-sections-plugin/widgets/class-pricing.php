@@ -412,6 +412,67 @@ class Vira_Sections_Widget_Pricing extends \Elementor\Widget_Base {
 				#<?php echo esc_attr( $unique_id ); ?> .vira-pricing__grid{grid-template-columns:1fr;max-width:480px;margin:0 auto;}
 				#<?php echo esc_attr( $unique_id ); ?> .vira-pcard--featured{transform:none;}
 			}
+
+			/* === Card Entrance Stagger Animation === */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-pcard{
+				opacity:0;transform:translateY(40px);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-pcard.vira-visible{
+				opacity:1;transform:translateY(0);
+				transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-pcard--featured.vira-visible{
+				transform:translateY(-8px);
+			}
+
+			/* === Hover Scale Effect === */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-pcard.vira-visible:hover{
+				transform:translateY(-4px) scale(1.02);
+				box-shadow:0 24px 50px rgba(15,23,42,.12);
+				border-color:rgba(1,112,185,.30);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-pcard--featured.vira-visible:hover{
+				transform:translateY(-12px) scale(1.04);
+				box-shadow:0 32px 64px rgba(1,112,185,.25);
+			}
+
+			/* === Animated Gradient Border on Featured Card === */
+			@keyframes <?php echo esc_attr( $unique_id ); ?>-border-rotate{
+				0%{background-position:0% 50%;}
+				50%{background-position:100% 50%;}
+				100%{background-position:0% 50%;}
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-pcard--featured{
+				background:linear-gradient(#fff,#fff) padding-box,
+					linear-gradient(135deg,var(--vira-grad-from),var(--vira-grad-to),var(--vira-accent),var(--vira-grad-from)) border-box;
+				background-size:100% 100%,300% 300%;
+				animation:<?php echo esc_attr( $unique_id ); ?>-border-rotate 4s ease-in-out infinite;
+			}
+
+			/* === Subtle Shadow Depth on Hover === */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-pcard{
+				transition:all .4s cubic-bezier(.4,0,.2,1);
+			}
+
+			/* === Price Count-Up Animation Class === */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-pcard__amount{
+				transition:opacity .25s ease,transform .3s ease;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-pcard__amount.vira-counting{
+				transform:scale(1.05);
+			}
+
+			/* === Reduced Motion === */
+			@media(prefers-reduced-motion:reduce){
+				#<?php echo esc_attr( $unique_id ); ?> .vira-pcard{opacity:1;transform:none;transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-pcard.vira-visible{transform:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-pcard--featured{animation:none;transform:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-pcard--featured.vira-visible{transform:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-pcard.vira-visible:hover{transform:none;transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-pcard--featured.vira-visible:hover{transform:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-pcard__amount{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-pcard__btn{transition:none !important;}
+			}
 		</style>
 
 		<section id="<?php echo esc_attr( $unique_id ); ?>" class="vira-pricing" data-vira-pricing>
@@ -523,6 +584,48 @@ class Vira_Sections_Widget_Pricing extends \Elementor\Widget_Base {
 		})();
 		</script>
 		<?php endif; ?>
+
+		<script>
+		(function(){
+			var root = document.getElementById('<?php echo esc_js( $unique_id ); ?>');
+			if (!root) return;
+			var cards = root.querySelectorAll('.vira-pcard');
+			var amounts = root.querySelectorAll('.vira-pcard__amount');
+			var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+			// Entrance stagger animation
+			if (reduced) {
+				cards.forEach(function(c){ c.classList.add('vira-visible'); });
+			} else {
+				var obs = new IntersectionObserver(function(entries){
+					entries.forEach(function(entry){
+						if (entry.isIntersecting) {
+							var card = entry.target;
+							var idx = Array.prototype.indexOf.call(cards, card);
+							setTimeout(function(){ card.classList.add('vira-visible'); }, idx * 150);
+							obs.unobserve(card);
+						}
+					});
+				}, { threshold: 0.15 });
+				cards.forEach(function(c){ obs.observe(c); });
+			}
+
+			// Price counter animation (count-up effect on scroll)
+			if (!reduced) {
+				var priceObs = new IntersectionObserver(function(entries){
+					entries.forEach(function(entry){
+						if (entry.isIntersecting) {
+							var el = entry.target;
+							el.classList.add('vira-counting');
+							setTimeout(function(){ el.classList.remove('vira-counting'); }, 600);
+							priceObs.unobserve(el);
+						}
+					});
+				}, { threshold: 0.5 });
+				amounts.forEach(function(a){ priceObs.observe(a); });
+			}
+		})();
+		</script>
 		<?php
 	}
 }

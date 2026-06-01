@@ -519,6 +519,55 @@ class Vira_Sections_Widget_Tabs extends \Elementor\Widget_Base {
 				#<?php echo esc_attr( $unique_id ); ?> .vira-tabs__panels{min-height:460px;padding:28px;}
 				#<?php echo esc_attr( $unique_id ); ?> .vira-panel{inset:28px;}
 			}
+
+			/* === Animated Tab Indicator === */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tabs__nav{position:relative;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tabs__indicator{
+				position:absolute;right:0;width:4px;border-radius:4px;
+				background:linear-gradient(180deg,var(--vira-accent),var(--vira-grad-from));
+				transition:top .4s cubic-bezier(.4,0,.2,1),height .4s cubic-bezier(.4,0,.2,1);
+				pointer-events:none;z-index:2;
+			}
+
+			/* === Smooth Height Transition for Panels === */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tabs__panels{
+				transition:height .4s cubic-bezier(.4,0,.2,1);
+			}
+
+			/* === Gradient Mesh Background Animation === */
+			@keyframes <?php echo esc_attr( $unique_id ); ?>-mesh{
+				0%{background-position:0% 50%;}
+				50%{background-position:100% 50%;}
+				100%{background-position:0% 50%;}
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tabs__panels::after{
+				content:"";position:absolute;inset:0;border-radius:24px;
+				background:linear-gradient(160deg,var(--vira-grad-from) 0%,var(--vira-grad-to) 50%,rgba(1,112,185,.3) 100%);
+				background-size:200% 200%;
+				animation:<?php echo esc_attr( $unique_id ); ?>-mesh 8s ease-in-out infinite;
+				opacity:.15;pointer-events:none;z-index:0;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-panel{z-index:1;}
+
+			/* === Entrance Animation === */
+			#<?php echo esc_attr( $unique_id ); ?>.vira-tabs{
+				opacity:0;transform:translateY(30px);
+			}
+			#<?php echo esc_attr( $unique_id ); ?>.vira-tabs.vira-visible{
+				opacity:1;transform:translateY(0);
+				transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1);
+			}
+
+			/* === Reduced Motion === */
+			@media(prefers-reduced-motion:reduce){
+				#<?php echo esc_attr( $unique_id ); ?>.vira-tabs{opacity:1;transform:none;transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-tabs__panels::after{animation:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-tabs__indicator{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-tabs__panels{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-panel{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-tab-btn{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-tab-btn .ic{transition:none !important;}
+			}
 		</style>
 
 		<section id="<?php echo esc_attr( $unique_id ); ?>" class="vira-tabs" data-vira-tabs>
@@ -552,6 +601,7 @@ class Vira_Sections_Widget_Tabs extends \Elementor\Widget_Base {
 								</span>
 							</button>
 						<?php endforeach; ?>
+						<div class="vira-tabs__indicator" data-indicator></div>
 					</div>
 
 					<div class="vira-tabs__panels">
@@ -598,6 +648,27 @@ class Vira_Sections_Widget_Tabs extends \Elementor\Widget_Base {
 			if (!root) return;
 			var btns = root.querySelectorAll('.vira-tab-btn');
 			var panels = root.querySelectorAll('.vira-panel');
+			var indicator = root.querySelector('[data-indicator]');
+			var panelsWrap = root.querySelector('.vira-tabs__panels');
+
+			function moveIndicator(idx){
+				if (!indicator || !btns[idx]) return;
+				var btn = btns[idx];
+				var nav = btn.parentElement;
+				var navRect = nav.getBoundingClientRect();
+				var btnRect = btn.getBoundingClientRect();
+				indicator.style.top = (btnRect.top - navRect.top) + 'px';
+				indicator.style.height = btnRect.height + 'px';
+			}
+
+			function adjustHeight(){
+				if (!panelsWrap) return;
+				var activePanel = root.querySelector('.vira-panel.is-active');
+				if (activePanel) {
+					panelsWrap.style.height = activePanel.scrollHeight + 72 + 'px';
+				}
+			}
+
 			function activate(idx){
 				btns.forEach(function(b,i){
 					var a = (i===idx);
@@ -605,8 +676,31 @@ class Vira_Sections_Widget_Tabs extends \Elementor\Widget_Base {
 					b.setAttribute('aria-selected', a ? 'true' : 'false');
 				});
 				panels.forEach(function(p,i){ p.classList.toggle('is-active', i===idx); });
+				moveIndicator(idx);
+				adjustHeight();
 			}
 			btns.forEach(function(b,i){ b.addEventListener('click', function(){ activate(i); resetAuto(); }); });
+
+			// Initial indicator position
+			moveIndicator(0);
+			adjustHeight();
+
+			// IntersectionObserver entrance animation
+			var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			if (reduced) {
+				root.classList.add('vira-visible');
+			} else {
+				var obs = new IntersectionObserver(function(entries){
+					entries.forEach(function(entry){
+						if (entry.isIntersecting) {
+							root.classList.add('vira-visible');
+							obs.unobserve(entry.target);
+						}
+					});
+				}, { threshold: 0.1 });
+				obs.observe(root);
+			}
+
 			var auto = null;
 			<?php if ( $auto ) : ?>
 			function startAuto(){

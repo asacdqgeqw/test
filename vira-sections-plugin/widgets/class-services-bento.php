@@ -536,6 +536,65 @@ class Vira_Sections_Widget_Services_Bento extends \Elementor\Widget_Base {
 				#<?php echo esc_attr( $unique_id ); ?> .vira-svc__card.size-medium,
 				#<?php echo esc_attr( $unique_id ); ?> .vira-svc__card.size-large{grid-column:span 1;}
 			}
+
+			/* === Entrance Animation === */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-svc__card{
+				opacity:0;transform:translateY(40px);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-svc__card.vira-visible{
+				opacity:1;transform:translateY(0);
+				transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1);
+			}
+
+			/* === Tilt/Depth on Hover === */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-svc__card:hover{
+				transform:translateY(-6px) perspective(800px) rotateX(2deg) rotateY(-2deg);
+				box-shadow:0 24px 50px rgba(1,112,185,.12),0 8px 16px rgba(0,0,0,.06);
+				border-color:var(--vira-accent);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-svc__card.vira-visible:hover{
+				transform:translateY(-6px) perspective(800px) rotateX(2deg) rotateY(-2deg);
+			}
+
+			/* === Animated Icon Hover === */
+			@keyframes <?php echo esc_attr( $unique_id ); ?>-icon-spin{
+				0%{transform:rotate(-5deg) scale(1.05);}
+				50%{transform:rotate(5deg) scale(1.1);}
+				100%{transform:rotate(-5deg) scale(1.05);}
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-svc__card:hover .vira-svc__icon{
+				background:linear-gradient(135deg,var(--vira-grad-from),var(--vira-grad-to));
+				color:#fff;
+				animation:<?php echo esc_attr( $unique_id ); ?>-icon-spin 2s ease-in-out infinite;
+				box-shadow:0 12px 24px rgba(1,112,185,.30);
+			}
+
+			/* === Shimmer/Glow Border on Hover === */
+			@keyframes <?php echo esc_attr( $unique_id ); ?>-shimmer{
+				0%{background-position:200% center;}
+				100%{background-position:-200% center;}
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-svc__card::before{
+				content:"";position:absolute;inset:-2px;border-radius:26px;
+				background:linear-gradient(90deg,transparent,rgba(1,112,185,.4),transparent,rgba(18,139,224,.4),transparent);
+				background-size:200% 100%;
+				opacity:0;transition:opacity .4s ease;z-index:-1;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-svc__card:hover::before{
+				opacity:1;
+				animation:<?php echo esc_attr( $unique_id ); ?>-shimmer 3s linear infinite;
+			}
+
+			/* === Reduced Motion === */
+			@media(prefers-reduced-motion:reduce){
+				#<?php echo esc_attr( $unique_id ); ?> .vira-svc__card{opacity:1;transform:none;transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-svc__card:hover{transform:none;transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-svc__card:hover .vira-svc__icon{animation:none;transform:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-svc__card::before{animation:none;opacity:0 !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-svc__card::after{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-svc__icon{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-svc__link{transition:none !important;}
+			}
 		</style>
 
 		<section id="<?php echo esc_attr( $unique_id ); ?>" class="vira-svc" data-vira-services-bento>
@@ -587,6 +646,29 @@ class Vira_Sections_Widget_Services_Bento extends \Elementor\Widget_Base {
 				</div>
 			</div>
 		</section>
+
+		<script>
+		(function(){
+			var root = document.getElementById('<?php echo esc_js( $unique_id ); ?>');
+			if (!root) return;
+			var cards = root.querySelectorAll('.vira-svc__card');
+			if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+				cards.forEach(function(c){ c.classList.add('vira-visible'); });
+				return;
+			}
+			var observer = new IntersectionObserver(function(entries){
+				entries.forEach(function(entry){
+					if (entry.isIntersecting) {
+						var card = entry.target;
+						var idx = Array.prototype.indexOf.call(cards, card);
+						setTimeout(function(){ card.classList.add('vira-visible'); }, idx * 120);
+						observer.unobserve(card);
+					}
+				});
+			}, { threshold: 0.15 });
+			cards.forEach(function(c){ observer.observe(c); });
+		})();
+		</script>
 		<?php
 	}
 }
