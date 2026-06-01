@@ -719,10 +719,73 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 			@media(max-width:980px){
 				#<?php echo esc_attr( $unique_id ); ?> .vira-hero__float{display:none;}
 			}
+
+			/* Particle dots */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero__particles{
+				position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero__particle{
+				position:absolute;width:3px;height:3px;border-radius:50%;
+				background:rgba(255,255,255,.3);
+				animation:vira-hero-particle-drift linear infinite;
+			}
+			@keyframes vira-hero-particle-drift{
+				0%{transform:translateY(0) translateX(0);opacity:0;}
+				10%{opacity:1;}
+				90%{opacity:1;}
+				100%{transform:translateY(-100vh) translateX(20px);opacity:0;}
+			}
+
+			/* Button ripple */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero__btn--primary{
+				position:relative;overflow:hidden;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero__btn--primary::after{
+				content:"";position:absolute;inset:0;
+				background:radial-gradient(circle at var(--ripple-x,50%) var(--ripple-y,50%),rgba(255,255,255,.35) 0%,transparent 60%);
+				transform:scale(0);opacity:0;border-radius:inherit;
+				transition:transform .5s ease, opacity .5s ease;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero__btn--primary:hover::after{
+				transform:scale(2.5);opacity:1;
+			}
+
+			/* Smoother rotating word transitions */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1 .rot__list{
+				transition: transform .6s cubic-bezier(.4,0,.2,1), filter .6s ease;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1 .rot__list.is-transitioning{
+				filter:blur(2px);
+			}
+
+			/* Reduced motion */
+			@media(prefers-reduced-motion:reduce){
+				#<?php echo esc_attr( $unique_id ); ?>.vira-hero::before,
+				#<?php echo esc_attr( $unique_id ); ?>.vira-hero::after{animation:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-hero__particle{animation:none;opacity:0;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-hero__spot{display:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-hero__float{animation:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-hero__float:hover{transform:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-hero__btn--primary::after{display:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1 .rot__list{transition:transform .6s cubic-bezier(.4,0,.2,1);filter:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-hero__badge .pulse::before{animation:none;}
+				@keyframes vira-hero-mq{to{transform:translateX(50%);}}
+			}
 		</style>
  
 		<section id="<?php echo esc_attr( $unique_id ); ?>" class="vira-hero" data-vira-hero>
 			<div class="vira-hero__grid-bg"></div>
+			<div class="vira-hero__particles">
+				<?php for ( $pi = 0; $pi < 15; $pi++ ) :
+					$left = rand( 5, 95 );
+					$top = rand( 10, 90 );
+					$size = rand( 2, 4 );
+					$dur = rand( 12, 25 );
+					$delay = rand( 0, 10 );
+				?>
+					<div class="vira-hero__particle" style="left:<?php echo $left; ?>%;top:<?php echo $top; ?>%;width:<?php echo $size; ?>px;height:<?php echo $size; ?>px;animation-duration:<?php echo $dur; ?>s;animation-delay:<?php echo $delay; ?>s;"></div>
+				<?php endfor; ?>
+			</div>
 			<div class="vira-hero__spot"></div>
  
 			<div class="vira-hero__wrap">
@@ -835,15 +898,41 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 		(function(){
 			var hero = document.getElementById('<?php echo esc_js( $unique_id ); ?>');
 			if (!hero) return;
- 
-			hero.addEventListener('pointermove', function(e){
-				var r = hero.getBoundingClientRect();
-				hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-				hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
-			});
+
+			var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+			// Enhanced mouse spotlight with lerp interpolation
+			if (!prefersReduced) {
+				var mx = 0.5, my = 0.3, tx = 0.5, ty = 0.3;
+				hero.addEventListener('pointermove', function(e){
+					var r = hero.getBoundingClientRect();
+					tx = e.clientX - r.left;
+					ty = e.clientY - r.top;
+				});
+				function lerpSpot(){
+					mx += (tx - mx) * 0.08;
+					my += (ty - my) * 0.08;
+					hero.style.setProperty('--mx', mx + 'px');
+					hero.style.setProperty('--my', my + 'px');
+					requestAnimationFrame(lerpSpot);
+				}
+				requestAnimationFrame(lerpSpot);
+			}
+
+			// Button ripple position tracking
+			var primaryBtn = hero.querySelector('.vira-hero__btn--primary');
+			if (primaryBtn && !prefersReduced) {
+				primaryBtn.addEventListener('pointermove', function(e){
+					var r = primaryBtn.getBoundingClientRect();
+					var x = ((e.clientX - r.left) / r.width * 100).toFixed(1);
+					var y = ((e.clientY - r.top) / r.height * 100).toFixed(1);
+					primaryBtn.style.setProperty('--ripple-x', x + '%');
+					primaryBtn.style.setProperty('--ripple-y', y + '%');
+				});
+			}
  
 			var stage = hero.querySelector('[data-vira-tilt]');
-			if (stage) {
+			if (stage && !prefersReduced) {
 				stage.addEventListener('pointermove', function(e){
 					var r = stage.getBoundingClientRect();
 					var px = (e.clientX - r.left) / r.width - .5;
@@ -854,13 +943,32 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 					stage.style.transform = 'rotateX(0) rotateY(0)';
 				});
 			}
+
+			// Scroll-based parallax for floating cards
+			if (!prefersReduced) {
+				var floats = hero.querySelectorAll('.vira-hero__float');
+				if (floats.length) {
+					window.addEventListener('scroll', function(){
+						var rect = hero.getBoundingClientRect();
+						var scrollProgress = -rect.top / (rect.height || 1);
+						floats.forEach(function(f, idx){
+							var offset = scrollProgress * (10 + idx * 5);
+							f.style.transform = 'translateY(' + (-offset) + 'px)';
+						});
+					}, { passive: true });
+				}
+			}
  
-			function toFa(n){ return String(n).replace(/\d/g, function(d){ return '۰۱۲۳۴۵۶۷۸۹'[d]; }); }
+			function toFa(n){ return String(n).replace(/\d/g, function(d){ return '\u06F0\u06F1\u06F2\u06F3\u06F4\u06F5\u06F6\u06F7\u06F8\u06F9'[d]; }); }
  
 			var counters = hero.querySelectorAll('[data-counter]');
 			function animate(el){
 				var target = parseInt(el.getAttribute('data-counter'), 10);
 				var suffix = el.getAttribute('data-suffix') || '';
+				if (prefersReduced) {
+					el.innerHTML = '<em>' + toFa(target) + '</em>' + suffix;
+					return;
+				}
 				var dur = 1800;
 				var start = performance.now();
 				function step(now){
@@ -879,6 +987,31 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				counters.forEach(function(c){ io.observe(c); });
 			} else {
 				counters.forEach(animate);
+			}
+
+			// Smoother rotating word transitions with blur effect
+			var rotList = hero.querySelector('.rot__list');
+			if (rotList) {
+				var words = rotList.querySelectorAll('span');
+				var wordCount = words.length;
+				if (wordCount > 1) {
+					var currentWord = 0;
+					setInterval(function(){
+						if (prefersReduced) {
+							currentWord = (currentWord + 1) % wordCount;
+							rotList.style.transform = 'translateY(-' + (currentWord * 1.25) + 'em)';
+							return;
+						}
+						rotList.classList.add('is-transitioning');
+						setTimeout(function(){
+							currentWord = (currentWord + 1) % wordCount;
+							rotList.style.transform = 'translateY(-' + (currentWord * 1.25) + 'em)';
+							setTimeout(function(){
+								rotList.classList.remove('is-transitioning');
+							}, 300);
+						}, 150);
+					}, 3000);
+				}
 			}
 		})();
 		</script>

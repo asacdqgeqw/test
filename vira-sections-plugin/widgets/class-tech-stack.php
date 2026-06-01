@@ -653,6 +653,71 @@ class Vira_Sections_Widget_Tech_Stack extends \Elementor\Widget_Base {
 			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__logo span{
 				font-size:12.5px;font-weight:700;color:#475569;text-align:center;
 			}
+
+			/* Logo tooltip */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__logo .vira-tooltip{
+				position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) scale(0.8);
+				background:#1D2327;color:#fff;font-size:11.5px;font-weight:600;
+				padding:6px 12px;border-radius:8px;white-space:nowrap;
+				pointer-events:none;opacity:0;transition:opacity .25s ease, transform .25s ease;
+				z-index:10;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__logo .vira-tooltip::after{
+				content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+				border:5px solid transparent;border-top-color:#1D2327;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__logo:hover .vira-tooltip{
+				opacity:1;transform:translateX(-50%) scale(1);
+			}
+
+			/* Typing cursor for code */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__code pre .typing-cursor{
+				display:inline-block;width:2px;height:1em;background:var(--vira-accent);
+				vertical-align:text-bottom;
+				animation:vira-tech-blink 1s steps(2) infinite;
+			}
+			@keyframes vira-tech-blink{50%{opacity:0}}
+
+			/* Tab slide animations */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__panel.slide-left{
+				animation:vira-tech-slide-left .45s cubic-bezier(.4,0,.2,1);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__panel.slide-right{
+				animation:vira-tech-slide-right .45s cubic-bezier(.4,0,.2,1);
+			}
+			@keyframes vira-tech-slide-left{from{opacity:0;transform:translateX(-20px);}to{opacity:1;transform:none;}}
+			@keyframes vira-tech-slide-right{from{opacity:0;transform:translateX(20px);}to{opacity:1;transform:none;}}
+
+			/* Animated grid dots background */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__dots{
+				position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.35;
+				background-image:radial-gradient(circle,rgba(1,112,185,.3) 1px,transparent 1px);
+				background-size:32px 32px;
+				animation:vira-tech-dots-drift 20s linear infinite;
+			}
+			@keyframes vira-tech-dots-drift{0%{background-position:0 0;}100%{background-position:32px 32px;}}
+
+			/* Section entrance animation */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__inner{
+				opacity:0;transform:translateY(30px);
+				transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+			}
+			#<?php echo esc_attr( $unique_id ); ?>.is-visible .vira-tech__inner{
+				opacity:1;transform:none;
+			}
+
+			/* Reduced motion */
+			@media(prefers-reduced-motion:reduce){
+				#<?php echo esc_attr( $unique_id ); ?> .vira-tech__inner{opacity:1;transform:none;transition:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-tech__dots{animation:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-tech__panel{animation:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-tech__panel.slide-left,
+				#<?php echo esc_attr( $unique_id ); ?> .vira-tech__panel.slide-right{animation:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-tech__code pre .typing-cursor{animation:none;opacity:1;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-tech__logo:hover{transform:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-tech__tab:hover{transform:none;}
+			}
+
 			@media(max-width:880px){
 				#<?php echo esc_attr( $unique_id ); ?> .vira-tech__panel.is-active{grid-template-columns:1fr;}
 				#<?php echo esc_attr( $unique_id ); ?> .vira-tech__panel{padding:24px;}
@@ -665,6 +730,7 @@ class Vira_Sections_Widget_Tech_Stack extends \Elementor\Widget_Base {
 		</style>
 
 		<section id="<?php echo esc_attr( $unique_id ); ?>" class="vira-tech" data-vira-tech>
+			<div class="vira-tech__dots"></div>
 			<div class="vira-tech__inner">
 				<div class="vira-tech__head">
 					<?php if ( ! empty( $settings['eyebrow'] ) ) : ?>
@@ -782,7 +848,8 @@ class Vira_Sections_Widget_Tech_Stack extends \Elementor\Widget_Base {
 							<?php foreach ( $logos as $logo ) :
 								$has_image = ! empty( $logo['logo_image']['url'] );
 								?>
-								<div class="vira-tech__logo">
+								<div class="vira-tech__logo" data-logo-name="<?php echo esc_attr( $logo['logo_name'] ); ?>">
+									<span class="vira-tooltip"><?php echo esc_html( $logo['logo_name'] ); ?></span>
 									<?php if ( $has_image ) : ?>
 										<img src="<?php echo esc_url( $logo['logo_image']['url'] ); ?>" alt="<?php echo esc_attr( $logo['logo_name'] ); ?>" />
 									<?php else : ?>
@@ -801,15 +868,81 @@ class Vira_Sections_Widget_Tech_Stack extends \Elementor\Widget_Base {
 		(function(){
 			var root = document.getElementById('<?php echo esc_js( $unique_id ); ?>');
 			if (!root) return;
+
+			var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 			var tabs = root.querySelectorAll('.vira-tech__tab');
 			var panels = root.querySelectorAll('.vira-tech__panel');
+			var currentIndex = 0;
+
+			// Tab switch with slide direction
 			tabs.forEach(function(t,i){
 				t.addEventListener('click', function(){
+					var direction = i > currentIndex ? 'slide-right' : 'slide-left';
 					tabs.forEach(function(x){ x.classList.remove('is-active'); });
 					t.classList.add('is-active');
-					panels.forEach(function(p,j){ p.classList.toggle('is-active', i===j); });
+					panels.forEach(function(p,j){
+						p.classList.remove('is-active','slide-left','slide-right');
+						if (i === j) {
+							p.classList.add('is-active');
+							if (!prefersReduced) p.classList.add(direction);
+						}
+					});
+					currentIndex = i;
+					// Trigger typing animation for active panel
+					if (!prefersReduced) startTyping(i);
 				});
 			});
+
+			// Code typing animation
+			var codeContents = [];
+			panels.forEach(function(p){
+				var pre = p.querySelector('pre');
+				if (pre) codeContents.push(pre.textContent);
+				else codeContents.push('');
+			});
+
+			function startTyping(idx){
+				var panel = panels[idx];
+				if (!panel) return;
+				var pre = panel.querySelector('pre');
+				if (!pre) return;
+				var fullText = codeContents[idx];
+				if (!fullText) return;
+				pre.textContent = '';
+				var charIdx = 0;
+				var cursor = document.createElement('span');
+				cursor.className = 'typing-cursor';
+				pre.appendChild(cursor);
+				function typeChar(){
+					if (charIdx < fullText.length) {
+						pre.textContent = fullText.substring(0, charIdx + 1);
+						pre.appendChild(cursor);
+						charIdx++;
+						var delay = fullText[charIdx - 1] === '\n' ? 80 : (15 + Math.random() * 25);
+						setTimeout(typeChar, delay);
+					} else {
+						pre.textContent = fullText;
+						pre.appendChild(cursor);
+					}
+				}
+				typeChar();
+			}
+
+			// IntersectionObserver for section entrance + initial typing
+			if ('IntersectionObserver' in window) {
+				var sectionObs = new IntersectionObserver(function(entries){
+					entries.forEach(function(e){
+						if (e.isIntersecting) {
+							root.classList.add('is-visible');
+							if (!prefersReduced) startTyping(currentIndex);
+							sectionObs.unobserve(e.target);
+						}
+					});
+				}, { threshold: 0.15 });
+				sectionObs.observe(root);
+			} else {
+				root.classList.add('is-visible');
+			}
 		})();
 		</script>
 		<?php

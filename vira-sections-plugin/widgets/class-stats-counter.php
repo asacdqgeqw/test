@@ -709,6 +709,63 @@ class Vira_Sections_Widget_Stats_Counter extends \Elementor\Widget_Base {
 				box-shadow:0 8px 24px rgba(34,197,94,.35);z-index:2;
 			}
 
+			/* SVG Progress Ring */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-counter__ring{
+				position:relative;width:100px;height:100px;margin:0 auto 14px;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-counter__ring svg{
+				transform:rotate(-90deg);width:100%;height:100%;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-counter__ring circle{
+				fill:none;stroke-width:6;stroke-linecap:round;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-counter__ring .ring-bg{
+				stroke:#E2E8F0;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-counter__ring .ring-progress{
+				stroke:var(--vira-accent);
+				stroke-dasharray:282.7;
+				stroke-dashoffset:282.7;
+				transition:stroke-dashoffset 2.2s cubic-bezier(.22,1,.36,1);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-counter__ring-value{
+				position:absolute;inset:0;display:grid;place-items:center;
+			}
+
+			/* Entrance stagger animation */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-counter{
+				opacity:0;transform:translateY(30px) scale(0.95);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-counter.is-visible{
+				opacity:1;transform:translateY(0) scale(1);
+				transition:opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1);
+			}
+
+			/* Gradient shift on hover */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-counter::after{
+				content:"";position:absolute;inset:0;border-radius:24px;
+				background:linear-gradient(135deg,rgba(34,197,94,.06),rgba(18,139,224,.06));
+				opacity:0;transition:opacity .4s ease;
+				pointer-events:none;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-counter:hover::after{
+				opacity:1;
+				animation:vira-stats-gradient-shift 3s ease infinite;
+			}
+			@keyframes vira-stats-gradient-shift{
+				0%{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(18,139,224,.04));}
+				50%{background:linear-gradient(225deg,rgba(18,139,224,.08),rgba(34,197,94,.04));}
+				100%{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(18,139,224,.04));}
+			}
+
+			/* Reduced motion */
+			@media(prefers-reduced-motion:reduce){
+				#<?php echo esc_attr( $unique_id ); ?> .vira-counter{opacity:1;transform:none;transition:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-counter__ring .ring-progress{transition:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-counter:hover::after{animation:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-counter:hover{transform:none;}
+			}
+
 			@media(max-width:980px){
 				#<?php echo esc_attr( $unique_id ); ?> .vira-counters{grid-template-columns:repeat(2,1fr);}
 				#<?php echo esc_attr( $unique_id ); ?> .vira-compare__grid{grid-template-columns:1fr;}
@@ -738,15 +795,23 @@ class Vira_Sections_Widget_Stats_Counter extends \Elementor\Widget_Base {
 
 				<?php if ( ! empty( $counters ) ) : ?>
 					<div class="vira-counters">
-						<?php foreach ( $counters as $c ) :
+						<?php foreach ( $counters as $counter_index => $c ) :
 							$num = isset( $c['number_value'] ) ? (int) $c['number_value'] : 0;
 							$suf = isset( $c['suffix'] ) ? $c['suffix'] : '';
 							?>
-							<div class="vira-counter">
-								<div class="ic">
-									<?php if ( ! empty( $c['icon'] ) ) : ?>
-										<?php \Elementor\Icons_Manager::render_icon( $c['icon'], array( 'aria-hidden' => 'true' ) ); ?>
-									<?php endif; ?>
+							<div class="vira-counter" data-stagger="<?php echo (int) $counter_index; ?>">
+								<div class="vira-counter__ring">
+									<svg viewBox="0 0 100 100">
+										<circle class="ring-bg" cx="50" cy="50" r="45"/>
+										<circle class="ring-progress" cx="50" cy="50" r="45" data-ring-target="<?php echo min( 100, (int) $num ); ?>"/>
+									</svg>
+									<div class="vira-counter__ring-value">
+										<div class="ic">
+											<?php if ( ! empty( $c['icon'] ) ) : ?>
+												<?php \Elementor\Icons_Manager::render_icon( $c['icon'], array( 'aria-hidden' => 'true' ) ); ?>
+											<?php endif; ?>
+										</div>
+									</div>
 								</div>
 								<div class="num" data-counter="<?php echo (int) $num; ?>" data-suffix="<?php echo esc_attr( $suf ); ?>">۰<?php echo esc_html( $suf ); ?></div>
 								<div class="lbl"><?php echo esc_html( $c['label'] ); ?></div>
@@ -821,17 +886,24 @@ class Vira_Sections_Widget_Stats_Counter extends \Elementor\Widget_Base {
 			var root = document.getElementById('<?php echo esc_js( $unique_id ); ?>');
 			if (!root) return;
 
+			var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 			var toFa = function(n){ return String(n).replace(/\d/g, function(d){ return '۰۱۲۳۴۵۶۷۸۹'[d]; }); };
 			var formatNum = function(n){ return toFa(n.toLocaleString('en-US')); };
 
-			// Counter animation
+			// Counter animation with improved easing (cubic-bezier ease-out)
 			var counters = root.querySelectorAll('[data-counter]');
 			var animate = function(el){
 				var target = parseInt(el.getAttribute('data-counter'), 10) || 0;
 				var suffix = el.getAttribute('data-suffix') || '';
+				if (prefersReduced) {
+					el.textContent = formatNum(target) + suffix;
+					return;
+				}
 				var dur = 2200, start = performance.now();
 				var step = function(now){
 					var t = Math.min(1, (now - start) / dur);
+					// Improved cubic-bezier ease-out
 					var eased = 1 - Math.pow(1 - t, 4);
 					var val = Math.floor(eased * target);
 					el.textContent = formatNum(val) + suffix;
@@ -839,13 +911,63 @@ class Vira_Sections_Widget_Stats_Counter extends \Elementor\Widget_Base {
 				};
 				requestAnimationFrame(step);
 			};
+
+			// SVG ring animation
+			var animateRing = function(ring){
+				if (prefersReduced) {
+					var target = parseInt(ring.getAttribute('data-ring-target'), 10) || 0;
+					var percent = Math.min(100, target);
+					var offset = 282.7 - (282.7 * percent / 100);
+					ring.style.strokeDashoffset = offset;
+					return;
+				}
+				var target = parseInt(ring.getAttribute('data-ring-target'), 10) || 0;
+				var percent = Math.min(100, target);
+				var offset = 282.7 - (282.7 * percent / 100);
+				ring.style.strokeDashoffset = offset;
+			};
+
+			// Entrance stagger animation for counter cards
+			var cards = root.querySelectorAll('.vira-counter');
 			if ('IntersectionObserver' in window) {
+				var cardObserver = new IntersectionObserver(function(entries){
+					entries.forEach(function(e){
+						if (e.isIntersecting) {
+							var card = e.target;
+							var delay = parseInt(card.getAttribute('data-stagger'), 10) * 150;
+							setTimeout(function(){
+								card.classList.add('is-visible');
+							}, prefersReduced ? 0 : delay);
+							cardObserver.unobserve(card);
+						}
+					});
+				}, { threshold: 0.2 });
+				cards.forEach(function(c){ cardObserver.observe(c); });
+
 				var io = new IntersectionObserver(function(entries){
-					entries.forEach(function(e){ if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); } });
+					entries.forEach(function(e){
+						if (e.isIntersecting) {
+							animate(e.target);
+							io.unobserve(e.target);
+						}
+					});
 				}, { threshold: 0.4 });
 				counters.forEach(function(c){ io.observe(c); });
+
+				var rings = root.querySelectorAll('.ring-progress');
+				var ringObserver = new IntersectionObserver(function(entries){
+					entries.forEach(function(e){
+						if (e.isIntersecting) {
+							animateRing(e.target);
+							ringObserver.unobserve(e.target);
+						}
+					});
+				}, { threshold: 0.4 });
+				rings.forEach(function(r){ ringObserver.observe(r); });
 			} else {
+				cards.forEach(function(c){ c.classList.add('is-visible'); });
 				counters.forEach(animate);
+				root.querySelectorAll('.ring-progress').forEach(animateRing);
 			}
 
 			<?php if ( $show_compare && ! empty( $tabs ) ) : ?>

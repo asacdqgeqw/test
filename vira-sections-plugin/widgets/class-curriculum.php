@@ -531,6 +531,44 @@ class Vira_Sections_Widget_Curriculum extends \Elementor\Widget_Base {
 			#<?php echo esc_attr( $unique_id ); ?> .vira-curriculum__totals strong{color:var(--vira-accent);font-weight:900;}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-curriculum__totals .sep{color:#CBD5E1;}
 
+			/* Expand All / Collapse All button */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-curriculum__actions{
+				display:flex;align-items:center;justify-content:center;gap:12px;margin-top:20px;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-curriculum__toggle-all{
+				display:inline-flex;align-items:center;gap:8px;
+				padding:10px 20px;border-radius:12px;border:1.5px solid var(--vira-border);
+				background:#fff;cursor:pointer;font-family:inherit;
+				font-size:14px;font-weight:700;color:#475569;
+				transition:all .3s ease;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-curriculum__toggle-all:hover{
+				border-color:var(--vira-accent);color:var(--vira-accent);
+				transform:translateY(-1px);box-shadow:0 6px 16px rgba(245,158,11,.12);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-curriculum__toggle-all svg{
+				transition:transform .3s ease;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-curriculum__toggle-all.is-expanded svg{
+				transform:rotate(180deg);
+			}
+
+			/* Progress tracking */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-curriculum__progress{
+				display:flex;align-items:center;gap:10px;
+				padding:10px 18px;border-radius:12px;
+				background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.20);
+				font-size:13px;font-weight:600;color:#B45309;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-curriculum__progress-bar{
+				width:80px;height:6px;border-radius:3px;background:#E2E8F0;overflow:hidden;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-curriculum__progress-fill{
+				height:100%;border-radius:3px;
+				background:linear-gradient(90deg,var(--vira-badge-from),var(--vira-badge-to));
+				transition:width .4s cubic-bezier(.22,1,.36,1);width:0%;
+			}
+
 			#<?php echo esc_attr( $unique_id ); ?> .vira-modules{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:48px;}
 
 			#<?php echo esc_attr( $unique_id ); ?> .vira-mod{
@@ -571,11 +609,16 @@ class Vira_Sections_Widget_Curriculum extends \Elementor\Widget_Base {
 				transform:rotate(180deg);
 			}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-mod__body{
-				max-height:0;overflow:hidden;
-				transition:max-height .5s cubic-bezier(.4,0,.2,1),padding .3s ease;
+				display:grid;
+				grid-template-rows:0fr;
+				transition:grid-template-rows .5s cubic-bezier(.4,0,.2,1);
 				padding:0 20px;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-mod.is-open .vira-mod__body{max-height:800px;padding:0 20px 22px;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-mod__body-inner{
+				overflow:hidden;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-mod.is-open .vira-mod__body{grid-template-rows:1fr;padding:0 20px;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-mod.is-open .vira-mod__body-inner{padding-bottom:22px;}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-mod__meta{
 				display:flex;flex-wrap:wrap;gap:10px;
 				padding:14px 0;border-top:1px dashed var(--vira-border);margin-bottom:14px;
@@ -596,6 +639,29 @@ class Vira_Sections_Widget_Curriculum extends \Elementor\Widget_Base {
 				font-size:14px;color:#475569;line-height:1.7;
 			}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-mod__topics li svg{flex-shrink:0;margin-top:5px;color:var(--vira-accent);}
+
+			/* Entrance stagger animation */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-mod{
+				opacity:0;transform:translateY(20px);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-mod.is-visible{
+				opacity:1;transform:translateY(0);
+				transition:opacity .5s cubic-bezier(.22,1,.36,1), transform .5s cubic-bezier(.22,1,.36,1);
+			}
+
+			/* Hover lift on module headers */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-mod__head:hover{
+				opacity:.9;
+			}
+
+			/* Reduced motion */
+			@media(prefers-reduced-motion:reduce){
+				#<?php echo esc_attr( $unique_id ); ?> .vira-mod{opacity:1;transform:none;transition:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-mod__body{transition:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-mod__chev{transition:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-mod:hover{transform:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-curriculum__toggle-all:hover{transform:none;}
+			}
 
 			@media(max-width:780px){
 				#<?php echo esc_attr( $unique_id ); ?> .vira-modules{grid-template-columns:1fr;}
@@ -634,6 +700,16 @@ class Vira_Sections_Widget_Curriculum extends \Elementor\Widget_Base {
 							<?php endif; ?>
 						</div>
 					<?php endif; ?>
+					<div class="vira-curriculum__actions">
+						<button type="button" class="vira-curriculum__toggle-all" data-toggle-all>
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+							<span data-toggle-label><?php echo esc_html__( 'باز کردن همه', 'vira-sections' ); ?></span>
+						</button>
+						<div class="vira-curriculum__progress">
+							<div class="vira-curriculum__progress-bar"><div class="vira-curriculum__progress-fill" data-progress-fill></div></div>
+							<span data-progress-text>۰ / <?php echo count( $modules ); ?></span>
+						</div>
+					</div>
 				</div>
 
 				<?php if ( ! empty( $modules ) ) : ?>
@@ -656,6 +732,7 @@ class Vira_Sections_Widget_Curriculum extends \Elementor\Widget_Base {
 									</div>
 								</button>
 								<div class="vira-mod__body">
+									<div class="vira-mod__body-inner">
 									<div class="vira-mod__meta">
 										<?php if ( ! empty( $mod['sessions_count'] ) ) : ?>
 											<span class="vira-mod__chip">
@@ -690,6 +767,7 @@ class Vira_Sections_Widget_Curriculum extends \Elementor\Widget_Base {
 											<?php endforeach; ?>
 										</ul>
 									<?php endif; ?>
+									</div>
 								</div>
 							</div>
 						<?php endforeach; ?>
@@ -703,23 +781,76 @@ class Vira_Sections_Widget_Curriculum extends \Elementor\Widget_Base {
 		(function(){
 			var root = document.getElementById('<?php echo esc_js( $unique_id ); ?>');
 			if (!root) return;
+
+			var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 			var mods = root.querySelectorAll('[data-mod]');
+			var totalMods = mods.length;
+			var toggleAllBtn = root.querySelector('[data-toggle-all]');
+			var toggleLabel = root.querySelector('[data-toggle-label]');
+			var progressFill = root.querySelector('[data-progress-fill]');
+			var progressText = root.querySelector('[data-progress-text]');
+
+			var toFa = function(n){ return String(n).replace(/\d/g, function(d){ return '\u06F0\u06F1\u06F2\u06F3\u06F4\u06F5\u06F6\u06F7\u06F8\u06F9'[d]; }); };
+
+			function updateProgress(){
+				var opened = root.querySelectorAll('[data-mod].is-open').length;
+				if (progressFill) progressFill.style.width = (totalMods > 0 ? (opened / totalMods * 100) : 0) + '%';
+				if (progressText) progressText.textContent = toFa(opened) + ' / ' + toFa(totalMods);
+			}
+
+			function toggleMod(mod, open){
+				if (open) {
+					mod.classList.add('is-open');
+					var h = mod.querySelector('.vira-mod__head');
+					if (h) h.setAttribute('aria-expanded', 'true');
+				} else {
+					mod.classList.remove('is-open');
+					var h = mod.querySelector('.vira-mod__head');
+					if (h) h.setAttribute('aria-expanded', 'false');
+				}
+			}
+
 			mods.forEach(function(mod){
 				var head = mod.querySelector('.vira-mod__head');
 				if (!head) return;
 				head.addEventListener('click', function(){
 					var wasOpen = mod.classList.contains('is-open');
-					mods.forEach(function(m){
-						m.classList.remove('is-open');
-						var h = m.querySelector('.vira-mod__head');
-						if (h) h.setAttribute('aria-expanded', 'false');
-					});
-					if (!wasOpen){
-						mod.classList.add('is-open');
-						head.setAttribute('aria-expanded', 'true');
-					}
+					toggleMod(mod, !wasOpen);
+					updateProgress();
 				});
 			});
+
+			// Expand All / Collapse All
+			if (toggleAllBtn) {
+				toggleAllBtn.addEventListener('click', function(){
+					var allOpen = root.querySelectorAll('[data-mod].is-open').length === totalMods;
+					mods.forEach(function(mod){
+						toggleMod(mod, !allOpen);
+					});
+					toggleAllBtn.classList.toggle('is-expanded', !allOpen);
+					if (toggleLabel) toggleLabel.textContent = allOpen ? '<?php echo esc_js( __( 'باز کردن همه', 'vira-sections' ) ); ?>' : '<?php echo esc_js( __( 'بستن همه', 'vira-sections' ) ); ?>';
+					updateProgress();
+				});
+			}
+
+			// Entrance stagger animation via IntersectionObserver
+			if ('IntersectionObserver' in window && !prefersReduced) {
+				var entranceObs = new IntersectionObserver(function(entries){
+					entries.forEach(function(e){
+						if (e.isIntersecting) {
+							var idx = Array.prototype.indexOf.call(mods, e.target);
+							var delay = idx * 100;
+							setTimeout(function(){ e.target.classList.add('is-visible'); }, delay);
+							entranceObs.unobserve(e.target);
+						}
+					});
+				}, { threshold: 0.15 });
+				mods.forEach(function(m){ entranceObs.observe(m); });
+			} else {
+				mods.forEach(function(m){ m.classList.add('is-visible'); });
+			}
+
+			updateProgress();
 		})();
 		</script>
 		<?php
