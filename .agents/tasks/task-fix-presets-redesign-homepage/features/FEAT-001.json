@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "fix",
   "description": "Complete rewrite of preset-handler.js to fix the broken preset switching system, and audit all widget control IDs against preset data keys to fix mismatches.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Rewrite vira-sections-plugin/assets/js/preset-handler.js completely with these fixes: (1) Remove the viraPresetBound flag entirely - use a fresh event binding approach that works when the same panel is reopened for different widget instances. (2) Use Elementor's official $e.run('document/elements/settings', { container: view.getContainer(), settings: data }) command to apply all settings atomically. (3) After applying, force the panel to re-render controls so the visual state matches. (4) Add a fallback for older Elementor versions that uses model.setSetting(). (5) The change event listener should properly detect the vira_preset SELECT element even when nested inside Elementor wrapper elements - do not rely solely on e.target.dataset.setting.",
     "Audit every widget's register_controls() method in all 12 widget files under vira-sections-plugin/widgets/ and compare each control ID with the corresponding keys used in the preset data arrays in class-presets.php. Document and fix any mismatches found. Key widgets to check: class-hero.php (controls: badge_icon, badge_text, heading_before, rotating_words, description, btn_primary_text, btn_secondary_text, stats, marquee_items, aurora_color_1, aurora_color_2, btn_grad_from, btn_grad_to, rotating_grad_from, rotating_grad_to, bg_color), class-services-bento.php (controls: eyebrow, heading, description, cards), class-pricing.php (controls: eyebrow, heading, description, show_toggle, plans, bottom_note), class-testimonials-slider.php (controls: eyebrow, heading, description, items), class-faq-search.php (controls: eyebrow, heading, categories, items), class-cta-form.php (controls: badge_text, heading, description, features, select_options, submit_text + palette colors), class-process-timeline.php (controls: eyebrow, heading, description, steps), class-tabs.php (controls: eyebrow, heading, description, tabs), class-tech-stack.php (controls: eyebrow, heading, description, tabs, logos), class-stats-counter.php (controls: eyebrow, heading, description, counters), class-trust-strip.php (controls: mode, eyebrow, heading, logos, logos_title), class-curriculum.php (controls: eyebrow, heading, description, totals_modules, totals_hours, modules).",
@@ -22,5 +22,5 @@
     "Verify preset-handler.js contains '$e.run' for settings application"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 12 widget control IDs exactly match their preset data keys in class-presets.php - no mismatches found. PHP and Node are not available in this sandbox environment so php -l could not run, but no PHP files were modified. The JS rewrite follows the exact spec from the feature requirements."
 }
