@@ -1,0 +1,566 @@
+<!-- ========================================================
+     سکشن ۴: TECH STACK — تکنولوژی‌های ساخت اپلیکیشن اندروید
+     ======================================================== -->
+<style>
+.vs-app-tech{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-android-green:#3DDC84;--vs-tech-purple:#A855F7;
+  --vs-green-soft:rgba(61,220,132,.15);--vs-purple-soft:rgba(168,85,247,.14);
+  padding:110px 24px;background:linear-gradient(180deg,#fff 0%,#FAF6EC 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-app-tech::before{
+  content:"";position:absolute;top:-10%;left:-8%;width:42vw;height:42vw;
+  background:radial-gradient(circle,rgba(61,220,132,.10),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-app-tech::after{
+  content:"";position:absolute;bottom:-15%;right:-8%;width:38vw;height:38vw;
+  background:radial-gradient(circle,rgba(168,85,247,.10),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-app-tech__inner{max-width:1240px;margin:0 auto;position:relative;z-index:1;}
+
+.vs-app-tech .vs-section-head{text-align:center;margin-bottom:48px;}
+.vs-app-tech .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-green-soft);color:#0F8A4A;
+  border:1px solid rgba(61,220,132,.35);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-app-tech .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-android-green);box-shadow:0 0 0 4px rgba(61,220,132,.20);display:inline-block;}
+.vs-app-tech h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-app-tech h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--vs-android-green),var(--vs-tech-purple));
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+}
+.vs-app-tech .vs-section-head p{color:#64748B;font-size:18px;max-width:680px;margin:0 auto;}
+
+/* Tabs */
+.vs-app-tech__tabs{
+  display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:36px;
+}
+.vs-app-tech__tab{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:12px 20px;border-radius:14px;border:1.5px solid #E2E8F0;
+  background:#fff;cursor:pointer;font-family:inherit;
+  font-size:14.5px;font-weight:700;color:#475569;
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+.vs-app-tech__tab .ico{
+  width:24px;height:24px;border-radius:7px;
+  background:#F1F5F9;color:#64748B;
+  display:grid;place-items:center;flex-shrink:0;
+  transition:all .3s ease;
+}
+.vs-app-tech__tab:hover{border-color:var(--vs-android-green);color:var(--vs-android-green);transform:translateY(-2px);}
+.vs-app-tech__tab.is-active{
+  background:linear-gradient(135deg,var(--vs-android-green),#2DB76B);
+  color:#fff;border-color:var(--vs-android-green);
+  box-shadow:0 10px 26px rgba(61,220,132,.32);
+}
+.vs-app-tech__tab.is-active .ico{background:rgba(255,255,255,.22);color:#fff;}
+
+/* Panel */
+.vs-app-tech__panel-wrap{position:relative;min-height:420px;}
+.vs-app-tech__panel{
+  display:none;
+  background:#fff;border:1px solid #E2E8F0;border-radius:24px;
+  padding:36px;
+  box-shadow:0 16px 40px rgba(15,23,42,.05);
+  animation:vs-app-fade .45s cubic-bezier(.4,0,.2,1);
+}
+.vs-app-tech__panel.is-active{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:stretch;}
+@keyframes vs-app-fade{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+
+.vs-app-tech__info{display:flex;flex-direction:column;}
+.vs-app-tech__info-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.vs-app-tech__info-icon{
+  width:54px;height:54px;border-radius:14px;
+  background:linear-gradient(135deg,var(--vs-android-green),#2DB76B);
+  color:#fff;display:grid;place-items:center;
+  box-shadow:0 10px 24px rgba(61,220,132,.32);flex-shrink:0;
+}
+.vs-app-tech__info-icon.purple{background:linear-gradient(135deg,var(--vs-tech-purple),#7E22CE);box-shadow:0 10px 24px rgba(168,85,247,.30);}
+.vs-app-tech__info-icon.blue{background:linear-gradient(135deg,#0170B9,#128BE0);box-shadow:0 10px 24px rgba(1,112,185,.30);}
+.vs-app-tech__info-icon.dark{background:linear-gradient(135deg,#1D2327,#3F3F46);box-shadow:0 10px 24px rgba(29,35,39,.30);}
+
+.vs-app-tech__info h3{font-size:22px;font-weight:800;margin:0;color:var(--vs-ink);}
+.vs-app-tech__info-sub{font-size:13.5px;color:#94A3B8;margin-top:2px;}
+.vs-app-tech__desc{font-size:15px;line-height:2;color:#475569;margin:0 0 22px;}
+
+.vs-app-tech__lists{display:grid;gap:18px;}
+.vs-app-tech__list{}
+.vs-app-tech__list-title{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:800;color:var(--vs-ink);
+  text-transform:uppercase;letter-spacing:.5px;margin:0 0 10px;
+}
+.vs-app-tech__list-title svg{color:var(--vs-android-green);}
+.vs-app-tech__list-title.purple svg{color:var(--vs-tech-purple);}
+.vs-app-tech__list ul{list-style:none;padding:0;margin:0;display:grid;gap:8px;}
+.vs-app-tech__list li{
+  display:flex;align-items:flex-start;gap:9px;
+  font-size:14px;color:#475569;line-height:1.7;
+}
+.vs-app-tech__list li svg{flex-shrink:0;margin-top:4px;color:var(--vs-android-green);}
+.vs-app-tech__list.purple li svg{color:var(--vs-tech-purple);}
+
+/* Code visual */
+.vs-app-tech__code{
+  background:#0B1020;border-radius:18px;overflow:hidden;
+  border:1px solid #1E2640;
+  display:flex;flex-direction:column;
+  font-family:'JetBrains Mono','Fira Code',monospace;
+  direction:ltr;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04),0 12px 28px rgba(15,23,42,.20);
+}
+.vs-app-tech__code-bar{
+  display:flex;align-items:center;gap:6px;
+  padding:12px 16px;background:#070A18;border-bottom:1px solid #1E2640;
+}
+.vs-app-tech__code-bar .dot{width:11px;height:11px;border-radius:50%;}
+.vs-app-tech__code-bar .dot.r{background:#FF5F57;}
+.vs-app-tech__code-bar .dot.y{background:#FEBC2E;}
+.vs-app-tech__code-bar .dot.g{background:#28C840;}
+.vs-app-tech__code-bar .file{
+  margin-left:auto;font-size:11.5px;color:#64748B;
+  background:#111827;padding:4px 10px;border-radius:6px;
+  border:1px solid #1F2937;
+}
+.vs-app-tech__code pre{
+  margin:0;padding:18px 20px;font-size:13px;line-height:1.85;
+  color:#E2E8F0;flex:1;overflow:auto;white-space:pre;
+}
+.vs-app-tech__code .k{color:#A855F7;}      /* keyword */
+.vs-app-tech__code .s{color:#3DDC84;}      /* string */
+.vs-app-tech__code .c{color:#64748B;font-style:italic;} /* comment */
+.vs-app-tech__code .n{color:#FBBF24;}      /* name */
+.vs-app-tech__code .t{color:#38BDF8;}      /* type */
+.vs-app-tech__code .p{color:#94A3B8;}      /* punctuation */
+
+/* Logos grid */
+.vs-app-tech__logos{
+  margin-top:60px;
+  background:#fff;border:1px solid #E2E8F0;border-radius:24px;
+  padding:36px;
+  box-shadow:0 12px 32px rgba(15,23,42,.04);
+}
+.vs-app-tech__logos-head{
+  text-align:center;margin-bottom:26px;
+}
+.vs-app-tech__logos-head h4{
+  font-size:18px;font-weight:800;margin:0 0 6px;color:var(--vs-ink);
+}
+.vs-app-tech__logos-head p{color:#94A3B8;font-size:14px;margin:0;}
+.vs-app-tech__logos-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:12px;
+}
+.vs-app-tech__logo{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  padding:18px 10px;border-radius:14px;
+  background:#F8FAFC;border:1.5px solid #E2E8F0;
+  transition:all .35s cubic-bezier(.4,0,.2,1);cursor:default;
+  position:relative;overflow:hidden;
+}
+.vs-app-tech__logo::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--vs-green-soft),var(--vs-purple-soft));
+  opacity:0;transition:opacity .35s ease;
+}
+.vs-app-tech__logo:hover{
+  transform:translateY(-4px);
+  border-color:var(--vs-android-green);
+  box-shadow:0 14px 30px rgba(61,220,132,.16);
+}
+.vs-app-tech__logo:hover::before{opacity:1;}
+.vs-app-tech__logo > *{position:relative;z-index:1;}
+.vs-app-tech__logo svg{width:36px;height:36px;transition:transform .35s ease;}
+.vs-app-tech__logo:hover svg{transform:scale(1.12);}
+.vs-app-tech__logo span{
+  font-size:12.5px;font-weight:700;color:#475569;
+  text-align:center;
+}
+
+@media(max-width:880px){
+  .vs-app-tech__panel.is-active{grid-template-columns:1fr;}
+  .vs-app-tech__panel{padding:24px;}
+}
+@media(max-width:560px){
+  .vs-app-tech__tab{padding:10px 14px;font-size:13px;}
+  .vs-app-tech__logos{padding:22px;}
+  .vs-app-tech__logos-grid{grid-template-columns:repeat(3,1fr);}
+}
+</style>
+
+
+<section class="vs-app-tech" data-vs-app-tech>
+  <div class="vs-app-tech__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>تکنولوژی‌ها و فریم‌ورک‌ها</span>
+      <h2>با بهترین <em>ابزار روز دنیا</em> اپ می‌سازیم</h2>
+      <p>برای هر پروژه، تکنولوژی متناسب با نیاز، بودجه و آینده محصول شما را پیشنهاد می‌دهیم — از Native تا Cross-Platform.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="vs-app-tech__tabs" role="tablist">
+      <button class="vs-app-tech__tab is-active" data-tab="native">
+        <span class="ico">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 12a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0zM7 5l1.5 2M17 5l-1.5 2M9 16v3M15 16v3" stroke-linecap="round"/></svg>
+        </span>
+        Native Android
+      </button>
+      <button class="vs-app-tech__tab" data-tab="flutter">
+        <span class="ico">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3L4 13l4 4 14-14M14 13l-4 4 4 4 6-6-4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        Flutter
+      </button>
+      <button class="vs-app-tech__tab" data-tab="rn">
+        <span class="ico">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="2.5"/><ellipse cx="12" cy="12" rx="10" ry="4.5"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(120 12 12)"/></svg>
+        </span>
+        React Native
+      </button>
+      <button class="vs-app-tech__tab" data-tab="backend">
+        <span class="ico">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+        </span>
+        Backend
+      </button>
+    </div>
+
+    <!-- Panels -->
+    <div class="vs-app-tech__panel-wrap">
+
+      <!-- Native -->
+      <div class="vs-app-tech__panel is-active" data-panel="native">
+        <div class="vs-app-tech__info">
+          <div class="vs-app-tech__info-head">
+            <div class="vs-app-tech__info-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 12a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0z"/><path d="M7 5l1.5 2M17 5l-1.5 2M9 16v3M15 16v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+            </div>
+            <div>
+              <h3>Native Android</h3>
+              <div class="vs-app-tech__info-sub">Kotlin · Java · Jetpack Compose</div>
+            </div>
+          </div>
+          <p class="vs-app-tech__desc">برای پروژه‌هایی که بالاترین سطح کیفیت، عملکرد و یکپارچگی با امکانات گوشی‌های اندروید مدنظر است. Kotlin زبان رسمی توسعه اندروید و انتخاب اول گوگل است.</p>
+
+          <div class="vs-app-tech__lists">
+            <div class="vs-app-tech__list">
+              <div class="vs-app-tech__list-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                مناسب چه پروژه‌هایی است؟
+              </div>
+              <ul>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اپلیکیشن‌های پیچیده با گرافیک سنگین</li>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اپ‌هایی با نیاز به دسترسی کامل به سخت‌افزار</li>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>محصولات بانکی و مالی با نیاز به امنیت بالا</li>
+              </ul>
+            </div>
+            <div class="vs-app-tech__list purple">
+              <div class="vs-app-tech__list-title purple">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linejoin="round"/></svg>
+                مزیت‌های کلیدی
+              </div>
+              <ul>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بالاترین Performance ممکن</li>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>دسترسی کامل به APIهای اندروید</li>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تجربه کاربری ۱۰۰٪ بومی</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-app-tech__code">
+          <div class="vs-app-tech__code-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="file">MainActivity.kt</span>
+          </div>
+<pre><span class="c">// Jetpack Compose UI</span>
+<span class="k">class</span> <span class="t">MainActivity</span> <span class="p">:</span> <span class="t">ComponentActivity</span><span class="p">() {</span>
+  <span class="k">override fun</span> <span class="n">onCreate</span><span class="p">(</span>state<span class="p">:</span> <span class="t">Bundle</span><span class="p">?) {</span>
+    <span class="k">super</span><span class="p">.</span><span class="n">onCreate</span><span class="p">(state)</span>
+    <span class="n">setContent</span> <span class="p">{</span>
+      <span class="t">AppTheme</span> <span class="p">{</span>
+        <span class="t">Greeting</span><span class="p">(</span>name <span class="p">=</span> <span class="s">"تبریز"</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span></pre>
+        </div>
+      </div>
+
+      <!-- Flutter -->
+      <div class="vs-app-tech__panel" data-panel="flutter">
+        <div class="vs-app-tech__info">
+          <div class="vs-app-tech__info-head">
+            <div class="vs-app-tech__info-icon blue">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 3L4 13.5l3 3 13.5-13.5h-6zM14.5 13L9 18.5l5.5 5.5h6L15 18.5l5.5-5.5h-6z"/></svg>
+            </div>
+            <div>
+              <h3>Flutter</h3>
+              <div class="vs-app-tech__info-sub">Dart · کراس پلتفرم گوگل</div>
+            </div>
+          </div>
+          <p class="vs-app-tech__desc">یک کدبیس واحد برای Android و iOS با Performance نزدیک به Native. انتخاب ایده‌آل برای استارتاپ‌ها و کسب‌وکارهایی که می‌خواهند با بودجه بهینه هر دو پلتفرم را پوشش دهند.</p>
+
+          <div class="vs-app-tech__lists">
+            <div class="vs-app-tech__list">
+              <div class="vs-app-tech__list-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                مناسب چه پروژه‌هایی است؟
+              </div>
+              <ul>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اپ‌های فروشگاهی و خدماتی با نیاز به Android+iOS</li>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>استارتاپ‌هایی که MVP سریع نیاز دارند</li>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اپ‌های با UI/UX اختصاصی و انیمیشن سنگین</li>
+              </ul>
+            </div>
+            <div class="vs-app-tech__list purple">
+              <div class="vs-app-tech__list-title purple">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linejoin="round"/></svg>
+                مزیت‌های کلیدی
+              </div>
+              <ul>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>صرفه‌جویی ۴۰-۵۰٪ در زمان و هزینه</li>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Hot Reload — تغییرات لحظه‌ای</li>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>UI یکدست در هر دو پلتفرم</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-app-tech__code">
+          <div class="vs-app-tech__code-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="file">main.dart</span>
+          </div>
+<pre><span class="c">// Flutter Widget</span>
+<span class="k">class</span> <span class="t">HomeScreen</span> <span class="k">extends</span> <span class="t">StatelessWidget</span> <span class="p">{</span>
+  <span class="k">@override</span>
+  <span class="t">Widget</span> <span class="n">build</span><span class="p">(</span><span class="t">BuildContext</span> ctx<span class="p">) {</span>
+    <span class="k">return</span> <span class="t">Scaffold</span><span class="p">(</span>
+      appBar<span class="p">:</span> <span class="t">AppBar</span><span class="p">(</span>
+        title<span class="p">:</span> <span class="t">Text</span><span class="p">(</span><span class="s">'اپ تبریز'</span><span class="p">),</span>
+      <span class="p">),</span>
+      body<span class="p">:</span> <span class="t">Center</span><span class="p">(</span>child<span class="p">:</span> <span class="t">Greeting</span><span class="p">()),</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span></pre>
+        </div>
+      </div>
+
+      <!-- React Native -->
+      <div class="vs-app-tech__panel" data-panel="rn">
+        <div class="vs-app-tech__info">
+          <div class="vs-app-tech__info-head">
+            <div class="vs-app-tech__info-icon purple">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="2"/><ellipse cx="12" cy="12" rx="10" ry="4.5"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(120 12 12)"/></svg>
+            </div>
+            <div>
+              <h3>React Native</h3>
+              <div class="vs-app-tech__info-sub">JavaScript · TypeScript · فیسبوک</div>
+            </div>
+          </div>
+          <p class="vs-app-tech__desc">انتخاب عالی برای تیم‌هایی که از قبل با React و JavaScript آشنا هستند. اکوسیستم بزرگ و پشتیبانی فعال، ساخت اپ Android و iOS را با کد مشترک ممکن می‌کند.</p>
+
+          <div class="vs-app-tech__lists">
+            <div class="vs-app-tech__list">
+              <div class="vs-app-tech__list-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                مناسب چه پروژه‌هایی است؟
+              </div>
+              <ul>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اپ‌هایی که نسخه وب React هم دارند</li>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اپلیکیشن‌های محتوایی و شبکه‌های اجتماعی</li>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پروژه‌هایی با تیم frontend موجود</li>
+              </ul>
+            </div>
+            <div class="vs-app-tech__list purple">
+              <div class="vs-app-tech__list-title purple">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linejoin="round"/></svg>
+                مزیت‌های کلیدی
+              </div>
+              <ul>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اشتراک کد بین وب و موبایل</li>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اکوسیستم npm با هزاران پکیج</li>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>OTA Update بدون نیاز به انتشار</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-app-tech__code">
+          <div class="vs-app-tech__code-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="file">App.tsx</span>
+          </div>
+<pre><span class="c">// React Native Component</span>
+<span class="k">import</span> <span class="p">{</span> <span class="t">View</span><span class="p">,</span> <span class="t">Text</span> <span class="p">}</span> <span class="k">from</span> <span class="s">'react-native'</span><span class="p">;</span>
+
+<span class="k">export default function</span> <span class="n">App</span><span class="p">() {</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="t">View</span> style<span class="p">={</span>styles.container<span class="p">}&gt;</span>
+      <span class="p">&lt;</span><span class="t">Text</span><span class="p">&gt;</span>سلام تبریز<span class="p">&lt;/</span><span class="t">Text</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="t">View</span><span class="p">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span></pre>
+        </div>
+      </div>
+
+      <!-- Backend -->
+      <div class="vs-app-tech__panel" data-panel="backend">
+        <div class="vs-app-tech__info">
+          <div class="vs-app-tech__info-head">
+            <div class="vs-app-tech__info-icon dark">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+            </div>
+            <div>
+              <h3>Backend & APIs</h3>
+              <div class="vs-app-tech__info-sub">Node.js · Firebase · Spring Boot</div>
+            </div>
+          </div>
+          <p class="vs-app-tech__desc">قدرت پشت پرده اپلیکیشن شما — از احراز هویت کاربر و ذخیره داده‌ها تا پرداخت و نوتیفیکیشن. ما بسته به مقیاس پروژه، بهترین زیرساخت ابری را پیشنهاد می‌دهیم.</p>
+
+          <div class="vs-app-tech__lists">
+            <div class="vs-app-tech__list">
+              <div class="vs-app-tech__list-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                چه چیزهایی می‌سازیم؟
+              </div>
+              <ul>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>REST و GraphQL API برای اپ موبایل</li>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پنل ادمین برای مدیریت محتوا و کاربران</li>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Push Notification و چت Real-time</li>
+              </ul>
+            </div>
+            <div class="vs-app-tech__list purple">
+              <div class="vs-app-tech__list-title purple">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linejoin="round"/></svg>
+                زیرساخت‌های پشتیبانی
+              </div>
+              <ul>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Firebase برای MVP و استارتاپ‌ها</li>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Node.js + MongoDB برای پروژه‌های مقیاس‌پذیر</li>
+                <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Spring Boot برای پروژه‌های سازمانی</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-app-tech__code">
+          <div class="vs-app-tech__code-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="file">api.js</span>
+          </div>
+<pre><span class="c">// Node.js + Express API</span>
+<span class="k">const</span> <span class="n">express</span> <span class="p">=</span> <span class="n">require</span><span class="p">(</span><span class="s">'express'</span><span class="p">);</span>
+<span class="k">const</span> <span class="n">app</span> <span class="p">=</span> <span class="n">express</span><span class="p">();</span>
+
+<span class="n">app</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'/api/products'</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span>req<span class="p">,</span> res<span class="p">) =&gt; {</span>
+  <span class="k">const</span> data <span class="p">=</span> <span class="k">await</span> <span class="t">Product</span><span class="p">.</span><span class="n">find</span><span class="p">();</span>
+  res<span class="p">.</span><span class="n">json</span><span class="p">({</span> ok<span class="p">:</span> <span class="k">true</span><span class="p">,</span> data <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="n">app</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="n">3000</span><span class="p">);</span></pre>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Logos Grid -->
+    <div class="vs-app-tech__logos">
+      <div class="vs-app-tech__logos-head">
+        <h4>تکنولوژی‌هایی که در پروژه‌ها استفاده می‌کنیم</h4>
+        <p>پشته فنی کامل از فرانت تا بک‌اند و دیتابیس</p>
+      </div>
+      <div class="vs-app-tech__logos-grid">
+        <div class="vs-app-tech__logo">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M6 3l12 9-12 9V3z" fill="#7F52FF"/><path d="M6 3v18l12-9L6 3z" fill="url(#kg)"/><defs><linearGradient id="kg" x1="6" y1="3" x2="18" y2="21"><stop stop-color="#E44857"/><stop offset=".5" stop-color="#C711E1"/><stop offset="1" stop-color="#7F52FF"/></linearGradient></defs></svg>
+          <span>Kotlin</span>
+        </div>
+        <div class="vs-app-tech__logo">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 3h18v18H3z" fill="#ED8B00"/><path d="M8 8c0 2 4 3 4 5s-3 2-3 2M14 6c2 1 4 4 0 7M7 17h10" stroke="#fff" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+          <span>Java</span>
+        </div>
+        <div class="vs-app-tech__logo">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M14 3L3 14l3 3L20 3h-6z" fill="#02569B"/><path d="M14 13L9 18l5 5h6l-5-5 5-5h-6z" fill="#13B9FD"/></svg>
+          <span>Flutter</span>
+        </div>
+        <div class="vs-app-tech__logo">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#0175C2"/><path d="M8 8h8v8H8z" fill="#13B9FD"/></svg>
+          <span>Dart</span>
+        </div>
+        <div class="vs-app-tech__logo">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2" fill="#61DAFB"/><ellipse cx="12" cy="12" rx="10" ry="4.5" stroke="#61DAFB" stroke-width="1.5" fill="none"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(60 12 12)" stroke="#61DAFB" stroke-width="1.5" fill="none"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(120 12 12)" stroke="#61DAFB" stroke-width="1.5" fill="none"/></svg>
+          <span>React Native</span>
+        </div>
+        <div class="vs-app-tech__logo">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 5l8-3 8 3-1 13-7 4-7-4-1-13z" fill="#FFA000"/><path d="M5 16l5-13 4 7M19 16L9 19" stroke="#fff" stroke-width="1.2" fill="none" stroke-linejoin="round"/><circle cx="14" cy="10" r="2" fill="#FFCA28"/></svg>
+          <span>Firebase</span>
+        </div>
+        <div class="vs-app-tech__logo">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v10l9 5 9-5V7l-9-5z" fill="#339933"/><path d="M9 9c1-1 5-1 6 0v6c-1 1-5 1-6 0" stroke="#fff" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+          <span>Node.js</span>
+        </div>
+        <div class="vs-app-tech__logo">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C9 9 6 12 6 16c0 3 3 6 6 6s6-3 6-6c0-4-3-7-6-14z" fill="#47A248"/><path d="M12 8v14" stroke="#fff" stroke-width="1.2"/></svg>
+          <span>MongoDB</span>
+        </div>
+        <div class="vs-app-tech__logo">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#3178C6"/><path d="M9 11h6M12 11v7M15 14h-3M18 16c-1 1-3 1-4 0" stroke="#fff" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+          <span>TypeScript</span>
+        </div>
+        <div class="vs-app-tech__logo">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l9 5v10l-9 5-9-5V7l9-5z" fill="#6DB33F"/><path d="M8 12l3 3 5-5" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Spring Boot</span>
+        </div>
+        <div class="vs-app-tech__logo">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" fill="#336791"/><path d="M8 8c2 0 4 0 4 4s-2 4-4 4M14 8h3M14 12h2M14 16h3" stroke="#fff" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+          <span>PostgreSQL</span>
+        </div>
+        <div class="vs-app-tech__logo">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#DC382D"/><path d="M6 9l6 2 6-2M6 13l6 2 6-2" stroke="#fff" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg>
+          <span>Redis</span>
+        </div>
+        <div class="vs-app-tech__logo">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" fill="#1D2327"/><path d="M7 14l5-5 5 5" stroke="#3DDC84" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="9" r="1" fill="#3DDC84"/><circle cx="15" cy="9" r="1" fill="#3DDC84"/></svg>
+          <span>Android SDK</span>
+        </div>
+        <div class="vs-app-tech__logo">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" fill="#000"/><path d="M9 17l-2-2 2-2M15 13l2 2-2 2M13 9l-2 8" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Git & GitHub</span>
+        </div>
+        <div class="vs-app-tech__logo">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2496ED"/><rect x="6" y="10" width="3" height="3" fill="#fff"/><rect x="10" y="10" width="3" height="3" fill="#fff"/><rect x="14" y="10" width="3" height="3" fill="#fff"/><rect x="10" y="6" width="3" height="3" fill="#fff"/></svg>
+          <span>Docker</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  const section=document.querySelector('[data-vs-app-tech]');if(!section)return;
+  const tabs=section.querySelectorAll('.vs-app-tech__tab');
+  const panels=section.querySelectorAll('.vs-app-tech__panel');
+
+  tabs.forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      const target=tab.dataset.tab;
+      tabs.forEach(t=>t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      panels.forEach(p=>{
+        p.classList.toggle('is-active',p.dataset.panel===target);
+      });
+    });
+  });
+})();
+</script>

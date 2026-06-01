@@ -1,0 +1,227 @@
+<!-- ========================================================
+     سکشن ۵: PRICING — قیمت‌گذاری ساخت اپلیکیشن اندروید
+     ======================================================== -->
+<style>
+.vs-app-pricing{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-android-green:#3DDC84;--vs-tech-purple:#A855F7;
+  --vs-green-soft:rgba(61,220,132,.15);--vs-purple-soft:rgba(168,85,247,.14);
+  padding:110px 24px;background:linear-gradient(180deg,#FAF6EC 0%,#fff 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-app-pricing::before{
+  content:"";position:absolute;top:0;left:-10%;width:42vw;height:42vw;
+  background:radial-gradient(circle,rgba(61,220,132,.10),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-app-pricing::after{
+  content:"";position:absolute;bottom:-10%;right:-10%;width:40vw;height:40vw;
+  background:radial-gradient(circle,rgba(168,85,247,.10),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-app-pricing__inner{max-width:1240px;margin:0 auto;position:relative;z-index:1;}
+.vs-app-pricing .vs-section-head{text-align:center;margin-bottom:56px;}
+.vs-app-pricing .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-green-soft);color:#0F8A4A;
+  border:1px solid rgba(61,220,132,.35);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-app-pricing .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-android-green);box-shadow:0 0 0 4px rgba(61,220,132,.20);display:inline-block;}
+.vs-app-pricing h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-app-pricing h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--vs-android-green),var(--vs-tech-purple));
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+}
+.vs-app-pricing .vs-section-head p{color:#64748B;font-size:18px;max-width:680px;margin:0 auto;}
+
+/* Grid */
+.vs-app-pricing__grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+  align-items:stretch;
+}
+.vs-app-pcard{
+  background:#fff;border:1.5px solid #E2E8F0;border-radius:24px;
+  padding:34px 28px;display:flex;flex-direction:column;
+  transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;
+}
+.vs-app-pcard:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(15,23,42,.08);border-color:rgba(61,220,132,.35);}
+
+.vs-app-pcard--featured{
+  border-color:transparent;
+  background:
+    linear-gradient(#fff,#fff) padding-box,
+    linear-gradient(135deg,var(--vs-android-green),var(--vs-tech-purple)) border-box;
+  border:2px solid transparent;
+  box-shadow:0 24px 60px rgba(61,220,132,.18),0 8px 20px rgba(168,85,247,.14);
+  transform:translateY(-8px);
+}
+.vs-app-pcard--featured::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--vs-android-green),var(--vs-tech-purple));
+}
+.vs-app-pcard__popular{
+  position:absolute;top:-1px;left:24px;
+  background:linear-gradient(135deg,var(--vs-android-green),var(--vs-tech-purple));
+  color:#fff;padding:7px 14px;border-radius:0 0 12px 12px;
+  font-size:11.5px;font-weight:800;letter-spacing:.2px;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.vs-app-pcard__popular svg{width:11px;height:11px;}
+
+.vs-app-pcard__icon{
+  width:54px;height:54px;border-radius:14px;
+  background:var(--vs-green-soft);color:var(--vs-android-green);
+  display:grid;place-items:center;margin-bottom:18px;
+}
+.vs-app-pcard--featured .vs-app-pcard__icon{
+  background:linear-gradient(135deg,var(--vs-android-green),var(--vs-tech-purple));color:#fff;
+  box-shadow:0 10px 22px rgba(61,220,132,.30);
+}
+.vs-app-pcard__name{font-size:20px;font-weight:800;margin:0 0 6px;color:var(--vs-ink);}
+.vs-app-pcard__desc{font-size:13.5px;color:#64748B;margin:0 0 22px;line-height:1.7;min-height:46px;}
+
+.vs-app-pcard__price{margin-bottom:24px;padding-bottom:22px;border-bottom:1px dashed #E2E8F0;}
+.vs-app-pcard__amount{font-size:clamp(28px,2.8vw,36px);font-weight:900;color:var(--vs-ink);line-height:1;}
+.vs-app-pcard--featured .vs-app-pcard__amount{
+  background:linear-gradient(135deg,var(--vs-android-green),var(--vs-tech-purple));
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+}
+.vs-app-pcard__period{font-size:13.5px;color:#94A3B8;font-weight:500;display:block;margin-top:6px;}
+
+.vs-app-pcard__features{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:11px;flex:1;}
+.vs-app-pcard__features li{
+  display:flex;align-items:flex-start;gap:9px;
+  font-size:14px;color:#475569;line-height:1.6;
+}
+.vs-app-pcard__features li svg{flex-shrink:0;margin-top:3px;color:var(--vs-android-green);}
+.vs-app-pcard--featured .vs-app-pcard__features li svg{color:var(--vs-tech-purple);}
+
+.vs-app-pcard__btn{
+  display:block;width:100%;padding:14px;border-radius:12px;
+  text-align:center;font-weight:700;font-size:15px;
+  text-decoration:none;transition:all .3s ease;cursor:pointer;border:none;
+  font-family:inherit;
+}
+.vs-app-pcard__btn--outline{
+  background:transparent;border:2px solid #E2E8F0;color:var(--vs-ink);
+}
+.vs-app-pcard__btn--outline:hover{border-color:var(--vs-android-green);color:var(--vs-android-green);background:var(--vs-green-soft);}
+.vs-app-pcard__btn--primary{
+  background:linear-gradient(135deg,var(--vs-android-green),var(--vs-tech-purple));
+  color:#fff;box-shadow:0 12px 28px rgba(61,220,132,.30);
+}
+.vs-app-pcard__btn--primary:hover{box-shadow:0 16px 36px rgba(168,85,247,.45);transform:translateY(-2px);}
+
+/* Bottom note */
+.vs-app-pricing__note{
+  margin-top:36px;text-align:center;
+  background:#fff;border:1px dashed #CBD5E1;border-radius:16px;
+  padding:18px 24px;
+  display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px;
+  font-size:14.5px;color:#475569;
+  width:100%;justify-content:center;
+  box-sizing:border-box;
+}
+.vs-app-pricing__note svg{color:var(--vs-android-green);flex-shrink:0;}
+.vs-app-pricing__note strong{color:var(--vs-ink);font-weight:700;}
+
+@media(max-width:980px){
+  .vs-app-pricing__grid{grid-template-columns:1fr;max-width:480px;margin:0 auto;}
+  .vs-app-pcard--featured{transform:none;}
+}
+</style>
+
+
+<section class="vs-app-pricing" data-vs-app-pricing>
+  <div class="vs-app-pricing__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>پکیج‌های ساخت اپلیکیشن</span>
+      <h2>قیمت‌گذاری <em>شفاف و منصفانه</em></h2>
+      <p>سه پکیج برای سه نیاز متفاوت — از اپلیکیشن‌های ساده تا محصولات سازمانی. در صورت نیاز، پکیج اختصاصی هم طراحی می‌کنیم.</p>
+    </div>
+
+    <div class="vs-app-pricing__grid">
+
+      <!-- Basic -->
+      <div class="vs-app-pcard">
+        <div class="vs-app-pcard__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="vs-app-pcard__name">پایه</div>
+        <div class="vs-app-pcard__desc">برای اپلیکیشن‌های ساده و کسب‌وکارهای کوچک</div>
+        <div class="vs-app-pcard__price">
+          <span class="vs-app-pcard__amount">۱۸ میلیون</span>
+          <span class="vs-app-pcard__period">تومان · پروژه کامل</span>
+        </div>
+        <ul class="vs-app-pcard__features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اپلیکیشن ساده با ۵-۸ صفحه</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>فقط نسخه اندروید (Native یا Flutter)</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>طراحی استاندارد بر اساس Material Design</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اتصال به API و دیتابیس پایه</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>۳ ماه پشتیبانی فنی رایگان</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تحویل در ۴-۶ هفته</li>
+        </ul>
+        <button class="vs-app-pcard__btn vs-app-pcard__btn--outline">شروع پروژه پایه</button>
+      </div>
+
+      <!-- Pro (Featured) -->
+      <div class="vs-app-pcard vs-app-pcard--featured">
+        <div class="vs-app-pcard__popular">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          محبوب‌ترین انتخاب
+        </div>
+        <div class="vs-app-pcard__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="vs-app-pcard__name">حرفه‌ای</div>
+        <div class="vs-app-pcard__desc">برای اپلیکیشن‌های متوسط با امکانات کامل</div>
+        <div class="vs-app-pcard__price">
+          <span class="vs-app-pcard__amount">۴۸ میلیون</span>
+          <span class="vs-app-pcard__period">تومان · پروژه کامل</span>
+        </div>
+        <ul class="vs-app-pcard__features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اپلیکیشن متوسط با ۱۵+ صفحه</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اندروید + iOS با Flutter (یک کدبیس)</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>طراحی UI/UX اختصاصی و انیمیشن</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>درگاه پرداخت + Push Notification</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پنل ادمین وب کامل برای مدیریت</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>۶ ماه پشتیبانی فنی رایگان</li>
+        </ul>
+        <button class="vs-app-pcard__btn vs-app-pcard__btn--primary">شروع پروژه حرفه‌ای</button>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="vs-app-pcard">
+        <div class="vs-app-pcard__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="vs-app-pcard__name">سازمانی</div>
+        <div class="vs-app-pcard__desc">برای محصولات پیچیده، شرکت‌ها و سازمان‌ها</div>
+        <div class="vs-app-pcard__price">
+          <span class="vs-app-pcard__amount">قیمت سفارشی</span>
+          <span class="vs-app-pcard__period">بر اساس نیاز و دامنه پروژه</span>
+        </div>
+        <ul class="vs-app-pcard__features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اپلیکیشن پیچیده با Native Performance</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اتصال به ERP / CRM / سیستم‌های قدیمی</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>امنیت سطح بانکی + رمزنگاری End-to-End</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تیم اختصاصی توسعه (Lead + ۲ Dev)</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>SLA پشتیبانی ۲۴/۷ با تضمین کتبی</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>مدل قرارداد با Milestone و گارانتی</li>
+        </ul>
+        <button class="vs-app-pcard__btn vs-app-pcard__btn--outline">درخواست مشاوره سازمانی</button>
+      </div>
+
+    </div>
+
+    <div class="vs-app-pricing__note">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4M21 12c0 5-4 9-9 9s-9-4-9-9 4-9 9-9 9 4 9 9z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>همه پکیج‌ها شامل: <strong>انتشار در گوگل پلی + اپ‌استور</strong> · <strong>پنل تحلیل کاربران</strong> · <strong>مستندسازی فنی کامل</strong></span>
+    </div>
+
+  </div>
+</section>

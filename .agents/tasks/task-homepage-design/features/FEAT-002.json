@@ -1,0 +1,34 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Add homepage preset data to the Elementor plugin's class-presets.php. This allows users to select 'homepage' from the preset dropdown in each widget and auto-fill homepage-specific content. Update $page_labels, $widget_pages, $palettes, and add homepage data to each relevant widget preset method.",
+  "status": "completed",
+  "steps": [
+    "Edit /projects/sandbox/test/vira-sections-plugin/includes/class-presets.php: Add 'homepage' => 'صفحه اصلی' to the $page_labels array.",
+    "Add 'homepage' palette to the $palettes array with the general brand colors: aurora_color_1 => '#128BE0', aurora_color_2 => '#170C79', btn_grad_from => '#128BE0', btn_grad_to => '#8ACBD0', rotating_grad_from => '#8ACBD0', rotating_grad_to => '#EFE3CA', bg_color => '#060832'.",
+    "Add 'homepage' to the $widget_pages array for: vira_hero, vira_services_bento, vira_process_timeline, vira_pricing, vira_testimonials_slider, vira_faq_search, vira_cta_form, vira_trust_strip, vira_stats_counter. Do NOT add to vira_tabs, vira_tech_stack, or vira_curriculum (not used on homepage).",
+    "Add homepage preset data to get_vira_hero_presets(): badge_icon '+', badge_text about being a full-service digital agency, heading_before about agency services, rotating_words (digital marketing, web design, SEO, app development), description about full agency capabilities, buttons for free consultation and portfolio, stats (450+ projects, 98% satisfaction, 10+ years), marquee items covering all services.",
+    "Add homepage preset data to get_vira_services_bento_presets(): eyebrow 'services', heading about comprehensive digital services, cards for all 4 services (web design large+dark, SEO large, app medium, training medium, plus a consultation CTA card medium).",
+    "Add homepage preset data to get_vira_process_timeline_presets(): eyebrow 'how we work', heading about transparent process, 4-5 steps covering the general agency workflow (consultation, analysis, design/development, launch, support).",
+    "Add homepage preset data to get_vira_pricing_presets(): eyebrow about packages, heading about suitable package for every business, 3 plans (starter from 18M, professional from 38M, enterprise custom) covering bundled services.",
+    "Add homepage preset data to get_vira_testimonials_slider_presets(): eyebrow 'client stories', heading about success stories, 4 items picking the best testimonials from different service areas.",
+    "Add homepage preset data to get_vira_faq_search_presets(): eyebrow 'FAQ', heading, categories (general, pricing, process, support), 7-8 items covering the most common questions about the agency.",
+    "Add homepage preset data to get_vira_cta_form_presets(): badge_text about online experts, heading about starting your project, description, features list, select_options for choosing which service they need, submit_text.",
+    "Add homepage preset data to get_vira_trust_strip_presets(): mode 'logos_only', logos_title about 450+ trusted businesses, logos array with 6 brand names.",
+    "Add homepage preset data to get_vira_stats_counter_presets(): eyebrow about results, heading, counters (450+ projects, 120+ first-page SEO sites, 800+ students, 10+ years)."
+  ],
+  "acceptance_criteria": [
+    "'homepage' key exists in $page_labels array",
+    "'homepage' key exists in $palettes array",
+    "'homepage' appears in $widget_pages for the 9 specified widgets",
+    "Each of the 9 widget preset methods returns a 'homepage' key with appropriate data",
+    "The data follows the same structure and field names as existing presets for each widget",
+    "All text content is in Persian"
+  ],
+  "verification": [
+    "Grep for 'homepage' in class-presets.php to confirm it appears in all required locations",
+    "Verify the file is syntactically valid by checking for balanced PHP brackets and array structures"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

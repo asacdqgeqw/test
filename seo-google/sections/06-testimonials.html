@@ -1,0 +1,226 @@
+<!-- ========================================================
+     سکشن ۶: TESTIMONIALS — نظرات مشتریان موفق سئو
+     ======================================================== -->
+<style>
+.vs-seo-testimonials{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-green:#22c55e;--vs-green-soft:rgba(34,197,94,.15);
+  padding:110px 24px;background:linear-gradient(180deg,#fff 0%,#FAF6EC 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-seo-testimonials__inner{max-width:1240px;margin:0 auto;position:relative;z-index:1;}
+.vs-seo-testimonials .vs-section-head{text-align:center;margin-bottom:64px;}
+.vs-seo-testimonials .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-green-soft);color:var(--vs-green);
+  border:1px solid rgba(34,197,94,.25);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-seo-testimonials .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-green);box-shadow:0 0 0 4px rgba(34,197,94,.18);display:inline-block;}
+.vs-seo-testimonials h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-seo-testimonials h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-green),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-seo-testimonials .vs-section-head p{color:#64748B;font-size:18px;max-width:680px;margin:0 auto;}
+
+/* Slider */
+.vs-seo-slider{position:relative;perspective:1200px;}
+.vs-seo-slider__track{
+  display:flex;align-items:center;justify-content:center;
+  min-height:380px;position:relative;
+}
+.vs-seo-slide{
+  position:absolute;width:100%;max-width:700px;
+  background:#fff;border:1px solid #E2E8F0;border-radius:28px;
+  padding:48px;box-shadow:0 20px 50px rgba(0,0,0,.06);
+  opacity:0;transform:translateX(100px) rotateY(-8deg) scale(.9);
+  transition:all .6s cubic-bezier(.4,0,.2,1);pointer-events:none;
+}
+.vs-seo-slide.is-active{
+  opacity:1;transform:translateX(0) rotateY(0) scale(1);
+  pointer-events:auto;z-index:3;
+}
+.vs-seo-slide.is-prev{
+  opacity:.4;transform:translateX(120px) rotateY(5deg) scale(.85);z-index:1;
+}
+.vs-seo-slide.is-next{
+  opacity:.4;transform:translateX(-120px) rotateY(-5deg) scale(.85);z-index:1;
+}
+.vs-seo-slide__quote{
+  font-size:18px;line-height:2;color:#334155;margin:0 0 28px;
+  position:relative;padding-right:24px;
+}
+.vs-seo-slide__quote::before{
+  content:"\201C";position:absolute;right:0;top:-8px;
+  font-size:48px;color:var(--vs-green);opacity:.3;font-weight:900;line-height:1;
+}
+.vs-seo-slide__author{display:flex;align-items:center;gap:16px;}
+.vs-seo-slide__avatar{
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--vs-green),var(--vs-accent));
+  display:grid;place-items:center;color:#fff;font-weight:900;font-size:20px;
+  flex-shrink:0;
+}
+.vs-seo-slide__info{flex:1;}
+.vs-seo-slide__name{font-weight:800;font-size:16px;color:var(--vs-ink);}
+.vs-seo-slide__company{font-size:13px;color:#64748B;}
+.vs-seo-slide__badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--vs-green-soft);color:var(--vs-green);
+  border:1px solid rgba(34,197,94,.25);
+  padding:8px 14px;border-radius:12px;font-size:14px;font-weight:800;
+}
+.vs-seo-slide__badge svg{width:16px;height:16px;}
+
+/* Controls */
+.vs-seo-slider__controls{
+  display:flex;align-items:center;justify-content:center;gap:16px;margin-top:40px;
+}
+.vs-seo-slider__btn{
+  width:48px;height:48px;border-radius:50%;
+  background:#fff;border:1.5px solid #E2E8F0;
+  display:grid;place-items:center;cursor:pointer;
+  transition:all .3s ease;color:var(--vs-ink);
+}
+.vs-seo-slider__btn:hover{border-color:var(--vs-green);color:var(--vs-green);box-shadow:0 4px 12px rgba(34,197,94,.15);}
+.vs-seo-slider__dots{display:flex;gap:8px;}
+.vs-seo-slider__dot{
+  width:10px;height:10px;border-radius:50%;
+  background:#E2E8F0;cursor:pointer;transition:all .3s ease;border:none;padding:0;
+}
+.vs-seo-slider__dot.is-active{background:var(--vs-green);transform:scale(1.3);}
+
+@media(max-width:768px){
+  .vs-seo-slide{padding:28px;max-width:90%;}
+  .vs-seo-slide.is-prev,.vs-seo-slide.is-next{opacity:0;}
+  .vs-seo-slide__quote{font-size:16px;}
+}
+</style>
+
+
+<section class="vs-seo-testimonials" data-vs-seo-testimonials>
+  <div class="vs-seo-testimonials__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>داستان‌های موفقیت</span>
+      <h2>مشتریانی که به <em>صفحه اول</em> رسیدند</h2>
+      <p>نتایج واقعی از کسب‌وکارهایی که با سئوی ما رشد کردند.</p>
+    </div>
+
+    <div class="vs-seo-slider" data-vs-slider>
+      <div class="vs-seo-slider__track">
+        <div class="vs-seo-slide is-active" data-slide="0">
+          <p class="vs-seo-slide__quote">بعد از ۴ ماه همکاری، ترافیک ارگانیک سایتمون ۳۴۰ درصد رشد کرد. الان بیشتر مشتری‌هامون از گوگل میان و هزینه تبلیغاتمون نصف شده.</p>
+          <div class="vs-seo-slide__author">
+            <div class="vs-seo-slide__avatar">م</div>
+            <div class="vs-seo-slide__info">
+              <div class="vs-seo-slide__name">محمد احمدی</div>
+              <div class="vs-seo-slide__company">مدیرعامل، فروشگاه آنلاین نوین‌تک</div>
+            </div>
+            <div class="vs-seo-slide__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              +۳۴۰٪ ترافیک
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-seo-slide" data-slide="1">
+          <p class="vs-seo-slide__quote">تو ۶ ماه، ۱۲ کلمه کلیدی اصلی‌مون به رتبه ۱ گوگل رسید. تیم سئو واقعاً حرفه‌ای و منظم بودن و هر هفته گزارش شفاف می‌دادن.</p>
+          <div class="vs-seo-slide__author">
+            <div class="vs-seo-slide__avatar">س</div>
+            <div class="vs-seo-slide__info">
+              <div class="vs-seo-slide__name">سارا کریمی</div>
+              <div class="vs-seo-slide__company">مدیر مارکتینگ، کلینیک زیبایی رز</div>
+            </div>
+            <div class="vs-seo-slide__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              رتبه ۱ در ۱۲ کلمه
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-seo-slide" data-slide="2">
+          <p class="vs-seo-slide__quote">فروش ارگانیک ما ۴ برابر شد! قبلاً کل فروشمون از تبلیغات بود ولی الان ۶۰ درصد فروش از سئو میاد. بهترین سرمایه‌گذاری که کردیم.</p>
+          <div class="vs-seo-slide__author">
+            <div class="vs-seo-slide__avatar">ع</div>
+            <div class="vs-seo-slide__info">
+              <div class="vs-seo-slide__name">علی رضایی</div>
+              <div class="vs-seo-slide__company">بنیان‌گذار، استارتاپ فین‌پی</div>
+            </div>
+            <div class="vs-seo-slide__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              ×۴ فروش ارگانیک
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-seo-slide" data-slide="3">
+          <p class="vs-seo-slide__quote">با سئو محلی، تعداد تماس‌ها و مراجعه حضوری‌مون ۲۵۰ درصد بیشتر شد. الان تو Map Pack گوگل جزو ۳ نتیجه اول هستیم.</p>
+          <div class="vs-seo-slide__author">
+            <div class="vs-seo-slide__avatar">ن</div>
+            <div class="vs-seo-slide__info">
+              <div class="vs-seo-slide__name">نازنین محمدی</div>
+              <div class="vs-seo-slide__company">مالک، رستوران سنتی باغ ایرانی</div>
+            </div>
+            <div class="vs-seo-slide__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="3"/></svg>
+              Top 3 نقشه گوگل
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vs-seo-slider__controls">
+        <button class="vs-seo-slider__btn" data-slider-prev aria-label="قبلی">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="vs-seo-slider__dots">
+          <button class="vs-seo-slider__dot is-active" data-dot="0"></button>
+          <button class="vs-seo-slider__dot" data-dot="1"></button>
+          <button class="vs-seo-slider__dot" data-dot="2"></button>
+          <button class="vs-seo-slider__dot" data-dot="3"></button>
+        </div>
+        <button class="vs-seo-slider__btn" data-slider-next aria-label="بعدی">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const root=document.querySelector('[data-vs-slider]');if(!root)return;
+  const slides=root.querySelectorAll('.vs-seo-slide');
+  const dots=root.querySelectorAll('.vs-seo-slider__dot');
+  const prevBtn=root.querySelector('[data-slider-prev]');
+  const nextBtn=root.querySelector('[data-slider-next]');
+  let current=0;const total=slides.length;
+
+  function goTo(idx){
+    current=((idx%total)+total)%total;
+    slides.forEach((s,i)=>{
+      s.classList.remove('is-active','is-prev','is-next');
+      if(i===current)s.classList.add('is-active');
+      else if(i===((current-1+total)%total))s.classList.add('is-prev');
+      else if(i===((current+1)%total))s.classList.add('is-next');
+    });
+    dots.forEach((d,i)=>d.classList.toggle('is-active',i===current));
+  }
+
+  prevBtn.addEventListener('click',()=>{goTo(current+1);resetAuto();});
+  nextBtn.addEventListener('click',()=>{goTo(current-1);resetAuto();});
+  dots.forEach((d,i)=>d.addEventListener('click',()=>{goTo(i);resetAuto();}));
+
+  // Touch/swipe
+  let startX=0;
+  root.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;},{passive:true});
+  root.addEventListener('touchend',e=>{
+    const diff=e.changedTouches[0].clientX-startX;
+    if(Math.abs(diff)>50){diff>0?goTo(current+1):goTo(current-1);resetAuto();}
+  },{passive:true});
+
+  // Auto-play
+  let auto=setInterval(()=>goTo(current+1),5000);
+  function resetAuto(){clearInterval(auto);auto=setInterval(()=>goTo(current+1),5000);}
+})();
+</script>

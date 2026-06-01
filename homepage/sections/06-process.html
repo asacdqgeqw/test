@@ -1,0 +1,108 @@
+<!-- سکشن ۵: فرآیند همکاری -->
+<style>
+.vs-home-proc{--vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;--vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;padding:110px 24px;background:#0a0640;font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:#fff;position:relative;overflow:hidden;}
+.vs-home-proc::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 50% at 100% 0%,rgba(18,139,224,.30),transparent 60%),radial-gradient(40% 50% at 0% 100%,rgba(138,203,208,.20),transparent 60%);pointer-events:none;}
+.vs-home-proc::after{content:"";position:absolute;inset:0;opacity:.30;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:60px 60px;-webkit-mask-image:radial-gradient(ellipse at center,#000,transparent 70%);mask-image:radial-gradient(ellipse at center,#000,transparent 70%);pointer-events:none;}
+.vs-home-proc__inner{max-width:1240px;margin:0 auto;position:relative;}
+.vs-home-proc .vs-section-head{text-align:center;margin-bottom:64px;}
+.vs-home-proc .vs-section-head .vs-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.18);padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;backdrop-filter:blur(10px);}
+.vs-home-proc .vs-section-head .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-cyan);box-shadow:0 0 0 4px rgba(138,203,208,.25);display:inline-block;}
+.vs-home-proc .vs-section-head h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;color:#fff;}
+.vs-home-proc .vs-section-head h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-home-proc .vs-section-head p{color:rgba(255,255,255,.65);font-size:18px;max-width:680px;margin:0 auto;}
+.vs-home-proc__timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;position:relative;margin-bottom:32px;}
+.vs-home-proc__timeline::before{content:"";position:absolute;top:32px;right:5%;left:5%;height:2px;background:linear-gradient(90deg,rgba(138,203,208,.50) var(--progress,12%),rgba(255,255,255,.10) var(--progress,12%));transition:all .5s ease;}
+.vs-home-proc__step{position:relative;cursor:pointer;padding-top:60px;text-align:center;transition:transform .25s ease;}
+.vs-home-proc__step:hover{transform:translateY(-2px);}
+.vs-home-proc__dot{position:absolute;top:14px;right:50%;transform:translateX(50%);width:40px;height:40px;border-radius:50%;background:#0a0640;border:2px solid rgba(255,255,255,.20);display:grid;place-items:center;font-weight:900;font-size:15px;color:#fff;transition:all .35s ease;z-index:2;}
+.vs-home-proc__step.is-active .vs-home-proc__dot,.vs-home-proc__step.is-done .vs-home-proc__dot{background:linear-gradient(135deg,var(--vs-cyan),var(--vs-secondary));border-color:transparent;box-shadow:0 0 0 8px rgba(138,203,208,.20),0 12px 30px rgba(138,203,208,.40);transform:translateX(50%) scale(1.1);}
+.vs-home-proc__step.is-active .vs-home-proc__dot::after{content:"";position:absolute;inset:-12px;border-radius:50%;border:2px solid var(--vs-cyan);animation:vs-home-proc-pulse 2s ease-out infinite;}
+@keyframes vs-home-proc-pulse{0%{transform:scale(1);opacity:1;}100%{transform:scale(1.6);opacity:0;}}
+.vs-home-proc__step-title{font-size:13px;font-weight:700;color:#fff;transition:color .25s ease;}
+.vs-home-proc__step:not(.is-active) .vs-home-proc__step-title{color:rgba(255,255,255,.55);}
+.vs-home-proc__step-sub{font-size:11px;color:rgba(255,255,255,.45);margin-top:4px;}
+.vs-home-proc__stage{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:48px;backdrop-filter:blur(20px);display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;min-height:320px;position:relative;overflow:hidden;}
+.vs-home-proc__stage-num{font-size:100px;line-height:1;font-weight:900;background:linear-gradient(180deg,rgba(255,255,255,.15) 0%,rgba(255,255,255,0) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;margin-bottom:-24px;user-select:none;}
+.vs-home-proc__stage-title{font-size:28px;font-weight:800;color:#fff;margin-bottom:12px;}
+.vs-home-proc__stage-desc{color:rgba(255,255,255,.78);font-size:16px;line-height:1.95;margin-bottom:24px;}
+.vs-home-proc__stage-list{list-style:none;padding:0;margin:0;display:grid;gap:10px;}
+.vs-home-proc__stage-list li{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;color:rgba(255,255,255,.85);}
+.vs-home-proc__stage-list li svg{flex-shrink:0;color:var(--vs-cyan);margin-top:4px;}
+.vs-home-proc__stage-visual{position:relative;aspect-ratio:1/1;max-width:280px;margin:0 auto;display:grid;place-items:center;}
+.vs-home-proc__stage-visual .ring{position:absolute;border-radius:50%;border:1.5px solid rgba(138,203,208,.15);animation:vs-home-proc-ring 30s linear infinite;}
+.vs-home-proc__stage-visual .ring--1{inset:0;}
+.vs-home-proc__stage-visual .ring--2{inset:14%;border-style:dashed;animation-direction:reverse;animation-duration:24s;}
+@keyframes vs-home-proc-ring{to{transform:rotate(360deg);}}
+.vs-home-proc__stage-visual .core{width:55%;aspect-ratio:1/1;border-radius:50%;background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));display:grid;place-items:center;color:#fff;box-shadow:0 0 60px rgba(18,139,224,.40);position:relative;}
+.vs-home-proc__stage-visual .core svg{width:45%;height:45%;}
+.vs-home-proc__stage.is-changing .vs-home-proc__stage-content,.vs-home-proc__stage.is-changing .vs-home-proc__stage-visual{opacity:0;transform:translateY(12px);}
+.vs-home-proc__stage-content,.vs-home-proc__stage-visual{transition:opacity .35s ease,transform .35s ease;}
+@media(max-width:880px){.vs-home-proc__timeline{grid-template-columns:repeat(3,1fr);gap:24px;}.vs-home-proc__timeline::before{display:none;}.vs-home-proc__stage{grid-template-columns:1fr;padding:32px 24px;}.vs-home-proc__stage-visual{order:-1;max-width:200px;}.vs-home-proc__stage-num{font-size:70px;}.vs-home-proc__stage-title{font-size:22px;}}
+</style>
+
+<section class="vs-home-proc">
+  <div class="vs-home-proc__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>فرآیند همکاری</span>
+      <h2>از مشاوره تا <em>موفقیت</em> شما</h2>
+      <p>مسیر همکاری شفاف و بدون ابهام. روی هر مرحله کلیک کنید.</p>
+    </div>
+    <div class="vs-home-proc__timeline" data-vs-home-proc-timeline>
+      <div class="vs-home-proc__step is-active" data-step="1"><div class="vs-home-proc__dot">۱</div><div class="vs-home-proc__step-title">مشاوره رایگان</div><div class="vs-home-proc__step-sub">۱ روز</div></div>
+      <div class="vs-home-proc__step" data-step="2"><div class="vs-home-proc__dot">۲</div><div class="vs-home-proc__step-title">تحلیل و استراتژی</div><div class="vs-home-proc__step-sub">۳-۵ روز</div></div>
+      <div class="vs-home-proc__step" data-step="3"><div class="vs-home-proc__dot">۳</div><div class="vs-home-proc__step-title">طراحی و توسعه</div><div class="vs-home-proc__step-sub">متغیر</div></div>
+      <div class="vs-home-proc__step" data-step="4"><div class="vs-home-proc__dot">۴</div><div class="vs-home-proc__step-title">تست و بهینه‌سازی</div><div class="vs-home-proc__step-sub">۳-۵ روز</div></div>
+      <div class="vs-home-proc__step" data-step="5"><div class="vs-home-proc__dot">۵</div><div class="vs-home-proc__step-title">انتشار و پشتیبانی</div><div class="vs-home-proc__step-sub">مستمر</div></div>
+    </div>
+    <div class="vs-home-proc__stage" data-vs-home-proc-stage>
+      <div class="vs-home-proc__stage-content">
+        <div class="vs-home-proc__stage-num" data-stage-num>۰۱</div>
+        <h3 class="vs-home-proc__stage-title" data-stage-title>مشاوره رایگان</h3>
+        <p class="vs-home-proc__stage-desc" data-stage-desc>جلسه اولیه رایگان برای شناخت نیازها و اهداف شما. بررسی وضعیت فعلی و ارائه راهکارهای اولیه.</p>
+        <ul class="vs-home-proc__stage-list" data-stage-list>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>شناخت نیازها و اهداف کسب‌وکار</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بررسی وضعیت فعلی دیجیتال</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>ارائه راهکار و پیشنهاد اولیه</li>
+        </ul>
+      </div>
+      <div class="vs-home-proc__stage-visual">
+        <div class="ring ring--1"></div><div class="ring ring--2"></div>
+        <div class="core" data-stage-icon><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var timeline=document.querySelector('[data-vs-home-proc-timeline]');
+  var stage=document.querySelector('[data-vs-home-proc-stage]');
+  if(!timeline||!stage)return;
+  var data={
+    1:{num:'۰۱',title:'مشاوره رایگان',desc:'جلسه اولیه رایگان برای شناخت نیازها و اهداف شما. بررسی وضعیت فعلی و ارائه راهکارهای اولیه.',list:['شناخت نیازها و اهداف کسب\u200Cوکار','بررسی وضعیت فعلی دیجیتال','ارائه راهکار و پیشنهاد اولیه'],icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>'},
+    2:{num:'۰۲',title:'تحلیل و استراتژی',desc:'تحقیق بازار، تحلیل رقبا و تدوین استراتژی جامع برای پروژه شما.',list:['تحقیق بازار و مخاطب هدف','تحلیل ۵ رقیب اصلی','تدوین پیشنهاد و نقشه راه'],icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>'},
+    3:{num:'۰۳',title:'طراحی و توسعه',desc:'طراحی UI/UX اختصاصی و پیاده\u200Cسازی فنی بر اساس نوع پروژه.',list:['طراحی رابط کاربری اختصاصی','پیاده\u200Cسازی فنی استاندارد','بازنگری و تایید مرحله\u200Cای'],icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6" stroke-linecap="round" stroke-linejoin="round"/><polyline points="8 6 2 12 8 18" stroke-linecap="round" stroke-linejoin="round"/></svg>'},
+    4:{num:'۰۴',title:'تست و بهینه\u200Cسازی',desc:'تست کیفیت، بهینه\u200Cسازی سرعت و بازبینی نهایی توسط مشتری.',list:['تست QA در مرورگرها و دستگاه\u200Cهای مختلف','بهینه\u200Cسازی سرعت و Core Web Vitals','بازبینی نهایی مشتری'],icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8M21 12v6a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2h11" stroke-linecap="round" stroke-linejoin="round"/></svg>'},
+    5:{num:'۰۵',title:'انتشار و پشتیبانی',desc:'انتشار پروژه و شروع پشتیبانی مستمر برای رشد پایدار.',list:['انتشار و راه\u200Cاندازی','آموزش پنل مدیریت','پشتیبانی مستمر و گزارش\u200Cدهی'],icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09zM12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>'}
+  };
+  var current=1;
+  function update(n){
+    var d=data[n];stage.classList.add('is-changing');
+    setTimeout(function(){
+      stage.querySelector('[data-stage-num]').textContent=d.num;
+      stage.querySelector('[data-stage-title]').textContent=d.title;
+      stage.querySelector('[data-stage-desc]').textContent=d.desc;
+      stage.querySelector('[data-stage-list]').innerHTML=d.list.map(function(x){return '<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>'+x+'</li>';}).join('');
+      stage.querySelector('[data-stage-icon]').innerHTML=d.icon;
+      stage.classList.remove('is-changing');
+    },300);
+    var steps=timeline.querySelectorAll('.vs-home-proc__step');
+    steps.forEach(function(s,i){s.classList.remove('is-active','is-done');if(i+1<n)s.classList.add('is-done');if(i+1===n)s.classList.add('is-active');});
+    timeline.style.setProperty('--progress',((n-1)/(steps.length-1))*100+'%');
+  }
+  timeline.querySelectorAll('.vs-home-proc__step').forEach(function(s){
+    s.addEventListener('click',function(){current=parseInt(s.dataset.step,10);update(current);clearInterval(auto);auto=setInterval(function(){current=(current%5)+1;update(current);},5000);});
+  });
+  var auto=setInterval(function(){current=(current%5)+1;update(current);},5000);
+})();
+</script>

@@ -1,0 +1,94 @@
+<!-- ========================================================
+     سکشن ۲: نوار اعتماد - لوگوها + آمار
+     ویژگی‌ها: لوگوهای مشتریان + آمار کلیدی
+     ======================================================== -->
+<style>
+.vs-home-trust{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+
+  padding:80px 24px;
+  background:linear-gradient(180deg,#fff 0%,#FAF6EC 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+  position:relative; overflow:hidden;
+}
+.vs-home-trust__inner{max-width:1100px; margin:0 auto;}
+
+/* Stats Row */
+.vs-home-trust__stats{
+  display:flex; justify-content:center; gap:48px; flex-wrap:wrap;
+  margin-bottom:48px; padding-bottom:36px;
+  border-bottom:1px solid rgba(23,12,121,.10);
+}
+.vs-home-trust__stat{text-align:center;}
+.vs-home-trust__stat .num{
+  font-size:36px; font-weight:900; line-height:1;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+.vs-home-trust__stat .lbl{
+  color:#64748B; font-size:14px; margin-top:6px; font-weight:600;
+}
+
+/* Title */
+.vs-home-trust__title{
+  text-align:center; color:var(--vs-primary);
+  font-size:13px; letter-spacing:2px; font-weight:700;
+  margin-bottom:24px; text-transform:uppercase;
+}
+
+/* Logos */
+.vs-home-trust__logos{
+  display:flex; justify-content:space-around; align-items:center;
+  flex-wrap:wrap; gap:36px; padding:24px 0;
+  border-block:1px solid rgba(23,12,121,.10);
+}
+.vs-home-trust__logos span{
+  font-weight:800; color:#1D2327;
+  font-size:22px; letter-spacing:-.5px;
+  opacity:.55; transition:all .25s ease;
+  cursor:pointer;
+}
+.vs-home-trust__logos span:hover{opacity:1; transform:scale(1.05); color:var(--vs-primary);}
+
+@media (max-width:680px){
+  .vs-home-trust__stats{gap:28px;}
+  .vs-home-trust__stat .num{font-size:28px;}
+  .vs-home-trust__logos{gap:24px;}
+  .vs-home-trust__logos span{font-size:18px;}
+}
+</style>
+
+<section class="vs-home-trust">
+  <div class="vs-home-trust__inner">
+    <div class="vs-home-trust__stats">
+      <div class="vs-home-trust__stat">
+        <div class="num">۴۵۰+</div>
+        <div class="lbl">پروژه موفق</div>
+      </div>
+      <div class="vs-home-trust__stat">
+        <div class="num">۹۸٪</div>
+        <div class="lbl">رضایت مشتری</div>
+      </div>
+      <div class="vs-home-trust__stat">
+        <div class="num">۱۰+</div>
+        <div class="lbl">سال تجربه</div>
+      </div>
+      <div class="vs-home-trust__stat">
+        <div class="num">۲۴/۷</div>
+        <div class="lbl">پشتیبانی آنلاین</div>
+      </div>
+    </div>
+
+    <div class="vs-home-trust__title">اعتماد بیش از ۴۵۰ کسب‌وکار ایرانی</div>
+    <div class="vs-home-trust__logos">
+      <span>BRAND/۱</span>
+      <span>NAVA</span>
+      <span>PIXEL+</span>
+      <span>FORTECH</span>
+      <span>AVA·CO</span>
+      <span>NEXTLY</span>
+    </div>
+  </div>
+</section>

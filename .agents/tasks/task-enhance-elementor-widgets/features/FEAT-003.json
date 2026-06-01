@@ -1,0 +1,29 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Enhance the third batch of 4 widgets (Stats Counter, Curriculum, Tech Stack, Hero) with modern animations, advanced interactions, and visual improvements.",
+  "status": "completed",
+  "steps": [
+    "Read and enhance widgets/class-stats-counter.php: Add SVG progress ring/circle animation around counter values, add improved easing on count-up animations (ease-out-cubic), add entrance stagger animation for counter cards, add subtle gradient shift animation on hover, add number formatting animation (digits rolling), add prefers-reduced-motion support.",
+    "Read and enhance widgets/class-curriculum.php: Add expand-all/collapse-all button in the header area, add smooth accordion height transition animation (CSS grid row technique or max-height), add progress tracking visual (completed modules indicator), add staggered entrance animations for module items, add subtle hover lift on module headers, add prefers-reduced-motion support.",
+    "Read and enhance widgets/class-tech-stack.php: Add code typing animation in the code preview block (typewriter effect with blinking cursor), add logo hover tooltips with technology name, add tab switch animation with slide direction awareness, add subtle grid pattern background animation, add IntersectionObserver entrance animations, add prefers-reduced-motion support.",
+    "Read and enhance widgets/class-hero.php: Add enhanced mouse spotlight with smoother tracking, add subtle particle dots animation in the background grid, add improved floating card animations with parallax depth based on scroll position, add enhanced button hover with ripple effect, add smoother rotating word transitions with blur effect, add prefers-reduced-motion support that gracefully degrades all effects."
+  ],
+  "acceptance_criteria": [
+    "All 4 widget files pass php -l syntax check without errors",
+    "Each widget has IntersectionObserver or scroll-based animation in its JS section",
+    "Each widget has @media (prefers-reduced-motion: reduce) rules",
+    "Stats Counter has SVG progress ring animation",
+    "Curriculum has expand-all/collapse-all button functionality",
+    "Tech Stack has typing animation in code block",
+    "Hero has enhanced mouse spotlight and particle effects",
+    "All CSS animations use transform and opacity for performance"
+  ],
+  "verification": [
+    "Run: find /projects/sandbox/test/vira-sections-plugin/widgets -name 'class-stats-counter.php' -o -name 'class-curriculum.php' -o -name 'class-tech-stack.php' -o -name 'class-hero.php' | xargs -I {} php -l {}",
+    "Verify each file contains 'prefers-reduced-motion' in its CSS section",
+    "Run full syntax check: find /projects/sandbox/test/vira-sections-plugin -name '*.php' -exec php -l {} \\;"
+  ],
+  "blocked_reason": null,
+  "findings": "All 4 widgets enhanced and pass php -l via /opt/toolchains/.local/share/mise/installs/php/8.3.31/bin/php. Stats Counter has SVG progress ring with stroke-dashoffset animation, improved cubic-bezier easing, staggered entrance, and hover gradient shift. Curriculum has expand-all/collapse-all button, grid-template-rows accordion animation, progress bar tracking, staggered entrance. Tech Stack has code typing animation with cursor, logo tooltips, tab slide direction awareness, animated grid dots background, section entrance observer. Hero has particle dots, lerp-based mouse spotlight, scroll parallax on floating cards, button ripple effect, rotating word blur transition. All have prefers-reduced-motion support."
+}

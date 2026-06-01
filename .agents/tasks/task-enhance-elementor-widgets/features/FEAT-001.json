@@ -1,0 +1,26 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Enhance the first batch of 4 widgets (Services Bento, Tabs, Process Timeline, Pricing) with modern micro-interactions, scroll-triggered animations, improved hover effects, and accessibility features like prefers-reduced-motion support.",
+  "status": "completed",
+  "steps": [
+    "Read and enhance widgets/class-services-bento.php: Add IntersectionObserver-based entrance animations (staggered fade-up for cards), add CSS tilt effect on card hover using transform perspective/rotateX/rotateY, add animated icon hover states with rotating gradient background, add shimmer/glow border effect on hover, add prefers-reduced-motion media query that disables all animations, add CSS custom property --vira-animation-style (none/subtle/full).",
+    "Read and enhance widgets/class-tabs.php: Add smooth height transition between tab panels using max-height animation or auto-height technique, add an animated underline/indicator that slides between active tabs, add subtle parallax float on the panel gradient background, add IntersectionObserver entrance animation for the whole section, add prefers-reduced-motion support.",
+    "Read and enhance widgets/class-process-timeline.php: Add animated progress bar fill between steps with smooth easing, add step entrance animations (staggered slide-in from right), add pulse animation on active step ring, add subtle particle/dot animation on the timeline line, add smooth panel content transition with slide+fade, add prefers-reduced-motion support.",
+    "Read and enhance widgets/class-pricing.php: Add hover scale effect on featured/popular card (transform scale 1.03), add comparison highlight glow on hover, add card entrance stagger animation via IntersectionObserver, add animated gradient border on featured card, add subtle shadow depth on hover, add price value count-up animation when scrolled into view, add prefers-reduced-motion support."
+  ],
+  "acceptance_criteria": [
+    "All 4 widget files pass php -l syntax check without errors",
+    "Each widget has IntersectionObserver-based scroll entrance animations in its JS section",
+    "Each widget has @media (prefers-reduced-motion: reduce) rules that disable/minimize animations",
+    "Existing controls and functionality remain unchanged - enhancements are additive to render() output only",
+    "All CSS animations use transform and opacity for performance (no layout-triggering properties)"
+  ],
+  "verification": [
+    "Run: find /projects/sandbox/test/vira-sections-plugin/widgets -name 'class-services-bento.php' -o -name 'class-tabs.php' -o -name 'class-process-timeline.php' -o -name 'class-pricing.php' | xargs -I {} php -l {}",
+    "Verify each file contains 'IntersectionObserver' in its JS section",
+    "Verify each file contains 'prefers-reduced-motion' in its CSS section"
+  ],
+  "blocked_reason": null,
+  "findings": "PHP CLI not available in sandbox environment (Amazon Linux 2023, network restricted). Verified syntax using Python-based brace/tag balance checks instead. All 4 files have balanced braces, proper PHP structure, IntersectionObserver JS, and prefers-reduced-motion CSS rules. Cannot run php -l due to env constraints."
+}

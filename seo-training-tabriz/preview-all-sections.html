@@ -1,0 +1,2240 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>پیش‌نمایش کامل صفحه آموزش سئو در تبریز | ویرا سئو</title>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Vazirmatn',Tahoma,sans-serif;background:#fff;}
+  .mock-header,.mock-footer{
+    background:#0a0640; color:#FBBF24; padding:18px 24px;
+    text-align:center; font-size:13px; letter-spacing:1px; font-weight:600;
+  }
+</style>
+</head>
+<body>
+
+<div class="mock-header">⬇️ هدر سایت شما (دست نخورده) ⬇️</div>
+
+<!-- ========================================================
+     سکشن ۱: HERO — آموزش سئو در تبریز
+     ======================================================== -->
+<style>
+.vs-trn-hero{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+  --vs-amber:#F59E0B; --vs-amber-soft:rgba(245,158,11,.15);
+  --vs-gold:#FBBF24;
+
+  position:relative; min-height:92vh; padding:90px 24px 0; overflow:hidden;
+  background:#0a0640;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl;
+  color:#fff; isolation:isolate;
+}
+.vs-trn-hero::before,.vs-trn-hero::after{
+  content:""; position:absolute; border-radius:50%; filter:blur(110px);
+  pointer-events:none; z-index:0; mix-blend-mode:screen; opacity:.55;
+}
+.vs-trn-hero::before{
+  width:55vw; height:55vw; top:-12vw; right:-8vw;
+  background:radial-gradient(circle,#F59E0B 0%,#170C79 55%,transparent 70%);
+  animation:vs-trn-aurora1 16s ease-in-out infinite;
+}
+.vs-trn-hero::after{
+  width:50vw; height:50vw; bottom:-18vw; left:-8vw;
+  background:radial-gradient(circle,#128BE0 0%,#FBBF24 50%,transparent 70%);
+  animation:vs-trn-aurora2 18s ease-in-out infinite;
+}
+@keyframes vs-trn-aurora1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-8vw,8vh) scale(1.12)}}
+@keyframes vs-trn-aurora2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(8vw,-6vh) scale(1.08)}}
+
+.vs-trn-hero__spot{
+  position:absolute; inset:0; pointer-events:none; z-index:1;
+  background:radial-gradient(600px circle at var(--mx,50%) var(--my,30%),rgba(245,158,11,.15),transparent 40%);
+  transition:background .15s ease;
+}
+.vs-trn-hero__grid{
+  position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.30;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:60px 60px;
+  -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,#000,transparent 70%);
+          mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,#000,transparent 70%);
+}
+.vs-trn-hero__wrap{
+  position:relative; z-index:2; max-width:1240px; margin:0 auto;
+  display:grid; grid-template-columns:1.1fr 1fr; gap:60px; align-items:center;
+  min-height:calc(92vh - 90px); padding-bottom:90px;
+}
+
+.vs-trn-hero__badge{
+  display:inline-flex; align-items:center; gap:10px;
+  background:rgba(255,255,255,.07); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.14);
+  padding:8px 8px 8px 18px; border-radius:999px;
+  font-size:13px; font-weight:600; margin-bottom:22px; color:#fff;
+  text-decoration:none;
+}
+.vs-trn-hero__badge .pulse{
+  width:24px; height:24px; border-radius:50%;
+  background:linear-gradient(135deg,#F59E0B,#FBBF24);
+  display:grid; place-items:center;
+  position:relative; font-size:13px; font-weight:900; color:#0a0640;
+}
+.vs-trn-hero__badge .pulse::before{
+  content:""; position:absolute; inset:-6px; border-radius:50%;
+  border:2px solid rgba(245,158,11,.50);
+  animation:vs-trn-pulse 2s ease-out infinite;
+}
+@keyframes vs-trn-pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(1.6);opacity:0}}
+
+.vs-trn-hero h1{
+  font-size:clamp(34px,5vw,64px); font-weight:900;
+  line-height:1.25; letter-spacing:-1px; margin:0 0 22px; color:#fff;
+}
+.vs-trn-hero h1 .rot{
+  display:inline-block;
+  background:linear-gradient(135deg,#F59E0B 0%,#FBBF24 50%,#EFE3CA 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+  position:relative;
+}
+.vs-trn-hero h1 .rot__list{
+  display:inline-flex; flex-direction:column; vertical-align:top;
+  height:1.25em; overflow:hidden;
+}
+.vs-trn-hero h1 .rot__list span{
+  display:block; height:1.25em;
+  animation:vs-trn-rot 12s steps(1) infinite;
+}
+@keyframes vs-trn-rot{
+  0%,22%  {transform:translateY(0);}
+  25%,47% {transform:translateY(-1.25em);}
+  50%,72% {transform:translateY(-2.5em);}
+  75%,97% {transform:translateY(-3.75em);}
+  100%    {transform:translateY(0);}
+}
+.vs-trn-hero h1 .rot::after{
+  content:""; display:inline-block; width:3px; height:.85em;
+  background:#FBBF24; vertical-align:middle; margin-right:4px;
+  animation:vs-trn-blink 1s steps(2) infinite;
+}
+@keyframes vs-trn-blink{50%{opacity:0}}
+
+.vs-trn-hero p.lead{
+  font-size:18px; color:rgba(255,255,255,.78); line-height:1.95;
+  max-width:560px; margin:0 0 36px;
+}
+
+.vs-trn-hero__cta{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:42px;}
+.vs-trn-btn{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:16px 30px; border-radius:14px;
+  font-weight:700; font-size:16px; text-decoration:none;
+  transition:all .25s ease; cursor:pointer; border:none; position:relative; overflow:hidden;
+}
+.vs-trn-btn--primary{
+  background:linear-gradient(135deg,#F59E0B 0%,#FBBF24 100%);
+  color:#0a0640; box-shadow:0 18px 40px rgba(245,158,11,.40);
+}
+.vs-trn-btn--primary::before{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(135deg,#FBBF24 0%,#EFE3CA 100%);
+  opacity:0; transition:opacity .3s ease;
+}
+.vs-trn-btn--primary:hover::before{opacity:1;}
+.vs-trn-btn--primary:hover{transform:translateY(-2px); box-shadow:0 24px 56px rgba(245,158,11,.55);}
+.vs-trn-btn--primary > *{position:relative; z-index:1;}
+.vs-trn-btn--ghost{
+  background:rgba(255,255,255,.06); color:#fff;
+  border:1.5px solid rgba(255,255,255,.18);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+}
+.vs-trn-btn--ghost:hover{background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.40);}
+.vs-trn-btn svg{width:18px; height:18px;}
+.vs-trn-btn--ghost .play{
+  width:28px; height:28px; border-radius:50%;
+  background:rgba(245,158,11,.20); display:grid; place-items:center;
+}
+
+.vs-trn-hero__stats{
+  display:flex; gap:36px; flex-wrap:wrap; padding-top:28px;
+  border-top:1px solid rgba(255,255,255,.10);
+}
+.vs-trn-stat .num{font-size:32px; font-weight:900; line-height:1; color:#fff; display:flex; align-items:baseline;}
+.vs-trn-stat .num em{
+  font-style:normal;
+  background:linear-gradient(135deg,#F59E0B,#FBBF24);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+.vs-trn-stat .lbl{color:rgba(255,255,255,.55); font-size:13px; margin-top:6px;}
+
+/* Visual: Live Class Board */
+.vs-trn-visual{position:relative; perspective:1500px; display:flex; align-items:center; justify-content:center;}
+.vs-trn-visual__stage{
+  position:relative; width:100%; max-width:540px; aspect-ratio:1/1;
+  transform-style:preserve-3d; transition:transform .15s ease-out;
+}
+.vs-trn-board{
+  position:absolute; inset:6% 4%;
+  background:linear-gradient(160deg,#170C79 0%,#0a0640 100%);
+  border-radius:20px;
+  box-shadow:0 30px 80px rgba(0,0,0,.55);
+  border:8px solid #1a1450;
+  overflow:hidden;
+  transform:translateZ(0);
+  display:flex; flex-direction:column;
+}
+.vs-trn-board__title{
+  background:rgba(255,255,255,.06); padding:14px 20px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  font-size:13px; font-weight:700; color:rgba(255,255,255,.85);
+}
+.vs-trn-board__title .live{
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:11px; color:#FBBF24;
+}
+.vs-trn-board__title .live::before{
+  content:""; width:8px; height:8px; border-radius:50%; background:#FBBF24;
+  box-shadow:0 0 12px #FBBF24;
+  animation:vs-trn-live 1.5s ease-in-out infinite;
+}
+@keyframes vs-trn-live{0%,100%{opacity:1}50%{opacity:.5}}
+.vs-trn-board__content{
+  flex:1; padding:24px; position:relative;
+  display:flex; flex-direction:column; gap:14px;
+}
+.vs-trn-board__chart{
+  height:90px; background:rgba(255,255,255,.04); border-radius:10px;
+  position:relative; overflow:hidden; padding:10px;
+  display:flex; align-items:flex-end; gap:6px;
+}
+.vs-trn-board__chart i{
+  flex:1; background:linear-gradient(180deg,#F59E0B,#FBBF24);
+  border-radius:3px 3px 0 0; opacity:.85;
+  animation:vs-trn-bar 2.4s ease-in-out infinite;
+}
+.vs-trn-board__chart i:nth-child(1){animation-delay:0s; height:30%;}
+.vs-trn-board__chart i:nth-child(2){animation-delay:.1s; height:50%;}
+.vs-trn-board__chart i:nth-child(3){animation-delay:.2s; height:42%;}
+.vs-trn-board__chart i:nth-child(4){animation-delay:.3s; height:65%;}
+.vs-trn-board__chart i:nth-child(5){animation-delay:.4s; height:55%;}
+.vs-trn-board__chart i:nth-child(6){animation-delay:.5s; height:80%;}
+.vs-trn-board__chart i:nth-child(7){animation-delay:.6s; height:70%;}
+.vs-trn-board__chart i:nth-child(8){animation-delay:.7s; height:95%;}
+@keyframes vs-trn-bar{0%,100%{transform:scaleY(.85);}50%{transform:scaleY(1);}}
+.vs-trn-board__row{
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; background:rgba(255,255,255,.04);
+  border-radius:10px; border:1px solid rgba(255,255,255,.06);
+}
+.vs-trn-board__row .rank{
+  width:28px; height:28px; border-radius:50%;
+  background:linear-gradient(135deg,#F59E0B,#FBBF24); color:#0a0640;
+  display:grid; place-items:center; font-weight:900; font-size:12px;
+  flex-shrink:0;
+}
+.vs-trn-board__row .info{flex:1; min-width:0;}
+.vs-trn-board__row .info .t{font-size:12px; font-weight:700; color:#fff;}
+.vs-trn-board__row .info .s{font-size:10px; color:rgba(255,255,255,.50); margin-top:2px;}
+.vs-trn-board__row .grade{font-size:13px; font-weight:900; color:#FBBF24;}
+
+.vs-trn-fcard{
+  position:absolute; z-index:3;
+  background:rgba(255,255,255,.10); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:18px; padding:12px 16px;
+  display:flex; align-items:center; gap:12px;
+  box-shadow:0 24px 50px rgba(0,0,0,.30);
+  color:#fff;
+  animation:vs-trn-fcard 6s ease-in-out infinite;
+}
+.vs-trn-fcard .ic{
+  width:42px; height:42px; border-radius:12px;
+  display:grid; place-items:center; flex-shrink:0;
+}
+.vs-trn-fcard .t{font-weight:700; font-size:14px;}
+.vs-trn-fcard .s{font-size:11px; color:rgba(255,255,255,.65);}
+.vs-trn-fcard--1{top:4%; right:-4%; animation-delay:.2s;}
+.vs-trn-fcard--1 .ic{background:linear-gradient(135deg,#F59E0B,#FBBF24); color:#0a0640;}
+.vs-trn-fcard--2{bottom:12%; left:-2%; animation-delay:1.4s;}
+.vs-trn-fcard--2 .ic{background:linear-gradient(135deg,#EFE3CA,#FBBF24); color:#170C79;}
+.vs-trn-fcard--3{top:45%; right:-8%; animation-delay:2.6s;}
+.vs-trn-fcard--3 .ic{background:linear-gradient(135deg,#0170B9,#170C79); border:1px solid rgba(255,255,255,.20); color:#fff;}
+@keyframes vs-trn-fcard{0%,100%{translate:0 0;}50%{translate:0 -10px;}}
+
+.vs-trn-marquee{
+  position:relative; z-index:2; margin:0 -24px;
+  background:rgba(0,0,0,.35); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  border-block:1px solid rgba(255,255,255,.08);
+  overflow:hidden;
+}
+.vs-trn-marquee__track{
+  display:flex; gap:60px; padding:18px 0; width:max-content;
+  animation:vs-trn-mq 32s linear infinite;
+}
+.vs-trn-marquee__track span{
+  color:rgba(255,255,255,.55); font-weight:700; font-size:17px;
+  letter-spacing:-.5px; white-space:nowrap;
+  display:inline-flex; align-items:center; gap:60px;
+}
+.vs-trn-marquee__track span::after{content:"✦"; color:#F59E0B; opacity:.7;}
+@keyframes vs-trn-mq{to{transform:translateX(50%);}}
+
+@media (max-width:980px){
+  .vs-trn-hero__wrap{grid-template-columns:1fr; gap:40px; padding-bottom:60px;}
+  .vs-trn-hero{min-height:auto; padding:60px 20px 0;}
+  .vs-trn-visual{order:-1; max-width:400px; margin:0 auto;}
+  .vs-trn-fcard--3{display:none;}
+}
+@media (max-width:560px){
+  .vs-trn-hero__stats{gap:20px;}
+  .vs-trn-stat .num{font-size:24px;}
+  .vs-trn-fcard{transform:none !important;}
+  .vs-trn-marquee__track span{font-size:14px; gap:40px;}
+}
+</style>
+
+<section class="vs-trn-hero" data-vs-trn-hero>
+  <div class="vs-trn-hero__grid"></div>
+  <div class="vs-trn-hero__spot"></div>
+
+  <div class="vs-trn-hero__wrap">
+    <div class="vs-trn-hero__content">
+      <a href="#courses" class="vs-trn-hero__badge">
+        <span class="pulse">🎓</span>
+        <span>۸۰۰+ شاگرد در تبریز و سراسر ایران</span>
+      </a>
+
+      <h1>
+        تو تبریز<br>
+        <span class="rot">
+          <span class="rot__list">
+            <span>متخصص سئو شو</span>
+            <span>درآمد دلاری بساز</span>
+            <span>سایت خودت رو رشد بده</span>
+            <span>گوگل رو بشناس</span>
+          </span>
+        </span>
+      </h1>
+
+      <p class="lead">
+        از <strong style="color:#FBBF24">آموزش خصوصی</strong> تا <strong style="color:#FBBF24">دوره‌های گروهی</strong>،
+        از مشاوره ساعتی تا آنالیز کامل سایت — هر آنچه برای ورود حرفه‌ای به دنیای سئو نیاز داری،
+        با تجربه ۱۰ سال تدریس در تبریز.
+      </p>
+
+      <div class="vs-trn-hero__cta">
+        <a href="#pricing" class="vs-trn-btn vs-trn-btn--primary">
+          <span>ثبت‌نام دوره</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="vs-trn-btn vs-trn-btn--ghost">
+          <span class="play">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <span>مشاوره رایگان</span>
+        </a>
+      </div>
+
+      <div class="vs-trn-hero__stats">
+        <div class="vs-trn-stat"><div class="num" data-counter="800" data-suffix="+"><em>۰</em></div><div class="lbl">شاگرد آموزش‌دیده</div></div>
+        <div class="vs-trn-stat"><div class="num" data-counter="92" data-suffix="٪"><em>۰</em></div><div class="lbl">رضایت شاگردان</div></div>
+        <div class="vs-trn-stat"><div class="num" data-counter="10" data-suffix="+"><em>۰</em></div><div class="lbl">سال تدریس</div></div>
+      </div>
+    </div>
+
+    <div class="vs-trn-visual">
+      <div class="vs-trn-visual__stage" data-vs-trn-tilt>
+        <div class="vs-trn-board">
+          <div class="vs-trn-board__title">
+            <span>📊 داشبورد رشد شاگردان</span>
+            <span class="live">آنلاین</span>
+          </div>
+          <div class="vs-trn-board__content">
+            <div class="vs-trn-board__chart">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="vs-trn-board__row">
+              <div class="rank">۱</div>
+              <div class="info"><div class="t">علی رضایی</div><div class="s">دوره گروهی · ماه ۳</div></div>
+              <div class="grade">A+</div>
+            </div>
+            <div class="vs-trn-board__row">
+              <div class="rank">۲</div>
+              <div class="info"><div class="t">سارا کریمی</div><div class="s">آموزش خصوصی · هفته ۸</div></div>
+              <div class="grade">A</div>
+            </div>
+            <div class="vs-trn-board__row">
+              <div class="rank">۳</div>
+              <div class="info"><div class="t">محمد احمدی</div><div class="s">سازمانی · شرکت تبریزتک</div></div>
+              <div class="grade">A</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-trn-fcard vs-trn-fcard--1">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z M6 12v5c3 3 9 3 12 0v-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><div class="t">۸ ماژول جامع</div><div class="s">۴۰+ ساعت آموزش</div></div>
+        </div>
+        <div class="vs-trn-fcard vs-trn-fcard--2">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><div class="t">گواهی پایان دوره</div><div class="s">معتبر برای رزومه</div></div>
+        </div>
+        <div class="vs-trn-fcard vs-trn-fcard--3">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div><div class="t">جامعه شاگردان</div><div class="s">شبکه‌سازی حرفه‌ای</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vs-trn-marquee">
+    <div class="vs-trn-marquee__track">
+      <span>آموزش خصوصی</span><span>دوره گروهی</span><span>آموزش سازمانی</span><span>مشاوره ساعتی</span><span>آنالیز سایت</span><span>گواهی معتبر</span><span>پروژه واقعی</span><span>آموزش خصوصی</span><span>دوره گروهی</span><span>آموزش سازمانی</span><span>مشاوره ساعتی</span><span>آنالیز سایت</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const hero = document.querySelector('[data-vs-trn-hero]');
+  if(!hero) return;
+
+  hero.addEventListener('pointermove', e => {
+    const r = hero.getBoundingClientRect();
+    hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+
+  const stage = hero.querySelector('[data-vs-trn-tilt]');
+  if(stage){
+    stage.addEventListener('pointermove', e => {
+      const r = stage.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - .5;
+      const py = (e.clientY - r.top) / r.height - .5;
+      stage.style.transform = `rotateY(${px * -8}deg) rotateX(${py * 6}deg)`;
+    });
+    stage.addEventListener('pointerleave', () => stage.style.transform = 'rotateX(0) rotateY(0)');
+  }
+
+  const toFa = n => String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+  const counters = hero.querySelectorAll('[data-counter]');
+  const animate = el => {
+    const target = parseInt(el.dataset.counter, 10);
+    const suffix = el.dataset.suffix || '';
+    const dur = 1800;
+    const start = performance.now();
+    const step = now => {
+      const t = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const val = Math.floor(eased * target);
+      el.innerHTML = `<em>${toFa(val)}</em>${suffix}`;
+      if(t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){animate(e.target); io.unobserve(e.target);} });
+  }, {threshold:.5});
+  counters.forEach(c => io.observe(c));
+})();
+</script>
+
+
+<!-- ========================================================
+     سکشن ۲: SERVICES — معرفی ۵ خدمت با کارت‌های تعاملی
+     ======================================================== -->
+<style>
+.vs-trn-services{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-amber:#F59E0B;--vs-amber-soft:rgba(245,158,11,.15);
+  padding:110px 24px;background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-trn-services::before{
+  content:"";position:absolute;top:-10%;left:-10%;width:50vw;height:50vw;
+  background:radial-gradient(circle,rgba(245,158,11,.08),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-trn-services__inner{max-width:1240px;margin:0 auto;position:relative;z-index:1;}
+.vs-trn-services .vs-section-head{text-align:center;margin-bottom:60px;}
+.vs-trn-services .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-amber-soft);color:#B45309;
+  border:1px solid rgba(245,158,11,.30);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-trn-services .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-amber);box-shadow:0 0 0 4px rgba(245,158,11,.18);display:inline-block;}
+.vs-trn-services h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-trn-services h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-amber),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-trn-services .vs-section-head p{color:#64748B;font-size:18px;max-width:680px;margin:0 auto;}
+
+/* ===== Bento Grid for 5 services ===== */
+.vs-trn-svc-grid{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:20px;
+}
+.vs-trn-svc{
+  background:#fff;border:1.5px solid #E2E8F0;border-radius:24px;
+  padding:32px;position:relative;overflow:hidden;
+  transition:transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s ease, border-color .35s ease;
+  display:flex;flex-direction:column;
+}
+.vs-trn-svc:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(245,158,11,.12);border-color:rgba(245,158,11,.40);}
+.vs-trn-svc::after{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--vs-amber),#FBBF24);
+  transform:scaleX(0);transform-origin:right;
+  transition:transform .4s ease;
+}
+.vs-trn-svc:hover::after{transform:scaleX(1);}
+
+.vs-trn-svc__icon{
+  width:60px;height:60px;border-radius:16px;
+  background:linear-gradient(135deg,var(--vs-amber-soft),rgba(245,158,11,.05));
+  color:var(--vs-amber);
+  display:grid;place-items:center;margin-bottom:20px;
+  transition:all .35s ease;
+}
+.vs-trn-svc:hover .vs-trn-svc__icon{
+  background:linear-gradient(135deg,var(--vs-amber),#FBBF24);
+  color:#fff;
+  transform:rotate(-5deg) scale(1.05);
+  box-shadow:0 12px 24px rgba(245,158,11,.30);
+}
+
+.vs-trn-svc__title{font-size:20px;font-weight:800;margin:0 0 10px;color:var(--vs-ink);}
+.vs-trn-svc__desc{color:#64748B;font-size:14.5px;line-height:1.85;margin:0 0 20px;flex:1;}
+.vs-trn-svc__meta{
+  display:flex;align-items:center;gap:8px;
+  padding-top:18px;border-top:1px dashed #E2E8F0;
+  font-size:13px;color:#94A3B8;font-weight:600;
+}
+.vs-trn-svc__meta strong{color:var(--vs-amber);}
+.vs-trn-svc__link{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:16px;font-size:14px;font-weight:700;
+  color:var(--vs-amber);text-decoration:none;
+  transition:gap .25s ease;
+}
+.vs-trn-svc__link:hover{gap:10px;}
+.vs-trn-svc__link svg{transition:transform .25s ease;}
+.vs-trn-svc__link:hover svg{transform:translateX(-4px);}
+
+/* layout: 5 cards — 2 big top, 3 small bottom */
+.vs-trn-svc:nth-child(1){grid-column:span 3;background:linear-gradient(160deg,#FFFBEB 0%,#fff 70%);}
+.vs-trn-svc:nth-child(2){grid-column:span 3;}
+.vs-trn-svc:nth-child(3){grid-column:span 2;background:linear-gradient(160deg,var(--vs-primary) 0%,#0a0640 100%);border-color:transparent;}
+.vs-trn-svc:nth-child(3) .vs-trn-svc__title,
+.vs-trn-svc:nth-child(3) .vs-trn-svc__desc{color:#fff;}
+.vs-trn-svc:nth-child(3) .vs-trn-svc__desc{color:rgba(255,255,255,.78);}
+.vs-trn-svc:nth-child(3) .vs-trn-svc__meta{color:rgba(255,255,255,.6);border-top-color:rgba(255,255,255,.15);}
+.vs-trn-svc:nth-child(3) .vs-trn-svc__icon{
+  background:rgba(255,255,255,.10);
+  color:var(--vs-amber);
+}
+.vs-trn-svc:nth-child(3):hover .vs-trn-svc__icon{
+  background:linear-gradient(135deg,var(--vs-amber),#FBBF24);
+  color:#0a0640;
+}
+.vs-trn-svc:nth-child(4){grid-column:span 2;}
+.vs-trn-svc:nth-child(5){grid-column:span 2;}
+
+@media(max-width:980px){
+  .vs-trn-svc-grid{grid-template-columns:repeat(2,1fr);}
+  .vs-trn-svc{grid-column:span 1 !important;}
+}
+@media(max-width:560px){
+  .vs-trn-svc-grid{grid-template-columns:1fr;}
+}
+</style>
+
+<section class="vs-trn-services">
+  <div class="vs-trn-services__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>۵ خدمت ما</span>
+      <h2>هر آنچه برای <em>یادگیری سئو</em> نیاز دارید</h2>
+      <p>از کلاس‌های گروهی منظم تا مشاوره فوری — مسیر یادگیری شما را با خدمات متنوع پوشش می‌دهیم.</p>
+    </div>
+
+    <div class="vs-trn-svc-grid">
+      <!-- 1: Private (big) -->
+      <div class="vs-trn-svc">
+        <div class="vs-trn-svc__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="vs-trn-svc__title">آموزش سئو خصوصی</h3>
+        <p class="vs-trn-svc__desc">جلسات تک‌نفره و کاملاً اختصاصی برای کسانی که می‌خواهند با سرعت دلخواه و تمرکز کامل روی پروژه واقعی خودشان پیش بروند. زمان‌بندی منعطف، حضوری در تبریز یا آنلاین.</p>
+        <div class="vs-trn-svc__meta">
+          <strong>۸۵۰ هزار تومان</strong> / هر جلسه
+        </div>
+        <a href="#pricing" class="vs-trn-svc__link">
+          جزئیات بیشتر
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <!-- 2: Group (big) -->
+      <div class="vs-trn-svc">
+        <div class="vs-trn-svc__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="vs-trn-svc__title">آموزش سئو گروهی</h3>
+        <p class="vs-trn-svc__desc">دوره‌های جامع ۸ نفره با ساختار منظم و پروژه‌محور. هزینه مناسب‌تر، تعامل با هم‌کلاسی‌ها و یادگیری از تجربه دیگران. ۱۲ جلسه + گواهی پایان دوره معتبر.</p>
+        <div class="vs-trn-svc__meta">
+          <strong>۲.۹ میلیون تومان</strong> / دوره کامل
+        </div>
+        <a href="#pricing" class="vs-trn-svc__link">
+          ثبت‌نام دوره
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <!-- 3: Corporate (dark featured) -->
+      <div class="vs-trn-svc">
+        <div class="vs-trn-svc__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="vs-trn-svc__title">آموزش سازمانی</h3>
+        <p class="vs-trn-svc__desc">آموزش حضوری برای کادر شرکت‌ها و کارخانجات در محل خودتان. سرفصل سفارشی، Case Study مستقیم روی شرکت شما و پشتیبانی ۳ ماهه پس از دوره.</p>
+        <div class="vs-trn-svc__meta">
+          <strong>قیمت سفارشی</strong> / بسته به نیاز
+        </div>
+        <a href="#pricing" class="vs-trn-svc__link">
+          درخواست مشاوره
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <!-- 4: Hourly Consultation -->
+      <div class="vs-trn-svc">
+        <div class="vs-trn-svc__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="vs-trn-svc__title">مشاوره ساعتی سئو</h3>
+        <p class="vs-trn-svc__desc">پاسخ سریع به چالش‌های سئوی شما — بدون تعهد بلندمدت. نتیجه فوری در یک ساعت.</p>
+        <div class="vs-trn-svc__meta">
+          <strong>۶۵۰ هزار تومان</strong> / هر ساعت
+        </div>
+        <a href="#pricing" class="vs-trn-svc__link">
+          رزرو مشاوره
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <!-- 5: Site Analysis -->
+      <div class="vs-trn-svc">
+        <div class="vs-trn-svc__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="vs-trn-svc__title">آنالیز سایت برای سئو</h3>
+        <p class="vs-trn-svc__desc">گزارش جامع از وضعیت سایت با بررسی ۲۰۰+ فاکتور و راهکارهای عملی برای رشد.</p>
+        <div class="vs-trn-svc__meta">
+          <strong>۱.۲ میلیون تومان</strong> / هر گزارش
+        </div>
+        <a href="#pricing" class="vs-trn-svc__link">
+          سفارش آنالیز
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     سکشن ۳: WHY US — تب‌های تعاملی چرا ما؟
+     ======================================================== -->
+<style>
+.vs-trn-why{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-amber:#F59E0B;--vs-amber-soft:rgba(245,158,11,.15);
+  padding:110px 24px;background:linear-gradient(180deg,#fff 0%,#FAF6EC 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-trn-why::before{
+  content:"";position:absolute;top:0;left:0;width:50%;height:100%;
+  background:radial-gradient(50% 50% at 0% 30%,rgba(245,158,11,.08),transparent 60%);
+  pointer-events:none;
+}
+.vs-trn-why__inner{max-width:1240px;margin:0 auto;position:relative;}
+.vs-trn-why .vs-section-head{text-align:center;margin-bottom:60px;}
+.vs-trn-why .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-amber-soft);color:#B45309;
+  border:1px solid rgba(245,158,11,.30);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-trn-why .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-amber);box-shadow:0 0 0 4px rgba(245,158,11,.18);display:inline-block;}
+.vs-trn-why h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-trn-why h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-amber),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-trn-why .vs-section-head p{color:#64748B;font-size:18px;max-width:680px;margin:0 auto;}
+
+/* ===== Tabs ===== */
+.vs-trn-tabs{
+  display:grid;grid-template-columns:1fr 1.4fr;gap:32px;align-items:stretch;
+  background:#fff;border:1px solid #E2E8F0;border-radius:32px;padding:32px;
+  box-shadow:0 24px 60px rgba(245,158,11,.06);
+}
+.vs-trn-tabs__nav{display:flex;flex-direction:column;gap:10px;}
+.vs-trn-tab-btn{
+  display:flex;align-items:center;gap:14px;
+  padding:18px 20px;border-radius:18px;cursor:pointer;
+  background:transparent;border:1.5px solid transparent;
+  text-align:right;transition:all .3s ease;
+  font-family:inherit;font-size:16px;color:var(--vs-ink);width:100%;
+}
+.vs-trn-tab-btn:hover{background:#FAF6EC;border-color:rgba(245,158,11,.20);}
+.vs-trn-tab-btn.is-active{background:#FFFBEB;border-color:rgba(245,158,11,.30);box-shadow:0 12px 30px rgba(245,158,11,.10);}
+.vs-trn-tab-btn .ic{
+  width:46px;height:46px;border-radius:12px;display:grid;place-items:center;
+  background:var(--vs-amber-soft);color:var(--vs-amber);flex-shrink:0;transition:all .3s ease;
+}
+.vs-trn-tab-btn.is-active .ic{background:linear-gradient(135deg,var(--vs-amber),#FBBF24);color:#fff;transform:scale(1.05);box-shadow:0 6px 14px rgba(245,158,11,.30);}
+.vs-trn-tab-btn .lbl{display:flex;flex-direction:column;gap:2px;flex:1;}
+.vs-trn-tab-btn .lbl strong{font-weight:800;font-size:16.5px;}
+.vs-trn-tab-btn .lbl small{color:#64748B;font-size:13px;font-weight:400;}
+.vs-trn-tab-btn .arrow{opacity:0;transform:translateX(8px);transition:all .3s ease;color:var(--vs-amber);}
+.vs-trn-tab-btn.is-active .arrow{opacity:1;transform:translateX(0);}
+
+.vs-trn-tabs__panels{
+  position:relative;
+  background:linear-gradient(160deg,#0a0640 0%,#170C79 100%);
+  border-radius:24px;padding:36px;color:#fff;overflow:hidden;min-height:420px;
+}
+.vs-trn-tabs__panels::before{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:30px 30px;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+          mask-image:radial-gradient(ellipse at center,#000,transparent 70%);
+}
+.vs-trn-panel{position:absolute;inset:36px;opacity:0;transform:translateY(20px);transition:opacity .4s ease,transform .4s ease;pointer-events:none;}
+.vs-trn-panel.is-active{opacity:1;transform:none;pointer-events:auto;}
+.vs-trn-panel h3{font-size:22px;font-weight:800;margin:0 0 12px;color:#fff;display:flex;align-items:center;gap:10px;}
+.vs-trn-panel h3 .badge{background:rgba(245,158,11,.20);color:#FBBF24;font-size:11px;padding:4px 10px;border-radius:999px;font-weight:700;}
+.vs-trn-panel p{color:rgba(255,255,255,.78);line-height:1.95;margin:0 0 20px;font-size:15px;}
+.vs-trn-panel ul{list-style:none;padding:0;margin:0;display:grid;gap:10px;}
+.vs-trn-panel li{display:flex;align-items:flex-start;gap:10px;color:rgba(255,255,255,.92);font-size:14.5px;}
+.vs-trn-panel li svg{flex-shrink:0;margin-top:4px;color:#FBBF24;}
+.vs-trn-panel__metrics{display:flex;gap:16px;flex-wrap:wrap;margin-top:22px;padding:16px;background:rgba(0,0,0,.30);border:1px solid rgba(255,255,255,.10);border-radius:14px;}
+.vs-trn-panel__metrics > div{flex:1;min-width:100px;text-align:center;}
+.vs-trn-panel__metrics .num{color:#FBBF24;font-weight:900;font-size:26px;line-height:1;}
+.vs-trn-panel__metrics .lbl{color:rgba(255,255,255,.55);font-size:11px;margin-top:4px;}
+
+@media(max-width:980px){
+  .vs-trn-tabs{grid-template-columns:1fr;padding:20px;}
+  .vs-trn-tabs__panels{min-height:460px;padding:28px;}
+  .vs-trn-panel{inset:28px;}
+}
+</style>
+
+<section class="vs-trn-why">
+  <div class="vs-trn-why__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>چرا ما</span>
+      <h2>چه چیزی ما را <em>متفاوت</em> می‌کند؟</h2>
+      <p>تجربه واقعی، روش‌های اثبات‌شده و حمایت بعد از دوره — تفاوت ما در جزئیات است.</p>
+    </div>
+
+    <div class="vs-trn-tabs" data-vs-trn-tabs>
+      <div class="vs-trn-tabs__nav" role="tablist">
+        <button class="vs-trn-tab-btn is-active" data-tab="t1" role="tab" aria-selected="true">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke-linecap="round"/></svg></span>
+          <span class="lbl"><strong>تجربه واقعی، نه تئوری</strong><small>۱۰ سال تدریس + پروژه واقعی</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round"/></svg></span>
+        </button>
+        <button class="vs-trn-tab-btn" data-tab="t2" role="tab" aria-selected="false">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 3h20v14H2zM6 21h12M12 17v4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="lbl"><strong>محتوای به‌روز ۱۴۰۴</strong><small>الگوریتم‌های جدید Google AI</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round"/></svg></span>
+        </button>
+        <button class="vs-trn-tab-btn" data-tab="t3" role="tab" aria-selected="false">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a4 4 0 01-4 4H7l-4 4V5a4 4 0 014-4h10a4 4 0 014 4v10z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="lbl"><strong>پشتیبانی پس از دوره</strong><small>پاسخ به سوالات تا ۶ ماه</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round"/></svg></span>
+        </button>
+        <button class="vs-trn-tab-btn" data-tab="t4" role="tab" aria-selected="false">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <span class="lbl"><strong>مدرس بومی تبریز</strong><small>کیس‌استادی محلی + شبکه‌سازی</small></span>
+          <span class="arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round"/></svg></span>
+        </button>
+      </div>
+
+      <div class="vs-trn-tabs__panels">
+        <div class="vs-trn-panel is-active" data-panel="t1">
+          <h3>تجربه واقعی <span class="badge">۱۰ سال در میدان</span></h3>
+          <p>ما فقط کتاب نخوندیم — هر روز با پروژه‌های واقعی روی سایت‌های ایرانی کار می‌کنیم. آنچه آموزش می‌دهیم، آن چیزی است که خودمان امروز در پروژه‌های مشتریان استفاده می‌کنیم.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>۱۲۵+ پروژه سئوی موفق در سال‌های اخیر</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تمرین روی سایت واقعی — نه مثال‌های فرضی</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بحث درباره چالش‌های روزمره با حضور مشاوران فعال</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>دسترسی به ابزارهای سئوی پولی در طول دوره</li>
+          </ul>
+          <div class="vs-trn-panel__metrics">
+            <div><div class="num">۸۰۰+</div><div class="lbl">شاگرد آموزش‌دیده</div></div>
+            <div><div class="num">۹۲٪</div><div class="lbl">رضایت پایان دوره</div></div>
+            <div><div class="num">۷۵٪</div><div class="lbl">استخدام در ۶ ماه</div></div>
+          </div>
+        </div>
+
+        <div class="vs-trn-panel" data-panel="t2">
+          <h3>محتوای به‌روز <span class="badge">Updated 2026</span></h3>
+          <p>سئو هر ۶ ماه عوض می‌شود. بسیاری از دوره‌ها هنوز روش‌های ۲۰۲۰ را تدریس می‌کنند! ما هر فصل سرفصل‌ها را به‌روزرسانی می‌کنیم تا با آخرین تغییرات گوگل و SGE هماهنگ باشید.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>الگوریتم Helpful Content و E-E-A-T جدید</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>سئو در عصر AI (ChatGPT, Gemini, SGE)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Core Web Vitals و معیار INP جدید</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>استراتژی محتوا برای Search Generative Experience</li>
+          </ul>
+          <div class="vs-trn-panel__metrics">
+            <div><div class="num">۴×</div><div class="lbl">به‌روزرسانی سالانه</div></div>
+            <div><div class="num">۲۰۲۶</div><div class="lbl">آخرین تغییرات گوگل</div></div>
+            <div><div class="num">۱۰۰٪</div><div class="lbl">محتوای کاربردی</div></div>
+          </div>
+        </div>
+
+        <div class="vs-trn-panel" data-panel="t3">
+          <h3>پشتیبانی پس از دوره <span class="badge">تا ۶ ماه</span></h3>
+          <p>دوره که تموم شد، تنها نیستی. در ۶ ماه پس از پایان دوره، می‌تونی سوالاتت رو در گروه خصوصی مطرح کنی یا برای جلسات Q&A رایگان ماهانه شرکت کنی.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>گروه تلگرام/واتساپ خصوصی شاگردان</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>جلسات Q&A زنده ماهانه (رایگان)</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>دسترسی دائمی به ویدیوهای دوره</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>به‌روزرسانی محتوا — بدون پرداخت اضافه</li>
+          </ul>
+          <div class="vs-trn-panel__metrics">
+            <div><div class="num">۶ ماه</div><div class="lbl">پشتیبانی رایگان</div></div>
+            <div><div class="num">۲۴/۷</div><div class="lbl">گروه پشتیبانی</div></div>
+            <div><div class="num">+۵۰۰</div><div class="lbl">عضو فعال</div></div>
+          </div>
+        </div>
+
+        <div class="vs-trn-panel" data-panel="t4">
+          <h3>مدرس بومی <span class="badge">تبریز · آذربایجان</span></h3>
+          <p>به جای دوره‌های آنلاین تهرانی، اینجا مدرسی داری که با کسب‌وکار تبریز آشناست. کیس‌استادی‌های ما از کسب‌وکارهای واقعی تبریز و آذربایجان است و شبکه شاگردان بومی به شما کمک می‌کند.</p>
+          <ul>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>کلاس‌های حضوری در تبریز — آشنایی نزدیک</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>کیس‌استادی از کسب‌وکارهای موفق آذربایجان</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>شبکه‌سازی با شاگردان و کسب‌وکارهای محلی</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پاسخ به چالش‌های خاص بازار آذربایجان</li>
+          </ul>
+          <div class="vs-trn-panel__metrics">
+            <div><div class="num">تبریز</div><div class="lbl">پایتخت یادگیری ما</div></div>
+            <div><div class="num">+۲۰۰</div><div class="lbl">کسب‌وکار محلی</div></div>
+            <div><div class="num">۱۰ سال</div><div class="lbl">حضور در منطقه</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const root=document.querySelector('[data-vs-trn-tabs]');if(!root)return;
+  const btns=root.querySelectorAll('.vs-trn-tab-btn');
+  const panels=root.querySelectorAll('.vs-trn-panel');
+  btns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const id=btn.dataset.tab;
+      btns.forEach(b=>{const a=b===btn;b.classList.toggle('is-active',a);b.setAttribute('aria-selected',a?'true':'false');});
+      panels.forEach(p=>p.classList.toggle('is-active',p.dataset.panel===id));
+    });
+  });
+  let auto=setInterval(()=>{
+    const active=root.querySelector('.vs-trn-tab-btn.is-active');
+    const all=Array.from(btns);const idx=all.indexOf(active);
+    const next=all[(idx+1)%all.length];next.click();
+  },6000);
+  root.addEventListener('click',()=>{clearInterval(auto);});
+})();
+</script>
+
+
+<!-- ========================================================
+     سکشن ۴: CURRICULUM — سرفصل دوره آموزش سئو
+     ======================================================== -->
+<style>
+.vs-trn-curriculum{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-amber:#F59E0B;--vs-amber-soft:rgba(245,158,11,.15);
+  padding:110px 24px;background:linear-gradient(180deg,#FAF6EC 0%,#fff 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-trn-curriculum__inner{max-width:1180px;margin:0 auto;position:relative;z-index:1;}
+.vs-trn-curriculum .vs-section-head{text-align:center;margin-bottom:48px;}
+.vs-trn-curriculum .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-amber-soft);color:#B45309;
+  border:1px solid rgba(245,158,11,.30);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-trn-curriculum .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-amber);box-shadow:0 0 0 4px rgba(245,158,11,.18);display:inline-block;}
+.vs-trn-curriculum h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-trn-curriculum h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-amber),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-trn-curriculum .vs-section-head p{color:#64748B;font-size:18px;max-width:680px;margin:0 auto 20px;}
+
+.vs-trn-curriculum__totals{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#fff;border:1.5px solid var(--vs-amber);
+  padding:10px 20px;border-radius:14px;
+  font-size:14.5px;font-weight:700;color:var(--vs-ink);
+  box-shadow:0 6px 20px rgba(245,158,11,.12);
+}
+.vs-trn-curriculum__totals strong{color:var(--vs-amber);font-weight:900;}
+.vs-trn-curriculum__totals .sep{color:#CBD5E1;}
+
+.vs-trn-modules{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:48px;}
+@media(max-width:780px){.vs-trn-modules{grid-template-columns:1fr;}}
+
+.vs-trn-mod{
+  background:#fff;border:1.5px solid #E2E8F0;border-radius:18px;
+  overflow:hidden;transition:all .35s cubic-bezier(.4,0,.2,1);
+  position:relative;
+}
+.vs-trn-mod:hover{border-color:rgba(245,158,11,.40);transform:translateY(-2px);box-shadow:0 10px 28px rgba(23,12,121,.06);}
+.vs-trn-mod.is-open{
+  border-color:var(--vs-amber);
+  box-shadow:0 18px 40px rgba(245,158,11,.14);
+  grid-column:1 / -1;
+}
+.vs-trn-mod__head{
+  display:flex;align-items:center;gap:14px;
+  padding:18px 20px;cursor:pointer;width:100%;
+  border:none;background:transparent;text-align:right;
+  font-family:inherit;
+}
+.vs-trn-mod__num{
+  width:48px;height:48px;border-radius:14px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--vs-amber),#FBBF24);
+  color:#fff;font-weight:900;font-size:18px;
+  display:grid;place-items:center;
+  box-shadow:0 6px 16px rgba(245,158,11,.30);
+}
+.vs-trn-mod__title{flex:1;}
+.vs-trn-mod__title strong{display:block;font-size:16.5px;font-weight:800;color:var(--vs-ink);margin-bottom:3px;}
+.vs-trn-mod__title span{font-size:12.5px;color:#64748B;font-weight:500;}
+.vs-trn-mod__chev{
+  width:32px;height:32px;border-radius:10px;flex-shrink:0;
+  background:#F1F5F9;color:#64748B;
+  display:grid;place-items:center;
+  transition:all .35s ease;
+}
+.vs-trn-mod.is-open .vs-trn-mod__chev{
+  background:var(--vs-amber-soft);color:var(--vs-amber);
+  transform:rotate(180deg);
+}
+
+.vs-trn-mod__body{
+  max-height:0;overflow:hidden;
+  transition:max-height .5s cubic-bezier(.4,0,.2,1),padding .3s ease;
+  padding:0 20px;
+}
+.vs-trn-mod.is-open .vs-trn-mod__body{max-height:600px;padding:0 20px 22px;}
+.vs-trn-mod__meta{
+  display:flex;flex-wrap:wrap;gap:10px;
+  padding:14px 0;border-top:1px dashed #E2E8F0;margin-bottom:14px;
+}
+.vs-trn-mod__chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#F8FAFC;border:1px solid #E2E8F0;
+  padding:6px 12px;border-radius:10px;
+  font-size:13px;font-weight:600;color:#475569;
+}
+.vs-trn-mod__chip svg{color:var(--vs-amber);}
+.vs-trn-mod__topics{
+  list-style:none;padding:0;margin:0;
+  display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;
+}
+@media(max-width:560px){.vs-trn-mod__topics{grid-template-columns:1fr;}}
+.vs-trn-mod__topics li{
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:14px;color:#475569;line-height:1.7;
+}
+.vs-trn-mod__topics li svg{flex-shrink:0;margin-top:5px;color:var(--vs-amber);}
+
+@media(max-width:560px){.vs-trn-mod__head{padding:14px 16px;}.vs-trn-mod__num{width:42px;height:42px;font-size:16px;}}
+</style>
+
+
+<section class="vs-trn-curriculum" data-vs-trn-curriculum>
+  <div class="vs-trn-curriculum__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>سرفصل آموزش</span>
+      <h2>چه چیزی <em>یاد خواهی گرفت؟</em></h2>
+      <p>یک مسیر گام‌به‌گام از مبانی تا حرفه‌ای — طراحی‌شده توسط متخصصان فعال در پروژه‌های واقعی سئو.</p>
+      <div class="vs-trn-curriculum__totals">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" style="color:var(--vs-amber)"><path d="M2 3h20v14H2zM6 21h12M12 17v4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <strong>۸ ماژول</strong>
+        <span class="sep">·</span>
+        <strong>۴۰+ ساعت آموزش</strong>
+      </div>
+    </div>
+
+    <div class="vs-trn-modules">
+      <!-- 1 -->
+      <div class="vs-trn-mod is-open" data-mod>
+        <button class="vs-trn-mod__head" type="button">
+          <div class="vs-trn-mod__num">۱</div>
+          <div class="vs-trn-mod__title">
+            <strong>مبانی سئو و الگوریتم‌های گوگل</strong>
+            <span>پایه‌گذاری دانش سئو از صفر</span>
+          </div>
+          <div class="vs-trn-mod__chev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="vs-trn-mod__body">
+          <div class="vs-trn-mod__meta">
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۴ جلسه</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>۶ ساعت</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>سطح: مقدماتی</span>
+          </div>
+          <ul class="vs-trn-mod__topics">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>مفاهیم پایه و تاریخچه سئو</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>نحوه کار موتورهای جستجو (Crawl, Index, Rank)</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>الگوریتم‌های مهم گوگل (Panda, Penguin, BERT, Helpful Content)</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>E-E-A-T و فاکتورهای کیفیت محتوا</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تفاوت White-Hat و Black-Hat SEO</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>نقشه راه شخصی برای ورود به سئو</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="vs-trn-mod" data-mod>
+        <button class="vs-trn-mod__head" type="button">
+          <div class="vs-trn-mod__num">۲</div>
+          <div class="vs-trn-mod__title">
+            <strong>تحقیق کلمات کلیدی حرفه‌ای</strong>
+            <span>پیدا کردن کلمات طلایی برای رتبه گرفتن</span>
+          </div>
+          <div class="vs-trn-mod__chev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="vs-trn-mod__body">
+          <div class="vs-trn-mod__meta">
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۵ جلسه</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>۷ ساعت</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>سطح: متوسط</span>
+          </div>
+          <ul class="vs-trn-mod__topics">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>مفاهیم Search Volume، KD و Search Intent</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>کار با Ahrefs و Semrush در تحقیق کلمات</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>کلمات Long-tail و Question-based</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Topic Cluster و Keyword Mapping</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تحلیل کلمات کلیدی رقبا</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پروژه عملی: ساخت Keyword Plan کامل</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="vs-trn-mod" data-mod>
+        <button class="vs-trn-mod__head" type="button">
+          <div class="vs-trn-mod__num">۳</div>
+          <div class="vs-trn-mod__title">
+            <strong>سئو فنی و Core Web Vitals</strong>
+            <span>زیرساخت قدرتمند برای رتبه‌گیری</span>
+          </div>
+          <div class="vs-trn-mod__chev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="vs-trn-mod__body">
+          <div class="vs-trn-mod__meta">
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۶ جلسه</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>۸ ساعت</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>سطح: پیشرفته</span>
+          </div>
+          <ul class="vs-trn-mod__topics">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Crawlability و Indexability سایت</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Core Web Vitals (LCP, INP, CLS)</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Schema Markup و Structured Data</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>robots.txt، sitemap.xml و canonical</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>HTTPS، Mobile-First و JavaScript SEO</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پروژه عملی: آدیت فنی یک سایت واقعی</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="vs-trn-mod" data-mod>
+        <button class="vs-trn-mod__head" type="button">
+          <div class="vs-trn-mod__num">۴</div>
+          <div class="vs-trn-mod__title">
+            <strong>سئو محتوا و Content Strategy</strong>
+            <span>محتوایی که گوگل و کاربر هر دو دوست دارند</span>
+          </div>
+          <div class="vs-trn-mod__chev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="vs-trn-mod__body">
+          <div class="vs-trn-mod__meta">
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۵ جلسه</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>۷ ساعت</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>سطح: متوسط</span>
+          </div>
+          <ul class="vs-trn-mod__topics">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اصول نوشتن محتوای SEO-Friendly</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>ساختار هدینگ‌ها و Featured Snippets</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Search Intent و انواع آن</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Pillar Pages و Topic Clusters</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بازنشر و بروزرسانی محتوای قدیمی</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تقویم محتوایی ۶ ماهه برای کسب‌وکار</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="vs-trn-mod" data-mod>
+        <button class="vs-trn-mod__head" type="button">
+          <div class="vs-trn-mod__num">۵</div>
+          <div class="vs-trn-mod__title">
+            <strong>لینک‌سازی White-Hat</strong>
+            <span>بک‌لینک‌های واقعی و پایدار</span>
+          </div>
+          <div class="vs-trn-mod__chev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="vs-trn-mod__body">
+          <div class="vs-trn-mod__meta">
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۴ جلسه</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>۶ ساعت</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>سطح: پیشرفته</span>
+          </div>
+          <ul class="vs-trn-mod__topics">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اصول و فاکتورهای کیفیت بک‌لینک</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Guest Posting و Digital PR</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Broken Link Building و Skyscraper</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تحلیل پروفایل لینک رقبا</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Disavow و حذف لینک‌های مضر</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پروژه عملی: کمپین لینک‌سازی واقعی</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="vs-trn-mod" data-mod>
+        <button class="vs-trn-mod__head" type="button">
+          <div class="vs-trn-mod__num">۶</div>
+          <div class="vs-trn-mod__title">
+            <strong>ابزارهای سئو</strong>
+            <span>Ahrefs · Semrush · Search Console · GA4</span>
+          </div>
+          <div class="vs-trn-mod__chev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="vs-trn-mod__body">
+          <div class="vs-trn-mod__meta">
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۶ جلسه</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>۸ ساعت</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>سطح: متوسط تا پیشرفته</span>
+          </div>
+          <ul class="vs-trn-mod__topics">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>کار حرفه‌ای با Ahrefs (Site Explorer, Keywords Explorer)</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Semrush برای تحلیل رقبا و کمپین</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Google Search Console — کاربردی</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Google Analytics 4 و گزارش‌های سئو</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Screaming Frog، PageSpeed Insights</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Looker Studio برای داشبوردهای حرفه‌ای</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="vs-trn-mod" data-mod>
+        <button class="vs-trn-mod__head" type="button">
+          <div class="vs-trn-mod__num">۷</div>
+          <div class="vs-trn-mod__title">
+            <strong>سئو محلی و Google Business</strong>
+            <span>دیده شدن در نقشه و جستجوهای محلی تبریز</span>
+          </div>
+          <div class="vs-trn-mod__chev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="vs-trn-mod__body">
+          <div class="vs-trn-mod__meta">
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۳ جلسه</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>۴ ساعت</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>سطح: متوسط</span>
+          </div>
+          <ul class="vs-trn-mod__topics">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>راه‌اندازی و بهینه‌سازی Google Business Profile</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بهینه‌سازی برای Map Pack و Local 3-Pack</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>NAP Citations و Local Business Schema</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>مدیریت ریویوها و واکنش حرفه‌ای</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>صفحات Location و سئو چندشهری</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>کیس‌استادی کسب‌وکارهای موفق تبریز</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="vs-trn-mod" data-mod>
+        <button class="vs-trn-mod__head" type="button">
+          <div class="vs-trn-mod__num">۸</div>
+          <div class="vs-trn-mod__title">
+            <strong>گزارش‌گیری و KPIها</strong>
+            <span>اندازه‌گیری دقیق نتایج سئو</span>
+          </div>
+          <div class="vs-trn-mod__chev">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </button>
+        <div class="vs-trn-mod__body">
+          <div class="vs-trn-mod__meta">
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>۳ جلسه</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke-linecap="round"/></svg>۴ ساعت</span>
+            <span class="vs-trn-mod__chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/></svg>سطح: متوسط</span>
+          </div>
+          <ul class="vs-trn-mod__topics">
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تعیین KPIهای مهم سئو (Organic Traffic, CTR, Conversions)</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>ساخت داشبورد در Looker Studio</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>گزارش ماهانه برای کارفرما / مدیر</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>محاسبه ROI واقعی سئو</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تحلیل روند رقبا در طول زمان</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پروژه نهایی: ارائه گزارش حرفه‌ای</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const section=document.querySelector('[data-vs-trn-curriculum]');if(!section)return;
+  const mods=section.querySelectorAll('[data-mod]');
+  mods.forEach(mod=>{
+    mod.querySelector('.vs-trn-mod__head').addEventListener('click',()=>{
+      const wasOpen=mod.classList.contains('is-open');
+      mods.forEach(m=>m.classList.remove('is-open'));
+      if(!wasOpen)mod.classList.add('is-open');
+    });
+  });
+})();
+</script>
+
+
+<!-- ========================================================
+     سکشن ۵: PRICING — قیمت‌گذاری ۵ خدمت آموزش سئو
+     ======================================================== -->
+<style>
+.vs-trn-pricing{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-amber:#F59E0B;--vs-amber-soft:rgba(245,158,11,.15);
+  padding:110px 24px;background:linear-gradient(180deg,#fff 0%,#FAF6EC 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-trn-pricing::before{
+  content:"";position:absolute;top:0;right:-10%;width:40vw;height:40vw;
+  background:radial-gradient(circle,rgba(245,158,11,.08),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-trn-pricing__inner{max-width:1300px;margin:0 auto;position:relative;z-index:1;}
+.vs-trn-pricing .vs-section-head{text-align:center;margin-bottom:56px;}
+.vs-trn-pricing .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-amber-soft);color:#B45309;
+  border:1px solid rgba(245,158,11,.30);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-trn-pricing .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-amber);box-shadow:0 0 0 4px rgba(245,158,11,.18);display:inline-block;}
+.vs-trn-pricing h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-trn-pricing h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-amber),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-trn-pricing .vs-section-head p{color:#64748B;font-size:18px;max-width:680px;margin:0 auto;}
+
+.vs-trn-pricing__grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+  align-items:stretch;
+}
+.vs-trn-pricing__grid > .vs-trn-pcard:nth-child(4),
+.vs-trn-pricing__grid > .vs-trn-pcard:nth-child(5){
+  /* Bottom row centered: 4th and 5th occupy 1.5 cols each, centered */
+}
+@media(min-width:981px){
+  .vs-trn-pricing__grid{grid-template-columns:repeat(6,1fr);}
+  .vs-trn-pcard:nth-child(1){grid-column:1 / span 2;}
+  .vs-trn-pcard:nth-child(2){grid-column:3 / span 2;}
+  .vs-trn-pcard:nth-child(3){grid-column:5 / span 2;}
+  .vs-trn-pcard:nth-child(4){grid-column:2 / span 2;}
+  .vs-trn-pcard:nth-child(5){grid-column:4 / span 2;}
+}
+
+.vs-trn-pcard{
+  background:#fff;border:1.5px solid #E2E8F0;border-radius:24px;
+  padding:32px 26px;display:flex;flex-direction:column;
+  transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;
+}
+.vs-trn-pcard:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(23,12,121,.08);border-color:rgba(245,158,11,.30);}
+.vs-trn-pcard--featured{
+  border-color:var(--vs-amber);
+  box-shadow:0 20px 50px rgba(245,158,11,.18);
+  background:linear-gradient(180deg,#fff 0%,#FFFBEB 100%);
+}
+.vs-trn-pcard--featured::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--vs-amber),#FBBF24,var(--vs-accent));
+}
+.vs-trn-pcard__popular{
+  position:absolute;top:-1px;left:24px;
+  background:linear-gradient(135deg,var(--vs-amber),#FBBF24);
+  color:#fff;padding:6px 12px;border-radius:0 0 10px 10px;
+  font-size:11px;font-weight:800;letter-spacing:.2px;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.vs-trn-pcard__popular svg{width:11px;height:11px;}
+
+.vs-trn-pcard__icon{
+  width:52px;height:52px;border-radius:14px;
+  background:var(--vs-amber-soft);color:var(--vs-amber);
+  display:grid;place-items:center;margin-bottom:18px;
+}
+.vs-trn-pcard--featured .vs-trn-pcard__icon{
+  background:linear-gradient(135deg,var(--vs-amber),#FBBF24);color:#fff;
+  box-shadow:0 8px 20px rgba(245,158,11,.30);
+}
+.vs-trn-pcard__name{font-size:19px;font-weight:800;margin:0 0 6px;color:var(--vs-ink);}
+.vs-trn-pcard__desc{font-size:13.5px;color:#64748B;margin:0 0 22px;line-height:1.7;min-height:46px;}
+
+.vs-trn-pcard__price{margin-bottom:22px;padding-bottom:22px;border-bottom:1px dashed #E2E8F0;}
+.vs-trn-pcard__amount{font-size:clamp(26px,2.6vw,34px);font-weight:900;color:var(--vs-ink);line-height:1;}
+.vs-trn-pcard--featured .vs-trn-pcard__amount{
+  background:linear-gradient(135deg,var(--vs-amber),#D97706);
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+}
+.vs-trn-pcard__period{font-size:13.5px;color:#94A3B8;font-weight:500;display:block;margin-top:4px;}
+
+.vs-trn-pcard__features{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:11px;flex:1;}
+.vs-trn-pcard__features li{
+  display:flex;align-items:flex-start;gap:9px;
+  font-size:14px;color:#475569;line-height:1.6;
+}
+.vs-trn-pcard__features li svg{flex-shrink:0;margin-top:3px;color:var(--vs-amber);}
+
+.vs-trn-pcard__btn{
+  display:block;width:100%;padding:14px;border-radius:12px;
+  text-align:center;font-weight:700;font-size:15px;
+  text-decoration:none;transition:all .3s ease;cursor:pointer;border:none;
+  font-family:inherit;
+}
+.vs-trn-pcard__btn--outline{
+  background:transparent;border:2px solid #E2E8F0;color:var(--vs-ink);
+}
+.vs-trn-pcard__btn--outline:hover{border-color:var(--vs-amber);color:var(--vs-amber);background:var(--vs-amber-soft);}
+.vs-trn-pcard__btn--primary{
+  background:linear-gradient(135deg,var(--vs-amber),#D97706);
+  color:#fff;box-shadow:0 8px 24px rgba(245,158,11,.35);
+}
+.vs-trn-pcard__btn--primary:hover{box-shadow:0 12px 32px rgba(245,158,11,.50);transform:translateY(-2px);}
+
+@media(max-width:980px){
+  .vs-trn-pricing__grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+  .vs-trn-pricing__grid{grid-template-columns:1fr;max-width:440px;margin:0 auto;}
+}
+</style>
+
+
+<section class="vs-trn-pricing" data-vs-trn-pricing>
+  <div class="vs-trn-pricing__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>خدمات و قیمت‌ها</span>
+      <h2>۵ خدمت برای <em>هر نیاز شما</em></h2>
+      <p>از آموزش خصوصی و گروهی تا مشاوره و آنالیز — هر چیزی که برای رشد حرفه‌ای در سئو نیاز دارید.</p>
+    </div>
+
+    <div class="vs-trn-pricing__grid">
+      <!-- 1: Private -->
+      <div class="vs-trn-pcard">
+        <div class="vs-trn-pcard__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="vs-trn-pcard__name">آموزش سئو خصوصی</div>
+        <div class="vs-trn-pcard__desc">جلسات تک‌نفره با تمرکز کامل روی نیاز و سطح شما</div>
+        <div class="vs-trn-pcard__price">
+          <span class="vs-trn-pcard__amount">۸۵۰ هزار</span>
+          <span class="vs-trn-pcard__period">تومان / هر جلسه</span>
+        </div>
+        <ul class="vs-trn-pcard__features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>جلسات کاملاً اختصاصی و تک‌نفره</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>انعطاف کامل در زمان‌بندی</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تمرکز روی پروژه واقعی شما</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پشتیبانی پیامی بین جلسات</li>
+        </ul>
+        <button class="vs-trn-pcard__btn vs-trn-pcard__btn--outline">رزرو جلسه خصوصی</button>
+      </div>
+
+      <!-- 2: Group -->
+      <div class="vs-trn-pcard">
+        <div class="vs-trn-pcard__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="vs-trn-pcard__name">آموزش سئو گروهی</div>
+        <div class="vs-trn-pcard__desc">دوره منظم با هم‌کلاسی‌ها — یادگیری همراه با تعامل</div>
+        <div class="vs-trn-pcard__price">
+          <span class="vs-trn-pcard__amount">۲.۹ میلیون</span>
+          <span class="vs-trn-pcard__period">تومان / دوره کامل</span>
+        </div>
+        <ul class="vs-trn-pcard__features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>کلاس‌های ۸ نفره — تعامل بالا</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>۱۲ جلسه آموزش جامع</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>گواهی پایان دوره معتبر</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>دسترسی به فایل‌های آموزشی</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پروژه پایانی روی سایت واقعی</li>
+        </ul>
+        <button class="vs-trn-pcard__btn vs-trn-pcard__btn--outline">ثبت‌نام دوره گروهی</button>
+      </div>
+
+      <!-- 3: Corporate (Featured) -->
+      <div class="vs-trn-pcard vs-trn-pcard--featured">
+        <div class="vs-trn-pcard__popular">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          پیشنهاد ویژه شرکت‌ها
+        </div>
+        <div class="vs-trn-pcard__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="vs-trn-pcard__name">آموزش سئو سازمانی</div>
+        <div class="vs-trn-pcard__desc">آموزش حضوری برای کادر شرکت‌ها و کارخانجات در محل خودتان</div>
+        <div class="vs-trn-pcard__price">
+          <span class="vs-trn-pcard__amount">قیمت سفارشی</span>
+          <span class="vs-trn-pcard__period">بسته به تعداد و سرفصل</span>
+        </div>
+        <ul class="vs-trn-pcard__features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>برگزاری در محل شرکت شما</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>سرفصل تیم محور و سفارشی</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Case Study مستقیم روی شرکت شما</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پشتیبانی ۳ ماهه پس از دوره</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>گواهی برای کل کادر</li>
+        </ul>
+        <button class="vs-trn-pcard__btn vs-trn-pcard__btn--primary">درخواست مشاوره سازمانی</button>
+      </div>
+
+      <!-- 4: Hourly Consultation -->
+      <div class="vs-trn-pcard">
+        <div class="vs-trn-pcard__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="vs-trn-pcard__name">مشاوره ساعتی سئو</div>
+        <div class="vs-trn-pcard__desc">پاسخ سریع به چالش‌های سئوی شما، بدون تعهد بلندمدت</div>
+        <div class="vs-trn-pcard__price">
+          <span class="vs-trn-pcard__amount">۶۵۰ هزار</span>
+          <span class="vs-trn-pcard__period">تومان / هر ساعت</span>
+        </div>
+        <ul class="vs-trn-pcard__features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>به صورت آنلاین یا حضوری در تبریز</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بدون تعهد و قرارداد بلندمدت</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پاسخ مشخص و عملی به سوالات</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>ارائه راهکار قابل اجرا فوری</li>
+        </ul>
+        <button class="vs-trn-pcard__btn vs-trn-pcard__btn--outline">رزرو مشاوره ساعتی</button>
+      </div>
+
+      <!-- 5: Site Analysis -->
+      <div class="vs-trn-pcard">
+        <div class="vs-trn-pcard__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="vs-trn-pcard__name">آنالیز سایت برای سئو</div>
+        <div class="vs-trn-pcard__desc">گزارش جامع و دقیق از وضعیت سایت شما با پیشنهادهای عملی</div>
+        <div class="vs-trn-pcard__price">
+          <span class="vs-trn-pcard__amount">۱.۲ میلیون</span>
+          <span class="vs-trn-pcard__period">تومان / هر گزارش</span>
+        </div>
+        <ul class="vs-trn-pcard__features">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بررسی ۲۰۰+ فاکتور سئو</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>گزارش PDF کامل و دسته‌بندی‌شده</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>اولویت‌بندی مشکلات و راه‌حل‌ها</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>جلسه ۱ ساعته توضیح حضوری/آنلاین</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>تحویل در ۵-۷ روز کاری</li>
+        </ul>
+        <button class="vs-trn-pcard__btn vs-trn-pcard__btn--outline">سفارش آنالیز سایت</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     سکشن ۶: TESTIMONIALS — نظرات شاگردان و مشتریان
+     ======================================================== -->
+<style>
+.vs-trn-testimonials{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-amber:#F59E0B;--vs-amber-soft:rgba(245,158,11,.15);
+  padding:110px 24px;background:linear-gradient(180deg,#FAF6EC 0%,#fff 100%);
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-trn-testimonials__inner{max-width:1240px;margin:0 auto;position:relative;z-index:1;}
+.vs-trn-testimonials .vs-section-head{text-align:center;margin-bottom:64px;}
+.vs-trn-testimonials .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-amber-soft);color:#B45309;
+  border:1px solid rgba(245,158,11,.30);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-trn-testimonials .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-amber);box-shadow:0 0 0 4px rgba(245,158,11,.18);display:inline-block;}
+.vs-trn-testimonials h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-trn-testimonials h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-amber),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-trn-testimonials .vs-section-head p{color:#64748B;font-size:18px;max-width:680px;margin:0 auto;}
+
+/* 3D Slider */
+.vs-trn-slider{position:relative;perspective:1200px;}
+.vs-trn-slider__track{
+  display:flex;align-items:center;justify-content:center;
+  min-height:380px;position:relative;
+}
+.vs-trn-slide{
+  position:absolute;width:100%;max-width:720px;
+  background:#fff;border:1px solid #E2E8F0;border-radius:28px;
+  padding:46px;box-shadow:0 20px 50px rgba(0,0,0,.06);
+  opacity:0;transform:translateX(100px) rotateY(-8deg) scale(.9);
+  transition:all .6s cubic-bezier(.4,0,.2,1);pointer-events:none;
+}
+.vs-trn-slide.is-active{
+  opacity:1;transform:translateX(0) rotateY(0) scale(1);
+  pointer-events:auto;z-index:3;
+}
+.vs-trn-slide.is-prev{
+  opacity:.4;transform:translateX(120px) rotateY(5deg) scale(.85);z-index:1;
+}
+.vs-trn-slide.is-next{
+  opacity:.4;transform:translateX(-120px) rotateY(-5deg) scale(.85);z-index:1;
+}
+
+.vs-trn-slide__quote{
+  font-size:18px;line-height:2;color:#334155;margin:0 0 28px;
+  position:relative;padding-right:28px;
+}
+.vs-trn-slide__quote::before{
+  content:"\201C";position:absolute;right:0;top:-12px;
+  font-size:54px;color:var(--vs-amber);opacity:.35;font-weight:900;line-height:1;
+}
+.vs-trn-slide__author{display:flex;align-items:center;gap:16px;}
+.vs-trn-slide__avatar{
+  width:54px;height:54px;border-radius:50%;
+  background:linear-gradient(135deg,var(--vs-amber),#FBBF24);
+  display:grid;place-items:center;color:#fff;font-weight:900;font-size:20px;
+  flex-shrink:0;box-shadow:0 6px 16px rgba(245,158,11,.35);
+}
+.vs-trn-slide__info{flex:1;min-width:0;}
+.vs-trn-slide__name{font-weight:800;font-size:16px;color:var(--vs-ink);}
+.vs-trn-slide__company{font-size:13px;color:#64748B;}
+.vs-trn-slide__badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--vs-amber-soft);color:#B45309;
+  border:1px solid rgba(245,158,11,.30);
+  padding:8px 14px;border-radius:12px;font-size:13.5px;font-weight:800;
+  white-space:nowrap;
+}
+.vs-trn-slide__badge svg{width:16px;height:16px;color:var(--vs-amber);}
+
+/* Controls */
+.vs-trn-slider__controls{
+  display:flex;align-items:center;justify-content:center;gap:16px;margin-top:40px;
+}
+.vs-trn-slider__btn{
+  width:48px;height:48px;border-radius:50%;
+  background:#fff;border:1.5px solid #E2E8F0;
+  display:grid;place-items:center;cursor:pointer;
+  transition:all .3s ease;color:var(--vs-ink);
+}
+.vs-trn-slider__btn:hover{border-color:var(--vs-amber);color:var(--vs-amber);box-shadow:0 4px 12px rgba(245,158,11,.18);}
+.vs-trn-slider__dots{display:flex;gap:8px;}
+.vs-trn-slider__dot{
+  width:10px;height:10px;border-radius:50%;
+  background:#E2E8F0;cursor:pointer;transition:all .3s ease;border:none;padding:0;
+}
+.vs-trn-slider__dot.is-active{background:var(--vs-amber);transform:scale(1.3);}
+
+@media(max-width:768px){
+  .vs-trn-slide{padding:28px;max-width:92%;}
+  .vs-trn-slide.is-prev,.vs-trn-slide.is-next{opacity:0;}
+  .vs-trn-slide__quote{font-size:16px;}
+  .vs-trn-slide__author{flex-wrap:wrap;}
+}
+</style>
+
+
+<section class="vs-trn-testimonials" data-vs-trn-testimonials>
+  <div class="vs-trn-testimonials__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>تجربه شاگردان و مشتریان</span>
+      <h2>داستان‌های <em>یادگیری و موفقیت</em></h2>
+      <p>نتایج واقعی از کسانی که با آموزش و خدمات سئوی ما مسیر حرفه‌ای‌شان را پیدا کردند.</p>
+    </div>
+
+    <div class="vs-trn-slider" data-vs-trn-slider>
+      <div class="vs-trn-slider__track">
+        <div class="vs-trn-slide is-active" data-slide="0">
+          <p class="vs-trn-slide__quote">از مبتدی به متخصص سئو رسیدم. دوره گروهی ساختار درست داشت و پروژه پایانی کمک کرد رزومه واقعی بسازم. الان مدیر سئو یک شرکت بزرگ هستم و درآمدم چند برابر شده.</p>
+          <div class="vs-trn-slide__author">
+            <div class="vs-trn-slide__avatar">ر</div>
+            <div class="vs-trn-slide__info">
+              <div class="vs-trn-slide__name">رضا نوری</div>
+              <div class="vs-trn-slide__company">شاگرد دوره گروهی · فارغ‌التحصیل ۱۴۰۲</div>
+            </div>
+            <div class="vs-trn-slide__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M8.5 11a4 4 0 100-8 4 4 0 000 8zM20 8v6M23 11h-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              استخدام در ۳ ماه
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-trn-slide" data-slide="1">
+          <p class="vs-trn-slide__quote">گزارش آنالیز ویرا سئو حدود ۵۰ مورد مهم رو پیدا کرد که هیچ‌جای دیگه‌ای ندیده بودم. بعد از اعمال پیشنهادها، ترافیک ارگانیک سایتمون ۲۲۰ درصد رشد کرد. واقعاً عالی بود.</p>
+          <div class="vs-trn-slide__author">
+            <div class="vs-trn-slide__avatar">س</div>
+            <div class="vs-trn-slide__info">
+              <div class="vs-trn-slide__name">سینا فتاحی</div>
+              <div class="vs-trn-slide__company">مدیرعامل، فروشگاه آنلاین آذرین</div>
+            </div>
+            <div class="vs-trn-slide__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 3v18h18M7 14l4-4 4 4 5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              +۲۲۰٪ ترافیک
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-trn-slide" data-slide="2">
+          <p class="vs-trn-slide__quote">تیم مارکتینگ‌مون بعد از دوره سازمانی کاملاً مستقل شد و دیگه نیازی به آژانس نداریم. سرفصل‌ها دقیقاً برای کسب‌وکار ما طراحی شده بود و کیس‌استادی‌های واقعی همه چیز رو ملموس کرد.</p>
+          <div class="vs-trn-slide__author">
+            <div class="vs-trn-slide__avatar">م</div>
+            <div class="vs-trn-slide__info">
+              <div class="vs-trn-slide__name">مهندس مهدی پاکزاد</div>
+              <div class="vs-trn-slide__company">مدیر دیجیتال مارکتینگ، گروه صنعتی پارس</div>
+            </div>
+            <div class="vs-trn-slide__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              صرفه‌جویی ۸۵٪
+            </div>
+          </div>
+        </div>
+
+        <div class="vs-trn-slide" data-slide="3">
+          <p class="vs-trn-slide__quote">تو ۲ ساعت مشاوره فهمیدم چرا سایتم رتبه نمی‌گیره. مشکل اصلی Search Intent بود که با چند تغییر ساختاری حل شد. حالا برای کلمه اصلی توی صفحه اول گوگلم و مشتری‌های جدید میان.</p>
+          <div class="vs-trn-slide__author">
+            <div class="vs-trn-slide__avatar">ل</div>
+            <div class="vs-trn-slide__info">
+              <div class="vs-trn-slide__name">لیلا حسنی</div>
+              <div class="vs-trn-slide__company">مالک، کلینیک تخصصی پوست تبریز</div>
+            </div>
+            <div class="vs-trn-slide__badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              صفحه اول گوگل
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vs-trn-slider__controls">
+        <button class="vs-trn-slider__btn" data-slider-prev aria-label="قبلی">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="vs-trn-slider__dots">
+          <button class="vs-trn-slider__dot is-active" data-dot="0" aria-label="اسلاید ۱"></button>
+          <button class="vs-trn-slider__dot" data-dot="1" aria-label="اسلاید ۲"></button>
+          <button class="vs-trn-slider__dot" data-dot="2" aria-label="اسلاید ۳"></button>
+          <button class="vs-trn-slider__dot" data-dot="3" aria-label="اسلاید ۴"></button>
+        </div>
+        <button class="vs-trn-slider__btn" data-slider-next aria-label="بعدی">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const root=document.querySelector('[data-vs-trn-slider]');if(!root)return;
+  const slides=root.querySelectorAll('.vs-trn-slide');
+  const dots=root.querySelectorAll('.vs-trn-slider__dot');
+  const prevBtn=root.querySelector('[data-slider-prev]');
+  const nextBtn=root.querySelector('[data-slider-next]');
+  let current=0;const total=slides.length;
+
+  function goTo(idx){
+    current=((idx%total)+total)%total;
+    slides.forEach((s,i)=>{
+      s.classList.remove('is-active','is-prev','is-next');
+      if(i===current)s.classList.add('is-active');
+      else if(i===((current-1+total)%total))s.classList.add('is-prev');
+      else if(i===((current+1)%total))s.classList.add('is-next');
+    });
+    dots.forEach((d,i)=>d.classList.toggle('is-active',i===current));
+  }
+
+  prevBtn.addEventListener('click',()=>{goTo(current+1);resetAuto();});
+  nextBtn.addEventListener('click',()=>{goTo(current-1);resetAuto();});
+  dots.forEach((d,i)=>d.addEventListener('click',()=>{goTo(i);resetAuto();}));
+
+  // Touch/swipe
+  let startX=0;
+  root.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;},{passive:true});
+  root.addEventListener('touchend',e=>{
+    const diff=e.changedTouches[0].clientX-startX;
+    if(Math.abs(diff)>50){diff>0?goTo(current+1):goTo(current-1);resetAuto();}
+  },{passive:true});
+
+  // Auto-play
+  let auto=setInterval(()=>goTo(current+1),5500);
+  function resetAuto(){clearInterval(auto);auto=setInterval(()=>goTo(current+1),5500);}
+})();
+</script>
+
+
+<!-- ========================================================
+     سکشن ۷: FAQ — سوالات متداول آموزش سئو
+     ======================================================== -->
+<style>
+.vs-trn-faq{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-amber:#F59E0B;--vs-amber-soft:rgba(245,158,11,.15);
+  padding:110px 24px;background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);
+  position:relative;overflow:hidden;
+}
+.vs-trn-faq__inner{max-width:840px;margin:0 auto;position:relative;z-index:1;}
+.vs-trn-faq .vs-section-head{text-align:center;margin-bottom:48px;}
+.vs-trn-faq .vs-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vs-amber-soft);color:#B45309;
+  border:1px solid rgba(245,158,11,.30);
+  padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;
+}
+.vs-trn-faq .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-amber);box-shadow:0 0 0 4px rgba(245,158,11,.18);display:inline-block;}
+.vs-trn-faq h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-trn-faq h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-amber),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+
+/* Search */
+.vs-trn-faq__search{
+  position:relative;margin-bottom:24px;
+}
+.vs-trn-faq__search input{
+  width:100%;padding:16px 20px 16px 48px;
+  border:1.5px solid #E2E8F0;border-radius:16px;
+  font-family:inherit;font-size:16px;color:var(--vs-ink);
+  background:#F8FAFC;transition:all .3s ease;outline:none;
+}
+.vs-trn-faq__search input:focus{border-color:var(--vs-amber);background:#fff;box-shadow:0 4px 16px rgba(245,158,11,.12);}
+.vs-trn-faq__search input::placeholder{color:#94A3B8;}
+.vs-trn-faq__search svg{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  color:#94A3B8;pointer-events:none;
+}
+
+/* Category Filter */
+.vs-trn-faq__cats{
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;justify-content:center;
+}
+.vs-trn-faq__cat{
+  padding:8px 16px;border-radius:10px;border:1.5px solid #E2E8F0;
+  background:transparent;cursor:pointer;font-family:inherit;
+  font-size:14px;font-weight:600;color:#64748B;transition:all .3s ease;
+}
+.vs-trn-faq__cat:hover{border-color:var(--vs-amber);color:var(--vs-amber);}
+.vs-trn-faq__cat.is-active{background:linear-gradient(135deg,var(--vs-amber),#FBBF24);color:#fff;border-color:var(--vs-amber);box-shadow:0 4px 12px rgba(245,158,11,.30);}
+
+/* Accordion */
+.vs-trn-faq__list{display:grid;gap:12px;}
+.vs-trn-faq__item{
+  background:#F8FAFC;border:1px solid #E2E8F0;border-radius:16px;
+  overflow:hidden;transition:all .3s ease;
+}
+.vs-trn-faq__item:hover{border-color:rgba(245,158,11,.30);}
+.vs-trn-faq__item.is-open{border-color:var(--vs-amber);background:#fff;box-shadow:0 8px 24px rgba(245,158,11,.10);}
+.vs-trn-faq__q{
+  display:flex;align-items:center;gap:14px;padding:20px 24px;
+  cursor:pointer;width:100%;border:none;background:transparent;
+  font-family:inherit;font-size:16px;font-weight:700;color:var(--vs-ink);
+  text-align:right;
+}
+.vs-trn-faq__q span.txt{flex:1;}
+.vs-trn-faq__q .icon{
+  width:32px;height:32px;border-radius:8px;
+  background:var(--vs-amber-soft);color:var(--vs-amber);
+  display:grid;place-items:center;flex-shrink:0;transition:transform .3s cubic-bezier(.4,0,.2,1);
+}
+.vs-trn-faq__item.is-open .vs-trn-faq__q .icon{transform:rotate(45deg);}
+.vs-trn-faq__a{
+  max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1),padding .3s ease;
+  padding:0 24px;
+}
+.vs-trn-faq__item.is-open .vs-trn-faq__a{max-height:340px;padding:0 24px 22px;}
+.vs-trn-faq__a p{margin:0;font-size:15px;line-height:2;color:#475569;}
+
+/* Empty state */
+.vs-trn-faq__empty{
+  text-align:center;padding:48px 24px;display:none;
+}
+.vs-trn-faq__empty.is-visible{display:block;}
+.vs-trn-faq__empty svg{color:#CBD5E1;margin-bottom:16px;}
+.vs-trn-faq__empty p{color:#94A3B8;font-size:16px;margin:0;}
+
+@media(max-width:560px){.vs-trn-faq__q{padding:16px 18px;font-size:15px;}.vs-trn-faq__cats{gap:6px;}.vs-trn-faq__cat{padding:7px 12px;font-size:13px;}}
+</style>
+
+
+<section class="vs-trn-faq" data-vs-trn-faq>
+  <div class="vs-trn-faq__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>سوالات متداول</span>
+      <h2>پاسخ <em>سوالات شما</em></h2>
+    </div>
+
+    <div class="vs-trn-faq__search">
+      <input type="text" placeholder="جستجو در سوالات..." data-faq-search>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+    </div>
+
+    <div class="vs-trn-faq__cats">
+      <button class="vs-trn-faq__cat is-active" data-cat="all">همه</button>
+      <button class="vs-trn-faq__cat" data-cat="courses">دوره‌ها</button>
+      <button class="vs-trn-faq__cat" data-cat="consultation">مشاوره</button>
+      <button class="vs-trn-faq__cat" data-cat="analysis">آنالیز</button>
+      <button class="vs-trn-faq__cat" data-cat="financial">مالی</button>
+    </div>
+
+    <div class="vs-trn-faq__list">
+
+      <div class="vs-trn-faq__item" data-category="courses">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">آموزش‌ها حضوری در تبریز برگزار می‌شود یا آنلاین؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>آموزش خصوصی هم به صورت حضوری در تبریز و هم آنلاین (با Google Meet) قابل برگزاری است. دوره‌های گروهی به صورت ترکیبی برگزار می‌شوند: کلاس حضوری در تبریز با امکان شرکت آنلاین زنده. دوره‌های سازمانی معمولاً حضوری در محل شرکت کارفرما ارائه می‌شود.</p>
+        </div>
+      </div>
+
+      <div class="vs-trn-faq__item" data-category="courses">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">آیا برای دوره گروهی پیش‌نیاز خاصی نیاز است؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>دوره گروهی از مبانی شروع می‌شود و نیازی به دانش قبلی سئو ندارید. تنها پیش‌نیاز، آشنایی پایه با کار با کامپیوتر و اینترنت است. اگر سایتی دارید (وردپرس، شاپیفای یا هر CMS دیگر) بهتر است، چون می‌توانیم تمرین‌ها را روی آن انجام دهیم. در جلسه اول هم تمام ابزارهای موردنیاز معرفی و راه‌اندازی می‌شوند.</p>
+        </div>
+      </div>
+
+      <div class="vs-trn-faq__item" data-category="courses">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">بعد از دوره گواهی دریافت می‌کنم؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>بله، در دوره‌های گروهی و سازمانی پس از اتمام موفق دوره و ارائه پروژه پایانی، گواهی پایان دوره معتبر صادر می‌شود. این گواهی دارای QR کد قابل راستی‌آزمایی است و در رزومه شما جلوه حرفه‌ای دارد. در مشاوره ساعتی و آموزش خصوصی، گواهی صرفاً به درخواست شما صادر می‌شود.</p>
+        </div>
+      </div>
+
+      <div class="vs-trn-faq__item" data-category="consultation analysis">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">چه تفاوتی بین مشاوره و آنالیز سایت وجود دارد؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>مشاوره ساعتی یک جلسه گفت‌وگوی زنده است که شما سوالات و چالش‌های سئوی خود را مطرح می‌کنید و راهکار فوری دریافت می‌کنید. اما آنالیز سایت یک کار پژوهشی و چندروزه است: بررسی کامل ۲۰۰+ فاکتور، تحلیل رقبا، گزارش PDF و در نهایت یک جلسه توضیح. اگر می‌خواهید کل سایتتان معاینه شود، آنالیز را انتخاب کنید؛ اگر سوال خاصی دارید، مشاوره کافی است.</p>
+        </div>
+      </div>
+
+      <div class="vs-trn-faq__item" data-category="analysis">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">آنالیز سایت چه مدت طول می‌کشد؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>گزارش آنالیز سایت معمولاً ۵ تا ۷ روز کاری طول می‌کشد. در این مدت، تیم سئو ما سایت شما را از زوایای مختلف فنی، محتوایی، بک‌لینک، سرعت و رقابتی بررسی می‌کند. پس از تحویل گزارش PDF، یک جلسه ۱ ساعته توضیح حضوری/آنلاین برگزار می‌شود تا تمام موارد را کامل برایتان شرح دهیم.</p>
+        </div>
+      </div>
+
+      <div class="vs-trn-faq__item" data-category="financial">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">آیا امکان پرداخت اقساطی برای دوره‌ها وجود دارد؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>بله، برای دوره‌های گروهی امکان پرداخت در ۲ یا ۳ قسط بدون افزایش قیمت فراهم است. برای دوره‌های سازمانی نیز شرایط پرداخت کاملاً انعطاف‌پذیر و طبق توافق با کارفرما تنظیم می‌شود. آموزش خصوصی و مشاوره ساعتی به دلیل ماهیت تک‌جلسه‌ای، معمولاً در همان جلسه تسویه می‌شود.</p>
+        </div>
+      </div>
+
+      <div class="vs-trn-faq__item" data-category="consultation">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">مشاوره ساعتی برای کدام نوع کسب‌وکار مناسب‌تر است؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>مشاوره ساعتی برای کسانی مناسب است که قبلاً سایت دارند و با چالش مشخصی روبه‌رو هستند: مثلاً افت ترافیک ناگهانی، رتبه نگرفتن کلمه کلیدی خاص، تردید در انتخاب استراتژی، یا نیاز به نظر کارشناس قبل از انتخاب آژانس. برای کسب‌وکارهای کوچک تا متوسط که بودجه استخدام تیم سئو ندارند، گزینه‌ای عالی است.</p>
+        </div>
+      </div>
+
+      <div class="vs-trn-faq__item" data-category="financial">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">اگر از دوره راضی نباشم، هزینه برمی‌گردد؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>بله، در دوره‌های گروهی تا پایان جلسه دوم اگر از دوره راضی نباشید، کل هزینه پرداختی شما (به‌جز هزینه ۲ جلسه برگزارشده) عودت داده می‌شود. این تضمین به شما اطمینان می‌دهد که با خیال راحت ثبت‌نام کنید. در آموزش خصوصی نیز اگر بعد از جلسه اول راضی نبودید، جلسه‌های بعدی الزامی نیست.</p>
+        </div>
+      </div>
+
+      <div class="vs-trn-faq__item" data-category="courses">
+        <button class="vs-trn-faq__q" type="button">
+          <span class="txt">آموزش سازمانی چقدر زمان می‌برد؟</span>
+          <span class="icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="vs-trn-faq__a">
+          <p>زمان دوره سازمانی بسته به سطح فعلی تیم، تعداد افراد و سرفصل‌های انتخابی، معمولاً بین ۱۵ تا ۴۰ ساعت در ۲ تا ۸ هفته متغیر است. ما در جلسه نیازسنجی اول، ساعت‌ها و برنامه دقیق را با مدیر شرکت توافق می‌کنیم. امکان فشرده کردن دوره در چند روز پیاپی برای کارخانه‌ها و شرکت‌های بزرگ هم وجود دارد.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="vs-trn-faq__empty">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/><path d="M8 11h6" stroke-linecap="round"/></svg>
+      <p>سوالی با این عبارت پیدا نشد. لطفاً عبارت دیگری جستجو کنید.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const section=document.querySelector('[data-vs-trn-faq]');if(!section)return;
+  const items=section.querySelectorAll('.vs-trn-faq__item');
+  const cats=section.querySelectorAll('.vs-trn-faq__cat');
+  const searchInput=section.querySelector('[data-faq-search]');
+  const emptyState=section.querySelector('.vs-trn-faq__empty');
+  let activeCategory='all';
+
+  // Accordion
+  items.forEach(item=>{
+    item.querySelector('.vs-trn-faq__q').addEventListener('click',()=>{
+      const wasOpen=item.classList.contains('is-open');
+      items.forEach(i=>i.classList.remove('is-open'));
+      if(!wasOpen)item.classList.add('is-open');
+    });
+  });
+
+  // Category filter
+  cats.forEach(cat=>{
+    cat.addEventListener('click',()=>{
+      cats.forEach(c=>c.classList.remove('is-active'));
+      cat.classList.add('is-active');
+      activeCategory=cat.dataset.cat;
+      filterItems();
+    });
+  });
+
+  // Search
+  searchInput.addEventListener('input',()=>filterItems());
+
+  function filterItems(){
+    const query=searchInput.value.trim().toLowerCase();
+    let visible=0;
+    items.forEach(item=>{
+      const text=item.querySelector('.vs-trn-faq__q .txt').textContent.toLowerCase();
+      const answer=item.querySelector('.vs-trn-faq__a p').textContent.toLowerCase();
+      const cats=(item.dataset.category||'').split(/\s+/);
+      const catMatch=activeCategory==='all'||cats.includes(activeCategory);
+      const searchMatch=!query||text.includes(query)||answer.includes(query);
+      const show=catMatch&&searchMatch;
+      item.style.display=show?'':'none';
+      if(show)visible++;
+    });
+    emptyState.classList.toggle('is-visible',visible===0);
+  }
+})();
+</script>
+
+
+<!-- ========================================================
+     سکشن ۸: CTA — فرم مشاوره رایگان آموزش سئو
+     ======================================================== -->
+<style>
+.vs-trn-cta{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  --vs-amber:#F59E0B;--vs-amber-soft:rgba(245,158,11,.15);
+  padding:110px 24px;
+  background:#060832;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:#fff;
+  position:relative;overflow:hidden;
+}
+.vs-trn-cta::before{
+  content:"";position:absolute;top:25%;left:8%;width:42vw;height:42vw;
+  background:radial-gradient(circle,rgba(245,158,11,.18),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-trn-cta::after{
+  content:"";position:absolute;bottom:15%;right:5%;width:35vw;height:35vw;
+  background:radial-gradient(circle,rgba(138,203,208,.15),transparent 60%);
+  border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.vs-trn-cta__inner{max-width:1240px;margin:0 auto;position:relative;z-index:1;}
+.vs-trn-cta__grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+}
+
+/* Left Content */
+.vs-trn-cta__content{}
+.vs-trn-cta__badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,158,11,.14);color:#FBBF24;
+  border:1px solid rgba(245,158,11,.35);
+  padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:24px;
+}
+.vs-trn-cta__badge .dot{
+  width:8px;height:8px;border-radius:50%;background:var(--vs-amber);
+  animation:vs-trn-blink-dot 2s ease infinite;
+}
+@keyframes vs-trn-blink-dot{0%,100%{opacity:1;}50%{opacity:.3;}}
+.vs-trn-cta h2{
+  font-size:clamp(28px,3.4vw,44px);font-weight:900;
+  line-height:1.4;margin:0 0 20px;color:#fff;
+}
+.vs-trn-cta h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--vs-amber),#FBBF24);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+.vs-trn-cta__desc{
+  font-size:17px;line-height:2;color:rgba(255,255,255,.72);margin:0 0 32px;
+}
+.vs-trn-cta__features{list-style:none;padding:0;margin:0;display:grid;gap:14px;}
+.vs-trn-cta__features li{
+  display:flex;align-items:center;gap:12px;font-size:15px;color:rgba(255,255,255,.88);
+}
+.vs-trn-cta__features li .check{
+  width:30px;height:30px;border-radius:9px;
+  background:rgba(245,158,11,.16);color:var(--vs-amber);
+  display:grid;place-items:center;flex-shrink:0;
+}
+
+/* Right Form */
+.vs-trn-cta__form-wrap{
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:28px;padding:40px;
+  position:relative;
+}
+.vs-trn-cta__form-wrap::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--vs-amber),#FBBF24,var(--vs-accent),transparent);
+  border-radius:28px 28px 0 0;
+}
+.vs-trn-cta__form{display:grid;gap:16px;}
+.vs-trn-cta__field{display:flex;flex-direction:column;gap:6px;}
+.vs-trn-cta__field label{font-size:13px;font-weight:600;color:rgba(255,255,255,.72);}
+.vs-trn-cta__field input,
+.vs-trn-cta__field select,
+.vs-trn-cta__field textarea{
+  padding:13px 16px;border-radius:12px;
+  background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);
+  color:#fff;font-family:inherit;font-size:15px;
+  transition:all .3s ease;outline:none;width:100%;
+  resize:none;
+}
+.vs-trn-cta__field textarea{min-height:84px;}
+.vs-trn-cta__field input::placeholder,
+.vs-trn-cta__field textarea::placeholder{color:rgba(255,255,255,.35);}
+.vs-trn-cta__field input:focus,
+.vs-trn-cta__field select:focus,
+.vs-trn-cta__field textarea:focus{
+  border-color:var(--vs-amber);background:rgba(255,255,255,.08);
+  box-shadow:0 0 0 4px rgba(245,158,11,.14);
+}
+.vs-trn-cta__field select{
+  appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:left 14px center;
+  padding-left:42px;
+}
+.vs-trn-cta__field select option{background:#1D2327;color:#fff;}
+.vs-trn-cta__submit{
+  width:100%;padding:18px;border:none;border-radius:14px;
+  background:linear-gradient(135deg,var(--vs-amber),#D97706);
+  color:#fff;font-family:inherit;font-size:17px;font-weight:800;
+  cursor:pointer;transition:all .3s ease;
+  box-shadow:0 12px 30px rgba(245,158,11,.35);
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+}
+.vs-trn-cta__submit:hover{box-shadow:0 16px 40px rgba(245,158,11,.50);transform:translateY(-2px);}
+.vs-trn-cta__submit:active{transform:translateY(0);}
+.vs-trn-cta__submit svg{transition:transform .3s ease;}
+.vs-trn-cta__submit:hover svg{transform:translateX(-4px);}
+
+/* Online Badge */
+.vs-trn-cta__online{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin-top:18px;font-size:13px;color:rgba(255,255,255,.55);
+}
+.vs-trn-cta__online .pulse{
+  width:8px;height:8px;border-radius:50%;background:var(--vs-amber);
+  position:relative;
+}
+.vs-trn-cta__online .pulse::before{
+  content:"";position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid rgba(245,158,11,.55);
+  animation:vs-trn-cta-pulse 2s ease-out infinite;
+}
+@keyframes vs-trn-cta-pulse{0%{transform:scale(1);opacity:1;}100%{transform:scale(2);opacity:0;}}
+
+/* Success State */
+.vs-trn-cta__success{
+  display:none;text-align:center;padding:30px 20px;
+}
+.vs-trn-cta__success.is-visible{display:block;animation:vs-trn-fadeUp .5s ease;}
+@keyframes vs-trn-fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+.vs-trn-cta__success .check-circle{
+  width:76px;height:76px;border-radius:50%;margin:0 auto 22px;
+  background:linear-gradient(135deg,var(--vs-amber),#FBBF24);
+  display:grid;place-items:center;
+  box-shadow:0 12px 30px rgba(245,158,11,.40);
+  animation:vs-trn-pop .5s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes vs-trn-pop{0%{transform:scale(0);}100%{transform:scale(1);}}
+.vs-trn-cta__success h3{font-size:22px;font-weight:800;margin:0 0 8px;color:#fff;}
+.vs-trn-cta__success p{color:rgba(255,255,255,.65);font-size:15px;margin:0;line-height:1.8;}
+
+@media(max-width:980px){.vs-trn-cta__grid{grid-template-columns:1fr;gap:48px;}}
+@media(max-width:560px){.vs-trn-cta__form-wrap{padding:24px;}}
+</style>
+
+
+<section class="vs-trn-cta" data-vs-trn-cta>
+  <div class="vs-trn-cta__inner">
+    <div class="vs-trn-cta__grid">
+      <!-- Left: Content -->
+      <div class="vs-trn-cta__content">
+        <div class="vs-trn-cta__badge">
+          <span class="dot"></span>
+          <span>کارشناسان آنلاین — آماده پاسخگویی</span>
+        </div>
+
+        <h2>آماده‌ای <em>متخصص سئو</em><br>شوی؟</h2>
+
+        <p class="vs-trn-cta__desc">
+          همین حالا فرم رو پر کن تا مشاوره رایگان ۳۰ دقیقه‌ای رزرو شه. تعیین می‌کنیم
+          الان کجای مسیر سئو هستی و بهترین خدمت برای شروع شما کدومه — بدون تعهد و بدون فروش.
+        </p>
+
+        <ul class="vs-trn-cta__features">
+          <li>
+            <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            مشاوره کاملاً رایگان ۳۰ دقیقه‌ای
+          </li>
+          <li>
+            <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            تعیین سطح فعلی شما در سئو
+          </li>
+          <li>
+            <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            پیشنهاد بهترین خدمت متناسب با هدفت
+          </li>
+          <li>
+            <span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            بدون تعهد و بدون فشار فروش
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="vs-trn-cta__form-wrap">
+        <form class="vs-trn-cta__form" data-trn-form>
+          <div class="vs-trn-cta__field">
+            <label>نام و نام خانوادگی</label>
+            <input type="text" placeholder="مثلاً: علی محمدی" required>
+          </div>
+          <div class="vs-trn-cta__field">
+            <label>شماره تماس</label>
+            <input type="tel" placeholder="۰۹۱۲۳۴۵۶۷۸۹" required dir="ltr">
+          </div>
+          <div class="vs-trn-cta__field">
+            <label>ایمیل</label>
+            <input type="email" placeholder="you@example.com" dir="ltr">
+          </div>
+          <div class="vs-trn-cta__field">
+            <label>علاقه‌مند به</label>
+            <select required>
+              <option value="" disabled selected>یک گزینه را انتخاب کنید...</option>
+              <option value="private">آموزش خصوصی</option>
+              <option value="group">آموزش گروهی</option>
+              <option value="corporate">آموزش سازمانی</option>
+              <option value="hourly">مشاوره ساعتی</option>
+              <option value="analysis">آنالیز سایت</option>
+              <option value="unsure">نمی‌دانم — کمک می‌خواهم</option>
+            </select>
+          </div>
+          <div class="vs-trn-cta__field">
+            <label>پیام (اختیاری)</label>
+            <textarea placeholder="هر توضیح اضافه‌ای که می‌خواهید بگید..." rows="3"></textarea>
+          </div>
+          <button type="submit" class="vs-trn-cta__submit">
+            <span>رزرو مشاوره رایگان</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+
+        <div class="vs-trn-cta__success" data-success>
+          <div class="check-circle">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>درخواست شما ثبت شد!</h3>
+          <p>کارشناس ما در کمتر از ۲ ساعت کاری<br>برای هماهنگی جلسه با شما تماس می‌گیرد.</p>
+        </div>
+
+        <div class="vs-trn-cta__online">
+          <span class="pulse"></span>
+          <span>کارشناسان آنلاین — پاسخ‌گویی سریع</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const section=document.querySelector('[data-vs-trn-cta]');if(!section)return;
+  const form=section.querySelector('[data-trn-form]');
+  const success=section.querySelector('[data-success]');
+
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    form.style.display='none';
+    success.classList.add('is-visible');
+  });
+})();
+</script>
+
+
+<div class="mock-footer">⬆️ فوتر سایت شما (دست نخورده) ⬆️</div>
+
+</body>
+</html>

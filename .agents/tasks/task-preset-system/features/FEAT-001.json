@@ -1,0 +1,42 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Create the preset data infrastructure: a central PHP class that stores all preset data arrays for all 12 widgets across all 4 pages, plus a trait/helper that each widget uses to add the preset dropdown control and apply preset values.",
+  "status": "completed",
+  "steps": [
+    "Create /projects/sandbox/test/vira-sections-plugin/includes/class-presets.php with a static class Vira_Sections_Presets that contains all preset data organized by widget name and page slug.",
+    "The class should have a static method get_presets( $widget_name ) that returns an associative array of presets for that widget. Each preset key is the page slug (website-design, seo-google, seo-training-tabriz, app-android-tabriz) and value is an array of control_id => value pairs matching the widget's controls.",
+    "The class should also have a static method get_preset_options( $widget_name ) that returns the dropdown options array for that widget (only pages where the widget is used, per SECTIONS-MAP.md).",
+    "Create /projects/sandbox/test/vira-sections-plugin/includes/trait-preset-controls.php with a trait Vira_Sections_Preset_Trait that provides a method register_preset_control() which adds a SELECT control named 'vira_preset' at the very beginning of register_controls(). The trait also provides apply_preset_defaults() which can be used in get_settings_for_display() or via Elementor's default mechanism.",
+    "Widget-to-page mapping from SECTIONS-MAP.md: Hero - all 4 pages. Services Bento - website-design (features), seo-training-tabriz (services), app-android-tabriz (services). Interactive Tabs - seo-google, seo-training-tabriz. Process Timeline - website-design, seo-google, app-android-tabriz. Tech Stack - app-android-tabriz only. Pricing - all 4 pages. Testimonials Slider - all 4 pages. FAQ Search - all 4 pages. CTA Form - all 4 pages. Trust Strip - website-design only. Stats Counter - seo-google only. Curriculum - seo-training-tabriz only.",
+    "Require class-presets.php and trait-preset-controls.php in vira-sections.php init() method, before the register_widgets action hook.",
+    "IMPORTANT - Preset data extraction rules: Extract all text content (Persian), colors, gradient values, repeater items (FAQ questions/answers with categories, pricing plans with features, testimonials with quotes/names/companies/badges, process steps with descriptions, tab items, curriculum modules with topics, etc.) from each HTML section file. Use the exact text that appears in the HTML. For colors use the CSS variable values or inline color values from the HTML.",
+    "For the Hero widget presets, extract: badge_icon, badge_text, heading_before, rotating_words (repeater), description, btn_primary_text, btn_secondary_text, stats (repeater with value/suffix/label), marquee_items (repeater), aurora_color_1, aurora_color_2, rotating_grad_from, rotating_grad_to, btn_grad_from, btn_grad_to. Data sources: sections/01-hero.html (website-design), seo-google/sections/01-hero.html (seo-google), seo-training-tabriz/sections/01-hero.html (seo-training-tabriz), app-android-tabriz/sections/01-hero.html (app-android-tabriz).",
+    "For the FAQ Search widget presets, extract: eyebrow, heading, categories (repeater with slug/label), items (repeater with question/answer/item_categories). Data sources: sections/07-faq.html, seo-google/sections/07-faq.html, seo-training-tabriz/sections/07-faq.html, app-android-tabriz/sections/07-faq.html.",
+    "For the Pricing widget presets, extract: eyebrow, heading, description, show_toggle, plans (repeater with plan_name/plan_desc/plan_price_monthly/plan_price_yearly/plan_period/plan_features/plan_featured/plan_badge/plan_cta_text), bottom_note. Data sources: sections/05-pricing.html, seo-google/sections/05-pricing.html, seo-training-tabriz/sections/05-pricing.html, app-android-tabriz/sections/05-pricing.html.",
+    "For the Testimonials Slider widget presets, extract: eyebrow, heading, description, items (repeater with avatar_text/quote/name/company/badge_text). Data sources: sections/06-testimonials.html, seo-google/sections/06-testimonials.html, seo-training-tabriz/sections/06-testimonials.html, app-android-tabriz/sections/06-testimonials.html.",
+    "For the CTA Form widget presets, extract: badge_text, heading, description, features (repeater), select_options (repeater), submit_text. Style colors should match the page palette. Data sources: sections/08-cta.html, seo-google/sections/08-cta.html, seo-training-tabriz/sections/08-cta.html, app-android-tabriz/sections/08-cta.html.",
+    "For the Process Timeline widget presets, extract: eyebrow, heading, description, steps (repeater with step_number/step_title/step_duration/panel_title/panel_duration_text/panel_description/panel_deliverables). Data sources: sections/04-process.html (website-design), seo-google/sections/04-process.html, app-android-tabriz/sections/03-process.html.",
+    "For the Services Bento widget presets, extract: eyebrow, heading, description, cards (repeater with card_title/card_desc/card_meta/card_size). Data sources: sections/03-features-bento.html (website-design), seo-training-tabriz/sections/02-services.html, app-android-tabriz/sections/02-services.html.",
+    "For the Interactive Tabs widget presets, extract: eyebrow, heading, description, tabs (repeater with tab_title/tab_subtitle/panel_title/panel_description/panel_features). Data sources: seo-google/sections/03-features.html, seo-training-tabriz/sections/03-why-us.html.",
+    "For the Tech Stack widget presets, extract: eyebrow, heading, description, tabs (repeater with tab data), logos. Data source: app-android-tabriz/sections/04-tech-stack.html.",
+    "For the Stats Counter widget presets, extract: eyebrow, heading, description, counters (repeater), compare data. Data source: seo-google/sections/02-stats-showcase.html.",
+    "For the Trust Strip widget presets, extract: eyebrow, heading, mode, device mockup data, logos. Data source: sections/02-trust-strip.html.",
+    "For the Curriculum widget presets, extract: eyebrow, heading, description, totals_modules, totals_hours, modules (repeater with module_number/module_title/module_subtitle/chips/topics). Data source: seo-training-tabriz/sections/04-curriculum.html.",
+    "Color palette mapping per page: website-design: aurora_color_1=#128BE0, aurora_color_2=#170C79, btn_grad_from=#128BE0, btn_grad_to=#8ACBD0, rotating_grad_from=#8ACBD0, rotating_grad_to=#EFE3CA. seo-google: aurora_color_1=#22c55e, aurora_color_2=#128BE0, btn_grad_from=#22c55e, btn_grad_to=#128BE0, rotating_grad_from=#22c55e, rotating_grad_to=#8ACBD0. seo-training-tabriz: aurora_color_1=#F59E0B, aurora_color_2=#FBBF24, btn_grad_from=#F59E0B, btn_grad_to=#FBBF24, rotating_grad_from=#F59E0B, rotating_grad_to=#EFE3CA. app-android-tabriz: aurora_color_1=#3DDC84, aurora_color_2=#A855F7, btn_grad_from=#3DDC84, btn_grad_to=#A855F7, rotating_grad_from=#3DDC84, rotating_grad_to=#EFE3CA."
+  ],
+  "acceptance_criteria": [
+    "class-presets.php exists and contains valid PHP with all preset data for all 12 widgets across all applicable pages",
+    "trait-preset-controls.php exists and provides the preset dropdown control registration method",
+    "Both files have no PHP syntax errors (php -l passes)",
+    "Preset data accurately reflects the content from the HTML section files (Persian text, colors, repeater items)",
+    "vira-sections.php requires both new files before widget registration",
+    "The preset SELECT control options for each widget only include pages where that widget is used (per SECTIONS-MAP.md)"
+  ],
+  "verification": [
+    "Run php -l on class-presets.php and trait-preset-controls.php to confirm no syntax errors",
+    "Run php -l on vira-sections.php to confirm no syntax errors after adding require statements"
+  ],
+  "blocked_reason": null,
+  "findings": "PHP is available at /opt/toolchains/.local/share/mise/installs/php/8.3.31/bin/php. Must export PATH to use it. All 12 widget presets implemented with real Persian content from HTML files. The preset options use 'custom' as default (no change) plus page-specific options per SECTIONS-MAP.md mapping."
+}

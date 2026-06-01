@@ -1,0 +1,28 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Enhance the second batch of 4 widgets (Testimonials Slider, FAQ Search, CTA Form, Trust Strip) with modern animations, improved interactivity, and visual polish.",
+  "status": "completed",
+  "steps": [
+    "Read and enhance widgets/class-testimonials-slider.php: Add improved 3D depth effect with parallax on mouse move (transform-style preserve-3d), add smooth card transition with perspective rotation, add subtle floating animation on non-active cards, add glassmorphism enhancement on active card, add IntersectionObserver entrance animation, add prefers-reduced-motion support.",
+    "Read and enhance widgets/class-faq-search.php: Add smooth accordion height animation using max-height or grid-template-rows technique for expanding/collapsing, add character count or answer length indicator that animates on expand, add subtle highlight/flash animation when a search match is found, add staggered entrance animation for FAQ items, add input focus glow effect on search field, add prefers-reduced-motion support.",
+    "Read and enhance widgets/class-cta-form.php: Add field focus glow effects with animated border gradient, add animated submit button states (idle shimmer, loading spinner, success checkmark), add subtle glass-morphism depth enhancement with layered backgrounds, add floating label animation on focus, add form card entrance animation via IntersectionObserver, add prefers-reduced-motion support.",
+    "Read and enhance widgets/class-trust-strip.php: Add infinite scroll/marquee animation for logos strip (CSS animation with translateX), add logo hover tooltip with subtle scale-up, add entrance animation for showcase mode, add device mockup subtle breathing animation, add prefers-reduced-motion support."
+  ],
+  "acceptance_criteria": [
+    "All 4 widget files pass php -l syntax check without errors",
+    "Each widget has IntersectionObserver-based scroll entrance animations in its JS section",
+    "Each widget has @media (prefers-reduced-motion: reduce) rules",
+    "FAQ widget has smooth height transition animation for accordion panels",
+    "CTA Form has animated button states (loading/success)",
+    "Trust Strip has infinite marquee/scroll animation for logos",
+    "All CSS animations use transform and opacity for performance"
+  ],
+  "verification": [
+    "Run: find /projects/sandbox/test/vira-sections-plugin/widgets -name 'class-testimonials-slider.php' -o -name 'class-faq-search.php' -o -name 'class-cta-form.php' -o -name 'class-trust-strip.php' | xargs -I {} php -l {}",
+    "Verify each file contains 'IntersectionObserver' in its JS section",
+    "Verify each file contains 'prefers-reduced-motion' in its CSS section"
+  ],
+  "blocked_reason": null,
+  "findings": "All 4 widgets enhanced and pass php -l. PHP binary at /opt/toolchains/.local/share/mise/installs/php/8.3.31/bin/php works. Used grid-template-rows for FAQ accordion. Added marquee with duplicated logos for seamless infinite scroll in Trust Strip."
+}

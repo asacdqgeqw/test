@@ -1,0 +1,29 @@
+{
+  "project_type": "WordPress Elementor Widget Plugin (PHP with inline CSS/JS)",
+  "language": "PHP",
+  "build_system": "No build system - PHP files are loaded directly by WordPress/Elementor",
+  "test_framework": "PHP syntax check via php -l",
+  "build_command": "find /projects/sandbox/test/vira-sections-plugin -name '*.php' -exec php -l {} \\;",
+  "test_command": "find /projects/sandbox/test/vira-sections-plugin/widgets -name '*.php' -exec php -l {} \\;",
+  "verification_instructions": "Run php -l on all widget PHP files to verify no syntax errors. The plugin has no unit tests - validation is PHP lint only.",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "No setup needed - PHP files are standalone widget classes",
+  "environment_constraints": "No WordPress/Elementor runtime available for functional testing. Validate PHP syntax only with php -l.",
+  "contribution_requirements": "All CSS and JS is inline in each widget's render() method. Each widget uses a unique ID prefix to avoid style collisions. RTL (direction:rtl) is mandatory. Font family is Vazirmatn/IRANSans/Tahoma.",
+  "key_patterns": "Each widget extends \\Elementor\\Widget_Base, uses Vira_Sections_Preset_Trait, has register_controls() for Elementor panel and render() for frontend output. CSS uses custom properties (--vira-*) scoped to #unique-id. JS is wrapped in an IIFE. All text is RTL Persian.",
+  "relevant_files": [
+    "vira-sections-plugin/widgets/class-hero.php",
+    "vira-sections-plugin/widgets/class-services-bento.php",
+    "vira-sections-plugin/widgets/class-tabs.php",
+    "vira-sections-plugin/widgets/class-process-timeline.php",
+    "vira-sections-plugin/widgets/class-tech-stack.php",
+    "vira-sections-plugin/widgets/class-pricing.php",
+    "vira-sections-plugin/widgets/class-testimonials-slider.php",
+    "vira-sections-plugin/widgets/class-faq-search.php",
+    "vira-sections-plugin/widgets/class-cta-form.php",
+    "vira-sections-plugin/widgets/class-trust-strip.php",
+    "vira-sections-plugin/widgets/class-stats-counter.php",
+    "vira-sections-plugin/widgets/class-curriculum.php"
+  ],
+  "directory_structure": "vira-sections-plugin/ is the plugin root. widgets/ contains all 12 widget PHP files. assets/css/ has editor.css and frontend.css. includes/ has class-leads.php, class-presets.php, trait-preset-controls.php. docs/ has INSTALLATION.md."
+}

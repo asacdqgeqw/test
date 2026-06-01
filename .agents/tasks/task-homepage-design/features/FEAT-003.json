@@ -1,0 +1,37 @@
+{
+  "id": "FEAT-003",
+  "type": "fix",
+  "description": "Review and fix any bugs in the Elementor plugin widget PHP files. Check all 12 widget files for common issues: missing closing tags, inconsistent control names vs render output field access, controls defined but not rendered, incorrect preset field name mapping, unclosed HTML elements in render() output, missing esc_* sanitization, broken JavaScript in inline scripts.",
+  "status": "completed",
+  "steps": [
+    "Review /projects/sandbox/test/vira-sections-plugin/widgets/class-hero.php: Check that all controls defined in register_controls() are properly accessed in render() via $s['field_name']. Check the preset field names in class-presets.php (e.g. 'stats' repeater uses 'stat_value'/'stat_suffix'/'stat_label' in presets but the widget render might use 'value'/'suffix'/'label'). Fix any mismatches between preset data field names and widget control field names.",
+    "Review /projects/sandbox/test/vira-sections-plugin/widgets/class-services-bento.php: Verify render() output matches all controls. Check card_icon rendering works with Icons_Manager.",
+    "Review /projects/sandbox/test/vira-sections-plugin/widgets/class-tabs.php: Verify tabs repeater field names match between controls and render.",
+    "Review /projects/sandbox/test/vira-sections-plugin/widgets/class-process-timeline.php: Verify steps repeater field names in presets (step_number, step_title, step_duration, panel_title, panel_description, panel_deliverables) match the control field names in the widget.",
+    "Review /projects/sandbox/test/vira-sections-plugin/widgets/class-tech-stack.php: Verify field mapping.",
+    "Review /projects/sandbox/test/vira-sections-plugin/widgets/class-pricing.php: Verify plans repeater fields match between presets and widget controls.",
+    "Review /projects/sandbox/test/vira-sections-plugin/widgets/class-testimonials-slider.php: Check that preset field names (avatar_text, quote, name, company, badge_text) match widget control fields.",
+    "Review /projects/sandbox/test/vira-sections-plugin/widgets/class-faq-search.php: Verify items repeater fields (question, answer, item_categories) match controls.",
+    "Review /projects/sandbox/test/vira-sections-plugin/widgets/class-cta-form.php: Check that preset fields (badge_text, heading, description, features, select_options, submit_text) match widget controls. Verify the features repeater uses 'feat_text' vs preset's 'feature_text'.",
+    "Review /projects/sandbox/test/vira-sections-plugin/widgets/class-trust-strip.php: Verify logo repeater field names match.",
+    "Review /projects/sandbox/test/vira-sections-plugin/widgets/class-stats-counter.php: Verify counter repeater fields.",
+    "Review /projects/sandbox/test/vira-sections-plugin/widgets/class-curriculum.php: Verify module repeater fields match presets.",
+    "Review /projects/sandbox/test/vira-sections-plugin/assets/js/preset-handler.js: Check for issues with event binding, duplicate handler prevention, and proper settings update triggering.",
+    "Fix any field name mismatches found. The most likely bugs are: 1) CTA form preset uses 'feature_text' but widget repeater field is 'feat_text'. 2) Hero preset uses 'stat_value'/'stat_suffix'/'stat_label' but widget repeater uses 'value'/'suffix'/'label'. 3) Marquee preset uses 'text' field but widget uses 'item' field. Fix either the presets or the widgets to make them consistent.",
+    "Review the preset-handler.js to ensure it properly handles repeater-type fields (arrays of objects) when applying presets, since Elementor repeaters need special treatment."
+  ],
+  "acceptance_criteria": [
+    "All widget control field names in register_controls() are consistent with the keys used in the preset data from class-presets.php",
+    "All render() methods properly access settings that exist in controls",
+    "No orphaned controls (defined but never rendered) remain",
+    "No HTML tags left unclosed in render() output",
+    "JavaScript in inline scripts has no syntax errors",
+    "preset-handler.js correctly applies presets including repeater fields"
+  ],
+  "verification": [
+    "Grep for field name mismatches between preset data keys and widget control IDs",
+    "Verify each preset method's repeater data uses the same keys as the widget's repeater controls"
+  ],
+  "blocked_reason": null,
+  "findings": "Fixed 7 categories of preset key mismatches in class-presets.php:\n\n1. HERO WIDGET - Stats repeater: Changed 'stat_value' → 'value', 'stat_suffix' → 'suffix', 'stat_label' → 'label' (affected all 5 page presets × 3 stats each = 15 fields)\n2. HERO WIDGET - Marquee repeater: Changed 'text' → 'item' (affected all 5 page presets × ~6 items each = ~30 fields)\n3. CTA FORM WIDGET - Features repeater: Changed 'feature_text' → 'feat_text' (affected all 5 page presets × ~3-4 items = ~18 fields)\n4. CTA FORM WIDGET - Select options repeater: Changed 'option_text' → 'opt_text' (affected all 5 page presets × ~5 items = ~25 fields)\n5. STATS COUNTER WIDGET - Counters repeater: Changed 'counter_value' → 'number_value', 'counter_suffix' → 'suffix', 'counter_label' → 'label' (affected 2 page presets × 4 counters = 8 fields)\n6. PROCESS TIMELINE WIDGET - Steps repeater: Changed 'panel_deliverables' → 'panel_features' (affected 4 page presets × 4-5 steps = ~18 fields)\n7. SERVICES BENTO WIDGET - Homepage cards: Changed 'card_style' => 'dark' → 'card_is_dark' => 'yes' (1 field)\n8. TECH STACK WIDGET - Tabs: Changed 'tab_title' → 'tab_label', removed invalid 'tab_items' field, added proper 'panel_title' and 'panel_subtitle' fields instead (4 tabs)\n9. CURRICULUM WIDGET - Modules: Changed 'chips' (combined string) → split into 'sessions_count', 'duration', 'level' fields to match widget control IDs (8 modules)\n\nAlso verified: Testimonials slider (items: avatar_text, quote, name, company, badge_text ✓), FAQ search (items: question, answer, item_categories ✓; categories: cat_slug, cat_label ✓), Pricing (plans: plan_name, plan_desc, plan_price_monthly, plan_price_yearly, plan_period, plan_features, plan_featured, plan_badge, plan_cta_text ✓), Tabs (tabs: tab_title, tab_subtitle, panel_title, panel_description, panel_features ✓), Trust Strip (logos: logo_text ✓) - all correct.\n\npreset-handler.js reviewed: Uses settings.set(key, data[key]) approach which works for both simple fields and repeater arrays in Elementor. The implementation is correct."
+}

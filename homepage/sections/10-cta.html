@@ -1,0 +1,83 @@
+<!-- سکشن ۹: فرم تماس و مشاوره -->
+<style>
+.vs-home-cta{--vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;--vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;padding:60px 24px 110px;background:#fff;font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;}
+.vs-home-cta__inner{max-width:1240px;margin:0 auto;}
+.vs-home-cta__wrap{background:radial-gradient(60% 80% at 100% 0%,rgba(138,203,208,.40),transparent 60%),radial-gradient(50% 80% at 0% 100%,rgba(18,139,224,.45),transparent 60%),linear-gradient(135deg,var(--vs-primary) 0%,#0a0648 50%,var(--vs-secondary) 100%);border-radius:36px;padding:64px 56px;color:#fff;position:relative;overflow:hidden;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;}
+.vs-home-cta__wrap::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:40px 40px;-webkit-mask-image:radial-gradient(ellipse at center,#000,transparent 70%);mask-image:radial-gradient(ellipse at center,#000,transparent 70%);pointer-events:none;opacity:.5;}
+.vs-home-cta__left{position:relative;}
+.vs-home-cta__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.10);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.20);padding:8px 14px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:20px;color:#fff;}
+.vs-home-cta__badge .green{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.25);animation:vs-home-cta-blink 2s ease-in-out infinite;}
+@keyframes vs-home-cta-blink{50%{opacity:.4;}}
+.vs-home-cta__wrap h2{color:#fff;font-size:clamp(26px,3.2vw,42px);font-weight:800;margin:0 0 14px;line-height:1.4;}
+.vs-home-cta__wrap h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-home-cta__wrap>div p{color:rgba(255,255,255,.78);font-size:16px;line-height:1.95;margin:0 0 28px;max-width:520px;}
+.vs-home-cta__features{display:flex;gap:20px;flex-wrap:wrap;}
+.vs-home-cta__features .item{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.92);font-size:14px;}
+.vs-home-cta__features .item svg{color:var(--vs-cyan);}
+.vs-home-cta__form{background:rgba(255,255,255,.10);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.18);border-radius:24px;padding:32px;position:relative;z-index:1;}
+.vs-home-cta__form h3{font-size:20px;font-weight:800;margin:0 0 6px;color:#fff;}
+.vs-home-cta__form .sub{color:rgba(255,255,255,.65);font-size:13px;margin:0 0 20px;}
+.vs-home-cta__field{margin-bottom:14px;}
+.vs-home-cta__field label{display:block;font-size:12px;color:rgba(255,255,255,.7);margin-bottom:6px;font-weight:600;}
+.vs-home-cta__field input,.vs-home-cta__field select,.vs-home-cta__field textarea{width:100%;padding:14px 18px;background:rgba(0,0,0,.20);border:1px solid rgba(255,255,255,.15);border-radius:12px;color:#fff;font-family:inherit;font-size:14.5px;transition:all .25s ease;}
+.vs-home-cta__field textarea{min-height:80px;resize:vertical;}
+.vs-home-cta__field input::placeholder,.vs-home-cta__field textarea::placeholder{color:rgba(255,255,255,.4);}
+.vs-home-cta__field input:focus,.vs-home-cta__field select:focus,.vs-home-cta__field textarea:focus{outline:none;border-color:var(--vs-cyan);background:rgba(0,0,0,.30);box-shadow:0 0 0 4px rgba(138,203,208,.15);}
+.vs-home-cta__field select option{background:#0a0648;color:#fff;}
+.vs-home-cta__submit{width:100%;padding:16px 24px;background:linear-gradient(135deg,var(--vs-cyan) 0%,var(--vs-cream) 100%);color:var(--vs-primary);border:none;border-radius:12px;font-family:inherit;font-weight:800;font-size:15px;cursor:pointer;transition:all .25s ease;display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;box-shadow:0 16px 36px rgba(138,203,208,.25);}
+.vs-home-cta__submit:hover{transform:translateY(-2px);box-shadow:0 22px 48px rgba(138,203,208,.40);}
+.vs-home-cta__success{display:none;text-align:center;padding:32px 12px;}
+.vs-home-cta__success.is-on{display:block;}
+.vs-home-cta__form.is-sent .vs-home-cta__form-inner{display:none;}
+.vs-home-cta__success .icon{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));display:grid;place-items:center;margin:0 auto 16px;color:var(--vs-primary);}
+.vs-home-cta__success h4{font-size:22px;color:#fff;margin:0 0 8px;font-weight:800;}
+.vs-home-cta__success p{color:rgba(255,255,255,.75);font-size:14px;margin:0;}
+@media(max-width:880px){.vs-home-cta__wrap{grid-template-columns:1fr;padding:40px 28px;}.vs-home-cta__form{padding:24px;}}
+</style>
+
+<section class="vs-home-cta" id="contact">
+  <div class="vs-home-cta__inner">
+    <div class="vs-home-cta__wrap">
+      <div class="vs-home-cta__left">
+        <div class="vs-home-cta__badge"><span class="green"></span><span>کارشناسان آنلاین — همین الان</span></div>
+        <h2>آماده‌ای رشد دیجیتال <em>کسب‌وکارت</em> رو شروع کنی?</h2>
+        <p>فرم را پر کنید یا مستقیم تماس بگیرید. در کمتر از ۲ ساعت کارشناس ما با شما تماس می‌گیرد و یک پیشنهاد اولیه ارائه می‌دهد.</p>
+        <div class="vs-home-cta__features">
+          <div class="item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>مشاوره رایگان</div>
+          <div class="item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>بدون تعهد</div>
+          <div class="item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>پاسخ زیر ۲ ساعت</div>
+        </div>
+      </div>
+      <form class="vs-home-cta__form" data-vs-home-cta-form>
+        <div class="vs-home-cta__form-inner">
+          <h3>ارسال درخواست مشاوره</h3>
+          <p class="sub">فرم زیر را پر کنید تا کارشناسان ما با شما تماس بگیرند.</p>
+          <div class="vs-home-cta__field"><label>نام و نام خانوادگی</label><input type="text" placeholder="مثلا: علی محمدی" required></div>
+          <div class="vs-home-cta__field"><label>شماره تماس</label><input type="tel" placeholder="۰۹۱۲۳۴۵۶۷۸۹" required></div>
+          <div class="vs-home-cta__field"><label>ایمیل</label><input type="email" placeholder="email@example.com"></div>
+          <div class="vs-home-cta__field"><label>نوع خدمت</label><select required><option value="">انتخاب کنید...</option><option>طراحی سایت</option><option>سئو گوگل</option><option>اپلیکیشن اندروید</option><option>آموزش سئو</option><option>سایر</option></select></div>
+          <div class="vs-home-cta__field"><label>توضیحات (اختیاری)</label><textarea placeholder="درباره پروژه یا نیاز خود بنویسید..."></textarea></div>
+          <button type="submit" class="vs-home-cta__submit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/></svg>ارسال درخواست مشاوره</button>
+        </div>
+        <div class="vs-home-cta__success" data-vs-home-cta-success>
+          <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h4>درخواست شما ثبت شد</h4>
+          <p>کارشناس ما در کمتر از ۲ ساعت با شما تماس می‌گیرد.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var form=document.querySelector('[data-vs-home-cta-form]');
+  var success=document.querySelector('[data-vs-home-cta-success]');
+  if(!form)return;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    form.classList.add('is-sent');
+    success.classList.add('is-on');
+  });
+})();
+</script>

@@ -1,0 +1,173 @@
+<!-- سکشن ۱: HERO صفحه اصلی - نسخه پیشرفته با Gradient Mesh و Services Orbit -->
+<style>
+.vs-home-hero{
+  --vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;
+  position:relative;min-height:100vh;padding:100px 24px 0;overflow:hidden;
+  background:#050225;font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;
+  direction:rtl;color:#fff;isolation:isolate;
+}
+/* Gradient Mesh Background - distinct from service pages */
+.vs-home-hero__mesh{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.vs-home-hero__mesh-layer{position:absolute;border-radius:50%;filter:blur(80px);mix-blend-mode:screen;opacity:.6;will-change:transform;}
+.vs-home-hero__mesh-layer--1{width:70vw;height:70vw;top:-20%;right:-15%;background:conic-gradient(from 0deg,#128BE0,#170C79,#8ACBD0,#0170B9,#128BE0);animation:vs-hero-mesh-spin 20s linear infinite;}
+.vs-home-hero__mesh-layer--2{width:50vw;height:50vw;bottom:-10%;left:-10%;background:conic-gradient(from 180deg,#8ACBD0,#EFE3CA,#0170B9,#170C79,#8ACBD0);animation:vs-hero-mesh-spin 25s linear infinite reverse;}
+.vs-home-hero__mesh-layer--3{width:35vw;height:35vw;top:30%;left:30%;background:radial-gradient(circle,rgba(239,227,202,.4),rgba(138,203,208,.2),transparent 70%);animation:vs-hero-mesh-float 12s ease-in-out infinite;}
+@keyframes vs-hero-mesh-spin{to{transform:rotate(360deg);}}
+@keyframes vs-hero-mesh-float{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-5vw,3vh) scale(1.15);}}
+/* Noise overlay */
+.vs-home-hero__noise{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+/* Grid */
+.vs-home-hero__grid-bg{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.2;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:80px 80px;-webkit-mask-image:radial-gradient(ellipse 70% 50% at 50% 40%,#000,transparent 70%);mask-image:radial-gradient(ellipse 70% 50% at 50% 40%,#000,transparent 70%);}
+/* Spotlight */
+.vs-home-hero__spot{position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(600px circle at var(--mx,50%) var(--my,30%),rgba(138,203,208,.15),transparent 40%);transition:background .15s ease;}
+/* Wrapper */
+.vs-home-hero__wrap{position:relative;z-index:3;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center;min-height:calc(100vh - 100px);padding-bottom:100px;}
+/* Badge with animated gradient ring */
+.vs-home-hero__badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:none;padding:6px 6px 6px 18px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:24px;color:#fff;text-decoration:none;position:relative;overflow:hidden;}
+.vs-home-hero__badge::before{content:"";position:absolute;inset:-2px;border-radius:999px;background:conic-gradient(from 0deg,#128BE0,#8ACBD0,#EFE3CA,#170C79,#128BE0);animation:vs-hero-badge-spin 3s linear infinite;z-index:-1;}
+.vs-home-hero__badge::after{content:"";position:absolute;inset:2px;border-radius:999px;background:rgba(5,2,37,.9);z-index:-1;}
+.vs-home-hero__badge .pulse{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#8ACBD0,#128BE0);display:grid;place-items:center;position:relative;font-size:12px;font-weight:900;color:#050225;}
+.vs-home-hero__badge .pulse::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid rgba(138,203,208,.5);animation:vs-hero-pulse 2s ease-out infinite;}
+@keyframes vs-hero-badge-spin{to{transform:rotate(360deg);}}
+@keyframes vs-hero-pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(1.8);opacity:0}}
+/* Title */
+.vs-home-hero h1{font-size:clamp(34px,4.8vw,66px);font-weight:900;line-height:1.25;letter-spacing:-1.5px;margin:0 0 24px;color:#fff;}
+.vs-home-hero h1 .rot{display:inline-block;background:linear-gradient(135deg,#8ACBD0 0%,#128BE0 50%,#EFE3CA 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;position:relative;}
+.vs-home-hero h1 .rot__list{display:inline-flex;flex-direction:column;vertical-align:top;height:1.25em;overflow:hidden;}
+.vs-home-hero h1 .rot__list span{display:block;height:1.25em;animation:vs-hero-rotate 12s steps(1) infinite;}
+@keyframes vs-hero-rotate{0%,22%{transform:translateY(0)}25%,47%{transform:translateY(-1.25em)}50%,72%{transform:translateY(-2.5em)}75%,97%{transform:translateY(-3.75em)}100%{transform:translateY(0)}}
+.vs-home-hero h1 .rot::after{content:"";display:inline-block;width:3px;height:.85em;background:#8ACBD0;vertical-align:middle;margin-right:4px;animation:vs-hero-blink 1s steps(2) infinite;}
+@keyframes vs-hero-blink{50%{opacity:0}}
+.vs-home-hero p.lead{font-size:18px;color:rgba(255,255,255,.75);line-height:2;max-width:560px;margin:0 0 36px;}
+/* CTA */
+.vs-home-hero__cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:42px;}
+.vs-home-hero .vs-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;border-radius:14px;font-weight:700;font-size:16px;text-decoration:none;transition:all .25s ease;cursor:pointer;border:none;position:relative;overflow:hidden;font-family:inherit;}
+.vs-home-hero .vs-btn--primary{background:linear-gradient(135deg,#128BE0 0%,#8ACBD0 100%);color:#050225;box-shadow:0 20px 50px rgba(18,139,224,.40);}
+.vs-home-hero .vs-btn--primary::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,#EFE3CA 0%,#8ACBD0 100%);opacity:0;transition:opacity .3s ease;}
+.vs-home-hero .vs-btn--primary:hover::before{opacity:1;}
+.vs-home-hero .vs-btn--primary:hover{transform:translateY(-2px);box-shadow:0 28px 60px rgba(138,203,208,.50);}
+.vs-home-hero .vs-btn--primary>*{position:relative;z-index:1;}
+.vs-home-hero .vs-btn--ghost{background:rgba(255,255,255,.06);color:#fff;border:1.5px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+.vs-home-hero .vs-btn--ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.40);}
+.vs-home-hero .vs-btn svg{width:18px;height:18px;}
+/* Stats */
+.vs-home-hero__stats{display:flex;gap:36px;flex-wrap:wrap;padding-top:28px;border-top:1px solid rgba(255,255,255,.10);}
+.vs-home-hero__stat .num{font-size:34px;font-weight:900;line-height:1;color:#fff;display:flex;align-items:baseline;}
+.vs-home-hero__stat .num em{font-style:normal;background:linear-gradient(135deg,#8ACBD0,#EFE3CA);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-home-hero__stat .lbl{color:rgba(255,255,255,.5);font-size:13px;margin-top:6px;}
+/* Visual with Orbit */
+.vs-home-hero__visual{position:relative;perspective:1500px;display:flex;align-items:center;justify-content:center;}
+.vs-home-hero__stage{position:relative;width:100%;max-width:540px;aspect-ratio:1/1;transform-style:preserve-3d;transition:transform .15s ease-out;}
+/* Services Orbit */
+.vs-home-hero__orbit{position:absolute;inset:0;animation:vs-hero-orbit 24s linear infinite;}
+.vs-home-hero__orbit-item{position:absolute;width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.15);display:grid;place-items:center;color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.3);animation:vs-hero-orbit-counter 24s linear infinite;}
+.vs-home-hero__orbit-item:nth-child(1){top:5%;left:50%;transform:translateX(-50%);}
+.vs-home-hero__orbit-item:nth-child(2){top:50%;right:0%;transform:translateY(-50%);}
+.vs-home-hero__orbit-item:nth-child(3){bottom:5%;left:50%;transform:translateX(-50%);}
+.vs-home-hero__orbit-item:nth-child(4){top:50%;left:0%;transform:translateY(-50%);}
+@keyframes vs-hero-orbit{to{transform:rotate(360deg);}}
+@keyframes vs-hero-orbit-counter{to{transform:rotate(-360deg);}}
+/* Dashboard Mockup */
+.vs-home-hero__dashboard{position:absolute;inset:15% 12%;border-radius:18px;overflow:hidden;background:#0a0640;border:1px solid rgba(255,255,255,.10);box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 8px #1a1450,0 0 0 9px rgba(255,255,255,.06);}
+.vs-home-hero__dashboard-bar{height:30px;background:#0e0a3e;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid rgba(255,255,255,.05);}
+.vs-home-hero__dashboard-bar i{width:9px;height:9px;border-radius:50%;background:#FF6B6B;display:inline-block;}
+.vs-home-hero__dashboard-bar i:nth-child(2){background:#FFD93D}
+.vs-home-hero__dashboard-bar i:nth-child(3){background:#6BCB77}
+.vs-home-hero__dashboard-bar .url{flex:1;margin-right:14px;height:16px;border-radius:4px;background:rgba(255,255,255,.05);display:flex;align-items:center;padding:0 8px;font-size:10px;color:rgba(255,255,255,.35);}
+.vs-home-hero__dashboard-screen{padding:14px;display:grid;grid-template-rows:auto 1fr;gap:10px;background:linear-gradient(160deg,#0a0640 0%,#1a1268 100%);height:calc(100% - 30px);}
+.vs-home-hero__dash-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+.vs-home-hero__dash-card{border-radius:10px;padding:10px;border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden;}
+.vs-home-hero__dash-card::before{content:"";position:absolute;inset:0;opacity:.15;}
+.vs-home-hero__dash-card:nth-child(1)::before{background:linear-gradient(135deg,#128BE0,#8ACBD0);}
+.vs-home-hero__dash-card:nth-child(2)::before{background:linear-gradient(135deg,#22c55e,#128BE0);}
+.vs-home-hero__dash-card:nth-child(3)::before{background:linear-gradient(135deg,#3DDC84,#A855F7);}
+.vs-home-hero__dash-card:nth-child(4)::before{background:linear-gradient(135deg,#F59E0B,#FBBF24);}
+.vs-home-hero__dash-card-lbl{font-size:8px;color:rgba(255,255,255,.5);margin-bottom:4px;position:relative;}
+.vs-home-hero__dash-card-val{font-size:14px;font-weight:800;color:#fff;position:relative;}
+.vs-home-hero__dash-bar{height:4px;border-radius:2px;background:rgba(255,255,255,.1);margin-top:6px;position:relative;overflow:hidden;}
+.vs-home-hero__dash-bar::after{content:"";position:absolute;inset:0;border-radius:2px;width:var(--w,60%);background:linear-gradient(90deg,#128BE0,#8ACBD0);}
+/* Marquee */
+.vs-home-hero__marquee{position:relative;z-index:3;margin:0 -24px;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-block:1px solid rgba(255,255,255,.06);overflow:hidden;}
+.vs-home-hero__marquee-track{display:flex;gap:60px;padding:18px 0;width:max-content;animation:vs-hero-marquee 30s linear infinite;}
+.vs-home-hero__marquee-track span{color:rgba(255,255,255,.5);font-weight:700;font-size:18px;letter-spacing:-.5px;white-space:nowrap;display:inline-flex;align-items:center;gap:60px;}
+.vs-home-hero__marquee-track span::after{content:"\2726";color:#128BE0;opacity:.7;}
+@keyframes vs-hero-marquee{to{transform:translateX(50%);}}
+/* Responsive */
+@media(max-width:980px){.vs-home-hero__wrap{grid-template-columns:1fr;gap:40px;padding-bottom:60px;}.vs-home-hero{min-height:auto;padding:60px 20px 0;}.vs-home-hero__visual{order:-1;max-width:380px;margin:0 auto;}}
+@media(max-width:560px){.vs-home-hero__stats{gap:20px;}.vs-home-hero__stat .num{font-size:24px;}.vs-home-hero__orbit-item{width:40px;height:40px;border-radius:12px;}.vs-home-hero__marquee-track span{font-size:15px;gap:40px;}}
+</style>
+
+<section class="vs-home-hero" data-vs-home-hero>
+  <div class="vs-home-hero__mesh">
+    <div class="vs-home-hero__mesh-layer vs-home-hero__mesh-layer--1"></div>
+    <div class="vs-home-hero__mesh-layer vs-home-hero__mesh-layer--2"></div>
+    <div class="vs-home-hero__mesh-layer vs-home-hero__mesh-layer--3"></div>
+  </div>
+  <div class="vs-home-hero__noise"></div>
+  <div class="vs-home-hero__grid-bg"></div>
+  <div class="vs-home-hero__spot"></div>
+
+  <div class="vs-home-hero__wrap">
+    <div class="vs-home-hero__content">
+      <a href="#services" class="vs-home-hero__badge">
+        <span class="pulse">+</span>
+        <span>۱۰ سال تجربه حرفه‌ای</span>
+      </a>
+      <h1>ما برای شما<br><span class="rot"><span class="rot__list"><span>سایت می‌سازیم</span><span>سئو می‌کنیم</span><span>اپلیکیشن می‌سازیم</span><span>آموزش می‌دهیم</span></span></span></h1>
+      <p class="lead">آژانس دیجیتال مارکتینگ ویرا سئو، ارائه‌دهنده خدمات جامع طراحی سایت، سئو گوگل، توسعه اپلیکیشن و آموزش تخصصی. ما کسب‌وکار شما را به یک <strong style="color:#8ACBD0">برند دیجیتال</strong> تبدیل می‌کنیم.</p>
+      <div class="vs-home-hero__cta">
+        <a href="#contact" class="vs-btn vs-btn--primary"><span>مشاوره رایگان</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#portfolio" class="vs-btn vs-btn--ghost"><span>نمونه‌کارها</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" stroke-linecap="round"/><circle cx="12" cy="12" r="3"/></svg></a>
+      </div>
+      <div class="vs-home-hero__stats">
+        <div class="vs-home-hero__stat"><div class="num" data-counter="450" data-suffix="+"><em>۰</em></div><div class="lbl">پروژه موفق</div></div>
+        <div class="vs-home-hero__stat"><div class="num" data-counter="98" data-suffix="٪"><em>۰</em></div><div class="lbl">رضایت مشتری</div></div>
+        <div class="vs-home-hero__stat"><div class="num" data-counter="10" data-suffix="+"><em>۰</em></div><div class="lbl">سال تجربه</div></div>
+      </div>
+    </div>
+    <!-- Visual with Orbit -->
+    <div class="vs-home-hero__visual">
+      <div class="vs-home-hero__stage" data-vs-home-tilt>
+        <div class="vs-home-hero__orbit">
+          <div class="vs-home-hero__orbit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8ACBD0" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg></div>
+          <div class="vs-home-hero__orbit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></div>
+          <div class="vs-home-hero__orbit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A855F7" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01" stroke-linecap="round"/></svg></div>
+          <div class="vs-home-hero__orbit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+        </div>
+        <div class="vs-home-hero__dashboard">
+          <div class="vs-home-hero__dashboard-bar"><i></i><i></i><i></i><div class="url">viraseo.com</div></div>
+          <div class="vs-home-hero__dashboard-screen">
+            <div class="vs-home-hero__dash-cards">
+              <div class="vs-home-hero__dash-card"><div class="vs-home-hero__dash-card-lbl">طراحی سایت</div><div class="vs-home-hero__dash-card-val">۴۵۰+</div><div class="vs-home-hero__dash-bar" style="--w:85%"></div></div>
+              <div class="vs-home-hero__dash-card"><div class="vs-home-hero__dash-card-lbl">سئو گوگل</div><div class="vs-home-hero__dash-card-val">۱۲۵+</div><div class="vs-home-hero__dash-bar" style="--w:70%"></div></div>
+              <div class="vs-home-hero__dash-card"><div class="vs-home-hero__dash-card-lbl">اپلیکیشن</div><div class="vs-home-hero__dash-card-val">۸۰+</div><div class="vs-home-hero__dash-bar" style="--w:55%"></div></div>
+              <div class="vs-home-hero__dash-card"><div class="vs-home-hero__dash-card-lbl">آموزش</div><div class="vs-home-hero__dash-card-val">۸۰۰+</div><div class="vs-home-hero__dash-bar" style="--w:90%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Marquee -->
+  <div class="vs-home-hero__marquee">
+    <div class="vs-home-hero__marquee-track">
+      <span>طراحی سایت</span><span>سئو گوگل</span><span>اپلیکیشن اندروید</span><span>آموزش سئو</span><span>دیجیتال مارکتینگ</span><span>پشتیبانی ۲۴/۷</span><span>طراحی سایت</span><span>سئو گوگل</span><span>اپلیکیشن اندروید</span><span>آموزش سئو</span><span>دیجیتال مارکتینگ</span><span>پشتیبانی ۲۴/۷</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const hero=document.querySelector('[data-vs-home-hero]');
+  if(!hero)return;
+  hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();hero.style.setProperty('--mx',(e.clientX-r.left)+'px');hero.style.setProperty('--my',(e.clientY-r.top)+'px');});
+  const stage=hero.querySelector('[data-vs-home-tilt]');
+  if(stage){stage.addEventListener('pointermove',e=>{const r=stage.getBoundingClientRect();const px=(e.clientX-r.left)/r.width-.5;const py=(e.clientY-r.top)/r.height-.5;stage.style.transform='rotateY('+(px*-8)+'deg) rotateX('+(py*6)+'deg)';});stage.addEventListener('pointerleave',()=>{stage.style.transform='rotateX(0) rotateY(0)';});}
+  const toFa=n=>String(n).replace(/\d/g,d=>'\u06F0\u06F1\u06F2\u06F3\u06F4\u06F5\u06F6\u06F7\u06F8\u06F9'[d]);
+  const counters=hero.querySelectorAll('[data-counter]');
+  const animate=(el)=>{const target=parseInt(el.dataset.counter,10);const suffix=el.dataset.suffix||'';const dur=1600;const start=performance.now();const step=(now)=>{const t=Math.min(1,(now-start)/dur);const eased=1-Math.pow(1-t,3);const val=Math.floor(eased*target);el.innerHTML='<em>'+toFa(val)+'</em>'+suffix;if(t<1)requestAnimationFrame(step);};requestAnimationFrame(step);};
+  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animate(e.target);io.unobserve(e.target);}});},{threshold:.5});
+  counters.forEach(c=>io.observe(c));
+})();
+</script>
