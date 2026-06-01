@@ -396,6 +396,91 @@ class Vira_Sections_Widget_Cta_Form extends \Elementor\Widget_Base {
 			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__success p{color:rgba(255,255,255,.65);font-size:15px;margin:0;line-height:1.8;}
 			@media(max-width:980px){#<?php echo esc_attr( $unique_id ); ?> .vira-cta__grid{grid-template-columns:1fr;gap:48px;}}
 			@media(max-width:560px){#<?php echo esc_attr( $unique_id ); ?> .vira-cta__form-wrap{padding:24px;}}
+			/* Field focus animated border gradient */
+			@keyframes vira-cta-border-glow{
+				0%{box-shadow:0 0 0 4px rgba(18,139,224,.12),0 0 20px rgba(18,139,224,.08);}
+				50%{box-shadow:0 0 0 6px rgba(18,139,224,.20),0 0 28px rgba(18,139,224,.14);}
+				100%{box-shadow:0 0 0 4px rgba(18,139,224,.12),0 0 20px rgba(18,139,224,.08);}
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__field input:focus,
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__field select:focus,
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__field textarea:focus{
+				animation:vira-cta-border-glow 2s ease-in-out infinite;
+			}
+			/* Submit button idle shimmer */
+			@keyframes vira-cta-shimmer{
+				0%{background-position:200% center;}
+				100%{background-position:-200% center;}
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__submit{
+				background-size:200% 100%;
+				background-image:linear-gradient(90deg,var(--vira-btn-from) 0%,var(--vira-btn-to) 30%,rgba(255,255,255,.25) 50%,var(--vira-btn-to) 70%,var(--vira-btn-from) 100%);
+				animation:vira-cta-shimmer 4s linear infinite;
+			}
+			/* Submit button loading state */
+			@keyframes vira-cta-spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__submit.is-loading{
+				pointer-events:none;opacity:.8;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__submit.is-loading .vira-cta__spinner{
+				display:inline-block;width:20px;height:20px;
+				border:3px solid rgba(255,255,255,.3);border-top-color:#fff;
+				border-radius:50%;animation:vira-cta-spin .7s linear infinite;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__spinner{display:none;}
+			/* Submit button success state */
+			@keyframes vira-cta-check-draw{
+				0%{stroke-dashoffset:24;}
+				100%{stroke-dashoffset:0;}
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__submit.is-success{
+				background:linear-gradient(135deg,#10B981,#059669);
+				animation:none;pointer-events:none;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__submit.is-success .vira-cta__check{
+				display:inline-block;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__submit.is-success .vira-cta__check svg path{
+				stroke-dasharray:24;stroke-dashoffset:0;
+				animation:vira-cta-check-draw .4s ease-out;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__check{display:none;}
+			/* Glass-morphism depth enhancement */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__form-wrap{
+				background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,255,255,.03));
+				backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+				box-shadow:0 32px 80px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.1);
+			}
+			/* Form card entrance animation */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__form-wrap.vira-entrance{
+				opacity:0;transform:translateY(40px) scale(0.96);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__form-wrap.vira-entrance-in{
+				opacity:1;transform:translateY(0) scale(1);
+				transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1);
+			}
+			/* Content entrance animation */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__content.vira-entrance{
+				opacity:0;transform:translateY(30px);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__content.vira-entrance-in{
+				opacity:1;transform:translateY(0);
+				transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1);
+			}
+			/* Reduced motion support */
+			@media(prefers-reduced-motion: reduce){
+				#<?php echo esc_attr( $unique_id ); ?> .vira-cta__submit{animation:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-cta__field input:focus,
+				#<?php echo esc_attr( $unique_id ); ?> .vira-cta__field select:focus,
+				#<?php echo esc_attr( $unique_id ); ?> .vira-cta__field textarea:focus{animation:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-cta__form-wrap.vira-entrance{opacity:1;transform:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-cta__form-wrap.vira-entrance-in{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-cta__content.vira-entrance{opacity:1;transform:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-cta__content.vira-entrance-in{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-cta__submit.is-loading .vira-cta__spinner{animation:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-cta__badge .dot{animation:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-cta__online .pulse::before{animation:none !important;}
+			}
 		</style>
 
 		<section id="<?php echo esc_attr( $unique_id ); ?>" class="vira-cta" data-vira-cta>
@@ -462,7 +547,9 @@ class Vira_Sections_Widget_Cta_Form extends \Elementor\Widget_Base {
 								</div>
 							<?php endif; ?>
 							<button type="submit" class="vira-cta__submit">
-								<span><?php echo esc_html( $s['submit_text'] ); ?></span>
+								<span class="vira-cta__btn-text"><?php echo esc_html( $s['submit_text'] ); ?></span>
+								<span class="vira-cta__spinner"></span>
+								<span class="vira-cta__check"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
 								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
 							</button>
 						</form>
@@ -508,6 +595,21 @@ class Vira_Sections_Widget_Cta_Form extends \Elementor\Widget_Base {
 				form.appendChild(hp);
 			}
 
+			function setButtonState(state){
+				if (!submit) return;
+				submit.classList.remove('is-loading','is-success');
+				var btnText = submit.querySelector('.vira-cta__btn-text');
+				if (state === 'loading') {
+					submit.classList.add('is-loading');
+					if (btnText) btnText.style.display = 'none';
+				} else if (state === 'success') {
+					submit.classList.add('is-success');
+					if (btnText) btnText.style.display = 'none';
+				} else {
+					if (btnText) btnText.style.display = '';
+				}
+			}
+
 			function showError(msg){
 				var existing = form.querySelector('.vira-cta__error');
 				if (existing) existing.remove();
@@ -525,16 +627,18 @@ class Vira_Sections_Widget_Cta_Form extends \Elementor\Widget_Base {
 
 				// If global Vira AJAX object isn't available, fall back to local-only success state.
 				if (typeof window.ViraSectionsForm === 'undefined' || !window.ViraSectionsForm.ajaxurl) {
-					form.style.display = 'none';
-					if (success) success.classList.add('is-visible');
+					setButtonState('loading');
+					setTimeout(function(){
+						setButtonState('success');
+						setTimeout(function(){
+							form.style.display = 'none';
+							if (success) success.classList.add('is-visible');
+						}, 800);
+					}, 1200);
 					return;
 				}
 
-				if (submit) {
-					submit.disabled = true;
-					submit.style.opacity = '0.65';
-					submit.style.cursor = 'wait';
-				}
+				setButtonState('loading');
 
 				var data = new FormData(form);
 				data.append('action', 'vira_submit_lead');
@@ -542,7 +646,6 @@ class Vira_Sections_Widget_Cta_Form extends \Elementor\Widget_Base {
 				data.append('page_url', window.location.href);
 
 				// Map field names to backend convention (name, phone, email, select, message)
-				// (Already handled by input name="vira_name" etc., but normalize here.)
 				if (data.has('vira_name')) { data.append('name', data.get('vira_name')); }
 				if (data.has('vira_phone')) { data.append('phone', data.get('vira_phone')); }
 				if (data.has('vira_email')) { data.append('email', data.get('vira_email')); }
@@ -556,28 +659,50 @@ class Vira_Sections_Widget_Cta_Form extends \Elementor\Widget_Base {
 				})
 				.then(function(r){ return r.json().catch(function(){ return { success:false, data:{ msg:'خطا در پاسخ سرور' } }; }); })
 				.then(function(res){
-					if (submit) {
-						submit.disabled = false;
-						submit.style.opacity = '';
-						submit.style.cursor = '';
-					}
 					if (res && res.success) {
-						form.style.display = 'none';
-						if (success) success.classList.add('is-visible');
+						setButtonState('success');
+						setTimeout(function(){
+							form.style.display = 'none';
+							if (success) success.classList.add('is-visible');
+						}, 800);
 					} else {
+						setButtonState('idle');
 						var msg = (res && res.data && res.data.msg) ? res.data.msg : 'خطا در ارسال پیام. لطفاً بعداً تلاش کنید.';
 						showError(msg);
 					}
 				})
 				.catch(function(){
-					if (submit) {
-						submit.disabled = false;
-						submit.style.opacity = '';
-						submit.style.cursor = '';
-					}
+					setButtonState('idle');
 					showError('خطا در ارتباط با سرور. لطفاً اتصال اینترنت خود را بررسی کنید.');
 				});
 			});
+
+			/* IntersectionObserver entrance animation */
+			var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			if (!reducedMotion && 'IntersectionObserver' in window) {
+				var formWrap = section.querySelector('.vira-cta__form-wrap');
+				var content = section.querySelector('.vira-cta__content');
+				if (formWrap) formWrap.classList.add('vira-entrance');
+				if (content) content.classList.add('vira-entrance');
+				var observer = new IntersectionObserver(function(entries){
+					entries.forEach(function(entry){
+						if (entry.isIntersecting) {
+							if (content) {
+								content.classList.remove('vira-entrance');
+								content.classList.add('vira-entrance-in');
+							}
+							setTimeout(function(){
+								if (formWrap) {
+									formWrap.classList.remove('vira-entrance');
+									formWrap.classList.add('vira-entrance-in');
+								}
+							}, 200);
+							observer.disconnect();
+						}
+					});
+				}, { threshold: 0.15 });
+				observer.observe(section);
+			}
 		})();
 		</script>
 		<?php endif; ?>

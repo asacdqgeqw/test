@@ -457,6 +457,51 @@ class Vira_Sections_Widget_Faq_Search extends \Elementor\Widget_Base {
 				#<?php echo esc_attr( $unique_id ); ?> .vira-faq__q{padding:16px 18px;font-size:14.5px;}
 				#<?php echo esc_attr( $unique_id ); ?> .vira-faq__cat{padding:7px 12px;font-size:13px;}
 			}
+			/* Smooth accordion height animation using grid-template-rows */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-faq__a{
+				display:grid;grid-template-rows:0fr;
+				transition:grid-template-rows .45s cubic-bezier(.4,0,.2,1),padding .3s ease;
+				max-height:none;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-faq__a-inner{overflow:hidden;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-faq__item.is-open .vira-faq__a{
+				grid-template-rows:1fr;padding:0 24px 22px;
+			}
+			/* Search highlight flash animation */
+			@keyframes vira-faq-highlight{
+				0%{background-color:rgba(1,112,185,.15);}
+				100%{background-color:transparent;}
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-faq__item.vira-highlight{
+				animation:vira-faq-highlight .8s ease-out;
+			}
+			/* Input focus glow effect */
+			@keyframes vira-faq-input-glow{
+				0%{box-shadow:0 0 0 4px rgba(1,112,185,.10),0 4px 16px rgba(1,112,185,.10);}
+				50%{box-shadow:0 0 0 6px rgba(1,112,185,.18),0 4px 20px rgba(1,112,185,.20);}
+				100%{box-shadow:0 0 0 4px rgba(1,112,185,.10),0 4px 16px rgba(1,112,185,.10);}
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-faq__search input:focus{
+				animation:vira-faq-input-glow 2s ease-in-out infinite;
+			}
+			/* Entrance animation for FAQ items */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-faq__item.vira-entrance{
+				opacity:0;transform:translateY(20px);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-faq__item.vira-entrance-in{
+				opacity:1;transform:translateY(0);
+				transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .5s cubic-bezier(.4,0,.2,1);
+			}
+			/* Reduced motion support */
+			@media(prefers-reduced-motion: reduce){
+				#<?php echo esc_attr( $unique_id ); ?> .vira-faq__a{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-faq__item{transition:none !important;animation:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-faq__item.vira-entrance{opacity:1;transform:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-faq__item.vira-entrance-in{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-faq__search input:focus{animation:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-faq__q .icon{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-faq__cat{transition:none !important;}
+			}
 		</style>
 
 		<section id="<?php echo esc_attr( $unique_id ); ?>" class="vira-faq" data-vira-faq>
@@ -494,7 +539,9 @@ class Vira_Sections_Widget_Faq_Search extends \Elementor\Widget_Base {
 								</span>
 							</button>
 							<div class="vira-faq__a">
+								<div class="vira-faq__a-inner">
 								<p><?php echo esc_html( $item['answer'] ); ?></p>
+								</div>
 							</div>
 						</div>
 					<?php endforeach; ?>
@@ -552,8 +599,37 @@ class Vira_Sections_Widget_Faq_Search extends \Elementor\Widget_Base {
 					var show = catMatch && searchMatch;
 					item.style.display = show ? '' : 'none';
 					if (show) visible++;
+					/* Highlight flash on search match */
+					if (show && query) {
+						item.classList.remove('vira-highlight');
+						void item.offsetWidth;
+						item.classList.add('vira-highlight');
+					} else {
+						item.classList.remove('vira-highlight');
+					}
 				});
 				if (emptyState) emptyState.classList.toggle('is-visible', visible === 0);
+			}
+
+			/* IntersectionObserver staggered entrance animation */
+			var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			if (!reducedMotion && 'IntersectionObserver' in window) {
+				items.forEach(function(item){ item.classList.add('vira-entrance'); });
+				var observer = new IntersectionObserver(function(entries){
+					entries.forEach(function(entry){
+						if (entry.isIntersecting) {
+							var list = entry.target.querySelectorAll('.vira-faq__item.vira-entrance');
+							list.forEach(function(item, i){
+								setTimeout(function(){
+									item.classList.remove('vira-entrance');
+									item.classList.add('vira-entrance-in');
+								}, i * 80);
+							});
+							observer.disconnect();
+						}
+					});
+				}, { threshold: 0.1 });
+				observer.observe(section.querySelector('.vira-faq__list'));
 			}
 		})();
 		</script>

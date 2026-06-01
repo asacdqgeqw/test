@@ -468,11 +468,47 @@ class Vira_Sections_Widget_Testimonials_Slider extends \Elementor\Widget_Base {
 				background:linear-gradient(135deg,var(--vira-av-from),var(--vira-av-to));
 				transform:scale(1.4);width:26px;border-radius:6px;
 			}
+			/* Enhanced glassmorphism on active card */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-test__slide.is-active{
+				backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+				background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(255,255,255,.98));
+				border:1px solid rgba(255,255,255,.6);
+				box-shadow:0 24px 60px rgba(15,23,42,.08),0 0 0 1px rgba(1,112,185,.12),inset 0 1px 0 rgba(255,255,255,.8);
+			}
+			/* Floating animation for non-active side cards */
+			@keyframes vira-test-float{
+				0%,100%{transform:translateY(0);}
+				50%{transform:translateY(-8px);}
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-test__slide.is-prev{
+				animation:vira-test-float 4s ease-in-out infinite;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-test__slide.is-next{
+				animation:vira-test-float 4s ease-in-out infinite 1s;
+			}
+			/* Entrance animation */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-test__slide.vira-entrance{
+				opacity:0;transform:translateY(40px) scale(0.95);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-test__slide.vira-entrance-in{
+				opacity:1;transform:translateY(0) scale(1);
+				transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1);
+			}
+			/* Parallax 3D depth on mouse move */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-test__slider{transform-style:preserve-3d;}
 			@media(max-width:768px){
 				#<?php echo esc_attr( $unique_id ); ?> .vira-test__slide{padding:28px;max-width:92%;}
 				#<?php echo esc_attr( $unique_id ); ?> .vira-test__slide.is-prev,
 				#<?php echo esc_attr( $unique_id ); ?> .vira-test__slide.is-next{opacity:0;}
 				#<?php echo esc_attr( $unique_id ); ?> .vira-test__quote{font-size:16px;}
+			}
+			@media(prefers-reduced-motion: reduce){
+				#<?php echo esc_attr( $unique_id ); ?> .vira-test__slide{transition:none !important;animation:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-test__slide.is-prev,
+				#<?php echo esc_attr( $unique_id ); ?> .vira-test__slide.is-next{animation:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-test__slide.vira-entrance{opacity:1;transform:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-test__slide.vira-entrance-in{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-test__dot{transition:none !important;}
 			}
 		</style>
 
@@ -582,6 +618,45 @@ class Vira_Sections_Widget_Testimonials_Slider extends \Elementor\Widget_Base {
 			<?php else : ?>
 			function resetAuto(){}
 			<?php endif; ?>
+
+			/* 3D parallax on mouse move */
+			var slider = root.querySelector('.vira-test__slider');
+			var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			if (slider && !reducedMotion) {
+				slider.addEventListener('mousemove', function(e){
+					var rect = slider.getBoundingClientRect();
+					var x = (e.clientX - rect.left) / rect.width - 0.5;
+					var y = (e.clientY - rect.top) / rect.height - 0.5;
+					var active = slider.querySelector('.vira-test__slide.is-active');
+					if (active) {
+						active.style.transform = 'rotateY(' + (x * 5) + 'deg) rotateX(' + (-y * 3) + 'deg) scale(1)';
+					}
+				});
+				slider.addEventListener('mouseleave', function(){
+					var active = slider.querySelector('.vira-test__slide.is-active');
+					if (active) active.style.transform = '';
+				});
+			}
+
+			/* IntersectionObserver entrance animation */
+			if (!reducedMotion && 'IntersectionObserver' in window) {
+				slides.forEach(function(s){ s.classList.add('vira-entrance'); });
+				var observer = new IntersectionObserver(function(entries){
+					entries.forEach(function(entry){
+						if (entry.isIntersecting) {
+							var allSlides = entry.target.parentElement.querySelectorAll('.vira-test__slide');
+							allSlides.forEach(function(s, i){
+								setTimeout(function(){
+									s.classList.remove('vira-entrance');
+									s.classList.add('vira-entrance-in');
+								}, i * 120);
+							});
+							observer.disconnect();
+						}
+					});
+				}, { threshold: 0.2 });
+				observer.observe(root.querySelector('.vira-test__track'));
+			}
 		})();
 		</script>
 		<?php

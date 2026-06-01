@@ -492,6 +492,69 @@ class Vira_Sections_Widget_Trust_Strip extends \Elementor\Widget_Base {
 				#<?php echo esc_attr( $unique_id ); ?> .vira-strip__logos{gap:24px;}
 				#<?php echo esc_attr( $unique_id ); ?> .vira-strip__logos .vira-logo{font-size:18px;}
 			}
+			/* Infinite marquee scroll animation for logos */
+			@keyframes vira-trust-marquee{
+				0%{transform:translateX(0);}
+				100%{transform:translateX(-50%);}
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-strip__logos--marquee{
+				display:flex;flex-wrap:nowrap;justify-content:flex-start;
+				overflow:hidden;gap:0;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-strip__logos--marquee .vira-strip__marquee-track{
+				display:flex;gap:48px;align-items:center;
+				animation:vira-trust-marquee 25s linear infinite;
+				flex-shrink:0;padding:24px 24px;
+			}
+			/* Logo hover tooltip */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-strip__logos .vira-logo{
+				position:relative;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-strip__logos .vira-logo::after{
+				content:attr(aria-label);
+				position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%) scale(0.8);
+				background:var(--vira-accent);color:#fff;
+				padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;
+				white-space:nowrap;opacity:0;pointer-events:none;
+				transition:opacity .2s ease,transform .2s ease;
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-strip__logos .vira-logo:hover::after{
+				opacity:1;transform:translateX(-50%) scale(1);
+			}
+			/* Showcase mode entrance animation */
+			#<?php echo esc_attr( $unique_id ); ?> .vira-trust__head.vira-entrance{
+				opacity:0;transform:translateY(30px);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-trust__head.vira-entrance-in{
+				opacity:1;transform:translateY(0);
+				transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-dev-stage.vira-entrance{
+				opacity:0;transform:translateY(40px) scale(0.96);
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-dev-stage.vira-entrance-in{
+				opacity:1;transform:translateY(0) scale(1);
+				transition:opacity .7s cubic-bezier(.4,0,.2,1) .15s,transform .7s cubic-bezier(.4,0,.2,1) .15s;
+			}
+			/* Device mockup breathing/float animation */
+			@keyframes vira-trust-breathe{
+				0%,100%{transform:translateY(0);}
+				50%{transform:translateY(-6px);}
+			}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-dev.is-active{
+				animation:vira-trust-breathe 4s ease-in-out infinite;
+			}
+			/* Reduced motion support */
+			@media(prefers-reduced-motion: reduce){
+				#<?php echo esc_attr( $unique_id ); ?> .vira-strip__logos--marquee .vira-strip__marquee-track{animation:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-dev.is-active{animation:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-trust__head.vira-entrance{opacity:1;transform:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-trust__head.vira-entrance-in{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-dev-stage.vira-entrance{opacity:1;transform:none;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-dev-stage.vira-entrance-in{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-strip__logos .vira-logo{transition:none !important;}
+				#<?php echo esc_attr( $unique_id ); ?> .vira-dev-tab{transition:none !important;}
+			}
 		</style>
 
 		<section id="<?php echo esc_attr( $unique_id ); ?>" class="vira-trust<?php echo 'logos_only' === $mode ? ' vira-trust--logos-only' : ''; ?>" data-vira-trust>
@@ -554,7 +617,8 @@ class Vira_Sections_Widget_Trust_Strip extends \Elementor\Widget_Base {
 				<?php endif; ?>
 
 				<?php if ( ! empty( $logos ) ) : ?>
-					<div class="vira-strip__logos">
+					<div class="vira-strip__logos vira-strip__logos--marquee">
+						<div class="vira-strip__marquee-track">
 						<?php foreach ( $logos as $logo ) :
 							$has_image = ! empty( $logo['logo_image']['url'] );
 							$alt       = ! empty( $logo['logo_name'] ) ? $logo['logo_name'] : ( ! empty( $logo['logo_text'] ) ? $logo['logo_text'] : '' );
@@ -567,6 +631,21 @@ class Vira_Sections_Widget_Trust_Strip extends \Elementor\Widget_Base {
 								<?php endif; ?>
 							</span>
 						<?php endforeach; ?>
+						</div>
+						<div class="vira-strip__marquee-track" aria-hidden="true">
+						<?php foreach ( $logos as $logo ) :
+							$has_image = ! empty( $logo['logo_image']['url'] );
+							$alt       = ! empty( $logo['logo_name'] ) ? $logo['logo_name'] : ( ! empty( $logo['logo_text'] ) ? $logo['logo_text'] : '' );
+							?>
+							<span class="vira-logo" role="img" aria-label="<?php echo esc_attr( $alt ); ?>">
+								<?php if ( $has_image ) : ?>
+									<img src="<?php echo esc_url( $logo['logo_image']['url'] ); ?>" alt="<?php echo esc_attr( $alt ); ?>" loading="lazy" />
+								<?php else : ?>
+									<?php echo esc_html( $logo['logo_text'] ); ?>
+								<?php endif; ?>
+							</span>
+						<?php endforeach; ?>
+						</div>
 					</div>
 				<?php endif; ?>
 
@@ -591,6 +670,33 @@ class Vira_Sections_Widget_Trust_Strip extends \Elementor\Widget_Base {
 					});
 				});
 			});
+
+			/* IntersectionObserver entrance animation */
+			var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+			if (!reducedMotion && 'IntersectionObserver' in window) {
+				var head = root.querySelector('.vira-trust__head');
+				var stage = root.querySelector('.vira-dev-stage');
+				if (head) head.classList.add('vira-entrance');
+				if (stage) stage.classList.add('vira-entrance');
+				var observer = new IntersectionObserver(function(entries){
+					entries.forEach(function(entry){
+						if (entry.isIntersecting) {
+							if (head) {
+								head.classList.remove('vira-entrance');
+								head.classList.add('vira-entrance-in');
+							}
+							setTimeout(function(){
+								if (stage) {
+									stage.classList.remove('vira-entrance');
+									stage.classList.add('vira-entrance-in');
+								}
+							}, 200);
+							observer.disconnect();
+						}
+					});
+				}, { threshold: 0.15 });
+				observer.observe(root);
+			}
 		})();
 		</script>
 		<?php endif; ?>
