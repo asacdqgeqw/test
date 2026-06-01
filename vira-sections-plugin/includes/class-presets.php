@@ -19,20 +19,21 @@ class Vira_Sections_Presets {
 		'seo-google'          => 'سئو گوگل',
 		'seo-training-tabriz' => 'آموزش سئو تبریز',
 		'app-android-tabriz'  => 'اپلیکیشن اندروید تبریز',
+		'homepage'            => 'صفحه اصلی',
 	);
 
 	private static $widget_pages = array(
-		'vira_hero'                 => array( 'website-design', 'seo-google', 'seo-training-tabriz', 'app-android-tabriz' ),
-		'vira_services_bento'       => array( 'website-design', 'seo-training-tabriz', 'app-android-tabriz' ),
+		'vira_hero'                 => array( 'website-design', 'seo-google', 'seo-training-tabriz', 'app-android-tabriz', 'homepage' ),
+		'vira_services_bento'       => array( 'website-design', 'seo-training-tabriz', 'app-android-tabriz', 'homepage' ),
 		'vira_tabs'                 => array( 'seo-google', 'seo-training-tabriz' ),
-		'vira_process_timeline'     => array( 'website-design', 'seo-google', 'app-android-tabriz' ),
+		'vira_process_timeline'     => array( 'website-design', 'seo-google', 'app-android-tabriz', 'homepage' ),
 		'vira_tech_stack'           => array( 'app-android-tabriz' ),
-		'vira_pricing'              => array( 'website-design', 'seo-google', 'seo-training-tabriz', 'app-android-tabriz' ),
-		'vira_testimonials_slider'  => array( 'website-design', 'seo-google', 'seo-training-tabriz', 'app-android-tabriz' ),
-		'vira_faq_search'           => array( 'website-design', 'seo-google', 'seo-training-tabriz', 'app-android-tabriz' ),
-		'vira_cta_form'             => array( 'website-design', 'seo-google', 'seo-training-tabriz', 'app-android-tabriz' ),
-		'vira_trust_strip'          => array( 'website-design' ),
-		'vira_stats_counter'        => array( 'seo-google' ),
+		'vira_pricing'              => array( 'website-design', 'seo-google', 'seo-training-tabriz', 'app-android-tabriz', 'homepage' ),
+		'vira_testimonials_slider'  => array( 'website-design', 'seo-google', 'seo-training-tabriz', 'app-android-tabriz', 'homepage' ),
+		'vira_faq_search'           => array( 'website-design', 'seo-google', 'seo-training-tabriz', 'app-android-tabriz', 'homepage' ),
+		'vira_cta_form'             => array( 'website-design', 'seo-google', 'seo-training-tabriz', 'app-android-tabriz', 'homepage' ),
+		'vira_trust_strip'          => array( 'website-design', 'homepage' ),
+		'vira_stats_counter'        => array( 'seo-google', 'homepage' ),
 		'vira_curriculum'           => array( 'seo-training-tabriz' ),
 	);
 
@@ -70,6 +71,15 @@ class Vira_Sections_Presets {
 			'btn_grad_from'      => '#3DDC84',
 			'btn_grad_to'        => '#A855F7',
 			'rotating_grad_from' => '#3DDC84',
+			'rotating_grad_to'   => '#EFE3CA',
+			'bg_color'           => '#060832',
+		),
+		'homepage' => array(
+			'aurora_color_1'     => '#128BE0',
+			'aurora_color_2'     => '#170C79',
+			'btn_grad_from'      => '#128BE0',
+			'btn_grad_to'        => '#8ACBD0',
+			'rotating_grad_from' => '#8ACBD0',
 			'rotating_grad_to'   => '#EFE3CA',
 			'bg_color'           => '#060832',
 		),
@@ -216,6 +226,33 @@ class Vira_Sections_Presets {
 					array( 'text' => 'Push Notification' ),
 				),
 			) ),
+			'homepage' => array_merge( self::$palettes['homepage'], array(
+				'badge_icon'         => '✦',
+				'badge_text'         => '۱۰ سال تجربه در خدمات دیجیتال',
+				'heading_before'     => 'ما برای شما',
+				'rotating_words'     => array(
+					array( 'word' => 'سایت می‌سازیم' ),
+					array( 'word' => 'سئو می‌کنیم' ),
+					array( 'word' => 'اپلیکیشن می‌سازیم' ),
+					array( 'word' => 'آموزش می‌دهیم' ),
+				),
+				'description'        => 'آژانس دیجیتال مارکتینگ ویرا سئو — از طراحی سایت و سئو گوگل تا ساخت اپلیکیشن و آموزش. همه خدمات دیجیتال در یک تیم حرفه‌ای با بیش از ۱۰ سال تجربه.',
+				'btn_primary_text'   => 'مشاوره رایگان',
+				'btn_secondary_text' => 'نمونه‌کارها',
+				'stats'              => array(
+					array( 'stat_value' => '۴۵۰', 'stat_suffix' => '+', 'stat_label' => 'پروژه موفق' ),
+					array( 'stat_value' => '۹۸', 'stat_suffix' => '٪', 'stat_label' => 'رضایت مشتری' ),
+					array( 'stat_value' => '۱۰', 'stat_suffix' => '+', 'stat_label' => 'سال تجربه' ),
+				),
+				'marquee_items'      => array(
+					array( 'text' => 'طراحی سایت' ),
+					array( 'text' => 'سئو گوگل' ),
+					array( 'text' => 'اپلیکیشن اندروید' ),
+					array( 'text' => 'آموزش سئو' ),
+					array( 'text' => 'دیجیتال مارکتینگ' ),
+					array( 'text' => 'پشتیبانی ۲۴/۷' ),
+				),
+			) ),
 		);
 	}
 
@@ -306,6 +343,27 @@ class Vira_Sections_Presets {
 					array( 'question' => 'نسخه دمو قبل از تحویل ارائه می‌شود؟', 'answer' => 'بله، ما با متد Agile کار می‌کنیم و در پایان هر Sprint یک نسخه قابل نصب APK روی گوشی شما قرار می‌دهیم.', 'item_categories' => 'support' ),
 				),
 			),
+			'homepage' => array(
+				'eyebrow'    => 'سوالات متداول',
+				'heading'    => 'پاسخ سوالات شما',
+				'categories' => array(
+					array( 'cat_slug' => 'all', 'cat_label' => 'همه' ),
+					array( 'cat_slug' => 'general', 'cat_label' => 'عمومی' ),
+					array( 'cat_slug' => 'pricing', 'cat_label' => 'قیمت‌گذاری' ),
+					array( 'cat_slug' => 'process', 'cat_label' => 'فرآیند' ),
+					array( 'cat_slug' => 'support', 'cat_label' => 'پشتیبانی' ),
+				),
+				'items' => array(
+					array( 'question' => 'ویرا سئو چه خدماتی ارائه می‌دهد؟', 'answer' => 'ما خدمات طراحی سایت، سئو گوگل، ساخت اپلیکیشن اندروید و آموزش سئو را به صورت تخصصی ارائه می‌دهیم. تمام خدمات توسط یک تیم منسجم با بیش از ۱۰ سال تجربه انجام می‌شود.', 'item_categories' => 'general' ),
+					array( 'question' => 'چرا باید همه خدمات را از یک تیم بگیریم؟', 'answer' => 'وقتی طراحی سایت، سئو و محتوا توسط یک تیم انجام شود، هماهنگی کامل بین بخش‌ها وجود دارد. نتیجه سریع‌تر، باکیفیت‌تر و مقرون‌به‌صرفه‌تر خواهد بود.', 'item_categories' => 'general' ),
+					array( 'question' => 'هزینه خدمات شما چقدر است؟', 'answer' => 'هزینه بسته به نوع خدمت و حجم پروژه متفاوت است. پکیج‌های طراحی سایت از ۱۸ میلیون، سئو از ۴.۹ میلیون ماهانه و ساخت اپلیکیشن از ۲۵ میلیون شروع می‌شود. مشاوره اولیه رایگان است.', 'item_categories' => 'pricing' ),
+					array( 'question' => 'آیا امکان پرداخت اقساطی وجود دارد؟', 'answer' => 'بله، برای پروژه‌های بالای ۲۰ میلیون تومان امکان پرداخت در ۲ تا ۳ قسط بدون افزایش قیمت فراهم است.', 'item_categories' => 'pricing' ),
+					array( 'question' => 'فرآیند شروع همکاری چگونه است؟', 'answer' => 'ابتدا فرم مشاوره را پر کنید. کارشناس ما در کمتر از ۲ ساعت تماس می‌گیرد، نیاز شما را بررسی می‌کند و پیشنهاد فنی و مالی ارائه می‌دهد. پس از توافق، پروژه شروع می‌شود.', 'item_categories' => 'process' ),
+					array( 'question' => 'مدت زمان انجام پروژه چقدر است؟', 'answer' => 'طراحی سایت ۲ تا ۶ هفته، سئو ۳ تا ۶ ماه برای نتایج پایدار، و ساخت اپلیکیشن ۴ تا ۱۲ هفته زمان می‌برد. زمان دقیق در جلسه مشاوره اعلام می‌شود.', 'item_categories' => 'process' ),
+					array( 'question' => 'آیا پشتیبانی پس از تحویل ارائه می‌دهید؟', 'answer' => 'بله، تمام پروژه‌ها شامل ۳ تا ۶ ماه پشتیبانی رایگان هستند. پس از آن، پلن‌های نگهداری ماهانه با قیمت مناسب ارائه می‌شود.', 'item_categories' => 'support' ),
+					array( 'question' => 'اگر از نتیجه راضی نباشیم چه می‌شود؟', 'answer' => 'تمام پروژه‌ها مرحله‌ای با تأیید شما پیش می‌روند. در هر مرحله امکان بازنگری رایگان وجود دارد. برای طراحی سایت، ضمانت بازگشت وجه در مرحله اول ارائه می‌شود.', 'item_categories' => 'support' ),
+				),
+			),
 		);
 	}
 
@@ -359,6 +417,18 @@ class Vira_Sections_Presets {
 				),
 				'bottom_note' => '',
 			),
+			'homepage' => array(
+				'eyebrow'     => 'پکیج‌های خدمات',
+				'heading'     => 'پکیج مناسب هر کسب‌وکار',
+				'description' => 'قیمت‌ها شفاف و بدون هزینه پنهان.',
+				'show_toggle' => 'yes',
+				'plans'       => array(
+					array( 'plan_name' => 'شروع', 'plan_desc' => 'برای کسب‌وکارهای کوچک و استارتاپ‌ها', 'plan_price_monthly' => '۱۸', 'plan_price_yearly' => '۱۸۰', 'plan_period' => 'میلیون', 'plan_features' => "طراحی سایت تا ۸ صفحه\nسئوی پایه ۳ ماهه\nپشتیبانی ۳ ماهه رایگان\nآموزش مدیریت سایت", 'plan_featured' => '', 'plan_badge' => '', 'plan_cta_text' => 'انتخاب پکیج' ),
+					array( 'plan_name' => 'حرفه‌ای', 'plan_desc' => 'برای کسب‌وکارهای در حال رشد', 'plan_price_monthly' => '۳۸', 'plan_price_yearly' => '۳۸۰', 'plan_period' => 'میلیون', 'plan_features' => "طراحی سایت + سئو ۶ ماهه\nتولید محتوا ماهانه\nمدیریت شبکه‌های اجتماعی\nگزارش هفتگی عملکرد\n۶ ماه پشتیبانی اختصاصی", 'plan_featured' => 'yes', 'plan_badge' => 'پرطرفدار', 'plan_cta_text' => 'شروع پکیج حرفه‌ای' ),
+					array( 'plan_name' => 'سازمانی', 'plan_desc' => 'برای سازمان‌ها و برندهای بزرگ', 'plan_price_monthly' => 'سفارشی', 'plan_price_yearly' => 'سفارشی', 'plan_period' => '', 'plan_features' => "طراحی سایت + اپلیکیشن\nسئو + تبلیغات گوگل\nتیم اختصاصی دیجیتال مارکتینگ\nSLA پشتیبانی اختصاصی\nجلسات استراتژی هفتگی", 'plan_featured' => '', 'plan_badge' => '', 'plan_cta_text' => 'دریافت پیشنهاد' ),
+				),
+				'bottom_note' => '',
+			),
 		);
 	}
 
@@ -404,6 +474,17 @@ class Vira_Sections_Presets {
 					array( 'avatar_text' => 'ا', 'quote' => 'اپلیکیشن فروشگاهی ما در ۳ ماه اول ۵۰۰۰ دانلود فعال گرفت. تیم توسعه عالی بود و به‌موقع تحویل دادن.', 'name' => 'امیر حسینی', 'company' => 'مدیرعامل، فروشگاه آنلاین', 'badge_text' => '۵۰۰۰+ دانلود' ),
 					array( 'avatar_text' => 'ن', 'quote' => 'کیفیت UI/UX اپلیکیشن ما واقعاً در سطح اپ‌های بین‌المللی است. کاربران از تجربه کاربری عالی تشکر می‌کنند.', 'name' => 'نازنین محمدی', 'company' => 'بنیان‌گذار، استارتاپ سلامت', 'badge_text' => '۴.۸ امتیاز' ),
 					array( 'avatar_text' => 'م', 'quote' => 'از مشاوره اولیه تا انتشار در گوگل پلی، تمام مراحل حرفه‌ای و شفاف بود. پشتیبانی بعد از تحویل هم عالی است.', 'name' => 'محمد رضایی', 'company' => 'مدیر فنی، شرکت حمل‌ونقل', 'badge_text' => 'تحویل به‌موقع' ),
+				),
+			),
+			'homepage' => array(
+				'eyebrow'     => 'تجربه مشتریان ما',
+				'heading'     => 'داستان‌های موفقیت واقعی',
+				'description' => 'رضایت مشتریان از خدمات متنوع ما — به زبان خودشان.',
+				'items'       => array(
+					array( 'avatar_text' => 'ا', 'quote' => 'تیم ویرا سئو هم سایت ما رو طراحی کرد و هم سئو. نتیجه فوق‌العاده بود — در ۳ ماه فروش ما ۲ برابر شد.', 'name' => 'امیر حسینی', 'company' => 'مدیرعامل، نواکالا', 'badge_text' => '+۲۰۰٪ رشد فروش' ),
+					array( 'avatar_text' => 'س', 'quote' => 'از آموزش سئو شروع کردیم و الان خودمون سئوی سایتمون رو انجام می‌دیم. بهترین سرمایه‌گذاری روی تیممون بود.', 'name' => 'سارا کریمی', 'company' => 'مدیر مارکتینگ، پیکسل‌پلاس', 'badge_text' => 'رشد ۳۰۰٪ ترافیک' ),
+					array( 'avatar_text' => 'م', 'quote' => 'اپلیکیشن فروشگاهی ما رو با کیفیت بالا و در زمان مقرر تحویل دادند. پشتیبانی بعد از تحویل هم عالی بود.', 'name' => 'محمد رضایی', 'company' => 'بنیان‌گذار، فروشگاه آنلاین', 'badge_text' => '۴.۸ امتیاز گوگل پلی' ),
+					array( 'avatar_text' => 'ز', 'quote' => 'همه خدمات دیجیتالمون رو از ویرا سئو می‌گیریم. هماهنگی بین طراحی، سئو و محتوا واقعاً تفاوت ایجاد کرده.', 'name' => 'زهرا ملکی', 'company' => 'مدیر برند، آوا کالکشن', 'badge_text' => 'رتبه ۱ در ۱۲ کلمه' ),
 				),
 			),
 		);
@@ -483,6 +564,24 @@ class Vira_Sections_Presets {
 				),
 				'submit_text'     => 'ارسال درخواست مشاوره',
 			) ),
+			'homepage' => array_merge( self::$palettes['homepage'], array(
+				'badge_text'      => 'کارشناسان آنلاین — همین الان',
+				'heading'         => 'آماده‌ای رشد دیجیتال کسب‌وکارت رو شروع کنی؟',
+				'description'     => 'فرم رو پر کن تا کارشناس ما در کمتر از ۲ ساعت با شما تماس بگیرد. مشاوره اولیه کاملاً رایگان است.',
+				'features'        => array(
+					array( 'feature_text' => 'مشاوره رایگان' ),
+					array( 'feature_text' => 'بدون تعهد خرید' ),
+					array( 'feature_text' => 'پاسخ زیر ۲ ساعت' ),
+				),
+				'select_options'  => array(
+					array( 'option_text' => 'طراحی سایت' ),
+					array( 'option_text' => 'سئو گوگل' ),
+					array( 'option_text' => 'اپلیکیشن اندروید' ),
+					array( 'option_text' => 'آموزش سئو' ),
+					array( 'option_text' => 'سایر' ),
+				),
+				'submit_text'     => 'ارسال درخواست مشاوره',
+			) ),
 		);
 	}
 
@@ -519,6 +618,18 @@ class Vira_Sections_Presets {
 					array( 'step_number' => '۲', 'step_title' => 'طراحی', 'step_duration' => '۲ هفته', 'panel_title' => 'طراحی UI/UX', 'panel_description' => 'طراحی تجربه کاربری و رابط گرافیکی اپلیکیشن در Figma.', 'panel_deliverables' => "وایرفریم تعاملی\nطراحی UI نهایی\nDesign System\nپروتوتایپ قابل تست" ),
 					array( 'step_number' => '۳', 'step_title' => 'توسعه', 'step_duration' => '۴-۸ هفته', 'panel_title' => 'کدنویسی و توسعه', 'panel_description' => 'توسعه اپلیکیشن با Kotlin/Flutter، اتصال به Backend و تست.', 'panel_deliverables' => "توسعه Frontend\nتوسعه Backend/API\nتست QA\nنسخه Beta" ),
 					array( 'step_number' => '۴', 'step_title' => 'انتشار', 'step_duration' => '۱ هفته', 'panel_title' => 'انتشار و پشتیبانی', 'panel_description' => 'انتشار در گوگل پلی، ASO اولیه و شروع دوره پشتیبانی.', 'panel_deliverables' => "انتشار گوگل پلی\nASO (App Store Optimization)\nمانیتورینگ Crash\nپشتیبانی ۳-۶ ماهه" ),
+				),
+			),
+			'homepage' => array(
+				'eyebrow'     => 'فرآیند همکاری',
+				'heading'     => 'از مشاوره تا موفقیت شما',
+				'description' => 'فرآیند شفاف و بدون ابهام — در هر مرحله می‌دانید چه اتفاقی می‌افتد.',
+				'steps'       => array(
+					array( 'step_number' => '۱', 'step_title' => 'مشاوره', 'step_duration' => '۱ روز', 'panel_title' => 'مشاوره رایگان و نیازسنجی', 'panel_description' => 'در جلسه مشاوره رایگان، نیاز شما را بررسی می‌کنیم و بهترین راهکار را پیشنهاد می‌دهیم.', 'panel_deliverables' => "جلسه مشاوره رایگان\nبررسی نیاز و اهداف\nپیشنهاد خدمات مناسب\nتخمین زمان و هزینه" ),
+					array( 'step_number' => '۲', 'step_title' => 'تحلیل', 'step_duration' => '۳ روز', 'panel_title' => 'تحلیل و استراتژی', 'panel_description' => 'تحلیل کسب‌وکار، رقبا و بازار هدف شما. تدوین نقشه راه و استراتژی اجرایی.', 'panel_deliverables' => "تحلیل رقبا و بازار\nتدوین استراتژی\nتعریف KPI‌های موفقیت\nنقشه راه پروژه" ),
+					array( 'step_number' => '۳', 'step_title' => 'طراحی و توسعه', 'step_duration' => '۲-۶ هفته', 'panel_title' => 'طراحی و پیاده‌سازی', 'panel_description' => 'اجرای پروژه با بالاترین استانداردها. در هر مرحله شما در جریان پیشرفت کار هستید.', 'panel_deliverables' => "طراحی UI/UX اختصاصی\nتوسعه و کدنویسی\nتست کیفیت\nبازنگری با تأیید شما" ),
+					array( 'step_number' => '۴', 'step_title' => 'تست', 'step_duration' => '۳ روز', 'panel_title' => 'تست و بهینه‌سازی', 'panel_description' => 'تست جامع عملکرد، سرعت و سازگاری. رفع مشکلات و بهینه‌سازی نهایی.', 'panel_deliverables' => "تست Cross-Browser\nتست سرعت و عملکرد\nبهینه‌سازی نهایی\nآمادگی برای انتشار" ),
+					array( 'step_number' => '۵', 'step_title' => 'انتشار و پشتیبانی', 'step_duration' => 'مستمر', 'panel_title' => 'انتشار و پشتیبانی مداوم', 'panel_description' => 'انتشار نهایی و شروع دوره پشتیبانی. تیم ما همیشه در کنار شماست.', 'panel_deliverables' => "انتشار و راه‌اندازی\nآموزش تیم شما\nپشتیبانی ۳-۶ ماهه رایگان\nگزارش عملکرد هفتگی" ),
 				),
 			),
 		);
@@ -560,6 +671,18 @@ class Vira_Sections_Presets {
 					array( 'card_title' => 'توسعه Cross-Platform', 'card_desc' => 'Flutter و React Native برای صرفه‌جویی ۴۰-۵۰٪', 'card_meta' => '', 'card_size' => 'small' ),
 					array( 'card_title' => 'Backend و API', 'card_desc' => 'طراحی و پیاده‌سازی سرور، دیتابیس و APIها', 'card_meta' => '', 'card_size' => 'small' ),
 					array( 'card_title' => 'انتشار و ASO', 'card_desc' => 'انتشار حرفه‌ای در گوگل پلی و بهینه‌سازی استور', 'card_meta' => '', 'card_size' => 'small' ),
+				),
+			),
+			'homepage' => array(
+				'eyebrow'     => 'خدمات ما',
+				'heading'     => 'هر آنچه برای رشد دیجیتال نیاز دارید، <em>یکجا</em>',
+				'description' => 'از طراحی سایت و سئو تا ساخت اپلیکیشن و آموزش — تیم ویرا سئو تمام نیازهای دیجیتال کسب‌وکار شما را پوشش می‌دهد.',
+				'cards'       => array(
+					array( 'card_title' => 'طراحی سایت حرفه‌ای', 'card_desc' => 'طراحی اختصاصی UI/UX، سرعت بالا و سئوی فنی استاندارد — سایتی که می‌فروشد.', 'card_meta' => '', 'card_size' => 'large', 'card_style' => 'dark' ),
+					array( 'card_title' => 'سئو و رشد ارگانیک', 'card_desc' => 'از تحقیق کلمات کلیدی تا لینک‌سازی — رسیدن به صفحه اول گوگل با روش‌های White-Hat.', 'card_meta' => '', 'card_size' => 'large' ),
+					array( 'card_title' => 'ساخت اپلیکیشن اندروید', 'card_desc' => 'توسعه Native و Cross-Platform با تیم مجرب — از ایده تا انتشار در گوگل پلی.', 'card_meta' => '', 'card_size' => 'medium' ),
+					array( 'card_title' => 'آموزش سئو', 'card_desc' => 'آموزش خصوصی، گروهی و سازمانی — با بیش از ۸۰۰ شاگرد موفق.', 'card_meta' => '', 'card_size' => 'medium' ),
+					array( 'card_title' => 'مشاوره دیجیتال مارکتینگ', 'card_desc' => 'استراتژی رشد دیجیتال متناسب با کسب‌وکار شما — از مشاوره تا اجرا.', 'card_meta' => '', 'card_size' => 'medium' ),
 				),
 			),
 		);
@@ -631,6 +754,17 @@ class Vira_Sections_Presets {
 				'compare_before_title' => 'قبل از سئو',
 				'compare_after_title'  => 'بعد از سئو',
 			),
+			'homepage' => array(
+				'eyebrow'     => 'عملکرد ما در اعداد',
+				'heading'     => 'اعدادی که خودشان حرف می‌زنند',
+				'description' => 'هر عدد نتیجه سال‌ها کار تخصصی تیم ما روی پروژه‌های واقعی است.',
+				'counters'    => array(
+					array( 'counter_value' => '۴۵۰', 'counter_suffix' => '+', 'counter_label' => 'پروژه موفق' ),
+					array( 'counter_value' => '۱۲۵', 'counter_suffix' => '+', 'counter_label' => 'سایت در صفحه اول' ),
+					array( 'counter_value' => '۸۰۰', 'counter_suffix' => '+', 'counter_label' => 'شاگرد آموزش‌دیده' ),
+					array( 'counter_value' => '۱۰', 'counter_suffix' => '+', 'counter_label' => 'سال تجربه' ),
+				),
+			),
 		);
 	}
 
@@ -640,6 +774,18 @@ class Vira_Sections_Presets {
 				'mode'        => 'showcase',
 				'eyebrow'     => 'کاملاً ریسپانسیو',
 				'heading'     => 'روی هر دستگاهی، بی‌نقص',
+				'logos'       => array(
+					array( 'logo_text' => 'دیجی‌کالا' ),
+					array( 'logo_text' => 'اسنپ' ),
+					array( 'logo_text' => 'فیلیمو' ),
+					array( 'logo_text' => 'کافه‌بازار' ),
+					array( 'logo_text' => 'تپسی' ),
+					array( 'logo_text' => 'آپارات' ),
+				),
+			),
+			'homepage' => array(
+				'mode'        => 'logos_only',
+				'logos_title' => 'اعتماد بیش از ۴۵۰ کسب‌وکار ایرانی',
 				'logos'       => array(
 					array( 'logo_text' => 'دیجی‌کالا' ),
 					array( 'logo_text' => 'اسنپ' ),
