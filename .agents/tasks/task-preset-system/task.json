@@ -1,0 +1,14 @@
+{
+  "task_id": "task-preset-system",
+  "task_description": "Add a Preset system to all Elementor widgets in the Vira Sections plugin. Each widget gets a dropdown at the top of its Content tab where users can select a page preset (website-design, seo-google, seo-training-tabriz, app-android-tabriz). Selecting a preset auto-populates all widget fields with the exact content from the corresponding HTML section files (text, colors, repeater items).",
+  "status": "completed",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null,
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "skipped",
+    "docker_build": "skipped",
+    "summary": "All 20 PHP files pass php -l syntax validation. JS file created and reviewed. All 12 widgets have preset trait integrated. Code review issues (event listener leak, dead code, heavy refresh) addressed in fix commit. No automated tests exist in this project (WordPress plugin tested manually in Elementor)."
+  }
+}

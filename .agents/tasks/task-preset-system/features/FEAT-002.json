@@ -1,0 +1,31 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Integrate the preset system into all 12 widget classes by using the Vira_Sections_Preset_Trait and adding the preset dropdown + applying preset defaults in each widget.",
+  "status": "completed",
+  "steps": [
+    "In each of the 12 widget files, add `use Vira_Sections_Preset_Trait;` inside the class body.",
+    "In each widget's register_controls() method, add a new section at the very top (before the first existing section) called 'section_preset' with label 'Preset / قالب آماده'. Inside this section, add the preset SELECT control using the trait's helper method: $this->register_preset_control();",
+    "The preset control should be a SELECT with: label 'انتخاب قالب آماده', options from Vira_Sections_Presets::get_preset_options( $this->get_name() ), and default value 'custom'.",
+    "Add an Elementor JS handler (via wp_add_inline_script or editor script) that listens to the preset control change. When a preset is selected (not 'custom'), it reads the preset data from a localized JS object and programmatically sets all corresponding widget settings in the Elementor editor panel.",
+    "Create /projects/sandbox/test/vira-sections-plugin/assets/js/preset-handler.js that handles the client-side preset application. This script should: listen to the preset dropdown change event, fetch preset data from a JS object (window.ViraPresetsData), and use Elementor's JS API (elementor.channels.editor) or the model's set() method to update all controls at once.",
+    "In vira-sections.php, enqueue the preset-handler.js script for Elementor editor context (hook: elementor/editor/after_enqueue_scripts) and localize the preset data via wp_localize_script using Vira_Sections_Presets::get_all_presets_for_js() which returns the complete presets data structure.",
+    "Files to modify: vira-sections-plugin/widgets/class-hero.php, class-services-bento.php, class-tabs.php, class-process-timeline.php, class-tech-stack.php, class-pricing.php, class-testimonials-slider.php, class-faq-search.php, class-cta-form.php, class-trust-strip.php, class-stats-counter.php, class-curriculum.php, and vira-sections-plugin/vira-sections.php.",
+    "The JS approach for preset application: When preset value changes to non-custom, iterate over preset data keys and call the widget model's setSetting() for each key. For repeater controls, set the entire array. Then trigger a panel refresh so the UI updates. When changed to 'custom', do nothing (leave current values as-is).",
+    "Ensure the preset control has a 'description' note: 'با انتخاب قالب، تمام تنظیمات با داده‌های آن صفحه پر می‌شوند. تنظیمات فعلی جایگزین خواهند شد.' (Selecting a preset will fill all settings with that page's data. Current settings will be replaced.)"
+  ],
+  "acceptance_criteria": [
+    "All 12 widget PHP files have the preset trait and register the preset dropdown control at the top of Content tab",
+    "The preset-handler.js file exists and implements the client-side preset application logic",
+    "vira-sections.php properly enqueues and localizes the JS for the Elementor editor",
+    "All modified PHP files pass php -l syntax check",
+    "The JS file is valid JavaScript",
+    "Preset dropdown shows only relevant page options per widget (e.g., Curriculum only shows seo-training-tabriz)"
+  ],
+  "verification": [
+    "Run php -l on all 12 widget files and vira-sections.php to confirm no syntax errors",
+    "Check that assets/js/preset-handler.js exists and is valid JS"
+  ],
+  "blocked_reason": null,
+  "findings": "All 12 widgets successfully updated with use Vira_Sections_Preset_Trait and $this->register_preset_control() call. JS preset handler created at assets/js/preset-handler.js. vira-sections.php updated to enqueue and localize preset scripts. All PHP files pass php -l syntax check."
+}
