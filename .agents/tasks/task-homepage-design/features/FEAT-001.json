@@ -1,0 +1,37 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Create the homepage HTML sections directory with 9 section files and a combined preview. The homepage represents the main landing page for Vira SEO digital agency, showcasing all services (web design, SEO, app development, SEO training). Each section follows the existing pattern: self-contained HTML with inline <style> and <script>, RTL direction, Vazirmatn font, brand colors.",
+  "status": "completed",
+  "steps": [
+    "Create directory /projects/sandbox/test/homepage/ and /projects/sandbox/test/homepage/sections/",
+    "Create sections/01-hero.html - General agency hero section with Aurora animated background, rotating words about all services (e.g. 'digital marketing agency', 'web design', 'SEO', 'app development'), spotlight effect, 3D mockup, animated counters showing agency stats (450+ projects, 10+ years, 98% satisfaction), Marquee strip. Title: 'agency digital marketing and web design Vira SEO'. Follow pattern of /projects/sandbox/test/sections/01-hero.html but with general agency messaging instead of web-design-specific.",
+    "Create sections/02-trust-strip.html - Client logos + trust stats strip. Show brand logos (BRAND/1, NAVA, PIXEL+, FORTECH, AVA.CO, NEXTLY) and stats counter (450+ businesses trusted, 98% satisfaction). Follow pattern of /projects/sandbox/test/sections/02-trust-strip.html but in logos_only+stats mode - no device showcase, just logos and impressive numbers.",
+    "Create sections/03-services-overview.html - All 4 core services as a bento grid. Cards: 1) Web Design (large, dark), 2) Google SEO (large), 3) Android App Development (medium), 4) SEO Training in Tabriz (medium), 5) Free Consultation CTA card (medium). Each card has icon, title, short description, price hint, and link. Follow the bento pattern from /projects/sandbox/test/vira-sections-plugin/widgets/class-services-bento.php render output.",
+    "Create sections/04-why-us.html - 'Why Choose Vira SEO' section with interactive tabs or feature cards. Features: 10+ years experience, 450+ successful projects, dedicated support team, transparent pricing, latest technologies, guaranteed results. Follow the tabs pattern from existing widget designs.",
+    "Create sections/05-process.html - General workflow showing how the agency works with clients. Steps: 1) Free consultation 2) Needs analysis 3) Strategy & proposal 4) Design & development 5) Launch & support. Follow the clickable timeline pattern from /projects/sandbox/test/sections/04-process.html.",
+    "Create sections/06-stats.html - Stats/portfolio section with animated counters. Show: 450+ successful projects, 120+ SEO clients on first page, 800+ trained students, 120+ published apps, 10+ years experience, 98% client satisfaction. Include a before/after comparison element. Follow the stats counter pattern from existing designs.",
+    "Create sections/07-testimonials.html - Combined testimonials from all services. Pick the best 4-5 testimonials covering web design, SEO, app development. 3D slider with swipe support. Follow pattern from /projects/sandbox/test/sections/06-testimonials.html.",
+    "Create sections/08-faq.html - General FAQ section with search and category filter. Categories: general, pricing, process, support. 7-8 questions covering the agency's most common queries. Follow pattern from /projects/sandbox/test/sections/07-faq.html.",
+    "Create sections/09-cta.html - Contact/consultation form with glassmorphism design. General CTA for all services with select dropdown for service type. Follow pattern from /projects/sandbox/test/sections/08-cta.html.",
+    "Create homepage/preview-all-sections.html combining all 9 sections with mock header/footer, following the exact structure of /projects/sandbox/test/preview-all-sections.html.",
+    "Create homepage/ELEMENTOR-GUIDE.md documenting the homepage sections, following the pattern of /projects/sandbox/test/ELEMENTOR-GUIDE.md."
+  ],
+  "acceptance_criteria": [
+    "All 9 section HTML files exist in /projects/sandbox/test/homepage/sections/",
+    "preview-all-sections.html exists and includes all 9 sections in order",
+    "ELEMENTOR-GUIDE.md exists with section documentation",
+    "All files use RTL direction, Vazirmatn font, and brand color palette",
+    "Each section file is self-contained with inline styles and scripts",
+    "Content is in Persian and represents general agency homepage (not service-specific)",
+    "HTML structure matches the quality and patterns of existing section files"
+  ],
+  "verification": [
+    "Check all 9 section files exist: ls /projects/sandbox/test/homepage/sections/",
+    "Check preview file exists: ls /projects/sandbox/test/homepage/preview-all-sections.html",
+    "Grep for RTL and Vazirmatn in section files to confirm proper setup",
+    "Grep for brand colors (#170C79, #128BE0, #8ACBD0) in section files"
+  ],
+  "blocked_reason": null,
+  "findings": "All 9 section HTML files created with unique vs-home-* CSS prefixes. Each section is self-contained with inline style and script. Preview file concatenates all sections with mock header/footer. Large file writes had to use bash heredocs due to tool limitations. All verification checks pass: RTL direction, Vazirmatn font, brand colors present in all 9 files."
+}
