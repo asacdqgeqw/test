@@ -1,0 +1,78 @@
+<!-- سکشن ۶: آمار و ارقام متحرک -->
+<style>
+.vs-home-stats{--vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;--vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;padding:110px 24px;background:linear-gradient(180deg,#FAF6EC 0%,#fff 100%);font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);position:relative;overflow:hidden;}
+.vs-home-stats::before{content:"";position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(18,139,224,.12),transparent 70%);filter:blur(40px);pointer-events:none;}
+.vs-home-stats__inner{max-width:1100px;margin:0 auto;position:relative;}
+.vs-home-stats .vs-section-head{text-align:center;margin-bottom:60px;}
+.vs-home-stats .vs-section-head .vs-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(23,12,121,.08);color:var(--vs-primary);border:1px solid rgba(23,12,121,.18);padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;}
+.vs-home-stats .vs-section-head .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-accent);box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;}
+.vs-home-stats .vs-section-head h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0;line-height:1.4;}
+.vs-home-stats .vs-section-head h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-home-stats__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.vs-home-stats__card{background:#fff;border:1px solid rgba(23,12,121,.10);border-radius:24px;padding:40px 28px;text-align:center;position:relative;overflow:hidden;transition:all .35s ease;}
+.vs-home-stats__card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(23,12,121,.12);}
+.vs-home-stats__card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--vs-primary),var(--vs-accent));opacity:0;transition:opacity .3s ease;}
+.vs-home-stats__card:hover::before{opacity:1;}
+.vs-home-stats__card-icon{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,rgba(23,12,121,.08),rgba(18,139,224,.08));display:grid;place-items:center;margin:0 auto 20px;color:var(--vs-primary);}
+.vs-home-stats__card-num{font-size:42px;font-weight:900;line-height:1;margin-bottom:8px;background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-home-stats__card-label{font-size:15px;color:#64748B;font-weight:600;}
+@media(max-width:880px){.vs-home-stats__grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.vs-home-stats__grid{grid-template-columns:1fr;}.vs-home-stats__card-num{font-size:36px;}}
+</style>
+
+<section class="vs-home-stats" data-vs-home-stats>
+  <div class="vs-home-stats__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>عملکرد ما در اعداد</span>
+      <h2>اعدادی که <em>خودشان حرف می‌زنند</em></h2>
+    </div>
+    <div class="vs-home-stats__grid">
+      <div class="vs-home-stats__card">
+        <div class="vs-home-stats__card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke-linecap="round"/><polyline points="22 4 12 14.01 9 11.01" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="vs-home-stats__card-num" data-count="450" data-suffix="+">۰</div>
+        <div class="vs-home-stats__card-label">پروژه موفق</div>
+      </div>
+      <div class="vs-home-stats__card">
+        <div class="vs-home-stats__card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg></div>
+        <div class="vs-home-stats__card-num" data-count="125" data-suffix="+">۰</div>
+        <div class="vs-home-stats__card-label">سایت در صفحه اول گوگل</div>
+      </div>
+      <div class="vs-home-stats__card">
+        <div class="vs-home-stats__card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="vs-home-stats__card-num" data-count="800" data-suffix="+">۰</div>
+        <div class="vs-home-stats__card-label">شاگرد آموزش‌دیده</div>
+      </div>
+      <div class="vs-home-stats__card">
+        <div class="vs-home-stats__card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="vs-home-stats__card-num" data-count="10" data-suffix="+">۰</div>
+        <div class="vs-home-stats__card-label">سال تجربه حرفه‌ای</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var section=document.querySelector('[data-vs-home-stats]');
+  if(!section)return;
+  var toFa=function(n){return String(n).replace(/\d/g,function(d){return'\u06F0\u06F1\u06F2\u06F3\u06F4\u06F5\u06F6\u06F7\u06F8\u06F9'[d];});};
+  var cards=section.querySelectorAll('[data-count]');
+  var animate=function(el){
+    var target=parseInt(el.dataset.count,10);
+    var suffix=el.dataset.suffix||'';
+    var dur=1800;var start=performance.now();
+    var step=function(now){
+      var t=Math.min(1,(now-start)/dur);
+      var eased=1-Math.pow(1-t,3);
+      var val=Math.floor(eased*target);
+      el.textContent=toFa(val)+suffix;
+      if(t<1)requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){animate(e.target);io.unobserve(e.target);}});
+  },{threshold:.5});
+  cards.forEach(function(c){io.observe(c);});
+})();
+</script>

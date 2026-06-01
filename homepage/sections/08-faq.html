@@ -1,0 +1,78 @@
+<!-- سکشن ۸: سوالات متداول -->
+<style>
+.vs-home-faq{--vs-primary:#170C79;--vs-secondary:#0170B9;--vs-accent:#128BE0;--vs-cyan:#8ACBD0;--vs-cream:#EFE3CA;--vs-ink:#1D2327;padding:110px 24px;background:#fff;font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif;direction:rtl;color:var(--vs-ink);position:relative;overflow:hidden;}
+.vs-home-faq::before{content:"";position:absolute;top:10%;left:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(138,203,208,.30),transparent 70%);filter:blur(40px);pointer-events:none;}
+.vs-home-faq__inner{max-width:920px;margin:0 auto;position:relative;}
+.vs-home-faq .vs-section-head{text-align:center;margin-bottom:40px;}
+.vs-home-faq .vs-section-head .vs-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(23,12,121,.08);color:var(--vs-primary);border:1px solid rgba(23,12,121,.18);padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;margin-bottom:16px;}
+.vs-home-faq .vs-section-head .vs-eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--vs-accent);box-shadow:0 0 0 4px rgba(18,139,224,.18);display:inline-block;}
+.vs-home-faq .vs-section-head h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+.vs-home-faq .vs-section-head h2 em{font-style:normal;background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;}
+.vs-home-faq__search{position:relative;max-width:520px;margin:0 auto 36px;}
+.vs-home-faq__search input{width:100%;padding:18px 56px 18px 24px;border:1.5px solid rgba(23,12,121,.15);border-radius:16px;font-family:inherit;font-size:15px;background:#fff;transition:all .25s ease;color:var(--vs-ink);}
+.vs-home-faq__search input::placeholder{color:#94A3B8;}
+.vs-home-faq__search input:focus{outline:none;border-color:var(--vs-primary);box-shadow:0 0 0 4px rgba(23,12,121,.10);}
+.vs-home-faq__search svg{position:absolute;right:20px;top:50%;transform:translateY(-50%);color:#94A3B8;pointer-events:none;}
+.vs-home-faq__cats{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+.vs-home-faq__cat{padding:8px 16px;border-radius:999px;background:rgba(23,12,121,.05);border:1px solid rgba(23,12,121,.10);font-family:inherit;font-size:13px;font-weight:600;color:#64748B;cursor:pointer;transition:all .25s ease;}
+.vs-home-faq__cat:hover{color:var(--vs-primary);border-color:var(--vs-primary);}
+.vs-home-faq__cat.is-active{background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));color:#fff;border-color:transparent;}
+.vs-home-faq__list{display:flex;flex-direction:column;gap:12px;}
+.vs-home-faq__item{background:#fff;border:1px solid rgba(23,12,121,.10);border-radius:18px;overflow:hidden;transition:all .35s ease;}
+.vs-home-faq__item.is-open{border-color:var(--vs-primary);box-shadow:0 16px 40px rgba(23,12,121,.10);}
+.vs-home-faq__item.is-hidden{display:none;}
+.vs-home-faq__q{width:100%;cursor:pointer;padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-weight:700;font-size:16px;color:var(--vs-ink);background:transparent;border:none;text-align:right;font-family:inherit;}
+.vs-home-faq__q .text{flex:1;}
+.vs-home-faq__plus{width:34px;height:34px;border-radius:50%;background:#FAF6EC;display:grid;place-items:center;font-size:22px;line-height:1;color:var(--vs-primary);transition:all .35s ease;flex-shrink:0;font-weight:300;}
+.vs-home-faq__item.is-open .vs-home-faq__plus{background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));color:#fff;transform:rotate(45deg);}
+.vs-home-faq__a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;padding:0 26px;color:#475569;line-height:1.95;font-size:15px;}
+.vs-home-faq__item.is-open .vs-home-faq__a{max-height:400px;padding:0 26px 22px;}
+.vs-home-faq__empty{text-align:center;padding:48px 24px;color:#94A3B8;background:#FAF6EC;border-radius:16px;display:none;}
+.vs-home-faq__empty.is-on{display:block;}
+</style>
+
+<section class="vs-home-faq" id="faq">
+  <div class="vs-home-faq__inner">
+    <div class="vs-section-head">
+      <span class="vs-eyebrow"><i></i>سوالات متداول</span>
+      <h2>پاسخ <em>سوالات</em> شما</h2>
+    </div>
+    <div class="vs-home-faq__search">
+      <input type="text" placeholder="در سوالات جستجو کنید..." data-vs-home-faq-search>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/></svg>
+    </div>
+    <div class="vs-home-faq__cats" data-vs-home-faq-cats>
+      <button class="vs-home-faq__cat is-active" data-cat="all">همه</button>
+      <button class="vs-home-faq__cat" data-cat="general">عمومی</button>
+      <button class="vs-home-faq__cat" data-cat="price">قیمت‌گذاری</button>
+      <button class="vs-home-faq__cat" data-cat="process">فرآیند</button>
+      <button class="vs-home-faq__cat" data-cat="support">پشتیبانی</button>
+    </div>
+    <div class="vs-home-faq__list" data-vs-home-faq-list>
+      <div class="vs-home-faq__item is-open" data-cat="general"><button class="vs-home-faq__q"><span class="text">چه خدماتی ارائه می‌دهید؟</span><span class="vs-home-faq__plus">+</span></button><div class="vs-home-faq__a">ما خدمات جامع دیجیتال مارکتینگ شامل طراحی سایت، سئو گوگل، توسعه اپلیکیشن اندروید و آموزش تخصصی سئو ارائه می‌دهیم. هر خدمت با تیم متخصص مربوطه انجام می‌شود.</div></div>
+      <div class="vs-home-faq__item" data-cat="price"><button class="vs-home-faq__q"><span class="text">هزینه خدمات شما چقدر است؟</span><span class="vs-home-faq__plus">+</span></button><div class="vs-home-faq__a">هزینه‌ها بسته به نوع خدمت متفاوت است: طراحی سایت از ۱۸ میلیون، سئو ماهانه از ۴.۹ میلیون، اپلیکیشن از ۲۵ میلیون و آموزش از ۸۵۰ هزار تومان. مشاوره اولیه رایگان است.</div></div>
+      <div class="vs-home-faq__item" data-cat="process"><button class="vs-home-faq__q"><span class="text">مدت زمان انجام پروژه چقدر است؟</span><span class="vs-home-faq__plus">+</span></button><div class="vs-home-faq__a">بسته به نوع پروژه متفاوت است. طراحی سایت ۲ تا ۶ هفته، سئو نتایج اولیه ۲ تا ۴ ماه، اپلیکیشن ۴ تا ۱۲ هفته. زمان دقیق در جلسه مشاوره مشخص می‌شود.</div></div>
+      <div class="vs-home-faq__item" data-cat="general"><button class="vs-home-faq__q"><span class="text">آیا مشاوره اولیه رایگان است؟</span><span class="vs-home-faq__plus">+</span></button><div class="vs-home-faq__a">بله. جلسه مشاوره اولیه کاملا رایگان و بدون تعهد است. در این جلسه نیازهای شما بررسی شده و راهکار مناسب پیشنهاد می‌شود.</div></div>
+      <div class="vs-home-faq__item" data-cat="price"><button class="vs-home-faq__q"><span class="text">نحوه پرداخت هزینه چگونه است؟</span><span class="vs-home-faq__plus">+</span></button><div class="vs-home-faq__a">پرداخت به صورت مرحله‌ای انجام می‌شود. معمولا ۴۰٪ در شروع، ۳۰٪ در میانه و ۳۰٪ پس از تحویل نهایی. امکان پرداخت اقساطی نیز وجود دارد.</div></div>
+      <div class="vs-home-faq__item" data-cat="support"><button class="vs-home-faq__q"><span class="text">آیا پشتیبانی بعد از تحویل دارید؟</span><span class="vs-home-faq__plus">+</span></button><div class="vs-home-faq__a">بله. تمام پروژه‌ها شامل ۳ ماه پشتیبانی رایگان هستند. پس از آن پلن‌های نگهداری ماهانه با قیمت مناسب ارائه می‌شود.</div></div>
+      <div class="vs-home-faq__item" data-cat="general"><button class="vs-home-faq__q"><span class="text">آیا نمونه‌کار قبلی دارید؟</span><span class="vs-home-faq__plus">+</span></button><div class="vs-home-faq__a">بله. بیش از ۴۵۰ پروژه موفق در حوزه‌های مختلف انجام داده‌ایم. نمونه‌کارها در بخش پورتفولیو سایت قابل مشاهده است یا در جلسه مشاوره ارائه می‌شود.</div></div>
+      <div class="vs-home-faq__item" data-cat="support"><button class="vs-home-faq__q"><span class="text">اگر از نتیجه راضی نباشم چه می‌شود؟</span><span class="vs-home-faq__plus">+</span></button><div class="vs-home-faq__a">رضایت شما اولویت ماست. تا ۳ نوبت بازنگری رایگان در هر مرحله داریم. در صورت عدم توافق نهایی، ضمانت بازگشت وجه برای بخش انجام‌نشده وجود دارد.</div></div>
+    </div>
+    <div class="vs-home-faq__empty" data-vs-home-faq-empty>نتیجه‌ای پیدا نشد. می‌توانید مستقیما با ما تماس بگیرید.</div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var list=document.querySelector('[data-vs-home-faq-list]');
+  if(!list)return;
+  var items=Array.from(list.querySelectorAll('.vs-home-faq__item'));
+  var empty=document.querySelector('[data-vs-home-faq-empty]');
+  items.forEach(function(it){it.querySelector('.vs-home-faq__q').addEventListener('click',function(){var open=it.classList.contains('is-open');items.forEach(function(x){x.classList.remove('is-open');});if(!open)it.classList.add('is-open');});});
+  var cats=document.querySelectorAll('[data-vs-home-faq-cats] .vs-home-faq__cat');
+  var activeCat='all',activeQuery='';
+  function refresh(){var visible=0;items.forEach(function(it){var matchCat=activeCat==='all'||it.dataset.cat===activeCat;var text=it.querySelector('.text').textContent+' '+it.querySelector('.vs-home-faq__a').textContent;var matchSearch=!activeQuery||text.includes(activeQuery);var show=matchCat&&matchSearch;it.classList.toggle('is-hidden',!show);if(show)visible++;});empty.classList.toggle('is-on',visible===0);}
+  cats.forEach(function(c){c.addEventListener('click',function(){cats.forEach(function(x){x.classList.remove('is-active');});c.classList.add('is-active');activeCat=c.dataset.cat;refresh();});});
+  document.querySelector('[data-vs-home-faq-search]').addEventListener('input',function(e){activeQuery=e.target.value.trim();refresh();});
+})();
+</script>

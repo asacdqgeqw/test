@@ -1,0 +1,206 @@
+<!-- ========================================================
+     سکشن ۳: نمای کلی خدمات - Bento Grid
+     ویژگی‌ها: ۴ سرویس اصلی + کارت CTA در چیدمان Bento
+     ======================================================== -->
+<style>
+.vs-home-svc{
+  --vs-primary:#170C79; --vs-secondary:#0170B9; --vs-accent:#128BE0;
+  --vs-cyan:#8ACBD0; --vs-cream:#EFE3CA; --vs-ink:#1D2327;
+
+  padding:110px 24px; background:#fff;
+  font-family:'Vazirmatn','IRANSans',Tahoma,sans-serif; direction:rtl; color:var(--vs-ink);
+  position:relative; overflow:hidden;
+}
+.vs-home-svc::before{
+  content:""; position:absolute; top:0; left:0; width:50%; height:100%;
+  background:radial-gradient(50% 50% at 0% 30%, rgba(138,203,208,.12), transparent 60%);
+  pointer-events:none;
+}
+.vs-home-svc__inner{max-width:1240px; margin:0 auto; position:relative;}
+
+.vs-home-svc__head{text-align:center; margin-bottom:60px;}
+.vs-home-svc__head .vs-eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(23,12,121,.08); color:var(--vs-primary);
+  border:1px solid rgba(23,12,121,.18);
+  padding:8px 16px; border-radius:999px; font-size:14px; font-weight:600; margin-bottom:16px;
+}
+.vs-home-svc__head .vs-eyebrow i{
+  width:8px; height:8px; border-radius:50%; background:var(--vs-accent);
+  box-shadow:0 0 0 4px rgba(18,139,224,.18); display:inline-block;
+}
+.vs-home-svc__head h2{font-size:clamp(28px,3.4vw,46px); font-weight:800; margin:0 0 16px; line-height:1.4;}
+.vs-home-svc__head h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  -webkit-text-fill-color:transparent;
+}
+
+/* Bento Grid */
+.vs-home-svc__grid{
+  display:grid; grid-template-columns:repeat(6,1fr); gap:20px;
+}
+.vs-home-svc__card{
+  background:#fff; border:1px solid rgba(23,12,121,.10);
+  border-radius:24px; padding:36px 30px;
+  position:relative; overflow:hidden;
+  transition:all .35s ease;
+}
+.vs-home-svc__card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 50px rgba(23,12,121,.12);
+}
+
+/* Card sizes */
+.vs-home-svc__card--lg{grid-column:span 3;}
+.vs-home-svc__card--md{grid-column:span 2;}
+
+/* Dark card */
+.vs-home-svc__card--dark{
+  background:linear-gradient(160deg,#0a0640,#170C79);
+  color:#fff; border-color:transparent;
+}
+.vs-home-svc__card--dark .vs-home-svc__card-desc{color:rgba(255,255,255,.75);}
+.vs-home-svc__card--dark .vs-home-svc__card-price{color:var(--vs-cyan);}
+.vs-home-svc__card--dark .vs-home-svc__card-link{color:var(--vs-cyan);}
+
+/* CTA card */
+.vs-home-svc__card--cta{
+  background:linear-gradient(135deg,rgba(138,203,208,.15),rgba(18,139,224,.10));
+  border-color:rgba(18,139,224,.20);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center;
+}
+
+/* Card elements */
+.vs-home-svc__card-icon{
+  width:56px; height:56px; border-radius:16px;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  display:grid; place-items:center; color:#fff;
+  margin-bottom:20px;
+  box-shadow:0 10px 24px rgba(23,12,121,.20);
+}
+.vs-home-svc__card--dark .vs-home-svc__card-icon{
+  background:linear-gradient(135deg,var(--vs-cyan),var(--vs-cream));
+  color:var(--vs-primary);
+}
+.vs-home-svc__card-title{
+  font-size:20px; font-weight:800; margin:0 0 10px; color:inherit;
+}
+.vs-home-svc__card-desc{
+  font-size:15px; line-height:1.8; color:#475569; margin:0 0 16px;
+}
+.vs-home-svc__card-price{
+  font-size:14px; font-weight:700; color:var(--vs-primary); margin-bottom:14px;
+}
+.vs-home-svc__card-link{
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:14px; font-weight:700; color:var(--vs-primary);
+  text-decoration:none; transition:gap .25s ease;
+}
+.vs-home-svc__card-link:hover{gap:10px;}
+
+/* CTA card specific */
+.vs-home-svc__card--cta .vs-home-svc__card-title{font-size:18px; margin-bottom:14px;}
+.vs-home-svc__card--cta .vs-home-svc__cta-btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:14px 28px; border-radius:14px;
+  background:linear-gradient(135deg,var(--vs-primary),var(--vs-accent));
+  color:#fff; text-decoration:none; font-weight:700; font-size:15px;
+  transition:all .25s ease;
+  box-shadow:0 12px 30px rgba(23,12,121,.25);
+}
+.vs-home-svc__card--cta .vs-home-svc__cta-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 40px rgba(23,12,121,.35);
+}
+
+@media (max-width:880px){
+  .vs-home-svc__grid{grid-template-columns:repeat(2,1fr);}
+  .vs-home-svc__card--lg{grid-column:span 2;}
+  .vs-home-svc__card--md{grid-column:span 1;}
+}
+@media (max-width:560px){
+  .vs-home-svc__grid{grid-template-columns:1fr;}
+  .vs-home-svc__card--lg,
+  .vs-home-svc__card--md{grid-column:span 1;}
+}
+</style>
+
+<section class="vs-home-svc" id="services">
+  <div class="vs-home-svc__inner">
+    <div class="vs-home-svc__head">
+      <span class="vs-eyebrow"><i></i>خدمات ما</span>
+      <h2>هر آنچه برای رشد دیجیتال نیاز دارید، <em>یکجا</em></h2>
+    </div>
+
+    <div class="vs-home-svc__grid">
+      <!-- Card 1: Web Design (large, dark) -->
+      <div class="vs-home-svc__card vs-home-svc__card--lg vs-home-svc__card--dark">
+        <div class="vs-home-svc__card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="vs-home-svc__card-title">طراحی سایت</h3>
+        <p class="vs-home-svc__card-desc">طراحی اختصاصی و حرفه‌ای وب‌سایت با وردپرس و المنتور. سرعت بالا، سئو فنی استاندارد و رابط کاربری مدرن برای رشد کسب‌وکار شما.</p>
+        <div class="vs-home-svc__card-price">از ۱۸ میلیون تومان</div>
+        <a href="/website-design/" class="vs-home-svc__card-link">
+          مشاهده جزئیات
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <!-- Card 2: SEO (large) -->
+      <div class="vs-home-svc__card vs-home-svc__card--lg">
+        <div class="vs-home-svc__card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3" stroke-linecap="round"/><path d="M11 8v6M8 11h6" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="vs-home-svc__card-title">سئو گوگل</h3>
+        <p class="vs-home-svc__card-desc">بهینه‌سازی حرفه‌ای سایت برای موتورهای جستجو. تحلیل رقبا، تولید محتوای سئوشده و لینک‌سازی اصولی برای رسیدن به صفحه اول گوگل.</p>
+        <div class="vs-home-svc__card-price">از ۴.۹ میلیون تومان / ماه</div>
+        <a href="/seo-google/" class="vs-home-svc__card-link">
+          مشاهده جزئیات
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <!-- Card 3: Android App (medium) -->
+      <div class="vs-home-svc__card vs-home-svc__card--md">
+        <div class="vs-home-svc__card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="vs-home-svc__card-title">اپلیکیشن اندروید</h3>
+        <p class="vs-home-svc__card-desc">طراحی و توسعه اپلیکیشن‌های اندروید سفارشی با رابط کاربری جذاب و عملکرد بالا.</p>
+        <div class="vs-home-svc__card-price">از ۲۵ میلیون تومان</div>
+        <a href="/app-android-tabriz/" class="vs-home-svc__card-link">
+          مشاهده جزئیات
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <!-- Card 4: SEO Training (medium) -->
+      <div class="vs-home-svc__card vs-home-svc__card--md">
+        <div class="vs-home-svc__card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <h3 class="vs-home-svc__card-title">آموزش سئو تبریز</h3>
+        <p class="vs-home-svc__card-desc">دوره‌های آموزشی حضوری و آنلاین سئو با مدرسین باتجربه. از مبتدی تا پیشرفته.</p>
+        <div class="vs-home-svc__card-price">از ۸۵۰ هزار تومان / جلسه</div>
+        <a href="/seo-training-tabriz/" class="vs-home-svc__card-link">
+          مشاهده جزئیات
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <!-- Card 5: CTA (medium) -->
+      <div class="vs-home-svc__card vs-home-svc__card--md vs-home-svc__card--cta">
+        <h3 class="vs-home-svc__card-title">مشاوره رایگان</h3>
+        <p class="vs-home-svc__card-desc">ایده‌ات رو بگو، ما راهکار می‌دیم</p>
+        <a href="#contact" class="vs-home-svc__cta-btn">
+          درخواست مشاوره
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
