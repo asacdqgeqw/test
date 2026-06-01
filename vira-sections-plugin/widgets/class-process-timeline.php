@@ -76,6 +76,9 @@ class Vira_Sections_Widget_Process_Timeline extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->register_tag_control( 'heading_tag', __( 'Heading HTML Tag (SEO)', 'vira-sections' ), 'h2' );
+		$this->register_tag_control( 'panel_title_tag', __( 'Step Title HTML Tag (SEO)', 'vira-sections' ), 'h3' );
+
 		$this->add_control(
 			'description',
 			array(
@@ -419,8 +422,8 @@ class Vira_Sections_Widget_Process_Timeline extends \Elementor\Widget_Base {
 				width:8px;height:8px;border-radius:50%;background:var(--vira-active);
 				box-shadow:0 0 0 4px rgba(1,112,185,.20);display:inline-block;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-proc h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;color:var(--vira-fg);}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-proc h2 em{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-proc h2, #<?php echo esc_attr( $unique_id ); ?> .vira-proc__title{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;color:var(--vira-fg);}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-proc h2 em, #<?php echo esc_attr( $unique_id ); ?> .vira-proc__title em{
 				font-style:normal;
 				background:linear-gradient(135deg,var(--vira-grad-from),var(--vira-grad-to));
 				-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
@@ -467,7 +470,7 @@ class Vira_Sections_Widget_Process_Timeline extends \Elementor\Widget_Base {
 			#<?php echo esc_attr( $unique_id ); ?> .vira-proc__panel{display:none;animation:vira-proc-fade .4s ease;}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-proc__panel.is-active{display:block;}
 			@keyframes vira-proc-fade{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-proc__panel h3{font-size:24px;font-weight:800;margin:0 0 8px;color:var(--vira-fg);}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-proc__panel h3, #<?php echo esc_attr( $unique_id ); ?> .vira-proc__panel-title{font-size:24px;font-weight:800;margin:0 0 8px;color:var(--vira-fg);}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-proc__panel .dur{
 				display:inline-flex;align-items:center;gap:6px;
 				background:rgba(1,112,185,.15);color:var(--vira-active);
@@ -543,7 +546,8 @@ class Vira_Sections_Widget_Process_Timeline extends \Elementor\Widget_Base {
 						<span class="vira-proc__eyebrow"><i></i><?php echo esc_html( $settings['eyebrow'] ); ?></span>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['heading'] ) ) : ?>
-						<h2><?php echo wp_kses_post( $settings['heading'] ); ?></h2>
+						<?php $heading_tag = $this->vira_safe_tag( isset( $settings['heading_tag'] ) ? $settings['heading_tag'] : 'h2', 'h2' ); ?>
+						<<?php echo $heading_tag; ?> class="vira-proc__title"><?php echo wp_kses_post( $settings['heading'] ); ?></<?php echo $heading_tag; ?>>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['description'] ) ) : ?>
 						<p><?php echo esc_html( $settings['description'] ); ?></p>
@@ -568,7 +572,8 @@ class Vira_Sections_Widget_Process_Timeline extends \Elementor\Widget_Base {
 							$features = ! empty( $step['panel_features'] ) && is_array( $step['panel_features'] ) ? $step['panel_features'] : array();
 							?>
 							<div class="vira-proc__panel<?php echo 0 === $i ? ' is-active' : ''; ?>" data-panel="<?php echo (int) $i; ?>">
-								<h3><?php echo esc_html( $step['panel_title'] ); ?></h3>
+								<?php $panel_title_tag = $this->vira_safe_tag( isset( $settings['panel_title_tag'] ) ? $settings['panel_title_tag'] : 'h3', 'h3' ); ?>
+								<<?php echo $panel_title_tag; ?> class="vira-proc__panel-title"><?php echo esc_html( $step['panel_title'] ); ?></<?php echo $panel_title_tag; ?>>
 								<?php if ( ! empty( $step['panel_duration_text'] ) ) : ?>
 									<div class="dur">
 										<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>

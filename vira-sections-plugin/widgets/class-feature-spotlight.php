@@ -79,6 +79,9 @@ class Vira_Sections_Widget_Feature_Spotlight extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->register_tag_control( 'heading_tag', __( 'Heading HTML Tag (SEO)', 'vira-sections' ), 'h2' );
+		$this->register_tag_control( 'step_title_tag', __( 'Step Title HTML Tag (SEO)', 'vira-sections' ), 'h3' );
+
 		$this->add_control(
 			'description',
 			array(
@@ -366,8 +369,8 @@ class Vira_Sections_Widget_Feature_Spotlight extends \Elementor\Widget_Base {
 				width:8px;height:8px;border-radius:50%;background:var(--vira-accent);
 				box-shadow:0 0 0 4px rgba(1,112,185,.16);display:inline-block;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-spot h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;color:var(--vira-head);}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-spot h2 em{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-spot h2, #<?php echo esc_attr( $unique_id ); ?> .vira-spot__title{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;color:var(--vira-head);}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-spot h2 em, #<?php echo esc_attr( $unique_id ); ?> .vira-spot__title em{
 				font-style:normal;
 				background:linear-gradient(135deg,#170C79,#128BE0);
 				-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
@@ -434,7 +437,7 @@ class Vira_Sections_Widget_Feature_Spotlight extends \Elementor\Widget_Base {
 				transition:color .4s ease;
 			}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-spot__step.is-active .vira-spot__step-count{color:var(--vira-accent);}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-spot__step h3{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-spot__step h3, #<?php echo esc_attr( $unique_id ); ?> .vira-spot__step-title{
 				font-size:clamp(22px,2.4vw,30px);font-weight:800;margin:0 0 12px;color:var(--vira-title);line-height:1.4;
 			}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-spot__step p{font-size:17px;line-height:1.9;margin:0;}
@@ -475,7 +478,8 @@ class Vira_Sections_Widget_Feature_Spotlight extends \Elementor\Widget_Base {
 							<span class="vira-spot__eyebrow"><i></i><?php echo esc_html( $settings['eyebrow'] ); ?></span>
 						<?php endif; ?>
 						<?php if ( ! empty( $settings['heading'] ) ) : ?>
-							<h2><?php echo wp_kses_post( $settings['heading'] ); ?></h2>
+							<?php $heading_tag = $this->vira_safe_tag( isset( $settings['heading_tag'] ) ? $settings['heading_tag'] : 'h2', 'h2' ); ?>
+							<<?php echo $heading_tag; ?> class="vira-spot__title"><?php echo wp_kses_post( $settings['heading'] ); ?></<?php echo $heading_tag; ?>>
 						<?php endif; ?>
 						<?php if ( ! empty( $settings['description'] ) ) : ?>
 							<p><?php echo esc_html( $settings['description'] ); ?></p>
@@ -523,7 +527,8 @@ class Vira_Sections_Widget_Feature_Spotlight extends \Elementor\Widget_Base {
 										<span class="vira-spot__step-count"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span>
 									</div>
 									<?php if ( ! empty( $step['step_title'] ) ) : ?>
-										<h3><?php echo esc_html( $step['step_title'] ); ?></h3>
+										<?php $step_title_tag = $this->vira_safe_tag( isset( $settings['step_title_tag'] ) ? $settings['step_title_tag'] : 'h3', 'h3' ); ?>
+										<<?php echo $step_title_tag; ?> class="vira-spot__step-title"><?php echo esc_html( $step['step_title'] ); ?></<?php echo $step_title_tag; ?>>
 									<?php endif; ?>
 									<?php if ( ! empty( $step['step_desc'] ) ) : ?>
 										<p><?php echo esc_html( $step['step_desc'] ); ?></p>

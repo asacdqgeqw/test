@@ -108,6 +108,8 @@ class Vira_Sections_Widget_Trust_Strip extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->register_tag_control( 'heading_tag', __( 'Heading HTML Tag (SEO)', 'vira-sections' ), 'h2', array( 'mode' => 'showcase' ) );
+
 		$this->add_control(
 			'description',
 			array(
@@ -361,8 +363,8 @@ class Vira_Sections_Widget_Trust_Strip extends \Elementor\Widget_Base {
 				width:8px;height:8px;border-radius:50%;background:var(--vira-accent);
 				box-shadow:0 0 0 4px rgba(23,12,121,.18);display:inline-block;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-trust h2{font-size:clamp(24px,2.6vw,36px);font-weight:800;margin:0 0 12px;line-height:1.4;}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-trust h2 em{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-trust h2, #<?php echo esc_attr( $unique_id ); ?> .vira-trust__title{font-size:clamp(24px,2.6vw,36px);font-weight:800;margin:0 0 12px;line-height:1.4;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-trust h2 em, #<?php echo esc_attr( $unique_id ); ?> .vira-trust__title em{
 				font-style:normal;
 				background:linear-gradient(135deg,var(--vira-accent),#128BE0);
 				-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
@@ -566,7 +568,8 @@ class Vira_Sections_Widget_Trust_Strip extends \Elementor\Widget_Base {
 							<span class="vira-trust__eyebrow"><i></i><?php echo esc_html( $settings['eyebrow'] ); ?></span>
 						<?php endif; ?>
 						<?php if ( ! empty( $settings['heading'] ) ) : ?>
-							<h2><?php echo wp_kses_post( $settings['heading'] ); ?></h2>
+							<?php $heading_tag = $this->vira_safe_tag( isset( $settings['heading_tag'] ) ? $settings['heading_tag'] : 'h2', 'h2' ); ?>
+							<<?php echo $heading_tag; ?> class="vira-trust__title"><?php echo wp_kses_post( $settings['heading'] ); ?></<?php echo $heading_tag; ?>>
 						<?php endif; ?>
 						<?php if ( ! empty( $settings['description'] ) ) : ?>
 							<p><?php echo esc_html( $settings['description'] ); ?></p>

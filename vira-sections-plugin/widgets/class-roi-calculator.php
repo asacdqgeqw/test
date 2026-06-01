@@ -79,6 +79,8 @@ class Vira_Sections_Widget_Roi_Calculator extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->register_tag_control( 'heading_tag', __( 'Heading HTML Tag (SEO)', 'vira-sections' ), 'h2' );
+
 		$this->add_control(
 			'description',
 			array(
@@ -457,8 +459,8 @@ class Vira_Sections_Widget_Roi_Calculator extends \Elementor\Widget_Base {
 				width:8px;height:8px;border-radius:50%;background:var(--vira-accent2);
 				box-shadow:0 0 0 4px rgba(138,203,208,.18);display:inline-block;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-roi h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;color:var(--vira-head);}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-roi h2 em{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-roi h2, #<?php echo esc_attr( $unique_id ); ?> .vira-roi__title{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;color:var(--vira-head);}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-roi h2 em, #<?php echo esc_attr( $unique_id ); ?> .vira-roi__title em{
 				font-style:normal;
 				background:linear-gradient(135deg,var(--vira-accent),var(--vira-accent2));
 				-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
@@ -554,7 +556,8 @@ class Vira_Sections_Widget_Roi_Calculator extends \Elementor\Widget_Base {
 						<span class="vira-roi__eyebrow"><i></i><?php echo esc_html( $settings['eyebrow'] ); ?></span>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['heading'] ) ) : ?>
-						<h2><?php echo wp_kses_post( $settings['heading'] ); ?></h2>
+						<?php $heading_tag = $this->vira_safe_tag( isset( $settings['heading_tag'] ) ? $settings['heading_tag'] : 'h2', 'h2' ); ?>
+						<<?php echo $heading_tag; ?> class="vira-roi__title"><?php echo wp_kses_post( $settings['heading'] ); ?></<?php echo $heading_tag; ?>>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['description'] ) ) : ?>
 						<p><?php echo esc_html( $settings['description'] ); ?></p>

@@ -47,6 +47,9 @@ class Vira_Sections_Widget_Pricing extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->register_tag_control( 'heading_tag', __( 'Heading HTML Tag (SEO)', 'vira-sections' ), 'h2' );
+		$this->register_tag_control( 'plan_name_tag', __( 'Plan Name HTML Tag (SEO)', 'vira-sections' ), 'h3' );
+
 		$this->add_control(
 			'description',
 			array(
@@ -289,8 +292,8 @@ class Vira_Sections_Widget_Pricing extends \Elementor\Widget_Base {
 				width:8px;height:8px;border-radius:50%;background:var(--vira-accent);
 				box-shadow:0 0 0 4px rgba(1,112,185,.16);display:inline-block;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-pricing h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-pricing h2 em{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-pricing h2, #<?php echo esc_attr( $unique_id ); ?> .vira-pricing__title{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-pricing h2 em, #<?php echo esc_attr( $unique_id ); ?> .vira-pricing__title em{
 				font-style:normal;
 				background:linear-gradient(135deg,var(--vira-grad-from),var(--vira-grad-to));
 				-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
@@ -482,7 +485,8 @@ class Vira_Sections_Widget_Pricing extends \Elementor\Widget_Base {
 						<span class="vira-pricing__eyebrow"><i></i><?php echo esc_html( $s['eyebrow'] ); ?></span>
 					<?php endif; ?>
 					<?php if ( ! empty( $s['heading'] ) ) : ?>
-						<h2><?php echo wp_kses_post( $s['heading'] ); ?></h2>
+						<?php $heading_tag = $this->vira_safe_tag( isset( $s['heading_tag'] ) ? $s['heading_tag'] : 'h2', 'h2' ); ?>
+						<<?php echo $heading_tag; ?> class="vira-pricing__title"><?php echo wp_kses_post( $s['heading'] ); ?></<?php echo $heading_tag; ?>>
 					<?php endif; ?>
 					<?php if ( ! empty( $s['description'] ) ) : ?>
 						<p><?php echo esc_html( $s['description'] ); ?></p>
@@ -520,7 +524,8 @@ class Vira_Sections_Widget_Pricing extends \Elementor\Widget_Base {
 							<?php if ( ! empty( $p['plan_icon'] ) ) : ?>
 								<div class="vira-pcard__icon"><?php \Elementor\Icons_Manager::render_icon( $p['plan_icon'], array( 'aria-hidden' => 'true' ) ); ?></div>
 							<?php endif; ?>
-							<div class="vira-pcard__name"><?php echo esc_html( $p['plan_name'] ); ?></div>
+							<?php $plan_name_tag = $this->vira_safe_tag( isset( $s['plan_name_tag'] ) ? $s['plan_name_tag'] : 'h3', 'h3' ); ?>
+							<<?php echo $plan_name_tag; ?> class="vira-pcard__name"><?php echo esc_html( $p['plan_name'] ); ?></<?php echo $plan_name_tag; ?>>
 							<div class="vira-pcard__desc"><?php echo esc_html( $p['plan_desc'] ); ?></div>
 							<div class="vira-pcard__price">
 								<span class="vira-pcard__amount" data-monthly="<?php echo esc_attr( $p['plan_price_monthly'] ); ?>" data-yearly="<?php echo esc_attr( $p['plan_price_yearly'] ); ?>"><?php echo esc_html( $p['plan_price_monthly'] ); ?></span>

@@ -77,6 +77,9 @@ class Vira_Sections_Widget_Testimonials_Slider extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->register_tag_control( 'heading_tag', __( 'Heading HTML Tag (SEO)', 'vira-sections' ), 'h2' );
+		$this->register_tag_control( 'author_name_tag', __( 'Author Name HTML Tag (SEO)', 'vira-sections' ), 'div' );
+
 		$this->add_control(
 			'description',
 			array(
@@ -397,8 +400,8 @@ class Vira_Sections_Widget_Testimonials_Slider extends \Elementor\Widget_Base {
 				width:8px;height:8px;border-radius:50%;background:var(--vira-accent);
 				box-shadow:0 0 0 4px rgba(1,112,185,.16);display:inline-block;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-test h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-test h2 em{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-test h2, #<?php echo esc_attr( $unique_id ); ?> .vira-test__title{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-test h2 em, #<?php echo esc_attr( $unique_id ); ?> .vira-test__title em{
 				font-style:normal;
 				background:linear-gradient(135deg,var(--vira-av-from),var(--vira-av-to));
 				-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
@@ -441,7 +444,7 @@ class Vira_Sections_Widget_Testimonials_Slider extends \Elementor\Widget_Base {
 			}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-test__avatar img{width:100%;height:100%;object-fit:cover;}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-test__info{flex:1;min-width:0;}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-test__name{font-weight:800;font-size:16.5px;color:#1D2327;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-test__name{font-weight:800;font-size:16.5px;color:#1D2327;margin:0;}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-test__company{font-size:13px;color:#64748B;margin-top:2px;}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-test__badge{
 				display:inline-flex;align-items:center;gap:6px;
@@ -519,7 +522,8 @@ class Vira_Sections_Widget_Testimonials_Slider extends \Elementor\Widget_Base {
 						<span class="vira-test__eyebrow"><i></i><?php echo esc_html( $settings['eyebrow'] ); ?></span>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['heading'] ) ) : ?>
-						<h2><?php echo wp_kses_post( $settings['heading'] ); ?></h2>
+						<?php $heading_tag = $this->vira_safe_tag( isset( $settings['heading_tag'] ) ? $settings['heading_tag'] : 'h2', 'h2' ); ?>
+						<<?php echo $heading_tag; ?> class="vira-test__title"><?php echo wp_kses_post( $settings['heading'] ); ?></<?php echo $heading_tag; ?>>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['description'] ) ) : ?>
 						<p><?php echo esc_html( $settings['description'] ); ?></p>
@@ -544,7 +548,8 @@ class Vira_Sections_Widget_Testimonials_Slider extends \Elementor\Widget_Base {
 										<?php endif; ?>
 									</div>
 									<div class="vira-test__info">
-										<div class="vira-test__name"><?php echo esc_html( $item['name'] ); ?></div>
+										<?php $author_name_tag = $this->vira_safe_tag( isset( $settings['author_name_tag'] ) ? $settings['author_name_tag'] : 'div', 'div' ); ?>
+										<<?php echo $author_name_tag; ?> class="vira-test__name"><?php echo esc_html( $item['name'] ); ?></<?php echo $author_name_tag; ?>>
 										<?php if ( ! empty( $item['company'] ) ) : ?>
 											<div class="vira-test__company"><?php echo esc_html( $item['company'] ); ?></div>
 										<?php endif; ?>

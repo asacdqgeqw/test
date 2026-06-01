@@ -77,6 +77,9 @@ class Vira_Sections_Widget_Tabs extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->register_tag_control( 'heading_tag', __( 'Heading HTML Tag (SEO)', 'vira-sections' ), 'h2' );
+		$this->register_tag_control( 'panel_title_tag', __( 'Panel Title HTML Tag (SEO)', 'vira-sections' ), 'h3' );
+
 		$this->add_control(
 			'description',
 			array(
@@ -451,8 +454,8 @@ class Vira_Sections_Widget_Tabs extends \Elementor\Widget_Base {
 				width:8px;height:8px;border-radius:50%;background:var(--vira-accent);
 				box-shadow:0 0 0 4px rgba(1,112,185,.16);display:inline-block;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-tabs h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-tabs h2 em{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tabs h2, #<?php echo esc_attr( $unique_id ); ?> .vira-tabs__title{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tabs h2 em, #<?php echo esc_attr( $unique_id ); ?> .vira-tabs__title em{
 				font-style:normal;
 				background:linear-gradient(135deg,var(--vira-grad-from),var(--vira-accent));
 				-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
@@ -495,11 +498,11 @@ class Vira_Sections_Widget_Tabs extends \Elementor\Widget_Base {
 				transition:opacity .4s ease,transform .4s ease;pointer-events:none;
 			}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-panel.is-active{opacity:1;transform:none;pointer-events:auto;}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-panel h3{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-panel h3, #<?php echo esc_attr( $unique_id ); ?> .vira-panel__title{
 				font-size:22px;font-weight:800;margin:0 0 12px;color:#fff;
 				display:flex;align-items:center;gap:10px;flex-wrap:wrap;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-panel h3 .badge{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-panel h3 .badge, #<?php echo esc_attr( $unique_id ); ?> .vira-panel__title .badge{
 				background:rgba(251,191,36,.20);color:var(--vira-badge);
 				font-size:11px;padding:4px 10px;border-radius:999px;font-weight:700;
 			}
@@ -577,7 +580,8 @@ class Vira_Sections_Widget_Tabs extends \Elementor\Widget_Base {
 						<span class="vira-tabs__eyebrow"><i></i><?php echo esc_html( $settings['eyebrow'] ); ?></span>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['heading'] ) ) : ?>
-						<h2><?php echo wp_kses_post( $settings['heading'] ); ?></h2>
+						<?php $heading_tag = $this->vira_safe_tag( isset( $settings['heading_tag'] ) ? $settings['heading_tag'] : 'h2', 'h2' ); ?>
+						<<?php echo $heading_tag; ?> class="vira-tabs__title"><?php echo wp_kses_post( $settings['heading'] ); ?></<?php echo $heading_tag; ?>>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['description'] ) ) : ?>
 						<p><?php echo esc_html( $settings['description'] ); ?></p>
@@ -609,12 +613,13 @@ class Vira_Sections_Widget_Tabs extends \Elementor\Widget_Base {
 							$features = ! empty( $tab['panel_features'] ) && is_array( $tab['panel_features'] ) ? $tab['panel_features'] : array();
 							?>
 							<div class="vira-panel<?php echo 0 === $i ? ' is-active' : ''; ?>" data-panel="<?php echo (int) $i; ?>">
-								<h3>
+								<?php $panel_title_tag = $this->vira_safe_tag( isset( $settings['panel_title_tag'] ) ? $settings['panel_title_tag'] : 'h3', 'h3' ); ?>
+								<<?php echo $panel_title_tag; ?> class="vira-panel__title">
 									<?php echo esc_html( $tab['panel_title'] ); ?>
 									<?php if ( ! empty( $tab['panel_badge'] ) ) : ?>
 										<span class="badge"><?php echo esc_html( $tab['panel_badge'] ); ?></span>
 									<?php endif; ?>
-								</h3>
+								</<?php echo $panel_title_tag; ?>>
 								<?php if ( ! empty( $tab['panel_description'] ) ) : ?>
 									<p><?php echo esc_html( $tab['panel_description'] ); ?></p>
 								<?php endif; ?>

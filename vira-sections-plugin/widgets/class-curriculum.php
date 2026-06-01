@@ -78,6 +78,9 @@ class Vira_Sections_Widget_Curriculum extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->register_tag_control( 'heading_tag', __( 'Heading HTML Tag (SEO)', 'vira-sections' ), 'h2' );
+		$this->register_tag_control( 'module_title_tag', __( 'Module Title HTML Tag (SEO)', 'vira-sections' ), 'h3' );
+
 		$this->add_control(
 			'description',
 			array(
@@ -514,8 +517,8 @@ class Vira_Sections_Widget_Curriculum extends \Elementor\Widget_Base {
 				width:8px;height:8px;border-radius:50%;background:var(--vira-accent);
 				box-shadow:0 0 0 4px rgba(245,158,11,.18);display:inline-block;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-curriculum h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-curriculum h2 em{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-curriculum h2, #<?php echo esc_attr( $unique_id ); ?> .vira-curriculum__title{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-curriculum h2 em, #<?php echo esc_attr( $unique_id ); ?> .vira-curriculum__title em{
 				font-style:normal;
 				background:linear-gradient(135deg,var(--vira-accent),#128BE0);
 				-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
@@ -597,7 +600,7 @@ class Vira_Sections_Widget_Curriculum extends \Elementor\Widget_Base {
 				box-shadow:0 6px 16px rgba(245,158,11,.30);
 			}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-mod__title{flex:1;}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-mod__title strong{display:block;font-size:16.5px;font-weight:800;color:#1D2327;margin-bottom:3px;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-mod__title strong, #<?php echo esc_attr( $unique_id ); ?> .vira-mod__name{display:block;font-size:16.5px;font-weight:800;color:#1D2327;margin:0 0 3px;}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-mod__title span{font-size:12.5px;color:#64748B;font-weight:500;}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-mod__chev{
 				width:32px;height:32px;border-radius:10px;flex-shrink:0;
@@ -681,7 +684,8 @@ class Vira_Sections_Widget_Curriculum extends \Elementor\Widget_Base {
 						<span class="vira-curriculum__eyebrow"><i></i><?php echo esc_html( $settings['eyebrow'] ); ?></span>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['heading'] ) ) : ?>
-						<h2><?php echo wp_kses_post( $settings['heading'] ); ?></h2>
+						<?php $heading_tag = $this->vira_safe_tag( isset( $settings['heading_tag'] ) ? $settings['heading_tag'] : 'h2', 'h2' ); ?>
+						<<?php echo $heading_tag; ?> class="vira-curriculum__title"><?php echo wp_kses_post( $settings['heading'] ); ?></<?php echo $heading_tag; ?>>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['description'] ) ) : ?>
 						<p><?php echo esc_html( $settings['description'] ); ?></p>
@@ -722,7 +726,8 @@ class Vira_Sections_Widget_Curriculum extends \Elementor\Widget_Base {
 								<button class="vira-mod__head" type="button" aria-expanded="<?php echo $open_cls ? 'true' : 'false'; ?>">
 									<div class="vira-mod__num"><?php echo esc_html( $mod['module_number'] ); ?></div>
 									<div class="vira-mod__title">
-										<strong><?php echo esc_html( $mod['module_title'] ); ?></strong>
+										<?php $module_title_tag = $this->vira_safe_tag( isset( $settings['module_title_tag'] ) ? $settings['module_title_tag'] : 'h3', 'h3' ); ?>
+										<<?php echo $module_title_tag; ?> class="vira-mod__name"><?php echo esc_html( $mod['module_title'] ); ?></<?php echo $module_title_tag; ?>>
 										<?php if ( ! empty( $mod['module_subtitle'] ) ) : ?>
 											<span><?php echo esc_html( $mod['module_subtitle'] ); ?></span>
 										<?php endif; ?>

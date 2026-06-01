@@ -76,6 +76,9 @@ class Vira_Sections_Widget_Tech_Stack extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->register_tag_control( 'heading_tag', __( 'Heading HTML Tag (SEO)', 'vira-sections' ), 'h2' );
+		$this->register_tag_control( 'panel_title_tag', __( 'Panel Title HTML Tag (SEO)', 'vira-sections' ), 'h3' );
+
 		$this->add_control(
 			'description',
 			array(
@@ -112,6 +115,8 @@ class Vira_Sections_Widget_Tech_Stack extends \Elementor\Widget_Base {
 				'default' => __( 'تکنولوژی‌هایی که در پروژه‌ها استفاده می‌کنیم', 'vira-sections' ),
 			)
 		);
+
+		$this->register_tag_control( 'logos_title_tag', __( 'Logos Title HTML Tag (SEO)', 'vira-sections' ), 'h4' );
 
 		$this->add_control(
 			'logos_subtitle',
@@ -533,8 +538,8 @@ class Vira_Sections_Widget_Tech_Stack extends \Elementor\Widget_Base {
 				width:8px;height:8px;border-radius:50%;background:var(--vira-accent);
 				box-shadow:0 0 0 4px rgba(1,112,185,.16);display:inline-block;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-tech h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-tech h2 em{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tech h2, #<?php echo esc_attr( $unique_id ); ?> .vira-tech__title{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tech h2 em, #<?php echo esc_attr( $unique_id ); ?> .vira-tech__title em{
 				font-style:normal;
 				background:linear-gradient(135deg,var(--vira-grad-from),var(--vira-grad-to));
 				-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
@@ -579,7 +584,7 @@ class Vira_Sections_Widget_Tech_Stack extends \Elementor\Widget_Base {
 				color:#fff;display:grid;place-items:center;font-size:24px;
 				box-shadow:0 10px 24px rgba(1,112,185,.30);flex-shrink:0;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__info h3{font-size:22px;font-weight:800;margin:0;color:#1D2327;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__info h3, #<?php echo esc_attr( $unique_id ); ?> .vira-tech__panel-title{font-size:22px;font-weight:800;margin:0;color:#1D2327;}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__info-sub{font-size:13.5px;color:#94A3B8;margin-top:2px;}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__desc{font-size:15px;line-height:2;color:#475569;margin:0 0 22px;}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__lists{display:grid;gap:18px;}
@@ -627,7 +632,7 @@ class Vira_Sections_Widget_Tech_Stack extends \Elementor\Widget_Base {
 				box-shadow:0 12px 32px rgba(15,23,42,.04);
 			}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__logos-head{text-align:center;margin-bottom:26px;}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__logos-head h4{font-size:18px;font-weight:800;margin:0 0 6px;color:#1D2327;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__logos-head h4, #<?php echo esc_attr( $unique_id ); ?> .vira-tech__logos-title{font-size:18px;font-weight:800;margin:0 0 6px;color:#1D2327;}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__logos-head p{color:#94A3B8;font-size:14px;margin:0;}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-tech__logos-grid{
 				display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:12px;
@@ -737,7 +742,8 @@ class Vira_Sections_Widget_Tech_Stack extends \Elementor\Widget_Base {
 						<span class="vira-tech__eyebrow"><i></i><?php echo esc_html( $settings['eyebrow'] ); ?></span>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['heading'] ) ) : ?>
-						<h2><?php echo wp_kses_post( $settings['heading'] ); ?></h2>
+						<?php $heading_tag = $this->vira_safe_tag( isset( $settings['heading_tag'] ) ? $settings['heading_tag'] : 'h2', 'h2' ); ?>
+						<<?php echo $heading_tag; ?> class="vira-tech__title"><?php echo wp_kses_post( $settings['heading'] ); ?></<?php echo $heading_tag; ?>>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['description'] ) ) : ?>
 						<p><?php echo esc_html( $settings['description'] ); ?></p>
@@ -772,7 +778,8 @@ class Vira_Sections_Widget_Tech_Stack extends \Elementor\Widget_Base {
 										<?php endif; ?>
 									</div>
 									<div>
-										<h3><?php echo esc_html( $tab['panel_title'] ); ?></h3>
+										<?php $panel_title_tag = $this->vira_safe_tag( isset( $settings['panel_title_tag'] ) ? $settings['panel_title_tag'] : 'h3', 'h3' ); ?>
+										<<?php echo $panel_title_tag; ?> class="vira-tech__panel-title"><?php echo esc_html( $tab['panel_title'] ); ?></<?php echo $panel_title_tag; ?>>
 										<?php if ( ! empty( $tab['panel_subtitle'] ) ) : ?>
 											<div class="vira-tech__info-sub"><?php echo esc_html( $tab['panel_subtitle'] ); ?></div>
 										<?php endif; ?>
@@ -838,7 +845,8 @@ class Vira_Sections_Widget_Tech_Stack extends \Elementor\Widget_Base {
 					<div class="vira-tech__logos">
 						<div class="vira-tech__logos-head">
 							<?php if ( ! empty( $settings['logos_title'] ) ) : ?>
-								<h4><?php echo esc_html( $settings['logos_title'] ); ?></h4>
+								<?php $logos_title_tag = $this->vira_safe_tag( isset( $settings['logos_title_tag'] ) ? $settings['logos_title_tag'] : 'h4', 'h4' ); ?>
+								<<?php echo $logos_title_tag; ?> class="vira-tech__logos-title"><?php echo esc_html( $settings['logos_title'] ); ?></<?php echo $logos_title_tag; ?>>
 							<?php endif; ?>
 							<?php if ( ! empty( $settings['logos_subtitle'] ) ) : ?>
 								<p><?php echo esc_html( $settings['logos_subtitle'] ); ?></p>

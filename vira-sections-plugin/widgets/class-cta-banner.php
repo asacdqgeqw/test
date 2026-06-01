@@ -89,6 +89,8 @@ class Vira_Sections_Widget_Cta_Banner extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->register_tag_control( 'heading_tag', __( 'Heading HTML Tag (SEO)', 'vira-sections' ), 'h2' );
+
 		$this->add_control(
 			'subheading',
 			array(
@@ -484,7 +486,8 @@ class Vira_Sections_Widget_Cta_Banner extends \Elementor\Widget_Base {
 					<?php endif; ?>
 
 					<?php if ( ! empty( $settings['heading'] ) ) : ?>
-						<h2 class="vira-ctab__title"><?php echo wp_kses_post( $settings['heading'] ); ?></h2>
+						<?php $heading_tag = $this->vira_safe_tag( isset( $settings['heading_tag'] ) ? $settings['heading_tag'] : 'h2', 'h2' ); ?>
+						<<?php echo $heading_tag; ?> class="vira-ctab__title"><?php echo wp_kses_post( $settings['heading'] ); ?></<?php echo $heading_tag; ?>>
 					<?php endif; ?>
 
 					<?php if ( ! empty( $settings['subheading'] ) ) : ?>

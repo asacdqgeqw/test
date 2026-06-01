@@ -77,6 +77,8 @@ class Vira_Sections_Widget_Stats_Counter extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->register_tag_control( 'heading_tag', __( 'Heading HTML Tag (SEO)', 'vira-sections' ), 'h2' );
+
 		$this->add_control(
 			'description',
 			array(
@@ -211,6 +213,8 @@ class Vira_Sections_Widget_Stats_Counter extends \Elementor\Widget_Base {
 				'condition' => array( 'show_compare' => 'yes' ),
 			)
 		);
+
+		$this->register_tag_control( 'compare_title_tag', __( 'Compare Title HTML Tag (SEO)', 'vira-sections' ), 'h3', array( 'show_compare' => 'yes' ) );
 
 		$this->add_control(
 			'before_badge',
@@ -611,8 +615,8 @@ class Vira_Sections_Widget_Stats_Counter extends \Elementor\Widget_Base {
 				width:8px;height:8px;border-radius:50%;background:var(--vira-accent);
 				box-shadow:0 0 0 4px rgba(34,197,94,.18);display:inline-block;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-stats h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-stats h2 em{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-stats h2, #<?php echo esc_attr( $unique_id ); ?> .vira-stats__title{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-stats h2 em, #<?php echo esc_attr( $unique_id ); ?> .vira-stats__title em{
 				font-style:normal;
 				background:linear-gradient(135deg,var(--vira-accent),#128BE0);
 				-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
@@ -656,7 +660,7 @@ class Vira_Sections_Widget_Stats_Counter extends \Elementor\Widget_Base {
 				display:flex;align-items:center;justify-content:space-between;
 				margin-bottom:36px;flex-wrap:wrap;gap:16px;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-compare__header h3{font-size:24px;font-weight:800;margin:0;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-compare__header h3, #<?php echo esc_attr( $unique_id ); ?> .vira-compare__title{font-size:24px;font-weight:800;margin:0;}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-compare__toggle{
 				display:flex;align-items:center;gap:12px;
 				background:#F1F5F9;border-radius:12px;padding:6px;
@@ -786,7 +790,8 @@ class Vira_Sections_Widget_Stats_Counter extends \Elementor\Widget_Base {
 						<span class="vira-stats__eyebrow"><i></i><?php echo esc_html( $settings['eyebrow'] ); ?></span>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['heading'] ) ) : ?>
-						<h2><?php echo wp_kses_post( $settings['heading'] ); ?></h2>
+						<?php $heading_tag = $this->vira_safe_tag( isset( $settings['heading_tag'] ) ? $settings['heading_tag'] : 'h2', 'h2' ); ?>
+						<<?php echo $heading_tag; ?> class="vira-stats__title"><?php echo wp_kses_post( $settings['heading'] ); ?></<?php echo $heading_tag; ?>>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['description'] ) ) : ?>
 						<p><?php echo esc_html( $settings['description'] ); ?></p>
@@ -828,7 +833,8 @@ class Vira_Sections_Widget_Stats_Counter extends \Elementor\Widget_Base {
 					?>
 					<div class="vira-compare" data-vira-compare>
 						<div class="vira-compare__header">
-							<h3><?php echo esc_html( $settings['compare_title'] ); ?></h3>
+							<?php $compare_title_tag = $this->vira_safe_tag( isset( $settings['compare_title_tag'] ) ? $settings['compare_title_tag'] : 'h3', 'h3' ); ?>
+							<<?php echo $compare_title_tag; ?> class="vira-compare__title"><?php echo esc_html( $settings['compare_title'] ); ?></<?php echo $compare_title_tag; ?>>
 							<div class="vira-compare__toggle">
 								<?php foreach ( $tabs as $i => $t ) :
 									$slug = ! empty( $t['tab_slug'] ) ? sanitize_title( $t['tab_slug'] ) : 'tab-' . ( $i + 1 );

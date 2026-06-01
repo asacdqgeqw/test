@@ -48,6 +48,8 @@ class Vira_Sections_Widget_Cta_Form extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->register_tag_control( 'heading_tag', __( 'Heading HTML Tag (SEO)', 'vira-sections' ), 'h2' );
+
 		$this->add_control(
 			'description',
 			array(
@@ -175,6 +177,8 @@ class Vira_Sections_Widget_Cta_Form extends \Elementor\Widget_Base {
 			'success_title',
 			array( 'label' => __( 'Success Title', 'vira-sections' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => __( 'درخواست شما ثبت شد!', 'vira-sections' ) )
 		);
+
+		$this->register_tag_control( 'success_title_tag', __( 'Success Title HTML Tag (SEO)', 'vira-sections' ), 'h3' );
 		$this->add_control(
 			'success_text',
 			array( 'label' => __( 'Success Text', 'vira-sections' ), 'type' => \Elementor\Controls_Manager::TEXTAREA, 'default' => __( 'کارشناس ما در کمتر از ۲ ساعت کاری برای هماهنگی با شما تماس می‌گیرد.', 'vira-sections' ), 'rows' => 3 )
@@ -298,11 +302,11 @@ class Vira_Sections_Widget_Cta_Form extends \Elementor\Widget_Base {
 				animation:vira-cta-blink 2s ease infinite;
 			}
 			@keyframes vira-cta-blink{0%,100%{opacity:1;}50%{opacity:.3;}}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-cta h2{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta h2, #<?php echo esc_attr( $unique_id ); ?> .vira-cta__title{
 				font-size:clamp(28px,3.4vw,44px);font-weight:900;
 				line-height:1.4;margin:0 0 20px;color:#fff;white-space:pre-line;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-cta h2 em{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta h2 em, #<?php echo esc_attr( $unique_id ); ?> .vira-cta__title em{
 				font-style:normal;
 				background:linear-gradient(135deg,var(--vira-btn-from),var(--vira-btn-to));
 				-webkit-background-clip:text;background-clip:text;color:transparent;
@@ -392,7 +396,7 @@ class Vira_Sections_Widget_Cta_Form extends \Elementor\Widget_Base {
 				animation:vira-cta-pop .5s cubic-bezier(.34,1.56,.64,1);
 			}
 			@keyframes vira-cta-pop{0%{transform:scale(0) rotate(-90deg);}100%{transform:scale(1) rotate(0);}}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__success h3{font-size:22px;font-weight:800;margin:0 0 8px;color:#fff;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__success h3, #<?php echo esc_attr( $unique_id ); ?> .vira-cta__success-title{font-size:22px;font-weight:800;margin:0 0 8px;color:#fff;}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-cta__success p{color:rgba(255,255,255,.65);font-size:15px;margin:0;line-height:1.8;}
 			@media(max-width:980px){#<?php echo esc_attr( $unique_id ); ?> .vira-cta__grid{grid-template-columns:1fr;gap:48px;}}
 			@media(max-width:560px){#<?php echo esc_attr( $unique_id ); ?> .vira-cta__form-wrap{padding:24px;}}
@@ -493,7 +497,8 @@ class Vira_Sections_Widget_Cta_Form extends \Elementor\Widget_Base {
 								<span><?php echo esc_html( $s['badge_text'] ); ?></span>
 							</div>
 						<?php endif; ?>
-						<h2><?php echo wp_kses_post( nl2br( $s['heading'] ) ); ?></h2>
+						<?php $cta_heading_tag = $this->vira_safe_tag( isset( $s['heading_tag'] ) ? $s['heading_tag'] : 'h2', 'h2' ); ?>
+						<<?php echo $cta_heading_tag; ?> class="vira-cta__title"><?php echo wp_kses_post( nl2br( $s['heading'] ) ); ?></<?php echo $cta_heading_tag; ?>>
 						<?php if ( ! empty( $s['description'] ) ) : ?>
 							<p class="vira-cta__desc"><?php echo esc_html( $s['description'] ); ?></p>
 						<?php endif; ?>
@@ -558,7 +563,8 @@ class Vira_Sections_Widget_Cta_Form extends \Elementor\Widget_Base {
 							<div class="vira-cta__success-icon">
 								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
 							</div>
-							<h3><?php echo esc_html( $s['success_title'] ); ?></h3>
+							<?php $cta_success_tag = $this->vira_safe_tag( isset( $s['success_title_tag'] ) ? $s['success_title_tag'] : 'h3', 'h3' ); ?>
+							<<?php echo $cta_success_tag; ?> class="vira-cta__success-title"><?php echo esc_html( $s['success_title'] ); ?></<?php echo $cta_success_tag; ?>>
 							<p><?php echo esc_html( $s['success_text'] ); ?></p>
 						</div>
 

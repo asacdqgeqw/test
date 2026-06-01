@@ -75,6 +75,8 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				'description' => __( 'Multiple lines supported.', 'vira-sections' ),
 			)
 		);
+
+		$this->register_tag_control( 'heading_tag', __( 'Heading HTML Tag (SEO)', 'vira-sections' ), 'h1' );
  
 		$rep_words = new \Elementor\Repeater();
 		$rep_words->add_control(
@@ -563,25 +565,25 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 				animation:vira-hero-pulse 2s ease-out infinite;
 			}
 			@keyframes vira-hero-pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(1.6);opacity:0}}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1, #<?php echo esc_attr( $unique_id ); ?> .vira-hero__title{
 				font-size:clamp(34px,5vw,64px);font-weight:900;
 				line-height:1.25;letter-spacing:-1px;margin:0 0 22px;color:var(--vira-text);
 				white-space:pre-line;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1 .rot{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1 .rot, #<?php echo esc_attr( $unique_id ); ?> .vira-hero__title .rot{
 				display:inline-block;
 				background:linear-gradient(135deg,var(--vira-rot-from) 0%,var(--vira-rot-to) 100%);
 				-webkit-background-clip:text;background-clip:text;color:transparent;
 				-webkit-text-fill-color:transparent;position:relative;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1 .rot__list{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1 .rot__list, #<?php echo esc_attr( $unique_id ); ?> .vira-hero__title .rot__list{
 				display:inline-flex;flex-direction:column;vertical-align:top;
 				height:1.25em;overflow:hidden;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1 .rot__list{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1 .rot__list, #<?php echo esc_attr( $unique_id ); ?> .vira-hero__title .rot__list{
 				transition: transform .6s cubic-bezier(.4,0,.2,1);
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1 .rot__list span{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1 .rot__list span, #<?php echo esc_attr( $unique_id ); ?> .vira-hero__title .rot__list span{
 				display:block;height:1.25em;line-height:1.25em;white-space:nowrap;
 			}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-hero h1 .rot::after{
@@ -797,7 +799,8 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 						</a>
 					<?php endif; ?>
  
-					<h1>
+					<?php $heading_tag = $this->vira_safe_tag( isset( $s['heading_tag'] ) ? $s['heading_tag'] : 'h1', 'h1' ); ?>
+					<<?php echo $heading_tag; ?> class="vira-hero__title">
 						<?php echo nl2br( esc_html( $s['heading_before'] ) ); ?>
 						<?php if ( ! empty( $words ) ) : ?>
 							<span class="rot">
@@ -808,7 +811,7 @@ class Vira_Sections_Widget_Hero extends \Elementor\Widget_Base {
 								</span>
 							</span>
 						<?php endif; ?>
-					</h1>
+					</<?php echo $heading_tag; ?>>
  
 					<?php if ( ! empty( $s['description'] ) ) : ?>
 						<p class="lead"><?php echo esc_html( $s['description'] ); ?></p>

@@ -77,6 +77,9 @@ class Vira_Sections_Widget_Faq_Search extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->register_tag_control( 'heading_tag', __( 'Heading HTML Tag (SEO)', 'vira-sections' ), 'h2' );
+		$this->register_tag_control( 'question_tag', __( 'Question HTML Tag (SEO)', 'vira-sections' ), 'h3' );
+
 		$this->add_control(
 			'search_placeholder',
 			array(
@@ -384,8 +387,8 @@ class Vira_Sections_Widget_Faq_Search extends \Elementor\Widget_Base {
 				width:8px;height:8px;border-radius:50%;background:var(--vira-accent);
 				box-shadow:0 0 0 4px rgba(1,112,185,.16);display:inline-block;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-faq h2{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-faq h2 em{
+			#<?php echo esc_attr( $unique_id ); ?> .vira-faq h2, #<?php echo esc_attr( $unique_id ); ?> .vira-faq__title{font-size:clamp(28px,3.4vw,46px);font-weight:800;margin:0 0 16px;line-height:1.4;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-faq h2 em, #<?php echo esc_attr( $unique_id ); ?> .vira-faq__title em{
 				font-style:normal;
 				background:linear-gradient(135deg,var(--vira-grad-from),var(--vira-grad-to));
 				-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
@@ -435,7 +438,7 @@ class Vira_Sections_Widget_Faq_Search extends \Elementor\Widget_Base {
 				cursor:pointer;width:100%;border:none;background:transparent;
 				font-family:inherit;font-size:16px;font-weight:700;color:#1D2327;text-align:right;
 			}
-			#<?php echo esc_attr( $unique_id ); ?> .vira-faq__q span.txt{flex:1;}
+			#<?php echo esc_attr( $unique_id ); ?> .vira-faq__q .txt{flex:1;margin:0;font:inherit;color:inherit;text-align:inherit;}
 			#<?php echo esc_attr( $unique_id ); ?> .vira-faq__q .icon{
 				width:32px;height:32px;border-radius:8px;
 				background:rgba(1,112,185,.10);color:var(--vira-accent);
@@ -511,7 +514,8 @@ class Vira_Sections_Widget_Faq_Search extends \Elementor\Widget_Base {
 						<span class="vira-faq__eyebrow"><i></i><?php echo esc_html( $settings['eyebrow'] ); ?></span>
 					<?php endif; ?>
 					<?php if ( ! empty( $settings['heading'] ) ) : ?>
-						<h2><?php echo wp_kses_post( $settings['heading'] ); ?></h2>
+						<?php $heading_tag = $this->vira_safe_tag( isset( $settings['heading_tag'] ) ? $settings['heading_tag'] : 'h2', 'h2' ); ?>
+						<<?php echo $heading_tag; ?> class="vira-faq__title"><?php echo wp_kses_post( $settings['heading'] ); ?></<?php echo $heading_tag; ?>>
 					<?php endif; ?>
 				</div>
 
@@ -533,7 +537,8 @@ class Vira_Sections_Widget_Faq_Search extends \Elementor\Widget_Base {
 						?>
 						<div class="vira-faq__item" data-category="<?php echo esc_attr( $item_cats ); ?>">
 							<button class="vira-faq__q" type="button">
-								<span class="txt"><?php echo esc_html( $item['question'] ); ?></span>
+								<?php $question_tag = $this->vira_safe_tag( isset( $settings['question_tag'] ) ? $settings['question_tag'] : 'h3', 'h3' ); ?>
+								<<?php echo $question_tag; ?> class="txt"><?php echo esc_html( $item['question'] ); ?></<?php echo $question_tag; ?>>
 								<span class="icon">
 									<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
 								</span>
